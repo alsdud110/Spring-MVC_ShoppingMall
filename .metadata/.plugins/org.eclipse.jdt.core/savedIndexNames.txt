@@ -1,0 +1,3 @@
+INDEX VERSION 1.131+D:\eGovFrameDev-3.10.0-64bit\workspace\.metadata\.plugins\org.eclipse.jdt.core
+1425063752.index
+688586370.index

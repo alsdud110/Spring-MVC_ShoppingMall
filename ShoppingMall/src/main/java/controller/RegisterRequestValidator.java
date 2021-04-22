@@ -7,42 +7,49 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import spring.RegisterRequest;
-
 public class RegisterRequestValidator implements Validator {
-	private static final String emailRegExp = 
-			"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" +
-			"[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+//	private static final String emailRegExp = 
+//			"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" +
+//			"[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+//	private Pattern pattern;
+//
+//	public RegisterRequestValidator() {
+//		pattern = Pattern.compile(emailRegExp);
+//		System.out.println("RegisterRequestValidator#new(): " + this);
+//	}
+//
+	private static final String pwRegExp = "(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,20}";
+	
 	private Pattern pattern;
-
+	
 	public RegisterRequestValidator() {
-		pattern = Pattern.compile(emailRegExp);
-		System.out.println("RegisterRequestValidator#new(): " + this);
+		pattern = Pattern.compile(pwRegExp);
 	}
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return RegisterRequest.class.isAssignableFrom(clazz);
+		return RegisterCommand.class.isAssignableFrom(clazz);
 	}
 
 	@Override
 	public void validate(Object target, Errors errors) {
 		System.out.println("RegisterRequestValidator#validate(): " + this);
-		RegisterRequest regReq = (RegisterRequest) target;
+		RegisterCommand regReq = (RegisterCommand) target;
 		if (regReq.getId() == null || regReq.getId().trim().isEmpty()) {
-			errors.rejectValue("email", "required");
+			errors.rejectValue("id", "required");
 		} else {
-			Matcher matcher = pattern.matcher(regReq.getId());
+			Matcher matcher = pattern.matcher(regReq.getPw());
 			if (!matcher.matches()) {
-				errors.rejectValue("email", "bad");
+				errors.rejectValue("pw", "bad");
 			}
 		}
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "id", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "required");
-		ValidationUtils.rejectIfEmpty(errors, "password", "required");
-		ValidationUtils.rejectIfEmpty(errors, "confirmPassword", "required");
-		if (!regReq.getPassword().isEmpty()) {
+		ValidationUtils.rejectIfEmpty(errors, "pw", "required");
+		ValidationUtils.rejectIfEmpty(errors, "confirmPw", "required");
+		if (!regReq.getPw().isEmpty()) {
 			if (!regReq.isPasswordEqualToConfirmPassword()) {
-				errors.rejectValue("confirmPassword", "nomatch");
+				errors.rejectValue("confirmPw", "nomatch");
 			}
 		}
 	}

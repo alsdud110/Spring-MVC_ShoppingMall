@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import spring.AuthService;
 import spring.ChangePasswordService;
+import spring.IdCheckService;
 import spring.MemberDao;
 import spring.MemberRegisterService;
 
@@ -66,5 +67,10 @@ public class MemberConfig {
 		AuthService authService = new AuthService();
 		authService.setMemberDao(memberDao());
 		return authService;
+	}
+	
+	@Bean
+	public IdCheckService idCheckService() {
+		return new IdCheckService(memberDao());
 	}
 }

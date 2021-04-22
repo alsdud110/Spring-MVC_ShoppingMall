@@ -11,14 +11,14 @@
     <form:errors />
     <p>
         <label><spring:message code="id" />:<br>
-        <form:input path="id" />
-        <form:errors path="id"/>
+        <form:input path="m_id" />
+        <form:errors path="m_id"/>
         </label>
     </p>
     <p>
         <label><spring:message code="password" />:<br>
-        <form:password path="password" />
-        <form:errors path="password"/>
+        <form:password path="m_pw" />
+        <form:errors path="m_pw"/>
         </label>
     </p>
     <p>

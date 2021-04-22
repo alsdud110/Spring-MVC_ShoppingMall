@@ -12,15 +12,13 @@ public class MemberRegisterService {
 	}
 
 	public String regist(RegisterCommand req) {
-		Member member = memberDao.selectById(req.getId());
+		Member member = memberDao.selectById(req.getM_id());
 		if (member != null) {
-			throw new DuplicateMemberException("dup id " + req.getId());
+			throw new DuplicateMemberException("dup id " + req.getM_id());
 		}
-		Member newMember = new Member(req.getId(),req.getPw(), req.getName(), req.getTel(), req.getBirth(),
-				req.getAddr(), req.getEmail(),
-				LocalDateTime.now());
+		Member newMember = new Member(req.getM_id(), req.getM_pw(), req.getM_addr(), req.getM_contact(), req.getM_email(), req.getReg_login(), req.getM_birth(), req.getM_name());
 		memberDao.insert(newMember);
-		return newMember.getId();
+		return newMember.getM_id();
 	}
 }
 

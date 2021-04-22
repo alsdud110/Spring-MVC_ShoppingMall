@@ -28,27 +28,27 @@ public class MemberDao {
 			@Override
 			public Member mapRow(ResultSet rs, int nowNum) throws SQLException{
 				Member member = new Member();
-				member.setId(rs.getString("id"));
-				member.setPw(rs.getString("pw"));
-				member.setName(rs.getString("name"));
-				member.setTel(rs.getString("tel"));
-				member.setBirth(rs.getString("birth"));
-				member.setAddr(rs.getString("addr"));
-				member.setEmail(rs.getString("email"));
-				member.setRegdate(rs.getTimestamp("regdate").toLocalDateTime());
+				member.setM_id(rs.getNString("m_id"));
+				member.setM_pw(rs.getString("m_pw"));
+				member.setM_addr(rs.getString("m_addr"));
+				member.setM_contact(rs.getNString("m_contact"));
+				member.setM_email(rs.getString("m_email"));
+				member.setReg_login(rs.getTimestamp("reg_login").toLocalDateTime());
+				member.setM_name(rs.getString("m_name"));
+				member.setM_birth(rs.getString("m_birth"));
 				return member;
 			}
 		};
 	
 	
 	public int checkById(String id) {
-		List<Member> results = jdbcTemplate.query("select * from member where id = ?",memRowMapper, id);
+		List<Member> results = jdbcTemplate.query("select * from member where m_id = ?",memRowMapper, id);
 		
 		return results.isEmpty() ? 0 : 1;  //비어있으면 0, 비어있지 않으면 즉 있으면 1
 	}
 
 	public Member selectById(String id) {
-		List<Member> results = jdbcTemplate.query("select * from member where id = ?",memRowMapper, id);
+		List<Member> results = jdbcTemplate.query("select * from member where m_id = ?",memRowMapper, id);
 		
 		return results.isEmpty() ? null : results.get(0);  //results가 비어잇으면 null, 잇으면 0
 	}
@@ -61,15 +61,15 @@ public class MemberDao {
 				PreparedStatement pstmt = con.prepareStatement(
 						"insert into member values(?,?,?,?,?,?,?,?)");
 				// 인덱스 파라미터 값 설정
-				pstmt.setString(1, member.getId());
-				pstmt.setString(2, member.getPw());
-				pstmt.setString(3, member.getName());
-				pstmt.setString(4, member.getTel());
-				pstmt.setString(5, member.getBirth());
-				pstmt.setString(6, member.getAddr());
-				pstmt.setString(7, member.getEmail());
-				pstmt.setTimestamp(8,
-						Timestamp.valueOf(member.getRegdate()));
+				pstmt.setString(1, member.getM_id());
+				pstmt.setString(2, member.getM_pw());
+				pstmt.setString(3, member.getM_addr());
+				pstmt.setString(4, member.getM_contact());
+				pstmt.setString(5, member.getM_email());
+				pstmt.setTimestamp(6,
+						Timestamp.valueOf(member.getReg_login()));
+				pstmt.setString(7, member.getM_birth());
+				pstmt.setString(8, member.getM_name());
 //				pstmt.executeUpdate();
 				// 생성한 PreparedStatement 객체 리턴
 				return pstmt;

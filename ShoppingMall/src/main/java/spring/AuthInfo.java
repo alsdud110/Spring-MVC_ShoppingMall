@@ -2,25 +2,35 @@ package spring;
 
 public class AuthInfo {
 
-	private String id;
-	private String email;
-	private String name;
+	private String m_id;
+	private String m_email;
+	private String m_name;
 
-	public AuthInfo(String id, String name) {
-		this.id = id;
-		this.name = name;
+
+
+	public String getM_id() {
+		return m_id;
 	}
 
-	public String getId() {
-		return id;
+
+
+	public String getM_email() {
+		return m_email;
 	}
 
-	public String getEmail() {
-		return email;
+
+
+	public String getM_name() {
+		return m_name;
 	}
 
-	public String getName() {
-		return name;
+
+
+	public AuthInfo(String m_id, String m_name) {
+		this.m_id = m_id;
+		this.m_name = m_name;
 	}
+
+
 
 }

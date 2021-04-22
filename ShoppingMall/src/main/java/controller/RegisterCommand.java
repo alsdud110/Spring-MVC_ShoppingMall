@@ -4,54 +4,56 @@ import java.time.LocalDateTime;
 
 public class RegisterCommand {
 
-	private String id;
-	private String pw;
-	private String confirmPw;
-	private String name;
+	private String m_id;
+	private String m_pw;
+	private String m_confirmpw;
+	private String m_name;
 	private String year;
 	private String month;
 	private String day;
-	private String birth;
+	private String m_birth;
 	private String addr_road;
 	private String addr_detail;
-	private String addr;
-	private String tel;
-	private String email;
-	private LocalDateTime regdate;
+	private String m_addr;
+	private String m_contact;
+	private String m_email;
+	private LocalDateTime reg_login;
 
-	public String getId() {
-		return id;
+	
+
+	public String getM_id() {
+		return m_id;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
 	}
 
-	public String getPw() {
-		return pw;
+	public String getM_pw() {
+		return m_pw;
 	}
 
-	public void setPw(String pw) {
-		this.pw = pw;
+	public void setM_pw(String m_pw) {
+		this.m_pw = m_pw;
 	}
 
-	public String getConfirmPw() {
-		return confirmPw;
+	public String getM_confirmpw() {
+		return m_confirmpw;
 	}
 
-	public void setConfirmPw(String confirmPw) {
-		this.confirmPw = confirmPw;
+	public void setM_confirmpw(String m_confirmpw) {
+		this.m_confirmpw = m_confirmpw;
 	}
 
-	public String getName() {
-		return name;
+	public String getM_name() {
+		return m_name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setM_name(String m_name) {
+		this.m_name = m_name;
 	}
 
-	public String getBirth() {
+	public String getM_birth() {
 		if(Integer.parseInt(month) >= 10) {
 			this.month = month;
 		}else {
@@ -65,16 +67,16 @@ public class RegisterCommand {
 		return year + "년 " + month + "월 " + day + "일";
 	}
 
-	public void setBirth(String birth) {
-		this.birth = birth;
+	public void setM_birth(String m_birth) {
+		this.m_birth = m_birth;
 	}
 
-	public String getAddr() {
+	public String getM_addr() {
 		return addr_road + " " + addr_detail;
 	}
 	
-	public void setAddr(String addr) {
-		this.addr = addr;
+	public void setM_addr(String m_addr) {
+		this.m_addr = m_addr;
 	}
 	
 	public String getAddr_road() {
@@ -93,28 +95,28 @@ public class RegisterCommand {
 		this.addr_detail = addr_detail;
 	}
 
-	public String getTel() {
-		return tel;
+	public String getM_contact() {
+		return m_contact;
 	}
 
-	public void setTel(String tel) {
-		this.tel = tel;
+	public void setM_contact(String m_contact) {
+		this.m_contact = m_contact;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getM_email() {
+		return m_email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setM_email(String m_email) {
+		this.m_email = m_email;
 	}
 
-	public LocalDateTime getRegdate() {
-		return regdate;
+	public LocalDateTime getReg_login() {
+		return reg_login;
 	}
 
-	public void setRegdate(LocalDateTime regdate) {
-		this.regdate = regdate;
+	public void setReg_login(LocalDateTime reg_login) {
+		this.reg_login = reg_login;
 	}
 
 	public String getYear() {
@@ -147,6 +149,8 @@ public class RegisterCommand {
 
 
 	public boolean isPasswordEqualToConfirmPassword() {
-		return pw.equals(confirmPw);
+		return m_pw.equals(m_confirmpw);
 	}
+
+
 }

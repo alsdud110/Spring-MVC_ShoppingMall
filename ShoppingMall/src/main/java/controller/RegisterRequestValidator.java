@@ -35,21 +35,21 @@ public class RegisterRequestValidator implements Validator {
 	public void validate(Object target, Errors errors) {
 		System.out.println("RegisterRequestValidator#validate(): " + this);
 		RegisterCommand regReq = (RegisterCommand) target;
-		if (regReq.getId() == null || regReq.getId().trim().isEmpty()) {
-			errors.rejectValue("id", "required");
+		if (regReq.getM_id() == null || regReq.getM_id().trim().isEmpty()) {
+			errors.rejectValue("m_id", "required");
 		} else {
-			Matcher matcher = pattern.matcher(regReq.getPw());
+			Matcher matcher = pattern.matcher(regReq.getM_pw());
 			if (!matcher.matches()) {
-				errors.rejectValue("pw", "bad");
+				errors.rejectValue("m_pw", "bad");
 			}
 		}
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "id", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "required");
-		ValidationUtils.rejectIfEmpty(errors, "pw", "required");
-		ValidationUtils.rejectIfEmpty(errors, "confirmPw", "required");
-		if (!regReq.getPw().isEmpty()) {
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "m_id", "required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "m_name", "required");
+		ValidationUtils.rejectIfEmpty(errors, "m_pw", "required");
+		ValidationUtils.rejectIfEmpty(errors, "m_confirmpw", "required");
+		if (!regReq.getM_pw().isEmpty()) {
 			if (!regReq.isPasswordEqualToConfirmPassword()) {
-				errors.rejectValue("confirmPw", "nomatch");
+				errors.rejectValue("m_confirmpw", "nomatch");
 			}
 		}
 	}

@@ -28,7 +28,7 @@ public class LoginController {
     public String form(LoginCommand loginCommand,
     		@CookieValue(value = "REMEMBER", required = false) Cookie rCookie) {
 		if (rCookie != null) {
-			loginCommand.setId(rCookie.getValue());
+			loginCommand.setM_id(rCookie.getValue());
 			loginCommand.setRememberId(true);
 		}
     	return "login/loginForm";
@@ -44,13 +44,13 @@ public class LoginController {
         }
         try {
             AuthInfo authInfo = authService.authenticate(
-                    loginCommand.getId(),
-                    loginCommand.getPassword());
+                    loginCommand.getM_id(),
+                    loginCommand.getM_pw());
             
             session.setAttribute("authInfo", authInfo);
 
 			Cookie rememberCookie = 
-					new Cookie("REMEMBER", loginCommand.getId());
+					new Cookie("REMEMBER", loginCommand.getM_id());
 			rememberCookie.setPath("/");
 			if (loginCommand.isRememberId()) {
 				rememberCookie.setMaxAge(60 * 60 * 24 * 30);

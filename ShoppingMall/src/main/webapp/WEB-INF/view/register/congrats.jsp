@@ -9,8 +9,8 @@
 <body>
     <p>
         <spring:message code="register.done">
-        	<spring:argument value="${registerRequest.name}" />
-        	<spring:argument value="${registerRequest.email}" />
+        	<spring:argument value="${registerCommand.m_name}" />
+        	<spring:argument value="${registerCommand.m_email}" />
         </spring:message>
     </p>
     <p>

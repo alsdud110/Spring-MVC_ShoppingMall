@@ -14,30 +14,30 @@
 	<form:form action="congrats" modelAttribute="registerCommand">
 		<p>
 			<label><spring:message code="id" />:<br> 
-			<form:input class="id_input" path = "id" />
+			<form:input class="id_input" path = "m_id" />
 			<button type = "button" class = "id_check">중복확인</button><br>
-			<form:errors path="id" />
+			<form:errors path="m_id" />
 			</label>										
 			<span class = "msg1" style = "display : none; color : green;">사용 가능합니다.</span>
 			<span class = "msg2" style = "display : none; color : red">중복된 아이디 입니다. 다시 입력해 주세요.</span>
 		</p>
 		<p>
 			<label><spring:message code="password" />:<br> <form:password
-					path="pw" /> <form:errors path="pw" /> </label>
+					path="m_pw" /> <form:errors path="m_pw" /> </label>
 		</p>
 		<p>
 			<label><spring:message code="password.confirm" />:<br>
-				<form:password path="confirmPw" /> <form:errors path="confirmPw" />
+				<form:password path="m_confirmpw" /> <form:errors path="m_confirmpw" />
 			</label>
 		</p>
 		<p>
 			<label><spring:message code="name" /> :<br> <form:input
-					path="name" /> <form:errors path="name" /> </label>
+					path="m_name" /> <form:errors path="m_name" /> </label>
 		</p>
 		<p>
 			<label><spring:message code="tel" /> : <br> </label>
-			<form:input path="tel" />
-			<form:errors path="tel" />
+			<form:input path="m_contact" />
+			<form:errors path="m_contact" />
 		</p>
 		<p>
 			<label><spring:message code = "birth" /> : <br>
@@ -55,8 +55,8 @@
 		</p>
 		<p>
 			<label><spring:message code="email" /> : <br> </label>
-			<form:input path="email" />
-			<form:errors path="email" />
+			<form:input path="m_email" />
+			<form:errors path="m_email" />
 		</p>
 		<input type="submit" value="<spring:message code="register.btn" />">
 	</form:form>

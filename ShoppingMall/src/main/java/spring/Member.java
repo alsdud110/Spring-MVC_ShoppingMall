@@ -5,107 +5,99 @@ import java.time.LocalDateTime;
 public class Member {
 	public Member() {}
 	
-	private String id;
-	private String pw;
-	private String name;
-	private String tel;
-	private String birth;
-	private String addr;
-	
-	public Member(String id, String pw, String name, String tel, String birth, String addr, String email,
-			LocalDateTime regdate) {
-		this.id = id;
-		this.pw = pw;
-		this.name = name;
-		this.tel = tel;
-		this.birth = birth;
-		this.addr = addr;
-		this.email = email;
-		this.regdate = regdate;
+	private String m_id;
+	private String m_pw;
+	private String m_addr;
+	private String m_contact;
+	private String m_email;
+	private LocalDateTime reg_login;
+	private String m_birth;
+	private String m_name;
+
+	public Member(String m_id, String m_pw, String m_addr, String m_contact, String m_email, LocalDateTime reg_login,
+			String m_birth, String m_name) {
+		this.m_id = m_id;
+		this.m_pw = m_pw;
+		this.m_addr = m_addr;
+		this.m_contact = m_contact;
+		this.m_email = m_email;
+		this.reg_login = reg_login;
+		this.m_birth = m_birth;
+		this.m_name = m_name;
 	}
 
-	public String getId() {
-		return id;
+	public String getM_id() {
+		return m_id;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
 	}
 
-	public String getPw() {
-		return pw;
+	public String getM_pw() {
+		return m_pw;
 	}
 
-	public void setPw(String pw) {
-		this.pw = pw;
+	public void setM_pw(String m_pw) {
+		this.m_pw = m_pw;
 	}
 
-	public String getName() {
-		return name;
+	public String getM_addr() {
+		return m_addr;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setM_addr(String m_addr) {
+		this.m_addr = m_addr;
 	}
 
-	public String getTel() {
-		return tel;
+	public String getM_contact() {
+		return m_contact;
 	}
 
-	public void setTel(String tel) {
-		this.tel = tel;
+	public void setM_contact(String m_contact) {
+		this.m_contact = m_contact;
 	}
 
-	public String getBirth() {
-		return birth;
+	public String getM_email() {
+		return m_email;
 	}
 
-	public void setBirth(String birth) {
-		this.birth = birth;
+	public void setM_email(String m_email) {
+		this.m_email = m_email;
 	}
 
-	public String getAddr() {
-		return addr;
+	public LocalDateTime getReg_login() {
+		return reg_login;
 	}
 
-	public void setAddr(String addr) {
-		this.addr = addr;
+	public void setReg_login(LocalDateTime reg_login) {
+		this.reg_login = reg_login;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getM_birth() {
+		return m_birth;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setM_birth(String m_birth) {
+		this.m_birth = m_birth;
 	}
 
-	public LocalDateTime getRegdate() {
-		return regdate;
+	public String getM_name() {
+		return m_name;
 	}
 
-	public void setRegdate(LocalDateTime regdate) {
-		this.regdate = regdate;
+	public void setM_name(String m_name) {
+		this.m_name = m_name;
 	}
-
-	private String email;
-	private LocalDateTime regdate;
-	
-
-
-
-
-
-	
 
 	public void changePassword(String oldPassword, String newPassword) {
-		if (!pw.equals(oldPassword))
+		if (!m_pw.equals(oldPassword))
 			throw new WrongIdPasswordException();
-		this.pw = newPassword;
+		this.m_pw = newPassword;
 	}
 
 	public boolean matchPassword(String password) {
-		return this.pw.equals(password);
+		return this.m_pw.equals(password);
 	}
 
 

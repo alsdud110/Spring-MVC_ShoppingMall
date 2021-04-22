@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -22,6 +23,7 @@
                         <div class="main-menu d-none d-lg-block">
                             <nav>                                                
                                 <ul id="navigation">  
+                                    <li><a href="main">Main</a></li>
                                     <li><a href="index.html">Best50</a></li>
                                     <li><a href="shop.html">TOP</a></li>
                                     <li><a href="about.html">BOTTOM</a></li>
@@ -72,5 +74,7 @@
                     </div>
                     </div>
 	</header>
+	
+
 </body>
 </html>

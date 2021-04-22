@@ -3,7 +3,7 @@
 
 <!DOCTYPE html>
 <html>
-<head>
+<head>   
 		<link rel="stylesheet" href="<c:url value = "/resources/css/bootstrap.min.css"/>">
         <link rel="stylesheet" href="<c:url value = "/resources/css/owl.carousel.min.css"/>">
         <link rel="stylesheet" href="<c:url value = "/resources/css/flaticon.css"/>">
@@ -15,17 +15,14 @@
         <link rel="stylesheet" href="<c:url value = "/resources/css/slick.css"/>">
         <link rel="stylesheet" href="<c:url value = "/resources/css/nice-select.css"/>">
         <link rel="stylesheet" href="<c:url value = "/resources/css/style.css"/>">
-        
-    
     <title>메인</title>
-  
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	
 	<jsp:include page="footer.jsp"></jsp:include>
     
- 		<!-- JS here -->
+	 		<!-- JS here -->
     <!-- All JS Custom Plugins Link Here here -->
     <script src="<c:url value = "/resources/js/vendor/modernizr-3.5.0.min.js"/>"></script>
     <!-- Jquery, Popper, Bootstrap -->

@@ -7,7 +7,7 @@
     <title><spring:message code="change.pwd.title" /></title>
 </head>
 <body>
-    <form:form>
+    <form:form modelAttribute = "command">
     <p>
         <label><spring:message code="currentPassword" />:<br>
         <form:input path="currentPassword" />

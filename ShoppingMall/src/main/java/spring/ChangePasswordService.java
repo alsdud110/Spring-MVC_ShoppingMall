@@ -6,6 +6,10 @@ public class ChangePasswordService {
 
 	private MemberDao memberDao;
 
+	public void setMemberDao(MemberDao memberDao) {
+		this.memberDao = memberDao;
+	}
+	
 	@Transactional
 	public void changePassword(String id, String oldPwd, String newPwd) {
 		Member member = memberDao.selectById(id);
@@ -17,8 +21,5 @@ public class ChangePasswordService {
 		memberDao.update(member);
 	}
 
-	public void setMemberDao(MemberDao memberDao) {
-		this.memberDao = memberDao;
-	}
 
 }

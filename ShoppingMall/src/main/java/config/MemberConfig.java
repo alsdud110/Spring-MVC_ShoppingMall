@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import spring.AuthService;
 import spring.ChangePasswordService;
+import spring.EditMemberService;
 import spring.IdCheckService;
 import spring.MemberDao;
 import spring.MemberRegisterService;
@@ -60,6 +61,11 @@ public class MemberConfig {
 		ChangePasswordService pwdSvc = new ChangePasswordService();
 		pwdSvc.setMemberDao(memberDao());
 		return pwdSvc;
+	}
+	
+	@Bean
+	public EditMemberService editMemberService() {
+		return new EditMemberService(memberDao());
 	}
 	
 	@Bean

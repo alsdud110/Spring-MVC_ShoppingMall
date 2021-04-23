@@ -18,7 +18,7 @@ import spring.MemberRegisterService;
 
 @Controller
 public class RegisterController {
-
+	
 	@Autowired
 	private MemberRegisterService memberRegisterService;		//하나만의 빈 주입시 @Autowired애노테이션 생각하능 하나 두개 이상부터는 꼭 붙여야한다.
 
@@ -71,13 +71,13 @@ public class RegisterController {
 	}
 
 	@PostMapping("/register/congrats")
-	public String handleStep3(RegisterCommand registerCommand, Errors errors) {
-		new RegisterRequestValidator().validate(registerCommand, errors);
+	public String handleStep3(RegisterCommand req, Errors errors) {
+		new RegisterRequestValidator().validate(req, errors);
 		if (errors.hasErrors()) {
 			return "register/join";
 		}
 		try {
-			memberRegisterService.regist(registerCommand);
+			memberRegisterService.regist(req);
 			return "register/congrats";
 		} catch (DuplicateMemberException ex) {
 			errors.rejectValue("email", "duplicate");

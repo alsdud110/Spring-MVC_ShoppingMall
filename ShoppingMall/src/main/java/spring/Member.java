@@ -3,35 +3,27 @@ package spring;
 import java.sql.Date;
 
 public class Member {
+	public Member() {}
 	
-	private String m_code;
 	private String m_id;
 	private String m_pw;
-	private String m_name;
 	private String m_addr;
 	private String m_contact;
 	private String m_email;
-	private Date reg_login;
+	private LocalDateTime reg_login;
+	private String m_birth;
+	private String m_name;
 
-	public Member(String m_code, String m_id, String m_pw, String m_name, String m_addr, String m_contact,
-			String m_email, Date reg_login) {
-		super();
-		this.m_code = m_code;
+	public Member(String m_id, String m_pw, String m_addr, String m_contact, String m_email, LocalDateTime reg_login,
+			String m_birth, String m_name) {
 		this.m_id = m_id;
 		this.m_pw = m_pw;
-		this.m_name = m_name;
 		this.m_addr = m_addr;
 		this.m_contact = m_contact;
 		this.m_email = m_email;
 		this.reg_login = reg_login;
-	}
-
-	public String getM_code() {
-		return m_code;
-	}
-
-	public void setM_code(String m_code) {
-		this.m_code = m_code;
+		this.m_birth = m_birth;
+		this.m_name = m_name;
 	}
 
 	public String getM_id() {
@@ -48,14 +40,6 @@ public class Member {
 
 	public void setM_pw(String m_pw) {
 		this.m_pw = m_pw;
-	}
-
-	public String getM_name() {
-		return m_name;
-	}
-
-	public void setM_name(String m_name) {
-		this.m_name = m_name;
 	}
 
 	public String getM_addr() {
@@ -82,12 +66,28 @@ public class Member {
 		this.m_email = m_email;
 	}
 
-	public Date getReg_login() {
+	public LocalDateTime getReg_login() {
 		return reg_login;
 	}
 
-	public void setReg_login(Date reg_login) {
+	public void setReg_login(LocalDateTime reg_login) {
 		this.reg_login = reg_login;
+	}
+
+	public String getM_birth() {
+		return m_birth;
+	}
+
+	public void setM_birth(String m_birth) {
+		this.m_birth = m_birth;
+	}
+
+	public String getM_name() {
+		return m_name;
+	}
+
+	public void setM_name(String m_name) {
+		this.m_name = m_name;
 	}
 
 	public void changePassword(String oldPassword, String newPassword) {
@@ -99,5 +99,6 @@ public class Member {
 	public boolean matchPassword(String password) {
 		return this.m_pw.equals(password);
 	}
+
 
 }

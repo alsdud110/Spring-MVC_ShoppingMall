@@ -2,24 +2,26 @@ package controller;
 
 public class LoginCommand {
 
-	private String id;
-	private String password;
+	private String m_id;
+	private String m_pw;
 	private boolean rememberId;
 
-	public String getId() {
-		return id;
+
+
+	public String getM_id() {
+		return m_id;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getM_pw() {
+		return m_pw;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setM_pw(String m_pw) {
+		this.m_pw = m_pw;
 	}
 
 	public boolean isRememberId() {

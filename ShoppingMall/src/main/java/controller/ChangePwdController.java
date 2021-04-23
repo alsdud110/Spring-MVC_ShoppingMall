@@ -42,7 +42,7 @@ public class ChangePwdController {
 		AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
 		try {
 			changePasswordService.changePassword(
-					authInfo.getEmail(),
+					authInfo.getM_email(),
 					pwdCmd.getCurrentPassword(),
 					pwdCmd.getNewPassword());
 			return "edit/changedPwd";

@@ -30,8 +30,14 @@ public class MemberDao {
 					@Override
 					public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
 						Member member = new Member(
+								rs.getString("M_CODE"),
 								rs.getString("M_ID"),
-								rs.getString("M_PW")
+								rs.getString("M_PW"),
+								rs.getString("M_ADDR"),
+								rs.getString("M_CONTACT"),
+								rs.getString("M_EMAIL"),
+								rs.getString("M_BIRTH"),
+								rs.getDate("REG_LOGIN")
 								);
 						return member;
 					}
@@ -52,6 +58,7 @@ public class MemberDao {
 						"values (?, ?, ?, ?)",
 						new String[] { "ID" });
 				// 인덱스 파라미터 값 설정
+				
 				pstmt.setString(1, member.getEmail());
 				pstmt.setString(2, member.getPassword());
 				pstmt.setString(3, member.getName());
@@ -75,8 +82,14 @@ public class MemberDao {
 		List<Member> results = jdbcTemplate.query("select * from MEMBER",
 				(ResultSet rs, int rowNum) -> {
 					Member member = new Member(
-							rs.getString("ID"),
-							rs.getString("PASSWORD"));
+							rs.getString("M_CODE"),
+							rs.getString("M_ID"),
+							rs.getString("M_PW"),
+							rs.getString("M_ADDR"),
+							rs.getString("M_CONTACT"),
+							rs.getString("M_EMAIL"),
+							rs.getString("M_BIRTH"),
+							rs.getDate("REG_LOGIN"));
 					return member;
 				});
 		return results;

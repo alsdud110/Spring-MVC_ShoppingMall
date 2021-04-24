@@ -2,11 +2,8 @@ package controller;
 
 import java.time.LocalDateTime;
 
-public class RegisterCommand {
+public class EditMemberCommand {
 
-	private String m_id;		//민영
-	private String m_pw;		//1234
-	private String m_confirmpw;	//1234
 	private String m_name;		
 	private String year;
 	private String month;
@@ -18,33 +15,7 @@ public class RegisterCommand {
 	private String m_contact;
 	private String m_email;
 	private LocalDateTime reg_login;
-
 	
-
-	public String getM_id() {
-		return m_id;
-	}
-
-	public void setM_id(String m_id) {
-		this.m_id = m_id;
-	}
-
-	public String getM_pw() {
-		return m_pw;
-	}
-
-	public void setM_pw(String m_pw) {
-		this.m_pw = m_pw;
-	}
-
-	public String getM_confirmpw() {
-		return m_confirmpw;
-	}
-
-	public void setM_confirmpw(String m_confirmpw) {
-		this.m_confirmpw = m_confirmpw;
-	}
-
 	public String getM_name() {
 		return m_name;
 	}
@@ -148,9 +119,8 @@ public class RegisterCommand {
 
 
 
-	public boolean isPasswordEqualToConfirmPassword() {
-		return m_pw.equals(m_confirmpw);
-	}
+
+
 
 
 }

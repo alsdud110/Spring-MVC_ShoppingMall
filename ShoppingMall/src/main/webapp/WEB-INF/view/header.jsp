@@ -31,7 +31,7 @@
                                     <li class="hot"><a href="#">MY PAGE</a>
                                         <ul class="submenu">
                                             <li><a href="shop.html"> 구매내역</a></li>
-                                            <li><a href="product_details.html"> 회원정보 수정</a></li>
+                                            <li><a href="edit"> 회원정보 수정</a></li>
                                         </ul>
                                     </li>
                                     <!-- 

@@ -4,23 +4,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-
+import controller.ChangePwdController;
+import controller.EditMemberController;
 import controller.LoginController;
 import controller.LogoutController;
 import controller.RegisterController;
 import spring.AuthService;
 import spring.ChangePasswordService;
+import spring.EditMemberService;
+import spring.MemberRegisterService;
 
 @Configuration
 public class ControllerConfig {
 	@Autowired
 	private AuthService authService;
 	@Autowired
+	private EditMemberService editMemberService;
+	@Autowired
 	private ChangePasswordService changePasswordService;
+	@Autowired
+	private MemberRegisterService memberRegisterService;
+	
 
 	@Bean
 	public RegisterController registerController() {
 		RegisterController controller = new RegisterController();
+		controller.setMemberRegisterService(memberRegisterService);
 		return controller;
 	}
 
@@ -31,6 +40,17 @@ public class ControllerConfig {
 		return controller;
 	}
 	
+	@Bean
+	public EditMemberController editMemberController() {
+		return new EditMemberController(editMemberService);
+	}
+	
+	@Bean
+	public ChangePwdController changePwdController() {
+		ChangePwdController controller = new ChangePwdController();
+		controller.setChangePasswordService(changePasswordService);
+		return controller;
+	}
 	@Bean
 	public LogoutController logoutController() {
 		return new LogoutController();

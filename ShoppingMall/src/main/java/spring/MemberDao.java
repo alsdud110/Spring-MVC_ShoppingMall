@@ -28,14 +28,14 @@ public class MemberDao {
 			@Override
 			public Member mapRow(ResultSet rs, int nowNum) throws SQLException{
 				Member member = new Member();
-				member.setM_id(rs.getNString("m_id"));
+				member.setM_id(rs.getString("m_id"));
 				member.setM_pw(rs.getString("m_pw"));
 				member.setM_addr(rs.getString("m_addr"));
-				member.setM_contact(rs.getNString("m_contact"));
+				member.setM_contact(rs.getString("m_contact"));
 				member.setM_email(rs.getString("m_email"));
-				member.setReg_login(rs.getTimestamp("reg_login").toLocalDateTime());
-				member.setM_name(rs.getString("m_name"));
+				member.setRec_login(rs.getTimestamp("rec_login").toLocalDateTime());
 				member.setM_birth(rs.getString("m_birth"));
+				member.setM_name(rs.getString("m_name"));
 				return member;
 			}
 		};
@@ -67,7 +67,7 @@ public class MemberDao {
 				pstmt.setString(4, member.getM_contact());
 				pstmt.setString(5, member.getM_email());
 				pstmt.setTimestamp(6,
-						Timestamp.valueOf(member.getReg_login()));
+						Timestamp.valueOf(member.getRec_login()));
 				pstmt.setString(7, member.getM_birth());
 				pstmt.setString(8, member.getM_name());
 //				pstmt.executeUpdate();
@@ -78,8 +78,26 @@ public class MemberDao {
 	}
 
 	public void update(Member member) {
-		// TODO Auto-generated method stub
-		
+		jdbcTemplate.update(new PreparedStatementCreator() {
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con)
+					throws SQLException {
+				// 파라미터로 전달받은 Connection을 이용해서 PreparedStatement 생성
+				PreparedStatement pstmt = con.prepareStatement(
+						"update member set m_addr = ?, m_contact = ?, m_email = ?, m_birth = ?, m_name = ? where id = ?");
+				// 인덱스 파라미터 값 설정
+				pstmt.setString(1, member.getM_addr());
+				pstmt.setString(2, member.getM_contact());
+				pstmt.setString(3, member.getM_email());
+				pstmt.setString(4, member.getM_birth());
+				pstmt.setString(5, member.getM_name());
+				pstmt.setString(6, member.getM_id());
+				
+//				pstmt.executeUpdate();
+				// 생성한 PreparedStatement 객체 리턴
+				return pstmt;
+			}
+		});
 	}
 	
 

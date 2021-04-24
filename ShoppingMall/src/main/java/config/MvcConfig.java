@@ -25,7 +25,7 @@ public class MvcConfig implements WebMvcConfigurer {
 
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
-		registry.jsp("/WEB-INF/view/", ".jsp");
+		registry.jsp("/WEB-INF/view/", ".jsp"); ///ShoppingMall/WEBINF/view/edit/editMemberForm.jsp
 	}
 
 	@Override

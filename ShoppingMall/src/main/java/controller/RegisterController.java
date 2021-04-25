@@ -5,10 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import spring.DuplicateMemberException;
@@ -33,26 +33,9 @@ public class RegisterController {
 	public void setIdCheckService(IdCheckService idCheckService) {
 		this.idCheckService = idCheckService;
 	}
-
-
-	@RequestMapping("/register/agree")
-	public String handleStep1() {
-		return "register/agree";
-	}
-
-	@PostMapping("/register/join")
-	public String handleStep2(
-			@RequestParam(value = "agree", defaultValue = "false") Boolean agree,
-			Model model) {
-		if (!agree) {
-			return "register/agree";
-		}
-		model.addAttribute("registerCommand", new RegisterCommand());
-		return "register/join";
-	}
 	
 	// 아이디 중복 검사
-	@RequestMapping(value = "/register/id_check", method = RequestMethod.POST)
+	@RequestMapping(value = "id_check", method = RequestMethod.POST)
 	@ResponseBody
 	public String memberIdChkPOST(String memberId) throws Exception{
 		int result = idCheckService.checkId(memberId);  //result = 0 이면 중복 아이디 없음, 1이면 있음
@@ -65,12 +48,15 @@ public class RegisterController {
 		
 	} // memberIdChkPOST() 종료
 
-	@GetMapping("/register/join")
-	public String handleStep2Get() {
-		return "redirect:/register/agree";
+	
+	@RequestMapping("/join")
+	public String signUp(Model model) {
+		model.addAttribute("registerCommand", new RegisterCommand());
+		return "register/join";
 	}
 
-	@PostMapping("/register/congrats")
+
+	@PostMapping("/congrats")
 	public String handleStep3(RegisterCommand req, Errors errors) {
 		new RegisterRequestValidator().validate(req, errors);
 		if (errors.hasErrors()) {

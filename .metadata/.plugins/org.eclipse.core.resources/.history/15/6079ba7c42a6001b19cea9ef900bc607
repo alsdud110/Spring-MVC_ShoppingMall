@@ -55,8 +55,8 @@ public class RegisterController {
 	// 아이디 중복 검사
 	@RequestMapping(value = "/id_check", method = RequestMethod.POST)
 	@ResponseBody
-	public String memberIdChkPOST(String m_id) throws Exception{
-		int result = idCheckService.checkId(m_id);  //result = 0 이면 중복 아이디 없음, 1이면 있음
+	public String memberIdChkPOST(String memberId) throws Exception{
+		int result = idCheckService.checkId(memberId);  //result = 0 이면 중복 아이디 없음, 1이면 있음
 		if(result != 0) {		//result = 1
 			return "fail";	// 중복 아이디가 존재 1 -> fail
 		} else {

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ page import = "spring.AuthInfo" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,6 +61,11 @@
                         <!-- Header Right -->
                         <div class="header-right">
                             <ul>
+                            <%
+                            	AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+                            	String name = authInfo.getM_name();
+                            %>
+                            	<li><span class = "flaction-user"><%= name %></span></li>
                                 <li> <a href="logout"><span class="flaticon-user"> logout</span></a></li>
                                 <li><a href="cart.html"><span class="flaticon-shopping-cart"> cart</span></a> </li>
                             </ul>

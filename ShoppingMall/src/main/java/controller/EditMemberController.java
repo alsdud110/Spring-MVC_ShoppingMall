@@ -21,8 +21,9 @@ public class EditMemberController {
 	}
 	
 	
-	@GetMapping("/edit")
-	public String editForm() {
+	@RequestMapping("/edit")
+	public String editForm(Model model) {
+		model.addAttribute("editMemberCommand", new EditMemberCommand());
 		return "edit/editMemberForm";
 	}
 	

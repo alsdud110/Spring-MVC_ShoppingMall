@@ -7,8 +7,8 @@ public class IdCheckService {
 		this.memberDao = memberDao;
 	}
 	
-	public int checkId(String id) {
-		int check = memberDao.checkById(id); //check = 0이면 축하합니다, 1이면 중복아이디입니다
+	public int checkId(String M_id) {
+		int check = memberDao.checkById(M_id); //check = 0이면 축하합니다, 1이면 중복아이디입니다
 		return check;
 	}
 }

@@ -41,14 +41,14 @@ public class MemberDao {
 		};
 	
 	
-	public int checkById(String id) {
-		List<Member> results = jdbcTemplate.query("select * from member where m_id = ?",memRowMapper, id);
+	public int checkById(String M_id) {
+		List<Member> results = jdbcTemplate.query("SELECT * FROM MEMBER WHERE M_ID = ?", memRowMapper, M_id);
 		
 		return results.isEmpty() ? 0 : 1;  //비어있으면 0, 비어있지 않으면 즉 있으면 1
 	}
 
-	public Member selectById(String id) {
-		List<Member> results = jdbcTemplate.query("select * from member where m_id = ?",memRowMapper, id);
+	public Member selectById(String M_id) {
+		List<Member> results = jdbcTemplate.query("select * from member where m_id = ?",memRowMapper, M_id);
 		
 		return results.isEmpty() ? null : results.get(0);  //results가 비어잇으면 null, 잇으면 0
 	}

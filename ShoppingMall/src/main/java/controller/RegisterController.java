@@ -17,6 +17,7 @@ import spring.MemberRegisterService;
 
 
 @Controller
+@RequestMapping("/register")
 public class RegisterController {
 
 	@Autowired
@@ -35,12 +36,12 @@ public class RegisterController {
 	}
 
 
-	@RequestMapping("/register/agree")
+	@RequestMapping("/agree")
 	public String handleStep1() {
 		return "register/agree";
 	}
 
-	@PostMapping("/register/join")
+	@PostMapping("/join")
 	public String handleStep2(
 			@RequestParam(value = "agree", defaultValue = "false") Boolean agree,
 			Model model) {
@@ -52,7 +53,7 @@ public class RegisterController {
 	}
 	
 	// 아이디 중복 검사
-	@RequestMapping(value = "/register/id_check", method = RequestMethod.POST)
+	@RequestMapping(value = "/id_check", method = RequestMethod.POST)
 	@ResponseBody
 	public String memberIdChkPOST(String memberId) throws Exception{
 		int result = idCheckService.checkId(memberId);  //result = 0 이면 중복 아이디 없음, 1이면 있음
@@ -65,12 +66,12 @@ public class RegisterController {
 		
 	} // memberIdChkPOST() 종료
 
-	@GetMapping("/register/join")
+	@GetMapping("/join")
 	public String handleStep2Get() {
 		return "redirect:/register/agree";
 	}
 
-	@PostMapping("/register/congrats")
+	@PostMapping("/congrats")
 	public String handleStep3(RegisterCommand registerCommand, Errors errors) {
 		new RegisterRequestValidator().validate(registerCommand, errors);
 		if (errors.hasErrors()) {

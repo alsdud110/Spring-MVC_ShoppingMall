@@ -7,6 +7,8 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import product.ProductDAO;
+import product.ProductService;
 import spring.AuthService;
 import spring.ChangePasswordService;
 import spring.IdCheckService;
@@ -73,4 +75,14 @@ public class MemberConfig {
 	public IdCheckService idCheckService() {
 		return new IdCheckService(memberDao());
 	}
+	//ProductDAO 생성에 따른 빈 생성
+			@Bean
+			public ProductDAO productDAO() {
+				return new ProductDAO(dataSource());
+			}
+			//ProductService 생성에 따른 빈 생성
+			@Bean
+			public ProductService productService() {
+				return new ProductService(productDAO());
+			}
 }

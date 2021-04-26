@@ -23,7 +23,7 @@
                         <div class="main-menu d-none d-lg-block">
                             <nav>                                                
                                 <ul id="navigation">  
-                                    <li><a href="index">Main</a></li>
+                                    <li><a href="main">Main</a></li>
                                     <li><a href="index.html">Best50</a></li>
                                     <li><a href="shop.html">TOP</a></li>
                                     <li><a href="about.html">BOTTOM</a></li>

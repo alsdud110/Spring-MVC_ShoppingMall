@@ -45,10 +45,10 @@ public class LoginController {
         try {
             AuthInfo authInfo = authService.authenticate(
                     loginCommand.getM_id(),
-                    loginCommand.getM_pw());
+                    loginCommand.getM_pw());		//new AuthInfo(member.getM_id(), member.getM_name());
             
             session.setAttribute("authInfo", authInfo);
-
+            
 			Cookie rememberCookie = 
 					new Cookie("REMEMBER", loginCommand.getM_id());
 			rememberCookie.setPath("/");
@@ -58,7 +58,7 @@ public class LoginController {
 				rememberCookie.setMaxAge(0);
 			}
 			response.addCookie(rememberCookie);
-
+			session.getAttribute("authInfo");
             return "main";
         } catch (WrongIdPasswordException e) {
             errors.reject("idPasswordNotMatching");

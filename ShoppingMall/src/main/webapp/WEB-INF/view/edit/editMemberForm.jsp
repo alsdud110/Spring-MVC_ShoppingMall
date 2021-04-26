@@ -1,8 +1,8 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import = "spring.AuthInfo" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,21 +17,64 @@
         <link rel="stylesheet" href="<c:url value = "/resources/css/slick.css"/>">
         <link rel="stylesheet" href="<c:url value = "/resources/css/nice-select.css"/>">
         <link rel="stylesheet" href="<c:url value = "/resources/css/style.css"/>">
+        
+         		<!-- JS here -->
+    <!-- All JS Custom Plugins Link Here here -->
+    <script src="<c:url value = "/resources/js/vendor/modernizr-3.5.0.min.js"/>"></script>
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="<c:url value = "/resources/js/vendor/jquery-1.12.4.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/popper.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/bootstrap.min.js"/>"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="<c:url value = "/resources/js/jquery.slicknav.min.js"/>"></script>
+
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="<c:url value = "/resources/js/owl.carousel.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/slick.min.js"/>"></script>
+
+    <!-- One Page, Animated-HeadLin -->
+    <script src="<c:url value = "/resources/js/wow.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/animated.headline.js"/>"></script>
+
+    <!-- Scroll up, nice-select, sticky -->
+    <script src="<c:url value = "/resources/js/jquery.scrollUp.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/jquery.nice-select.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/jquery.sticky.js"/>"></script>
+    <script src="<c:url value = "/resources/js/jquery.magnific-popup.js"/>"></script>
+    
+    <!-- contact js -->
+    <script src="<c:url value = "/resources/js/contact.js"/>"></script>
+    <script src="<c:url value = "/resources/js/jquery.form.js"/>"></script>
+    <script src="<c:url value = "/resources/js/jquery.validate.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/mail-script.js"/>"></script>
+    <script src="<c:url value = "/resources/js/jquery.ajaxchimp.min.js"/>"></script>
+    
+    <!-- Jquery Plugins, main Jquery -->	
+    <script src="<c:url value = "/resources/js/plugins.js"/>"></script>
+    <script src="<c:url value = "/resources/js/main.js"/>"></script>
     <title><spring:message code="edit.member.title" /></title>
 </head>
 <body>
-	<jsp:include page = "../header.jsp"/>
-		<form:form action = "main">
+	<jsp:include page = "../mainHeader.jsp"/>
+	<div class = "container text-center col-lg-4">
+		<form:form modelAttribute = "editMemberCommand">
+		<%
+			AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+			String name = authInfo.getM_name();
+			String email = authInfo.getM_email();
+			String contact = authInfo.getM_contact();
+		%>
 		<p>
 			<label><spring:message code="name" /> :<br>
-			 <form:input path="m_name" /> 
+			 <form:input path="m_name"  value = "<%=name %>"/> 
 			 <form:errors path="m_name" /> 
 			 </label>
 		</p>
 		<p>
-			<label><spring:message code="tel" /> : <br> </label>
-			<form:input path="m_contact" />
+			<label><spring:message code="tel" /> : <br> 
+			<form:input path="m_contact" value = "<%=contact %>"  />
 			<form:errors path="m_contact" />
+			</label>
 		</p>
 		<p>
 			<label><spring:message code = "birth" /> : <br>
@@ -48,12 +91,14 @@
 			<input type="text" id="sample6_extraAddress" placeholder="참고항목">
 		</p>
 		<p>
-			<label><spring:message code="email" /> : <br> </label>
-			<form:input path="m_email" />
+			<label><spring:message code="email" /> : <br>
+			<form:input path="m_email" value = "<%=email %>"/>
 			<form:errors path="m_email" />
+			 </label>
 		</p>
-		<input type="submit" value="<spring:message code="register.btn" />">
+		<input type="submit" value= "수정 완료" class = "btn btn-primary">
 	</form:form>
+	</div>
 	
 
 
@@ -173,39 +218,5 @@
     }
 </script>
 
-	 		<!-- JS here -->
-    <!-- All JS Custom Plugins Link Here here -->
-    <script src="<c:url value = "/resources/js/vendor/modernizr-3.5.0.min.js"/>"></script>
-    <!-- Jquery, Popper, Bootstrap -->
-    <script src="<c:url value = "/resources/js/vendor/jquery-1.12.4.min.js"/>"></script>
-    <script src="<c:url value = "/resources/js/popper.min.js"/>"></script>
-    <script src="<c:url value = "/resources/js/bootstrap.min.js"/>"></script>
-    <!-- Jquery Mobile Menu -->
-    <script src="<c:url value = "/resources/js/jquery.slicknav.min.js"/>"></script>
-
-    <!-- Jquery Slick , Owl-Carousel Plugins -->
-    <script src="<c:url value = "/resources/js/owl.carousel.min.js"/>"></script>
-    <script src="<c:url value = "/resources/js/slick.min.js"/>"></script>
-
-    <!-- One Page, Animated-HeadLin -->
-    <script src="<c:url value = "/resources/js/wow.min.js"/>"></script>
-    <script src="<c:url value = "/resources/js/animated.headline.js"/>"></script>
-
-    <!-- Scroll up, nice-select, sticky -->
-    <script src="<c:url value = "/resources/js/jquery.scrollUp.min.js"/>"></script>
-    <script src="<c:url value = "/resources/js/jquery.nice-select.min.js"/>"></script>
-    <script src="<c:url value = "/resources/js/jquery.sticky.js"/>"></script>
-    <script src="<c:url value = "/resources/js/jquery.magnific-popup.js"/>"></script>
-    
-    <!-- contact js -->
-    <script src="<c:url value = "/resources/js/contact.js"/>"></script>
-    <script src="<c:url value = "/resources/js/jquery.form.js"/>"></script>
-    <script src="<c:url value = "/resources/js/jquery.validate.min.js"/>"></script>
-    <script src="<c:url value = "/resources/js/mail-script.js"/>"></script>
-    <script src="<c:url value = "/resources/js/jquery.ajaxchimp.min.js"/>"></script>
-    
-    <!-- Jquery Plugins, main Jquery -->	
-    <script src="<c:url value = "/resources/js/plugins.js"/>"></script>
-    <script src="<c:url value = "/resources/js/main.js"/>"></script>
 </body>
 </html>

@@ -35,7 +35,7 @@ public class LoginController {
     }
 
     @PostMapping
-    public String submit(
+    public String login(
     		LoginCommand loginCommand, Errors errors, HttpSession session,
     		HttpServletResponse response) {
         new LoginCommandValidator().validate(loginCommand, errors);

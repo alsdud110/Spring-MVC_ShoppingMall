@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import spring.DuplicateMemberException;
@@ -17,6 +18,7 @@ import spring.MemberRegisterService;
 
 
 @Controller
+@RequestMapping("/register")
 public class RegisterController {
 	
 	@Autowired
@@ -33,12 +35,29 @@ public class RegisterController {
 	public void setIdCheckService(IdCheckService idCheckService) {
 		this.idCheckService = idCheckService;
 	}
+
+
+	@RequestMapping("/agree")
+	public String handleStep1() {
+		return "register/agree";
+	}
+
+	@PostMapping("/join")
+	public String handleStep2(
+			@RequestParam(value = "agree", defaultValue = "false") Boolean agree,
+			Model model) {
+		if (!agree) {
+			return "register/agree";
+		}
+		model.addAttribute("registerCommand", new RegisterCommand());
+		return "register/join";
+	}
 	
 	// 아이디 중복 검사
-	@RequestMapping(value = "id_check", method = RequestMethod.POST)
+	@RequestMapping(value = "/id_check", method = RequestMethod.POST)
 	@ResponseBody
-	public String memberIdChkPOST(String memberId) throws Exception{
-		int result = idCheckService.checkId(memberId);  //result = 0 이면 중복 아이디 없음, 1이면 있음
+	public String memberIdChkPOST(String m_id) throws Exception{
+		int result = idCheckService.checkId(m_id);  //result = 0 이면 중복 아이디 없음, 1이면 있음
 		if(result != 0) {		//result = 1
 			return "fail";	// 중복 아이디가 존재 1 -> fail
 		} else {
@@ -48,7 +67,7 @@ public class RegisterController {
 		
 	} // memberIdChkPOST() 종료
 
-	
+
 	@RequestMapping("/join")
 	public String signUp(Model model) {
 		model.addAttribute("registerCommand", new RegisterCommand());
@@ -57,19 +76,14 @@ public class RegisterController {
 
 
 	@PostMapping("/congrats")
-	public String handleStep3(RegisterCommand req, Errors errors) {
+	public void handleStep3(RegisterCommand req, Errors errors) {
 		new RegisterRequestValidator().validate(req, errors);
-		if (errors.hasErrors()) {
-			return "register/join";
-		}
-		try {
-			memberRegisterService.regist(req);
-			return "register/congrats";
-		} catch (DuplicateMemberException ex) {
-			errors.rejectValue("email", "duplicate");
-			return "register/join";
-		}
 	}
+	@GetMapping("/join")
+	public String handleStep2Get() {
+		return "redirect:/register/agree";
+	}
+
 
 
 }

@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<<<<<<< HEAD
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+=======
+<%@ page import = "spring.AuthInfo" %>
+>>>>>>> 황민영
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,13 +30,21 @@
                                 <ul id="navigation">  
                                     <li><a href="main">Main</a></li>
                                     <li><a href="index.html">Best50</a></li>
-                                    <li><a href="shop.html">TOP</a></li>
+<<<<<<< HEAD
+<<<<<<< HEAD
+                                    <li><a href="<c:url value='/product/viewCategory/TOP'/>">TOP</a></li>
+=======
+                                     <li><a href="<c:url value='/product/viewCategory/TOP'/>">TOP</a></li>
+>>>>>>> 92755a5a4faddeaf8c45c3e25885439a4f2c62bb
+=======
+									<li><a href="/product/viewCategory/TOP">TOP</a></li>
+>>>>>>> 황민영
                                     <li><a href="about.html">BOTTOM</a></li>
                                     <li><a href="about.html">ACC</a></li>
                                     <li class="hot"><a href="#">MY PAGE</a>
                                         <ul class="submenu">
                                             <li><a href="shop.html"> 구매내역</a></li>
-                                            <li><a href="product_details.html"> 회원정보 수정</a></li>
+                                            <li><a href="edit"> 회원정보 수정</a></li>
                                         </ul>
                                     </li>
                                     <!-- 
@@ -58,16 +71,24 @@
                         </div>
                         <!-- Header Right -->
                         <div class="header-right">
+                            <%
+                            AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+                        	if(authInfo == null){%>
                             <ul>
-                                <li>
-                                    <div class="nav-search search-switch">
-                                        <span class="flaticon-search"></span>
-                                    </div>
-                                </li>
-                                <li> <a href="login"><span class="flaticon-user"></span></a></li>
-                                <li><a href="cart.html"><span class="flaticon-shopping-cart"></span></a> </li>
-                                <li><a href="register/agree"><span class="flaticon-user"></span></a> </li>
+                                <li> <a href="login"><span class="flaticon-user"> login</span></a></li>
+                                <li><a href="login"><span class="flaticon-shopping-cart"> cart</span></a> </li>
+                                <li><a href="join"><span class="flaticon-user"> join</span></a> </li>
                             </ul>
+                            	<%}else{
+                            		String name = authInfo.getM_name();
+                            	%>
+                            <ul>
+                            	<li><span class = "flaction-user"><%= name %></span></li>
+                                <li> <a href="logout"><span class="flaticon-user"> logout</span></a></li>
+                                <li><a href="cart"><span class="flaticon-shopping-cart"> cart</span></a> </li>
+                             
+                            </ul>
+                            <% }%>
                         </div>
                     </div>
                     </div>

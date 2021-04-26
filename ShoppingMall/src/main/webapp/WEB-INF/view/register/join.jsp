@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,67 +16,114 @@
         <link rel="stylesheet" href="<c:url value = "/resources/css/slick.css"/>">
         <link rel="stylesheet" href="<c:url value = "/resources/css/nice-select.css"/>">
         <link rel="stylesheet" href="<c:url value = "/resources/css/style.css"/>">
+        
+         		<!-- JS here -->
+    <!-- All JS Custom Plugins Link Here here -->
+    <script src="<c:url value = "/resources/js/vendor/modernizr-3.5.0.min.js"/>"></script>
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="<c:url value = "/resources/js/vendor/jquery-1.12.4.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/popper.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/bootstrap.min.js"/>"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="<c:url value = "/resources/js/jquery.slicknav.min.js"/>"></script>
+
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="<c:url value = "/resources/js/owl.carousel.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/slick.min.js"/>"></script>
+
+    <!-- One Page, Animated-HeadLin -->
+    <script src="<c:url value = "/resources/js/wow.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/animated.headline.js"/>"></script>
+
+    <!-- Scroll up, nice-select, sticky -->
+    <script src="<c:url value = "/resources/js/jquery.scrollUp.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/jquery.nice-select.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/jquery.sticky.js"/>"></script>
+    <script src="<c:url value = "/resources/js/jquery.magnific-popup.js"/>"></script>
+    
+    <!-- contact js -->
+    <script src="<c:url value = "/resources/js/contact.js"/>"></script>
+    <script src="<c:url value = "/resources/js/jquery.form.js"/>"></script>
+    <script src="<c:url value = "/resources/js/jquery.validate.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/mail-script.js"/>"></script>
+    <script src="<c:url value = "/resources/js/jquery.ajaxchimp.min.js"/>"></script>
+    
+    <!-- Jquery Plugins, main Jquery -->	
+    <script src="<c:url value = "/resources/js/plugins.js"/>"></script>
+    <script src="<c:url value = "/resources/js/main.js"/>"></script>
 <title><spring:message code="member.register"/></title>
 </head>
 <body>
-	<jsp:include page = "../header.jsp"/>
+	<!-- Header -->
+	<jsp:include page="../header.jsp"></jsp:include>
+	
+	<!-- Main -->
+ <div class="container text-center">
+        
 	<h2>
 		<spring:message code="member.info"/>
 	</h2>
-	<form:form action="congrats" modelAttribute="registerCommand">
-		<p>
+	<form:form action="congrats" modelAttribute = "registerCommand">
+		<div class="col-md-6 form-group p_star ">
 			<label><spring:message code="id" />:<br> 
-			<form:input class="id_input" path = "m_id" />
-			<button type = "button" class = "id_check">중복확인</button><br>
+			<form:input path = "m_id" class="id_input form-control"/> &nbsp;&nbsp;&nbsp;
 			<form:errors path="m_id" />
+			<button type = "button" class = "id_check">중복확인</button>
 			</label>										
 			<span class = "msg1" style = "display : none; color : green;">사용 가능합니다.</span>
 			<span class = "msg2" style = "display : none; color : red">중복된 아이디 입니다. 다시 입력해 주세요.</span>
-		</p>
-		<p>
-			<label><spring:message code="password" />:<br> <form:password
-					path="m_pw" /> <form:errors path="m_pw" /> </label>
-		</p>
-		<p>
-			<label><spring:message code="password.confirm" />:<br>
-				<form:password path="m_confirmpw" /> <form:errors path="m_confirmpw" />
+		</div>
+		<div class="col-md-6 form-group p_star ">
+			<label><spring:message code="password" />:<br> 
+			<form:password path="m_pw" class="form-control"/> 
+			<form:errors path="m_pw" />
 			</label>
-		</p>
-		<p>
-			<label><spring:message code="name" /> :<br> <form:input
-					path="m_name" /> <form:errors path="m_name" /> </label>
-		</p>
-		<p>
-			<label><spring:message code="tel" /> : <br> </label>
-			<form:input path="m_contact" />
-			<form:errors path="m_contact" />
-		</p>
-		<p>
+		</div>
+		<div class="col-md-6 form-group p_star ">
+			<label><spring:message code="password.confirm" />:<br>
+				<form:password path="m_confirmpw" class="form-control"/> 
+				<form:errors path="m_confirmpw" />
+			</label>
+		</div>
+		<div class="col-md-6 form-group p_star ">
+			<label><spring:message code="name" /> :<br> 
+			<form:input path="m_name" class="form-control" /> 
+			<form:errors path="m_name" /> </label>
+		</div>
+		<div class="col-md-6 form-group p_star ">
+			<label><spring:message code="tel" /> : <br>
+			<form:input path="m_contact"  class="form-control"/>
+			<form:errors path="m_contact" /></label>
+		</div>
+		<div class="col-md-6 form-group p_star ">
 			<label><spring:message code = "birth" /> : <br>
 				<form:select path = "year" name="year" id="year" title="년도" />
 				<form:select path = "month" name="month" id="month" title="월"/>
 				<form:select path = "day" name="day" id="day" title="일" />
 			</label>
-		</p>
-		<p>			
+		</div>
+		<div class="col-md-6 form-group p_star">		
 			<input type="text" id="sample6_postcode" placeholder="우편번호">
 			<input type="button" onclick="findAddr()" value="우편번호 찾기"><br>
 			<form:input path = "addr_road" id="sample6_address" placeholder="주소"/><br>
 			<form:input path = "addr_detail" id="sample6_detailAddress" placeholder="상세주소"/>
 			<input type="text" id="sample6_extraAddress" placeholder="참고항목">
-		</p>
-		<p>
-			<label><spring:message code="email" /> : <br> </label>
-			<form:input path="m_email" />
-			<form:errors path="m_email" />
-		</p>
-		<input type="submit" value="<spring:message code="register.btn" />">
+		</div>
+		<div class="col-md-6 form-group p_star">
+			<label><spring:message code="email" /> : <br>
+			<form:input path="m_email" class="form-control" />
+			<form:errors path="m_email" /> </label>
+		</div>
+		<div>
+		<input type="submit" value="<spring:message code="register.btn" />" class = "btn_3 text-center">
+		</div>
 	</form:form>
-
-
-	<jsp:include page = "../footer.jsp"/>
-	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+		</div>
+		
+	<!-- Footer -->
+	<jsp:include page = "../footer.jsp"></jsp:include>
 	
+	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 	<!-- 생년월일 -->
 	<script>
 	  $(document).ready(function () {
@@ -109,7 +157,6 @@
 	<!-- 아이디 중복확인 절차 -->
 	<script>
 		$(".id_check").click(function(){
-    		
     			console.log('${pageContext.request.contextPath}');
     			var memberId = $('.id_input').val();			// .id_input에 입력되는 값
     			if(memberId === null){
@@ -189,39 +236,6 @@
     }
 </script>
 
-	 		<!-- JS here -->
-    <!-- All JS Custom Plugins Link Here here -->
-    <script src="<c:url value = "/resources/js/vendor/modernizr-3.5.0.min.js"/>"></script>
-    <!-- Jquery, Popper, Bootstrap -->
-    <script src="<c:url value = "/resources/js/vendor/jquery-1.12.4.min.js"/>"></script>
-    <script src="<c:url value = "/resources/js/popper.min.js"/>"></script>
-    <script src="<c:url value = "/resources/js/bootstrap.min.js"/>"></script>
-    <!-- Jquery Mobile Menu -->
-    <script src="<c:url value = "/resources/js/jquery.slicknav.min.js"/>"></script>
-
-    <!-- Jquery Slick , Owl-Carousel Plugins -->
-    <script src="<c:url value = "/resources/js/owl.carousel.min.js"/>"></script>
-    <script src="<c:url value = "/resources/js/slick.min.js"/>"></script>
-
-    <!-- One Page, Animated-HeadLin -->
-    <script src="<c:url value = "/resources/js/wow.min.js"/>"></script>
-    <script src="<c:url value = "/resources/js/animated.headline.js"/>"></script>
-
-    <!-- Scroll up, nice-select, sticky -->
-    <script src="<c:url value = "/resources/js/jquery.scrollUp.min.js"/>"></script>
-    <script src="<c:url value = "/resources/js/jquery.nice-select.min.js"/>"></script>
-    <script src="<c:url value = "/resources/js/jquery.sticky.js"/>"></script>
-    <script src="<c:url value = "/resources/js/jquery.magnific-popup.js"/>"></script>
-    
-    <!-- contact js -->
-    <script src="<c:url value = "/resources/js/contact.js"/>"></script>
-    <script src="<c:url value = "/resources/js/jquery.form.js"/>"></script>
-    <script src="<c:url value = "/resources/js/jquery.validate.min.js"/>"></script>
-    <script src="<c:url value = "/resources/js/mail-script.js"/>"></script>
-    <script src="<c:url value = "/resources/js/jquery.ajaxchimp.min.js"/>"></script>
-    
-    <!-- Jquery Plugins, main Jquery -->	
-    <script src="<c:url value = "/resources/js/plugins.js"/>"></script>
-    <script src="<c:url value = "/resources/js/main.js"/>"></script>
+	
 </body>
 </html>

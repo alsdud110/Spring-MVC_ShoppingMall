@@ -17,7 +17,7 @@ public class RegisterCommand {
 	private String m_addr;
 	private String m_contact;
 	private String m_email;
-	private LocalDateTime reg_login;
+	private LocalDateTime rec_login;
 
 	
 
@@ -111,12 +111,12 @@ public class RegisterCommand {
 		this.m_email = m_email;
 	}
 
-	public LocalDateTime getReg_login() {
-		return reg_login;
+	public LocalDateTime getRec_login() {
+		return rec_login;
 	}
 
-	public void setReg_login(LocalDateTime reg_login) {
-		this.reg_login = reg_login;
+	public void setRec_login(LocalDateTime rec_login) {
+		this.rec_login = rec_login;
 	}
 
 	public String getYear() {

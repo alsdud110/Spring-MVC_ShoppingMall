@@ -8,6 +8,7 @@ import controller.ChangePwdController;
 import controller.EditMemberController;
 import controller.LoginController;
 import controller.LogoutController;
+import controller.MainController;
 import controller.RegisterController;
 import spring.AuthService;
 import spring.ChangePasswordService;
@@ -56,6 +57,10 @@ public class ControllerConfig {
 		return new LogoutController();
 	}
 	
+	@Bean
+	public MainController mainController() {
+		return new MainController();
+	}
 //	@Bean
 //	public ModifyController changePwdController() {
 //		ModifyController controller = new ModifyController();

@@ -23,7 +23,7 @@
                         <div class="main-menu d-none d-lg-block">
                             <nav>                                                
                                 <ul id="navigation">  
-                                    <li><a href="index">Main</a></li>
+                                    <li><a href="main">Main</a></li>
                                     <li><a href="index.html">Best50</a></li>
                                     <li><a href="shop.html">TOP</a></li>
                                     <li><a href="about.html">BOTTOM</a></li>
@@ -59,9 +59,8 @@
                         <!-- Header Right -->
                         <div class="header-right">
                             <ul>
-                                <li> <a href="login"><span class="flaticon-user"> login</span></a></li>
+                                <li> <a href="logout"><span class="flaticon-user"> logout</span></a></li>
                                 <li><a href="cart.html"><span class="flaticon-shopping-cart"> cart</span></a> </li>
-                                <li><a href="join"><span class="flaticon-user"> join</span></a> </li>
                             </ul>
                         </div>
                     </div>

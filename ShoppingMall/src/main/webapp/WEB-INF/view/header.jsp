@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "spring.AuthInfo" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +26,7 @@
                                 <ul id="navigation">  
                                     <li><a href="main">Main</a></li>
                                     <li><a href="index.html">Best50</a></li>
-                                    <li><a href="<c:url value='/product/viewCategory/TOP'/>">TOP</a></li>
+									<li><a href="/product/viewCategory/TOP">TOP</a></li>
                                     <li><a href="about.html">BOTTOM</a></li>
                                     <li><a href="about.html">ACC</a></li>
                                     <li class="hot"><a href="#">MY PAGE</a>
@@ -58,11 +59,24 @@
                         </div>
                         <!-- Header Right -->
                         <div class="header-right">
+                            <%
+                            AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+                        	if(authInfo == null){%>
                             <ul>
                                 <li> <a href="login"><span class="flaticon-user"> login</span></a></li>
-                                <li><a href="cart.html"><span class="flaticon-shopping-cart"> cart</span></a> </li>
+                                <li><a href="login"><span class="flaticon-shopping-cart"> cart</span></a> </li>
                                 <li><a href="join"><span class="flaticon-user"> join</span></a> </li>
                             </ul>
+                            	<%}else{
+                            		String name = authInfo.getM_name();
+                            	%>
+                            <ul>
+                            	<li><span class = "flaction-user"><%= name %></span></li>
+                                <li> <a href="logout"><span class="flaticon-user"> logout</span></a></li>
+                                <li><a href="cart"><span class="flaticon-shopping-cart"> cart</span></a> </li>
+                             
+                            </ul>
+                            <% }%>
                         </div>
                     </div>
                     </div>

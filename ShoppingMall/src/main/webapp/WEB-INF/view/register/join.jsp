@@ -54,9 +54,10 @@
 <title><spring:message code="member.register"/></title>
 </head>
 <body>
-
+	<!-- Header -->
 	<jsp:include page="../header.jsp"></jsp:include>
 	
+	<!-- Main -->
  <div class="container text-center">
         
 	<h2>
@@ -119,7 +120,7 @@
 	</form:form>
 		</div>
 		
-	
+	<!-- Footer -->
 	<jsp:include page = "../footer.jsp"></jsp:include>
 	
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>

@@ -1,9 +1,3 @@
 INDEX VERSION 1.131
 D:\eGovFrameDev-3.10.0-64bit\workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\483293133.index
 \ShoppingMall\src\main\java
-D:\eGovFrameDev-3.10.0-64bit\workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2988603342.index
-\ShoppingMall\src\main\java
-D:\eGovFrameDev-3.10.0-64bit\workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1649961523.index
-\ShoppingMall\src\main\java
-D:\eGovFrameDev-3.10.0-64bit\workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1260744788.index
-\ShoppingMall\src\main\java

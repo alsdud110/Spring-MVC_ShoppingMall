@@ -11,12 +11,12 @@ public class ChangePasswordService {
 	}
 	
 	@Transactional
-	public void changePassword(String id, String oldPwd, String newPwd) {
-		Member member = memberDao.selectById(id);
+	public void changePassword(String m_id, String m_pw, String new_m_pw) {
+		Member member = memberDao.selectById(m_id);
 		if (member == null)
 			throw new MemberNotFoundException();
 
-		member.changePassword(oldPwd, newPwd);
+		member.changePassword(m_pw, new_m_pw);
 
 		memberDao.update(member);
 	}

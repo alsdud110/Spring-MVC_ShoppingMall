@@ -10,6 +10,8 @@ import controller.LoginController;
 import controller.LogoutController;
 import controller.MainController;
 import controller.RegisterController;
+import product.ProductController;
+import product.ProductService;
 import spring.AuthService;
 import spring.ChangePasswordService;
 import spring.EditMemberService;
@@ -25,7 +27,9 @@ public class ControllerConfig {
 	private ChangePasswordService changePasswordService;
 	@Autowired
 	private MemberRegisterService memberRegisterService;
-	
+	@Autowired
+	private ProductService productServicec;
+
 
 	@Bean
 	public RegisterController registerController() {
@@ -61,6 +65,14 @@ public class ControllerConfig {
 	public MainController mainController() {
 		return new MainController();
 	}
+	
+	@Bean
+	public ProductController productContriller() {
+		ProductController controller = new ProductController();
+		controller.setProductService(productServicec);
+		return controller;
+	}
+
 //	@Bean
 //	public ModifyController changePwdController() {
 //		ModifyController controller = new ModifyController();

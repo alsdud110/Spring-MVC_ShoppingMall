@@ -8,12 +8,12 @@ public class AuthService {
 		this.memberDao = memberDao;
 	}
 
-	public AuthInfo authenticate(String id, String password) {
-		Member member = memberDao.selectById(id);
+	public AuthInfo authenticate(String m_id, String any_pw) {
+		Member member = memberDao.selectById(m_id);
 		if (member == null) {
 			throw new WrongIdPasswordException();
 		}
-		if (!member.matchPassword(password)) {
+		if (!member.matchPassword(any_pw)) {
 			throw new WrongIdPasswordException();
 		}
 		return new AuthInfo(member.getM_email(),

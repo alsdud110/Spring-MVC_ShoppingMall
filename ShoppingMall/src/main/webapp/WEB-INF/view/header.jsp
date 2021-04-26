@@ -71,7 +71,7 @@
                             		String name = authInfo.getM_name();
                             	%>
                             <ul>
-                            	<li><span class = "flaction-user"><%= name %></span></li>
+                            	<li><span class = "flaticon-user"> <%= name %></span></li>
                                 <li> <a href="logout"><span class="flaticon-user"> logout</span></a></li>
                                 <li><a href="cart"><span class="flaticon-shopping-cart"> cart</span></a> </li>
                              

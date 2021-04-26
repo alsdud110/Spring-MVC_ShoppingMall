@@ -55,7 +55,7 @@
     <title><spring:message code="edit.member.title" /></title>
 </head>
 <body>
-	<jsp:include page = "../mainHeader.jsp"/>
+	<jsp:include page = "../header.jsp"/>
 	<div class = "container text-center col-lg-4">
 		<form:form modelAttribute = "editMemberCommand">
 		<%

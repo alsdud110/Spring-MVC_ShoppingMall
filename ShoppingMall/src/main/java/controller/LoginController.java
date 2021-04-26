@@ -58,8 +58,8 @@ public class LoginController {
 				rememberCookie.setMaxAge(0);
 			}
 			response.addCookie(rememberCookie);
-			session.getAttribute("authInfo");
-            return "main";
+
+			return "main";
         } catch (WrongIdPasswordException e) {
             errors.reject("idPasswordNotMatching");
             return "login/loginForm";

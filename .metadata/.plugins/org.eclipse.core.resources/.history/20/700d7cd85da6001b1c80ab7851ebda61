@@ -98,5 +98,48 @@ public class MemberDao {
 			}
 		});
 	}
-
+//Product
+	
+/*상품 전체에 대한 데이터 가져오기
+ *	SELECT *
+	 FROM PRODUCT;
+ */
+	
+/*
+ * SELECT P.*, P_STD.*
+	FROM PRODUCT P, PRODUCT_STD P_STD
+   WHERE
+    	1 =1 AND
+    	P.P_CODE = ? AND
+    	P.P_CODE = P_STD.P_CODE(+);
+ */
+	
+/*현재 판매량 탑 3
+ * WITH 
+    SUM_QTY AS(
+          SELECT SUM(QTY) AS A_QTY, P_CODE
+           FROM ORDER_PRODUCT
+          GROUP BY P_CODE
+        ),
+    QTY_R AS(
+           SELECT P_CODE, ROWNUM R 
+            FROM( 
+             SELECT * 
+              FROM SUM_QTY
+             ORDER BY A_QTY DESC
+            )
+    ),
+    QTY_TOP_3 AS(
+               SELECT P_CODE
+                FROM QTY_R
+               WHERE R < 3
+    )
+    
+	SELECT P.*
+	FROM PRODUCT P, PRODUCT_STD P_STD, QTY_TOP_3
+	WHERE
+	    1 =1 AND
+	    P.P_CODE = QTY_TOP_3.P_CODE AND
+	    P.P_CODE = P_STD.P_CODE(+);
+ * */
 }

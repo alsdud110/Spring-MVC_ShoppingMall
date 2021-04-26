@@ -68,7 +68,7 @@ public class ControllerConfig {
 	}
 	
 	@Bean
-	public ProductController productController() {
+	public ProductController productContriller() {
 		ProductController controller = new ProductController();
 		controller.setProductService(productServicec);
 		return controller;
@@ -80,4 +80,11 @@ public class ControllerConfig {
 //		controller.setChangePasswordService(changePasswordService);
 //		return controller;
 //	}
+	
+	@Bean
+	public ProductController productContriller() {
+		ProductController controller = new ProductController();
+		controller.setProductService(productServicec);
+		return controller;
+	}
 }

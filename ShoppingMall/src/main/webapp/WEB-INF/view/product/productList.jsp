@@ -37,4 +37,8 @@
 </html>
 
 <!-- <td><a href="<c:url value="/members/${mem.id}"/>">
+<<<<<<< HEAD
                 ${mem.email}</a></td> -->
+=======
+                ${mem.email}</a></td> -->
+>>>>>>> 92755a5a4faddeaf8c45c3e25885439a4f2c62bb

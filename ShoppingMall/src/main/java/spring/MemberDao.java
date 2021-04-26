@@ -59,17 +59,16 @@ public class MemberDao {
 					throws SQLException {
 				// 파라미터로 전달받은 Connection을 이용해서 PreparedStatement 생성
 				PreparedStatement pstmt = con.prepareStatement(
-						"insert into member values(?,?,?,?,?,?,?,?)");
+						"insert into member(m_id, m_pw, m_addr, m_contact, m_email, m_birth, m_name) values(?,?,?,?,?,?,?)");
 				// 인덱스 파라미터 값 설정
 				pstmt.setString(1, member.getM_id());
 				pstmt.setString(2, member.getM_pw());
 				pstmt.setString(3, member.getM_addr());
 				pstmt.setString(4, member.getM_contact());
 				pstmt.setString(5, member.getM_email());
-				pstmt.setTimestamp(6,
-						Timestamp.valueOf(member.getRec_login()));
-				pstmt.setString(7, member.getM_birth());
-				pstmt.setString(8, member.getM_name());
+//				pstmt.setTimestamp(6, Timestamp.valueOf(member.getRec_login()));
+				pstmt.setString(6, member.getM_birth());
+				pstmt.setString(7, member.getM_name());
 //				pstmt.executeUpdate();
 				// 생성한 PreparedStatement 객체 리턴
 				return pstmt;

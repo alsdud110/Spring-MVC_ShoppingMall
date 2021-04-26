@@ -62,7 +62,7 @@
 	<h2>
 		<spring:message code="member.info"/>
 	</h2>
-	<form:form action="register/congrats" modelAttribute = "registerCommand">
+	<form:form action="congrats" modelAttribute = "registerCommand">
 		<div class="col-md-6 form-group p_star ">
 			<label><spring:message code="id" />:<br> 
 			<form:input path = "m_id" class="id_input form-control"/> &nbsp;&nbsp;&nbsp;
@@ -90,9 +90,9 @@
 			<form:errors path="m_name" /> </label>
 		</div>
 		<div class="col-md-6 form-group p_star ">
-			<label><spring:message code="tel" /> : <br> </label>
+			<label><spring:message code="tel" /> : <br>
 			<form:input path="m_contact"  class="form-control"/>
-			<form:errors path="m_contact" />
+			<form:errors path="m_contact" /></label>
 		</div>
 		<div class="col-md-6 form-group p_star ">
 			<label><spring:message code = "birth" /> : <br>
@@ -109,9 +109,9 @@
 			<input type="text" id="sample6_extraAddress" placeholder="참고항목">
 		</div>
 		<div class="col-md-6 form-group p_star">
-			<label><spring:message code="email" /> : <br> </label>
+			<label><spring:message code="email" /> : <br>
 			<form:input path="m_email" class="form-control" />
-			<form:errors path="m_email" />
+			<form:errors path="m_email" /> </label>
 		</div>
 		<div>
 		<input type="submit" value="<spring:message code="register.btn" />" class = "btn_3 text-center">

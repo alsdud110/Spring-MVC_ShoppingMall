@@ -4,10 +4,10 @@ import java.time.LocalDateTime;
 
 public class RegisterCommand {
 
-	private String m_id;
-	private String m_pw;
-	private String m_confirmpw;
-	private String m_name;
+	private String m_id;		//민영
+	private String m_pw;		//1234
+	private String m_confirmpw;	//1234
+	private String m_name;		
 	private String year;
 	private String month;
 	private String day;
@@ -17,7 +17,7 @@ public class RegisterCommand {
 	private String m_addr;
 	private String m_contact;
 	private String m_email;
-	private LocalDateTime reg_login;
+	private LocalDateTime rec_login;
 
 	
 
@@ -111,12 +111,12 @@ public class RegisterCommand {
 		this.m_email = m_email;
 	}
 
-	public LocalDateTime getReg_login() {
-		return reg_login;
+	public LocalDateTime getRec_login() {
+		return rec_login;
 	}
 
-	public void setReg_login(LocalDateTime reg_login) {
-		this.reg_login = reg_login;
+	public void setRec_login(LocalDateTime rec_login) {
+		this.rec_login = rec_login;
 	}
 
 	public String getYear() {

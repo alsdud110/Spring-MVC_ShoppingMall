@@ -11,18 +11,30 @@ public class Member {
 	private String m_addr;
 	private String m_contact;
 	private String m_email;
-	private LocalDateTime reg_login;
+	private LocalDateTime rec_login;
 	private String m_birth;
 	private String m_name;
 
-	public Member(String m_id, String m_pw, String m_addr, String m_contact, String m_email, LocalDateTime reg_login,
+	public Member(String m_id, String m_pw, String m_addr, String m_contact, String m_email, String m_birth,
+			String m_name) {
+		super();
+		this.m_id = m_id;
+		this.m_pw = m_pw;
+		this.m_addr = m_addr;
+		this.m_contact = m_contact;
+		this.m_email = m_email;
+		this.m_birth = m_birth;
+		this.m_name = m_name;
+	}
+
+	public Member(String m_id, String m_pw, String m_addr, String m_contact, String m_email, LocalDateTime rec_login,
 			String m_birth, String m_name) {
 		this.m_id = m_id;
 		this.m_pw = m_pw;
 		this.m_addr = m_addr;
 		this.m_contact = m_contact;
 		this.m_email = m_email;
-		this.reg_login = reg_login;
+		this.rec_login = rec_login;
 		this.m_birth = m_birth;
 		this.m_name = m_name;
 	}
@@ -67,12 +79,12 @@ public class Member {
 		this.m_email = m_email;
 	}
 
-	public LocalDateTime getReg_login() {
-		return reg_login;
+	public LocalDateTime getRec_login() {
+		return rec_login;
 	}
 
-	public void setReg_login(LocalDateTime reg_login) {
-		this.reg_login = reg_login;
+	public void setRec_login(LocalDateTime rec_login) {
+		this.rec_login = rec_login;
 	}
 
 	public String getM_birth() {

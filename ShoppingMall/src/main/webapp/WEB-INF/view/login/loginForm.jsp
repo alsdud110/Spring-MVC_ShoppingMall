@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-			<link rel="stylesheet" href="<c:url value = "/resources/css/bootstrap.min.css"/>">
+		<link rel="stylesheet" href="<c:url value = "/resources/css/bootstrap.min.css"/>">
         <link rel="stylesheet" href="<c:url value = "/resources/css/owl.carousel.min.css"/>">
         <link rel="stylesheet" href="<c:url value = "/resources/css/flaticon.css"/>">
         <link rel="stylesheet" href="<c:url value = "/resources/css/slicknav.css"/>">
@@ -31,7 +31,7 @@
                             <div class="login_part_text_iner">
                                 <h2>처음 방문 해주시나요?</h2>
                                 <p>울트라 패션보다 더 멋진 사이트를 만들거예요!!</p>
-                                <a href="join" class="btn_3">회원가입하기</a>
+                                <a href= "join" class="btn_3">회원가입하기</a>
                             </div>
                         </div>
                     </div>

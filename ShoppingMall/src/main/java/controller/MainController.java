@@ -1,7 +1,5 @@
 package controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -9,15 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 	
 	@RequestMapping("/main")
-	public String handler(HttpSession session) {
-		if(session.getAttribute("authInfo") == null) {
-			return "index";
-		}
+	public String handler() {
 		return "main";
 	}
 	
 	@RequestMapping("/")
 	public String main() {
-		return "index";
+		return "main";
 	}
 }

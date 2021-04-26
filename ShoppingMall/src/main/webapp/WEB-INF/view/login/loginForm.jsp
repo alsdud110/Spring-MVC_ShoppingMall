@@ -22,6 +22,7 @@
 	<!-- Header -->
 	<jsp:include page="../header.jsp"></jsp:include>
 	
+	<!-- Main -->
 	<main>
 		 <section class="login_part section_padding ">
             <div class="container">

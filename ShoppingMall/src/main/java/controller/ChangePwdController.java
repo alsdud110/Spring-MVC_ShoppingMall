@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import spring.AuthInfo;
-import spring.ChangePasswordService;
-import spring.WrongIdPasswordException;
+import login.AuthInfo;
+import login.ChangePasswordService;
+import login.WrongIdPasswordException;
 
 @Controller
 @RequestMapping("/edit/changePassword")

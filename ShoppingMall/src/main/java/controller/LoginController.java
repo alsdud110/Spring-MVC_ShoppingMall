@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import spring.AuthInfo;
-import spring.AuthService;
-import spring.WrongIdPasswordException;
+import login.AuthInfo;
+import login.AuthService;
+import login.WrongIdPasswordException;
 
 @Controller
 @RequestMapping("/login")

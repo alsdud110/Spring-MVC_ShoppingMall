@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import spring.EditMemberService;
-import spring.Member;
+import member.EditMemberService;
+import member.Member;
 
 @Controller
 public class EditMemberController {

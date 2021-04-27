@@ -61,44 +61,27 @@
 										      </label>
                                         </div>
                                         <input type="submit" class = "btn_3" value="<spring:message code="login.btn" />">
-                                        <a class="lost_pass" href="#">forget password?</a>
                                     </div>
                                 </form:form>
+                                        <button class="lost_pass" id = "find_pw_btn">forget password?</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!--================login_part end =================-->
 	</main>
-	<!-- 
-    <form:form modelAttribute="loginCommand">
-    <form:errors />
-    <p>
-        <label><spring:message code="id" />:<br>
-        <form:input path="m_id" />
-        <form:errors path="m_id"/>
-        </label>
-    </p>
-    <p>
-        <label><spring:message code="password" />:<br>
-        <form:password path="m_pw" />
-        <form:errors path="m_pw"/>
-        </label>
-    </p>
-    <p>
-        <label><spring:message code="rememberId" />:
-        <form:checkbox path="rememberId"/> 
-        </label>
-    </p>
-    <input type="submit" value="<spring:message code="login.btn" />">
-    </form:form>
-    -->
+        <!--================login_part end =================-->
+
     
     <!-- Footer -->
     <jsp:include page = "../footer.jsp"></jsp:include>
     
+    <script>
+    	$("#find_pw_btn").click(function(){
+    		location.href = "findPw.jsp";
+    	});
+    </script>
 	 		<!-- JS here -->
     <!-- All JS Custom Plugins Link Here here -->
     <script src="<c:url value = "/resources/js/vendor/modernizr-3.5.0.min.js"/>"></script>

@@ -15,6 +15,7 @@ import spring.EditMemberService;
 import spring.IdCheckService;
 import spring.MemberDao;
 import spring.MemberRegisterService;
+import spring.MemberServiceImpl;
 
 @Configuration
 @EnableTransactionManagement
@@ -91,6 +92,11 @@ public class MemberConfig {
 	@Bean
 	public ProductService productService() {
 		return new ProductService(productDAO());
+	}
+	
+	@Bean
+	public MemberServiceImpl memberServiceImpl() {
+		return new MemberServiceImpl(memberDao());
 	}
 
 }

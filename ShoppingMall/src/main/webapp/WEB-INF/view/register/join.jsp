@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+		
   		<link rel="stylesheet" href="<c:url value = "/resources/css/bootstrap.min.css"/>">
         <link rel="stylesheet" href="<c:url value = "/resources/css/owl.carousel.min.css"/>">
         <link rel="stylesheet" href="<c:url value = "/resources/css/flaticon.css"/>">
@@ -58,7 +59,7 @@
 	<jsp:include page="../header.jsp"></jsp:include>
 	
 	<!-- Main -->
- <div class="container text-center">
+ <div class="container text-center" style = "padding : 70px">
         
 	<h2>
 		<spring:message code="member.info"/>
@@ -67,11 +68,9 @@
 		<div class="col-md-6 form-group p_star ">
 			<label><spring:message code="id" />:<br> 
 			<form:input path = "m_id" class="id_input form-control"/> &nbsp;&nbsp;&nbsp;
-			<form:errors path="m_id" />
-			<button type = "button" class = "id_check">중복확인</button>
+			<form:errors path="m_id" /><br>
+			<button type = "button" class = "id_check btn-secondary" >중복확인</button>
 			</label>										
-			<span class = "msg1" style = "display : none; color : green;">사용 가능합니다.</span>
-			<span class = "msg2" style = "display : none; color : red">중복된 아이디 입니다. 다시 입력해 주세요.</span>
 		</div>
 		<div class="col-md-6 form-group p_star ">
 			<label><spring:message code="password" />:<br> 
@@ -97,17 +96,19 @@
 		</div>
 		<div class="col-md-6 form-group p_star ">
 			<label><spring:message code = "birth" /> : <br>
-				<form:select path = "year" name="year" id="year" title="년도" />
-				<form:select path = "month" name="month" id="month" title="월"/>
-				<form:select path = "day" name="day" id="day" title="일" />
+				<form:select path = "year" name="year" id="year" title="년도" class="text-center" style = "width : 100px; border: 1px solid #ced4da;"/>
+				<form:select path = "month" name="month" id="month" title="월" class="text-center" style = "width : 100px; border: 1px solid #ced4da;"/>
+				<form:select path = "day" name="day" id="day" title="일" class="text-center" style = "width : 100px; border: 1px solid #ced4da;"/>
 			</label>
 		</div>
 		<div class="col-md-6 form-group p_star">		
-			<input type="text" id="sample6_postcode" placeholder="우편번호">
-			<input type="button" onclick="findAddr()" value="우편번호 찾기"><br>
-			<form:input path = "addr_road" id="sample6_address" placeholder="주소"/><br>
-			<form:input path = "addr_detail" id="sample6_detailAddress" placeholder="상세주소"/>
-			<input type="text" id="sample6_extraAddress" placeholder="참고항목">
+			<labeL>주소 : <br>
+			<input type="text" id="sample6_postcode" placeholder="우편번호" class="text-center" style = "width : 200px; border-radius: .25rem; border: 1px solid #ced4da; ">
+			<button type="button" onclick="findAddr()" class = "btn-secondary" >우편번호 찾기</button><br>
+			<form:input path = "addr_road" id="sample6_address" placeholder="주소" class="text-center" style = "width : 200px; border-radius: .25rem; border: 1px solid #ced4da;" /><br>
+			<form:input path = "addr_detail" id="sample6_detailAddress" placeholder="상세주소" class="text-center" style = "width : 200px; border-radius: .25rem; border: 1px solid #ced4da;"/>
+			<input type="text" id="sample6_extraAddress" placeholder="참고항목" class="text-center" style = "width : 100px; border-radius: .25rem; border: 1px solid #ced4da;">
+			</labeL>
 		</div>
 		<div class="col-md-6 form-group p_star">
 			<label><spring:message code="email" /> : <br>
@@ -115,7 +116,7 @@
 			<form:errors path="m_email" /> </label>
 		</div>
 		<div>
-		<input type="submit" value="<spring:message code="register.btn" />" class = "btn_3 text-center">
+		<input type="submit" value="<spring:message code="register.btn" />" class = "btn-secondary text-center">
 		</div>
 	</form:form>
 		</div>
@@ -159,10 +160,8 @@
 		$(".id_check").click(function(){
     			console.log('${pageContext.request.contextPath}');
     			var memberId = $('.id_input').val();			// .id_input에 입력되는 값
-    			if(memberId === null){
-    				$('.msg1').css("display","none");
-					$('.msg2').css("display", "none");		
-    			}
+   
+    			
     			var data = {memberId : memberId}				// '컨트롤에 넘길 데이터 이름' : '데이터(.id_input에 입력되는 값)'
     			$.ajax({
     				type : "post",
@@ -170,13 +169,13 @@
     				data : data,
     				success : function(result){
     					console.log("성공 여부 " + result);
-    					if(result != 'fail'){
-    						$('.msg1').css("display","inline-block");
-    						$('.msg2').css("display", "none");				
+    					if(memberId === null  || memberId === ""){
+    						alert("아이디를 입력하세요.");	
+    	    			}else if(result != 'fail'){
+    						alert("사용가능한 아이디 입니다.");
     					} else {
-    						$('.msg2').css("display","inline-block");
-    						$('.msg1').css("display", "none");				
-    					}
+    						alert("중복된 아이디 입니다. 다시 입력해 주세요.");
+    					} 
     				}
     			});
 

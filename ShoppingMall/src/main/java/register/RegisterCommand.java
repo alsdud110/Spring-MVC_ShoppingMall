@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 public class RegisterCommand {
 
+	private String m_code;
 	private String m_id;		//민영
 	private String m_pw;		//1234
 	private String m_confirmpw;	//1234
@@ -19,7 +20,13 @@ public class RegisterCommand {
 	private String m_email;
 	private LocalDateTime rec_login;
 
-	
+	public String getM_code() {
+		return m_code;
+	}
+
+	public void setM_code(String m_code) {
+		this.m_code = m_code;
+	}
 
 	public String getM_id() {
 		return m_id;

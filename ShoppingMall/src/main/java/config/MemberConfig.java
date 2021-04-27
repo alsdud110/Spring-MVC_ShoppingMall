@@ -7,10 +7,10 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import edit.EditMemberService;
 import login.AuthService;
-import login.ChangePasswordService;
+import controller.ChangePasswordService;
 import login.IdCheckService;
-import member.EditMemberService;
 import member.MemberDao;
 import register.MemberRegisterService;
 import product.ProductDAO;

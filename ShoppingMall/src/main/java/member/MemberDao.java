@@ -28,6 +28,7 @@ public class MemberDao {
 			@Override
 			public Member mapRow(ResultSet rs, int nowNum) throws SQLException{
 				Member member = new Member();
+				member.setM_code(rs.getNString("m_code"));
 				member.setM_id(rs.getString("m_id"));
 				member.setM_pw(rs.getString("m_pw"));
 				member.setM_addr(rs.getString("m_addr"));
@@ -41,15 +42,15 @@ public class MemberDao {
 		};
 	
 	
-	public int checkById(String M_id) {
-		List<Member> results = jdbcTemplate.query("SELECT * FROM MEMBER WHERE M_ID = ?", memRowMapper, M_id);
+	public int checkById(String m_id) {
+		List<Member> results = jdbcTemplate.query("SELECT * FROM MEMBER WHERE M_ID = ?", memRowMapper, m_id);
 		
 		return results.isEmpty() ? 0 : 1;  //비어있으면 0, 비어있지 않으면 즉 있으면 1
 	}
 
-	public Member selectById(String M_id) {
-		List<Member> results = jdbcTemplate.query("select * from member where m_id = ?",memRowMapper, M_id);
-		
+	public Member selectById(String m_id) {
+		List<Member> results = jdbcTemplate.query("select * from member where m_id = ?", memRowMapper, m_id);
+	
 		return results.isEmpty() ? null : results.get(0);  //results가 비어잇으면 null, 잇으면 0
 	}
 	public void insert(Member member) {
@@ -97,6 +98,13 @@ public class MemberDao {
 				return pstmt;
 			}
 		});
+	}
+
+	public Member selectByCode(String m_code) {
+		
+		List<Member> results = jdbcTemplate.query("select m_code from member where m_code = ?", memRowMapper, m_code);
+
+		return results.isEmpty() ? null : results.get(0);
 	}
 
 }

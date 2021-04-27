@@ -6,13 +6,13 @@ import org.springframework.context.annotation.Configuration;
 
 import cart.CartController;
 import controller.ChangePwdController;
-import controller.EditMemberController;
-import controller.LoginController;
-import controller.LogoutController;
 import controller.MainController;
+import edit.EditMemberController;
+import edit.EditMemberService;
 import login.AuthService;
-import login.ChangePasswordService;
-import member.EditMemberService;
+import controller.ChangePasswordService;
+import login.LoginController;
+import login.LogoutController;
 import register.MemberRegisterService;
 import product.ProductController;
 import product.ProductDAO;

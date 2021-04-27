@@ -8,6 +8,7 @@ import login.WrongIdPasswordException;
 public class Member {
 	public Member() {}
 	
+	private String m_code;
 	private String m_id;
 	private String m_pw;
 	private String m_addr;
@@ -17,9 +18,12 @@ public class Member {
 	private String m_birth;
 	private String m_name;
 
-	public Member(String m_id, String m_pw, String m_addr, String m_contact, String m_email, String m_birth,
+	//MemberRegisterService => Register Member 등록
+	//AuthService => session에 member 정보 등록
+	public Member(String m_code, String m_id, String m_pw, String m_addr, String m_contact, String m_email, String m_birth,
 			String m_name) {
 		super();
+		this.m_code = m_code;
 		this.m_id = m_id;
 		this.m_pw = m_pw;
 		this.m_addr = m_addr;
@@ -29,16 +33,13 @@ public class Member {
 		this.m_name = m_name;
 	}
 
-	public Member(String m_id, String m_pw, String m_addr, String m_contact, String m_email, LocalDateTime rec_login,
-			String m_birth, String m_name) {
-		this.m_id = m_id;
-		this.m_pw = m_pw;
-		this.m_addr = m_addr;
-		this.m_contact = m_contact;
-		this.m_email = m_email;
-		this.rec_login = rec_login;
-		this.m_birth = m_birth;
-		this.m_name = m_name;
+	
+	public String getM_code() {
+		return m_code;
+	}
+
+	public void setM_code(String m_code) {
+		this.m_code = m_code;
 	}
 
 	public String getM_id() {

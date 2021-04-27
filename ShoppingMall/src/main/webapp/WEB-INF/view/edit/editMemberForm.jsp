@@ -2,7 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import = "login.AuthInfo" %>
+<%@ page import = "member.Member" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,20 +59,22 @@
 	<div class = "container text-center col-lg-4">
 		<form:form modelAttribute = "editMemberCommand">
 		<%
+		/*
 			AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
 			String name = authInfo.getM_name();
 			String email = authInfo.getM_email();
 			String contact = authInfo.getM_contact();
+		*/
 		%>
 		<p>
 			<label><spring:message code="name" /> :<br>
-			 <form:input path="m_name"  value = "<%=name %>"/> 
+			 <form:input path="m_name"  value = "<%=//name %>"/> 
 			 <form:errors path="m_name" /> 
 			 </label>
 		</p>
 		<p>
 			<label><spring:message code="tel" /> : <br> 
-			<form:input path="m_contact" value = "<%=contact %>"  />
+			<form:input path="m_contact" value = "<%=//contact %>"  />
 			<form:errors path="m_contact" />
 			</label>
 		</p>
@@ -92,7 +94,7 @@
 		</p>
 		<p>
 			<label><spring:message code="email" /> : <br>
-			<form:input path="m_email" value = "<%=email %>"/>
+			<form:input path="m_email" value = "<%=//email %>"/>
 			<form:errors path="m_email" />
 			 </label>
 		</p>

@@ -11,16 +11,18 @@ public class AuthService {
 		this.memberDao = memberDao;
 	}
 
-	public AuthInfo authenticate(String m_id, String any_pw) {
-		Member member = memberDao.selectById(m_id);
+	//session에 회원정보 전체 저장
+	public Member authenticate(String any_id, String any_pw) {
+		Member member = memberDao.selectById(any_id);
 		if (member == null) {
 			throw new WrongIdPasswordException();
 		}
 		if (!member.matchPassword(any_pw)) {
 			throw new WrongIdPasswordException();
 		}
-		return new AuthInfo(member.getM_email(),
-				member.getM_name(), member.getM_contact());
+		Member auth = new Member(member.getM_code(), member.getM_id(), member.getM_pw(), member.getM_addr(), member.getM_contact(), member.getM_email(), member.getM_birth(), member.getM_name());
+		
+		return auth;
 	}
 
 }

@@ -3,7 +3,7 @@
 
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%@ page import = "login.AuthInfo" %>
+<%@ page import = "member.Member" %>
 
 <!DOCTYPE html>
 <html>
@@ -70,7 +70,7 @@
                         <!-- Header Right -->
                         <div class="header-right">
                             <%
-                            AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+                            Member authInfo = (Member)session.getAttribute("authInfo");
                         	if(authInfo == null){%>
                             <ul>
                                 <li> <a href="login"><span class="flaticon-user"> login</span></a></li>
@@ -78,7 +78,8 @@
                                 <li><a href="join"><span class="flaticon-user"> join</span></a> </li>
                             </ul>
                             	<%}else{
-                            		String name = authInfo.getM_name();
+                            		String name = authInfo.getM_name() + "님";
+                            	
                             	%>
                             <ul>
                             	<li><span class = "flaction-user"><%= name %></span></li>
@@ -86,7 +87,7 @@
                                 <li><a href="cart"><span class="flaticon-shopping-cart"> cart</span></a> </li>
                              
                             </ul>
-                            <% }%>
+                           <%} %>
                         </div>
                     </div>
                     </div>

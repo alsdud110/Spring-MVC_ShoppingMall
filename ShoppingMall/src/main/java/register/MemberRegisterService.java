@@ -13,13 +13,16 @@ public class MemberRegisterService {
 	}
 	
 
-
 	public String regist(RegisterCommand req) {
-		Member member = memberDao.selectById(req.getM_id());
-		if (member != null) {
+		int num = memberDao.checkById(req.getM_id());
+		if (num == 1) {
 			throw new DuplicateMemberException("dup id " + req.getM_id());
 		}
-		Member newMember = new Member(req.getM_id(), req.getM_pw(), req.getM_addr(), req.getM_contact(), req.getM_email(), req.getRec_login(), req.getM_birth(), req.getM_name());
+		//M_code가 일치하는 경우
+		/*
+		if (
+		*/
+		Member newMember = new Member(req.getM_code(), req.getM_id(), req.getM_pw(), req.getM_addr(), req.getM_contact(), req.getM_email(), req.getM_birth(), req.getM_name());
 		memberDao.insert(newMember);
 		return newMember.getM_id();
 	}

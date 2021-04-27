@@ -41,5 +41,20 @@ public class ProductController {
 		return "main";
 	}
 */
-
+	//상품 클릭시 상세 페이지로 이동.
+	@RequestMapping("/productDetail/{code}")
+	public String detailview(@PathVariable("code") String code, Model model) {
+		System.out.println("-------넘어온 코드값 = " + code);
+		ProductVO vo =productService.product_selectByCode(code);
+		List<ProductStdVO> stdvo=productService.productstd_selectByCode(code);
+		model.addAttribute("product", vo);
+		model.addAttribute("productStd", stdvo);
+		return "product/productDetail";
+		//return "product/prdocutDetail";
+	}
+	//미구현. 추후 카트나 구매하기 클릭시 사용
+//	@RequestMapping("productDetail/123")
+//	public String qqqview() {
+//		return "product/123";
+//	}
 }

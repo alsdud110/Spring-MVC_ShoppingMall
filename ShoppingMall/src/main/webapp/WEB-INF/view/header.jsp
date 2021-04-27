@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<<<<<<< HEAD
+
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-=======
-<%@ page import = "spring.AuthInfo" %>
->>>>>>> 황민영
+
+<%@ page import = "member.Member" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,15 +30,13 @@
                                 <ul id="navigation">  
                                     <li><a href="main">Main</a></li>
                                     <li><a href="index.html">Best50</a></li>
-<<<<<<< HEAD
-<<<<<<< HEAD
+
                                     <li><a href="<c:url value='/product/viewCategory/TOP'/>">TOP</a></li>
-=======
+
                                      <li><a href="<c:url value='/product/viewCategory/TOP'/>">TOP</a></li>
->>>>>>> 92755a5a4faddeaf8c45c3e25885439a4f2c62bb
-=======
+
 									<li><a href="/product/viewCategory/TOP">TOP</a></li>
->>>>>>> 황민영
+
                                     <li><a href="about.html">BOTTOM</a></li>
                                     <li><a href="about.html">ACC</a></li>
                                     <li class="hot"><a href="#">MY PAGE</a>
@@ -72,7 +70,7 @@
                         <!-- Header Right -->
                         <div class="header-right">
                             <%
-                            AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+                            Member authInfo = (Member)session.getAttribute("authInfo");
                         	if(authInfo == null){%>
                             <ul>
                                 <li> <a href="login"><span class="flaticon-user"> login</span></a></li>
@@ -80,7 +78,8 @@
                                 <li><a href="join"><span class="flaticon-user"> join</span></a> </li>
                             </ul>
                             	<%}else{
-                            		String name = authInfo.getM_name();
+                            		String name = authInfo.getM_name() + "님";
+                            	
                             	%>
                             <ul>
                             	<li><span class = "flaction-user"><%= name %></span></li>
@@ -88,7 +87,7 @@
                                 <li><a href="cart"><span class="flaticon-shopping-cart"> cart</span></a> </li>
                              
                             </ul>
-                            <% }%>
+                           <%} %>
                         </div>
                     </div>
                     </div>

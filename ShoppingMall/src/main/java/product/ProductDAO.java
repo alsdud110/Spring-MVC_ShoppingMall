@@ -125,13 +125,12 @@ public class ProductDAO {
   QTY_TOP_3 AS(
              SELECT P_CODE
               FROM QTY_R
-             WHERE R < 3
+             WHERE R < 4
   )
   
 	SELECT P.*
-	FROM PRODUCT P, PRODUCT_STD P_STD, QTY_TOP_3
+	FROM PRODUCT P, QTY_TOP_3
 	WHERE
 	    1 =1 AND
-	    P.P_CODE = QTY_TOP_3.P_CODE AND
-	    P.P_CODE = P_STD.P_CODE(+);
+	    P.P_CODE = QTY_TOP_3.P_CODE;
 * */

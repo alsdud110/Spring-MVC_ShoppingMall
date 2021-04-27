@@ -6,18 +6,18 @@ import org.springframework.context.annotation.Configuration;
 
 import cart.CartController;
 import controller.ChangePwdController;
-import controller.EditMemberController;
-import controller.LoginController;
-import controller.LogoutController;
 import controller.MainController;
-import controller.RegisterController;
+import edit.EditMemberController;
+import edit.EditMemberService;
+import login.AuthService;
+import controller.ChangePasswordService;
+import login.LoginController;
+import login.LogoutController;
+import register.MemberRegisterService;
 import product.ProductController;
 import product.ProductDAO;
 import product.ProductService;
-import spring.AuthService;
-import spring.ChangePasswordService;
-import spring.EditMemberService;
-import spring.MemberRegisterService;
+import register.RegisterController;
 
 @Configuration
 public class ControllerConfig {

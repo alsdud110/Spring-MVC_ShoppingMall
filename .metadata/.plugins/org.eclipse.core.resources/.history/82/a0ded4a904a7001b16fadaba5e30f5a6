@@ -1,0 +1,29 @@
+package login;
+
+import member.Member;
+import member.MemberDao;
+
+public class AuthService {
+
+	private MemberDao memberDao;
+
+	public void setMemberDao(MemberDao memberDao) {
+		this.memberDao = memberDao;
+	}
+
+	public AuthInfo authenticate(String any_id, String any_pw) {
+		Member member = memberDao.selectById(any_id);
+		if (member == null) {
+			throw new WrongIdPasswordException();
+		}
+		if (!member.matchPassword(any_pw)) {
+			throw new WrongIdPasswordException();
+		}
+		AuthInfo auth = new AuthInfo();
+		
+		auth.setM_code(member.getM_code());
+		
+		return auth;
+	}
+
+}

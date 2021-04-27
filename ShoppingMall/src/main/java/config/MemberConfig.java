@@ -12,19 +12,11 @@ import login.AuthService;
 import controller.ChangePasswordService;
 import login.IdCheckService;
 import member.MemberDao;
+import member.MemberServiceImpl;
 import register.MemberRegisterService;
 import product.ProductDAO;
 import product.ProductService;
-<<<<<<< HEAD
-import spring.AuthService;
-import spring.ChangePasswordService;
-import spring.EditMemberService;
-import spring.IdCheckService;
-import spring.MemberDao;
-import spring.MemberRegisterService;
-import spring.MemberServiceImpl;
-=======
->>>>>>> 황현
+
 
 @Configuration
 @EnableTransactionManagement

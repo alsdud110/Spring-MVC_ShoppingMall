@@ -13,19 +13,12 @@ import login.AuthService;
 import controller.ChangePasswordService;
 import login.LoginController;
 import login.LogoutController;
+import member.MemberServiceImpl;
 import register.MemberRegisterService;
 import product.ProductController;
 import product.ProductDAO;
 import product.ProductService;
-<<<<<<< HEAD
-import spring.AuthService;
-import spring.ChangePasswordService;
-import spring.EditMemberService;
-import spring.MemberRegisterService;
-import spring.MemberServiceImpl;
-=======
 import register.RegisterController;
->>>>>>> 황현
 
 @Configuration
 public class ControllerConfig {

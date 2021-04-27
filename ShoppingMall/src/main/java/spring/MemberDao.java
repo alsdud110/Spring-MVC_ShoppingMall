@@ -83,7 +83,7 @@ public class MemberDao {
 					throws SQLException {
 				// 파라미터로 전달받은 Connection을 이용해서 PreparedStatement 생성
 				PreparedStatement pstmt = con.prepareStatement(
-						"update member set m_addr = ?, m_contact = ?, m_email = ?, m_birth = ?, m_name = ? where id = ?");
+						"update member set m_addr = ?, m_contact = ?, m_email = ?, m_birth = ?, m_name = ? where m_id = ?");
 				// 인덱스 파라미터 값 설정
 				pstmt.setString(1, member.getM_addr());
 				pstmt.setString(2, member.getM_contact());
@@ -98,6 +98,25 @@ public class MemberDao {
 			}
 		});
 	}
-	
+	//비밀번호변경
+
+	public void updatePw(Member member) throws Exception {
+		jdbcTemplate.update(new PreparedStatementCreator() {
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con)
+					throws SQLException {
+				// 파라미터로 전달받은 Connection을 이용해서 PreparedStatement 생성
+				PreparedStatement pstmt = con.prepareStatement(
+						"update member set m_pw = ? where id = ?");
+				// 인덱스 파라미터 값 설정
+				pstmt.setString(1, member.getM_pw());
+				pstmt.setString(2, member.getM_id());
+				
+//				pstmt.executeUpdate();
+				// 생성한 PreparedStatement 객체 리턴
+				return pstmt;
+			}
+		});
+	}
 
 }

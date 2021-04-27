@@ -61,7 +61,7 @@
 	<!-- Main -->
 
 
-	<div class = "container text-center  section-padding30">
+	<div class = "container text-center" style = "padding : 70px">
 	<h2>
 		회원정보 수정
 	</h2>
@@ -72,39 +72,40 @@
 			String email = authInfo.getM_email();
 			String contact = authInfo.getM_contact();
 		%>
-	 	<div class="col-md-12 form-group p_star">
-			<label>
-			 <form:input path="m_name"  value = "<%=name %>" class = "form-control" placeholder = "이름"/> 
-			 <form:errors path="m_name" /> 
-			 </label>
+	 	<div class="col-md-6 form-group p_star ">
+			<label><spring:message code="name" /> :<br> 
+			<form:input path="m_name" class="form-control" value = "<%=name %>"/> 
+			<form:errors path="m_name" /> </label>
 		</div>
-		<div class="col-md-12 form-group p_star">
-			<label><spring:message code="tel" /> : 
-			<form:input path="m_contact" value = "<%=contact %>" class = "form-control" />
-			<form:errors path="m_contact" />
-			</label>
+		<div class="col-md-6 form-group p_star ">
+			<label><spring:message code="tel" /> : <br>
+			<form:input path="m_contact"  class="form-control" value = "<%=contact %>"/>
+			<form:errors path="m_contact" /></label>
 		</div>
-		<div class="col-md-12 form-group p_star">
+		<div class="col-md-6 form-group p_star ">
 			<label><spring:message code = "birth" /> : <br>
-				<form:select path = "year" name="year" id="year" title="년도" />
-				<form:select path = "month" name="month" id="month" title="월"/>
-				<form:select path = "day" name="day" id="day" title="일" />
+				<form:select path = "year" name="year" id="year" title="년도" class="text-center" style = "width : 100px; border: 1px solid #ced4da;"/>
+				<form:select path = "month" name="month" id="month" title="월" class="text-center" style = "width : 100px; border: 1px solid #ced4da;"/>
+				<form:select path = "day" name="day" id="day" title="일" class="text-center" style = "width : 100px; border: 1px solid #ced4da;"/>
 			</label>
 		</div>
-		<div class="col-md-12 form-group p_star">	
-			<input type="text" id="sample6_postcode" placeholder="우편번호">
-			<input type="button" onclick="findAddr()" value="우편번호 찾기"><br>
-			<form:input path = "addr_road" id="sample6_address" placeholder="주소"/><br>
-			<form:input path = "addr_detail" id="sample6_detailAddress" placeholder="상세주소"/>
-			<input type="text" id="sample6_extraAddress" placeholder="참고항목">
+		<div class="col-md-6 form-group p_star">		
+			<labeL>주소 : <br>
+			<input type="text" id="sample6_postcode" placeholder="우편번호" class="text-center" style = "width : 200px; border-radius: .25rem; border: 1px solid #ced4da; ">
+			<button type="button" onclick="findAddr()" class = "btn-secondary" >우편번호 찾기</button><br>
+			<form:input path = "addr_road" id="sample6_address" placeholder="주소" class="text-center" style = "width : 200px; border-radius: .25rem; border: 1px solid #ced4da;" /><br>
+			<form:input path = "addr_detail" id="sample6_detailAddress" placeholder="상세주소" class="text-center" style = "width : 200px; border-radius: .25rem; border: 1px solid #ced4da;"/>
+			<input type="text" id="sample6_extraAddress" placeholder="참고항목" class="text-center" style = "width : 100px; border-radius: .25rem; border: 1px solid #ced4da;">
+			</labeL>
 		</div>
-		<div class="col-md-12 form-group p_star">	
+		<div class="col-md-6 form-group p_star">
 			<label><spring:message code="email" /> : <br>
-			<form:input path="m_email" value = "<%=email %>"/>
-			<form:errors path="m_email" />
-			 </label>
+			<form:input path="m_email" class="form-control" value = "<%=email %>"/>
+			<form:errors path="m_email" /> </label>
 		</div>
-		<input type="submit" value= "수정 완료" class = "btn btn-primary">
+		<div>
+			<input type="submit" value= "수정 완료" class = "btn-secondary text-center">
+		</div>
 	</form:form>
 	</div>
 	

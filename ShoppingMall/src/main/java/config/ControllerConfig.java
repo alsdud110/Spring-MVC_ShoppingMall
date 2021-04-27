@@ -17,6 +17,7 @@ import spring.AuthService;
 import spring.ChangePasswordService;
 import spring.EditMemberService;
 import spring.MemberRegisterService;
+import spring.MemberServiceImpl;
 
 @Configuration
 public class ControllerConfig {
@@ -30,7 +31,8 @@ public class ControllerConfig {
 	private MemberRegisterService memberRegisterService;
 	@Autowired
 	private ProductService productServicec;
-
+	@Autowired
+	private MemberServiceImpl memberServiceImpl;
 
 	@Bean
 	public RegisterController registerController() {
@@ -43,6 +45,7 @@ public class ControllerConfig {
 	public LoginController loginController() {
 		LoginController controller = new LoginController();
 		controller.setAuthService(authService);
+		controller.setMemberServiceImpl(memberServiceImpl);
 		return controller;
 	}
 	
@@ -57,6 +60,8 @@ public class ControllerConfig {
 		controller.setChangePasswordService(changePasswordService);
 		return controller;
 	}
+	
+	
 	@Bean
 	public LogoutController logoutController() {
 		return new LogoutController();

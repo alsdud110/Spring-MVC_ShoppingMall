@@ -112,5 +112,5 @@ public class Member {
 		return this.m_pw.equals(password);
 	}
 
-
+	
 }

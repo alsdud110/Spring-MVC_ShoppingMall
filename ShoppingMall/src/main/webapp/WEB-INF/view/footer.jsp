@@ -8,7 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+<hr>
 <footer>
+
         <!-- Footer Start-->
         <div class="footer-area footer-padding">
             <div class="container">

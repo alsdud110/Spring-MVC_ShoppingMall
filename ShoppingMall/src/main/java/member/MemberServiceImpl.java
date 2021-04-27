@@ -1,4 +1,4 @@
-package spring;
+package member;
 
 import java.io.PrintWriter;
 

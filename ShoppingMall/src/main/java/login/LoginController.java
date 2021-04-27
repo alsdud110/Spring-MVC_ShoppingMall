@@ -4,6 +4,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -12,17 +13,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import member.Member;
-import member.MemberDao;
+import member.MemberServiceImpl;
 
 @Controller
 @RequestMapping("/login")
 public class LoginController {
-	private MemberDao memberDao;
-	
+	@Autowired
     private AuthService authService;
 
     public void setAuthService(AuthService authService) {
         this.authService = authService;
+    }
+    
+    private MemberServiceImpl memberServiceImpl;
+    
+    public void setMemberServiceImpl(MemberServiceImpl memberServiceImpl) {
+    	this.memberServiceImpl = memberServiceImpl;
     }
 
     //아이디 기억하기 기능

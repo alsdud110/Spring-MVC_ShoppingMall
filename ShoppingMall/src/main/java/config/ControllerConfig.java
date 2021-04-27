@@ -5,27 +5,19 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import cart.CartController;
+import controller.ChangePasswordService;
 import controller.ChangePwdController;
 import controller.MainController;
 import edit.EditMemberController;
 import edit.EditMemberService;
 import login.AuthService;
-import controller.ChangePasswordService;
 import login.LoginController;
 import login.LogoutController;
-import register.MemberRegisterService;
+import member.MemberServiceImpl;
 import product.ProductController;
-import product.ProductDAO;
 import product.ProductService;
-<<<<<<< HEAD
-import spring.AuthService;
-import spring.ChangePasswordService;
-import spring.EditMemberService;
-import spring.MemberRegisterService;
-import spring.MemberServiceImpl;
-=======
+import register.MemberRegisterService;
 import register.RegisterController;
->>>>>>> 황현
 
 @Configuration
 public class ControllerConfig {

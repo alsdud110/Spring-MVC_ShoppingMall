@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import member.Member;
 import member.MemberDao;
+import member.MemberServiceImpl;
 
 @Controller
 @RequestMapping("/login")
@@ -69,4 +70,9 @@ public class LoginController {
             return "login/loginForm";
         }
     }
+
+	public void setMemberServiceImpl(MemberServiceImpl memberServiceImpl) {
+		// TODO Auto-generated method stub
+		
+	}
 }

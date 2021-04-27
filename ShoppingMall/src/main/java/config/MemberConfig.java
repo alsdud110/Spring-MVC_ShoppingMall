@@ -12,9 +12,11 @@ import login.AuthService;
 import controller.ChangePasswordService;
 import login.IdCheckService;
 import member.MemberDao;
+import member.MemberServiceImpl;
 import register.MemberRegisterService;
 import product.ProductDAO;
 import product.ProductService;
+
 
 @Configuration
 @EnableTransactionManagement
@@ -91,6 +93,11 @@ public class MemberConfig {
 	@Bean
 	public ProductService productService() {
 		return new ProductService(productDAO());
+	}
+	
+	@Bean
+	public MemberServiceImpl memberServiceImpl() {
+		return new MemberServiceImpl(memberDao());
 	}
 
 }

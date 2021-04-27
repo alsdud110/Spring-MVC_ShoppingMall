@@ -13,6 +13,7 @@ import login.AuthService;
 import controller.ChangePasswordService;
 import login.LoginController;
 import login.LogoutController;
+import member.MemberServiceImpl;
 import register.MemberRegisterService;
 import product.ProductController;
 import product.ProductDAO;
@@ -31,7 +32,8 @@ public class ControllerConfig {
 	private MemberRegisterService memberRegisterService;
 	@Autowired
 	private ProductService productServicec;
-
+	@Autowired
+	private MemberServiceImpl memberServiceImpl;
 
 	@Bean
 	public RegisterController registerController() {
@@ -44,6 +46,7 @@ public class ControllerConfig {
 	public LoginController loginController() {
 		LoginController controller = new LoginController();
 		controller.setAuthService(authService);
+		controller.setMemberServiceImpl(memberServiceImpl);
 		return controller;
 	}
 	
@@ -58,6 +61,8 @@ public class ControllerConfig {
 		controller.setChangePasswordService(changePasswordService);
 		return controller;
 	}
+	
+	
 	@Bean
 	public LogoutController logoutController() {
 		return new LogoutController();

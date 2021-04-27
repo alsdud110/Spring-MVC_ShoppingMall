@@ -1,5 +1,7 @@
 package cart;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -7,7 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CartController {
 	
 	@RequestMapping("/cart")
-	public String cart() {
-		return "cart/cartList";
+	public String cart(HttpSession session) {
+		if(session.getAttribute("authInfo") != null) {
+			return "cart/cartList";
+		}
+		return "login";
 	}
 }

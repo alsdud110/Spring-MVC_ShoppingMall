@@ -30,24 +30,14 @@ public class ProductService {
 
 		return list;
 	}
-	
-	public List<ProductVO> product_selectByCode(String code) {
-		List<ProductVO> list = productDAO.productselectByCode(code);
-		System.out.println("-----------product_selectByCode --------------");
-		for (ProductVO m : list) { 
-			System.out.println("P_CODE=" + m.getP_CODE() + ", " +"P_NAME=" + m.getP_NAME() + ", " +
-					"P_KIND=" + m.getP_KIND() + ", " +"P_IMAGE=" + m.getP_IMAGE() + ", " + "P_PRICE=" + m.getP_PRICE());
-			}
+	//코드와 관련된 상품목록
+	public ProductVO product_selectByCode(String code) {
+		ProductVO list = productDAO.productselectByCode(code);
 		return list;
 	}
-	
+	//코드와 관련된 상품 규격 목록
 	public List<ProductStdVO> productstd_selectByCode(String code) {
 		List<ProductStdVO> list = productDAO.productstdselectByCode(code);
-		System.out.println("-----------productstd_selectByCode --------------");
-		for (ProductStdVO m : list) { 
-			System.out.println("P_CODE=" + m.getP_code() + ", " +"P_COLOR=" + m.getP_color() + ", " +
-					"P_SIZE=" + m.getP_size() + ", " +"STOCK=" + m.getStock());
-			}
 		return list;
 	}
 	//구매수량 높은순 상위 3품목
@@ -56,4 +46,6 @@ public class ProductService {
 		return top3;
 	}
 */	
+	
+	
 }

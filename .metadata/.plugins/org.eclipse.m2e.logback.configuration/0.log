@@ -187,3 +187,8 @@ Caused by: org.eclipse.core.runtime.CoreException: One or more constraints have 
 2021-04-26 18:48:49,153 [Worker-110: Updating Maven Project] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for ShoppingMall
 2021-04-26 18:48:49,463 [Worker-111: Building] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of ShoppingMall
 2021-04-26 18:48:49,463 [Worker-111: Building] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for ShoppingMall
+2021-04-27 15:34:13,465 [Worker-10: Building] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of ShoppingMall
+2021-04-27 15:34:13,468 [Worker-10: Building] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for ShoppingMall
+2021-04-27 15:34:18,465 [Worker-1: Updating Maven Project] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for ShoppingMall
+2021-04-27 15:34:18,805 [Worker-4: Building] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of ShoppingMall
+2021-04-27 15:34:18,805 [Worker-4: Building] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for ShoppingMall

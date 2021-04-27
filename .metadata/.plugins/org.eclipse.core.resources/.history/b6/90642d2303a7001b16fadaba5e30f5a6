@@ -1,0 +1,51 @@
+package login;
+
+public class LoginCommand {
+	
+	private String m_code;
+	private String m_id;
+	private String m_pw;
+	private boolean rememberCode;
+	private boolean rememberId;
+
+	public String getM_code() {
+		return m_code;
+	}
+
+	public void setM_code(String m_code) {
+		this.m_code = m_code;
+	}
+
+	public String getM_id() {
+		return m_id;
+	}
+
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
+	}
+
+	public String getM_pw() {
+		return m_pw;
+	}
+
+	public void setM_pw(String m_pw) {
+		this.m_pw = m_pw;
+	}
+	
+	public boolean isRememberId() {
+		return rememberId;
+	}
+
+	public void setRememberId(boolean rememberId) {
+		this.rememberId = rememberId;
+	}
+
+	public boolean isRememberCode() {
+		return rememberCode;
+	}
+
+	public void setRememberCode(boolean rememberCode) {
+		this.rememberCode = rememberCode;
+	}
+
+}

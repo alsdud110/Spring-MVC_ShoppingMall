@@ -1,0 +1,30 @@
+package login;
+
+import org.springframework.transaction.annotation.Transactional;
+
+import member.Member;
+import member.MemberDao;
+import member.MemberNotFoundException;
+
+public class ChangePasswordService {
+
+	private MemberDao memberDao;
+
+	public void setMemberDao(MemberDao memberDao) {
+		this.memberDao = memberDao;
+	}
+	
+	//회원이 로그인 이후에 비밀번호를 변경할 때 사용하는 함수
+	@Transactional
+	public void changePassword(String m_code, String m_pw, String new_m_pw) {
+		Member member = memberDao.selectByCode(m_code);
+		if (member == null)
+			throw new MemberNotFoundException();
+
+		member.changePassword(m_pw, new_m_pw);
+
+		memberDao.update(member);
+	}
+
+
+}

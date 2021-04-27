@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -25,6 +26,7 @@ public class LoginController {
         this.authService = authService;
     }
     
+    @Autowired
     private MemberServiceImpl memberServiceImpl;
     
     public void setMemberServiceImpl(MemberServiceImpl memberServiceImpl) {
@@ -75,4 +77,10 @@ public class LoginController {
             return "login/loginForm";
         }
     }
+    
+    @RequestMapping("/findpw")
+    public void findPw(@ModelAttribute Member member, HttpServletResponse response) throws Exception{
+    	memberServiceImpl.findPw(response, member);
+    }
+    
 }

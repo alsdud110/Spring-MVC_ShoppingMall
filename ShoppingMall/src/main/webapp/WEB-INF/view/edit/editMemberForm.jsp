@@ -55,8 +55,16 @@
     <title><spring:message code="edit.member.title" /></title>
 </head>
 <body>
+	<!-- Header -->
 	<jsp:include page = "../header.jsp"/>
-	<div class = "container text-center col-lg-4">
+	
+	<!-- Main -->
+
+
+	<div class = "container text-center  section-padding30">
+	<h2>
+		회원정보 수정
+	</h2>
 		<form:form modelAttribute = "editMemberCommand">
 		<%
 			AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
@@ -64,38 +72,38 @@
 			String email = authInfo.getM_email();
 			String contact = authInfo.getM_contact();
 		%>
-		<p>
-			<label><spring:message code="name" /> :<br>
-			 <form:input path="m_name"  value = "<%=name %>"/> 
+	 	<div class="col-md-12 form-group p_star">
+			<label>
+			 <form:input path="m_name"  value = "<%=name %>" class = "form-control" placeholder = "이름"/> 
 			 <form:errors path="m_name" /> 
 			 </label>
-		</p>
-		<p>
-			<label><spring:message code="tel" /> : <br> 
-			<form:input path="m_contact" value = "<%=contact %>"  />
+		</div>
+		<div class="col-md-12 form-group p_star">
+			<label><spring:message code="tel" /> : 
+			<form:input path="m_contact" value = "<%=contact %>" class = "form-control" />
 			<form:errors path="m_contact" />
 			</label>
-		</p>
-		<p>
+		</div>
+		<div class="col-md-12 form-group p_star">
 			<label><spring:message code = "birth" /> : <br>
 				<form:select path = "year" name="year" id="year" title="년도" />
 				<form:select path = "month" name="month" id="month" title="월"/>
 				<form:select path = "day" name="day" id="day" title="일" />
 			</label>
-		</p>
-		<p>			
+		</div>
+		<div class="col-md-12 form-group p_star">	
 			<input type="text" id="sample6_postcode" placeholder="우편번호">
 			<input type="button" onclick="findAddr()" value="우편번호 찾기"><br>
 			<form:input path = "addr_road" id="sample6_address" placeholder="주소"/><br>
 			<form:input path = "addr_detail" id="sample6_detailAddress" placeholder="상세주소"/>
 			<input type="text" id="sample6_extraAddress" placeholder="참고항목">
-		</p>
-		<p>
+		</div>
+		<div class="col-md-12 form-group p_star">	
 			<label><spring:message code="email" /> : <br>
 			<form:input path="m_email" value = "<%=email %>"/>
 			<form:errors path="m_email" />
 			 </label>
-		</p>
+		</div>
 		<input type="submit" value= "수정 완료" class = "btn btn-primary">
 	</form:form>
 	</div>

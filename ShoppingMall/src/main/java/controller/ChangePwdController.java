@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import spring.AuthInfo;
-import spring.ChangePasswordService;
-import spring.WrongIdPasswordException;
+import login.WrongIdPasswordException;
+import member.Member;
 
 @Controller
 @RequestMapping("/edit/changePassword")
@@ -39,12 +38,12 @@ public class ChangePwdController {
 		if (errors.hasErrors()) {
 			return "edit/changePwdForm";
 		}
-		AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
+		Member authInfo = (Member) session.getAttribute("authInfo");
 		try {
+			/*
 			changePasswordService.changePassword(
-					authInfo.getM_email(),
-					pwdCmd.getCurrentPassword(),
-					pwdCmd.getNewPassword());
+					authInfo.getM_code);
+					*/
 			return "edit/changedPwd";
 		} catch (WrongIdPasswordException e) {
 			errors.rejectValue("currentPassword", "notMatching");

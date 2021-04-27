@@ -13,6 +13,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 
+import member.Member;
+
 
 public class MemberDao {
 
@@ -41,14 +43,14 @@ public class MemberDao {
 		};
 	
 	
-	public int checkById(String id) {
-		List<Member> results = jdbcTemplate.query("select * from member where m_id = ?",memRowMapper, id);
+	public int checkById(String M_id) {
+		List<Member> results = jdbcTemplate.query("SELECT * FROM MEMBER WHERE M_ID = ?", memRowMapper, M_id);
 		
 		return results.isEmpty() ? 0 : 1;  //비어있으면 0, 비어있지 않으면 즉 있으면 1
 	}
 
-	public Member selectById(String id) {
-		List<Member> results = jdbcTemplate.query("select * from member where m_id = ?",memRowMapper, id);
+	public Member selectById(String M_id) {
+		List<Member> results = jdbcTemplate.query("select * from member where m_id = ?",memRowMapper, M_id);
 		
 		return results.isEmpty() ? null : results.get(0);  //results가 비어잇으면 null, 잇으면 0
 	}
@@ -83,7 +85,7 @@ public class MemberDao {
 					throws SQLException {
 				// 파라미터로 전달받은 Connection을 이용해서 PreparedStatement 생성
 				PreparedStatement pstmt = con.prepareStatement(
-						"update member set m_addr = ?, m_contact = ?, m_email = ?, m_birth = ?, m_name = ? where id = ?");
+						"update member set m_addr = ?, m_contact = ?, m_email = ?, m_birth = ?, m_name = ? where m_id = ?");
 				// 인덱스 파라미터 값 설정
 				pstmt.setString(1, member.getM_addr());
 				pstmt.setString(2, member.getM_contact());
@@ -98,6 +100,25 @@ public class MemberDao {
 			}
 		});
 	}
-	
+	//비밀번호변경
+
+	public void updatePw(Member member) throws Exception {
+		jdbcTemplate.update(new PreparedStatementCreator() {
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con)
+					throws SQLException {
+				// 파라미터로 전달받은 Connection을 이용해서 PreparedStatement 생성
+				PreparedStatement pstmt = con.prepareStatement(
+						"update member set m_pw = ? where id = ?");
+				// 인덱스 파라미터 값 설정
+				pstmt.setString(1, member.getM_pw());
+				pstmt.setString(2, member.getM_id());
+				
+//				pstmt.executeUpdate();
+				// 생성한 PreparedStatement 객체 리턴
+				return pstmt;
+			}
+		});
+	}
 
 }

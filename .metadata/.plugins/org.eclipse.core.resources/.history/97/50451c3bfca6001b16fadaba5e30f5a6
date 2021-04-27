@@ -1,0 +1,27 @@
+package register;
+
+import member.Member;
+import member.MemberDao;
+import register.RegisterCommand;
+
+public class MemberRegisterService {
+
+	private MemberDao memberDao;
+
+	public MemberRegisterService(MemberDao memberDao) {
+		this.memberDao = memberDao;
+	}
+	
+
+
+	public String regist(RegisterCommand req) {
+		int num = memberDao.checkById(req.getM_id());
+		if (num == 1) {
+			throw new DuplicateMemberException("dup id " + req.getM_id());
+		}
+		Member newMember = new Member(req.getM_code(), req.getM_id(), req.getM_pw(), req.getM_addr(), req.getM_contact(), req.getM_email(), req.getRec_login(), req.getM_birth(), req.getM_name());
+		memberDao.insert(newMember);
+		return newMember.getM_id();
+	}
+}
+

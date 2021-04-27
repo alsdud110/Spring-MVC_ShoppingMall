@@ -7,14 +7,24 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import edit.EditMemberService;
+import login.AuthService;
+import controller.ChangePasswordService;
+import login.IdCheckService;
+import member.MemberDao;
+import register.MemberRegisterService;
 import product.ProductDAO;
 import product.ProductService;
+<<<<<<< HEAD
 import spring.AuthService;
 import spring.ChangePasswordService;
 import spring.EditMemberService;
 import spring.IdCheckService;
 import spring.MemberDao;
 import spring.MemberRegisterService;
+import spring.MemberServiceImpl;
+=======
+>>>>>>> 황현
 
 @Configuration
 @EnableTransactionManagement
@@ -91,6 +101,11 @@ public class MemberConfig {
 	@Bean
 	public ProductService productService() {
 		return new ProductService(productDAO());
+	}
+	
+	@Bean
+	public MemberServiceImpl memberServiceImpl() {
+		return new MemberServiceImpl(memberDao());
 	}
 
 }

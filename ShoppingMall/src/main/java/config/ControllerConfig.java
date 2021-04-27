@@ -6,17 +6,26 @@ import org.springframework.context.annotation.Configuration;
 
 import cart.CartController;
 import controller.ChangePwdController;
-import controller.EditMemberController;
-import controller.LoginController;
-import controller.LogoutController;
 import controller.MainController;
-import controller.RegisterController;
+import edit.EditMemberController;
+import edit.EditMemberService;
+import login.AuthService;
+import controller.ChangePasswordService;
+import login.LoginController;
+import login.LogoutController;
+import register.MemberRegisterService;
 import product.ProductController;
+import product.ProductDAO;
 import product.ProductService;
+<<<<<<< HEAD
 import spring.AuthService;
 import spring.ChangePasswordService;
 import spring.EditMemberService;
 import spring.MemberRegisterService;
+import spring.MemberServiceImpl;
+=======
+import register.RegisterController;
+>>>>>>> 황현
 
 @Configuration
 public class ControllerConfig {
@@ -30,7 +39,8 @@ public class ControllerConfig {
 	private MemberRegisterService memberRegisterService;
 	@Autowired
 	private ProductService productServicec;
-
+	@Autowired
+	private MemberServiceImpl memberServiceImpl;
 
 	@Bean
 	public RegisterController registerController() {
@@ -43,6 +53,7 @@ public class ControllerConfig {
 	public LoginController loginController() {
 		LoginController controller = new LoginController();
 		controller.setAuthService(authService);
+		controller.setMemberServiceImpl(memberServiceImpl);
 		return controller;
 	}
 	
@@ -57,6 +68,8 @@ public class ControllerConfig {
 		controller.setChangePasswordService(changePasswordService);
 		return controller;
 	}
+	
+	
 	@Bean
 	public LogoutController logoutController() {
 		return new LogoutController();
@@ -68,7 +81,7 @@ public class ControllerConfig {
 	}
 	
 	@Bean
-	public ProductController productContriller() {
+	public ProductController productController() {
 		ProductController controller = new ProductController();
 		controller.setProductService(productServicec);
 		return controller;

@@ -20,7 +20,7 @@
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	
-	<hr>
+	
 	<section class="new-product-area section-padding30" style = "padding : 50px">
             <div class="container">
                 <!-- Section tittle -->

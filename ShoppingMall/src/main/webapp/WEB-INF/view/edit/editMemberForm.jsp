@@ -2,7 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import = "spring.AuthInfo" %>
+<%@ page import = "member.Member" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,11 +67,14 @@
 	</h2>
 		<form:form modelAttribute = "editMemberCommand">
 		<%
+		/*
 			AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
 			String name = authInfo.getM_name();
 			String email = authInfo.getM_email();
 			String contact = authInfo.getM_contact();
+		*/
 		%>
+<<<<<<< HEAD
 	 	<div class="col-md-6 form-group p_star ">
 			<label><spring:message code="name" /> :<br> 
 			<form:input path="m_name" class="form-control" value = "<%=name %>"/> 
@@ -83,6 +86,21 @@
 			<form:errors path="m_contact" /></label>
 		</div>
 		<div class="col-md-6 form-group p_star ">
+=======
+		<p>
+			<label><spring:message code="name" /> :<br>
+			 <form:input path="m_name"  value = "<%=//name %>"/> 
+			 <form:errors path="m_name" /> 
+			 </label>
+		</p>
+		<p>
+			<label><spring:message code="tel" /> : <br> 
+			<form:input path="m_contact" value = "<%=//contact %>"  />
+			<form:errors path="m_contact" />
+			</label>
+		</p>
+		<p>
+>>>>>>> 황현
 			<label><spring:message code = "birth" /> : <br>
 				<form:select path = "year" name="year" id="year" title="년도" class="text-center" style = "width : 100px; border: 1px solid #ced4da;"/>
 				<form:select path = "month" name="month" id="month" title="월" class="text-center" style = "width : 100px; border: 1px solid #ced4da;"/>
@@ -100,12 +118,20 @@
 		</div>
 		<div class="col-md-6 form-group p_star">
 			<label><spring:message code="email" /> : <br>
+<<<<<<< HEAD
 			<form:input path="m_email" class="form-control" value = "<%=email %>"/>
 			<form:errors path="m_email" /> </label>
 		</div>
 		<div>
 			<input type="submit" value= "수정 완료" class = "btn-secondary text-center">
 		</div>
+=======
+			<form:input path="m_email" value = "<%=//email %>"/>
+			<form:errors path="m_email" />
+			 </label>
+		</p>
+		<input type="submit" value= "수정 완료" class = "btn btn-primary">
+>>>>>>> 황현
 	</form:form>
 	</div>
 	

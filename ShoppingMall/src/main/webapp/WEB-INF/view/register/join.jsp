@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="<c:url value = "/resources/css/nice-select.css"/>">
         <link rel="stylesheet" href="<c:url value = "/resources/css/style.css"/>">
         
-         		<!-- JS here -->
+    <!-- JS here -->
     <!-- All JS Custom Plugins Link Here here -->
     <script src="<c:url value = "/resources/js/vendor/modernizr-3.5.0.min.js"/>"></script>
     <!-- Jquery, Popper, Bootstrap -->

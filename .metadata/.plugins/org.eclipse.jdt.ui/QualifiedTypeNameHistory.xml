@@ -4,4 +4,6 @@
 <fullyQualifiedTypeName name="member.MemberDao"/>
 <fullyQualifiedTypeName name="member.Member"/>
 <fullyQualifiedTypeName name="register.MemberRegisterService"/>
+<fullyQualifiedTypeName name="spring.MemberServiceImpl"/>
+<fullyQualifiedTypeName name="member.MemberServiceImpl"/>
 </qualifiedTypeNameHistroy>

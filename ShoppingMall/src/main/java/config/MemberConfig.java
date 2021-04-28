@@ -10,12 +10,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import controller.ChangePasswordService;
 import edit.EditMemberService;
 import login.AuthService;
-import login.IdCheckService;
 import member.MemberDao;
 import member.MemberService;
 import product.ProductDAO;
 import product.ProductService;
+import register.IdCheckService;
 import register.MemberRegisterService;
+
 
 @Configuration
 @EnableTransactionManagement

@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import cart.CartDTO;
+
 @Controller
 public class ProductController {
 	
@@ -52,9 +54,15 @@ public class ProductController {
 		return "product/productDetail";
 		//return "product/prdocutDetail";
 	}
-	//미구현. 추후 카트나 구매하기 클릭시 사용
-//	@RequestMapping("productDetail/123")
-//	public String qqqview() {
-//		return "product/123";
-//	}
+	//카트나 구매하기 클릭시 사용
+		@RequestMapping("productDetail/123")  //form url 지정
+		public String qqqview(Model model,CartDTO cartVO) {
+			model.addAttribute("CartVO", cartVO);
+			//값 넘어 왔는지 확인. m_code는 insert시 추가
+			System.out.println("-----------------path테스트 =-=-=-=-=--------------------");
+			System.out.println(" p_code " +cartVO.getP_code() + "p_name;" + cartVO.getP_name() +
+					"p_image;" + cartVO.getP_image() + "p_price;" + cartVO.getP_price() + "qty;" + cartVO.getQty() +" p_size=" + cartVO.getP_size() 
+					+" p_color=" +cartVO.getP_color() +"sumMoney;" + cartVO.getSumMoney());
+				return "product/123";  //이동 페이지 지정.
+		}
 }

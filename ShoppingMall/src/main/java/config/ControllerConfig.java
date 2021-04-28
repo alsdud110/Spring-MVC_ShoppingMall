@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import cart.CartController;
 import controller.ChangePasswordService;
 import controller.ChangePwdController;
 import controller.MainController;
@@ -32,7 +31,8 @@ public class ControllerConfig {
 	@Autowired
 	private ProductService productServicec;
 	@Autowired
-	private MemberService memberServiceImpl;
+	private MemberService memberService;
+
 
 	@Bean
 	public RegisterController registerController() {
@@ -45,7 +45,7 @@ public class ControllerConfig {
 	public LoginController loginController() {
 		LoginController controller = new LoginController();
 		controller.setAuthService(authService);
-		controller.setMemberService(memberServiceImpl);
+		controller.setMemberService(memberService);
 		return controller;
 	}
 	
@@ -79,11 +79,7 @@ public class ControllerConfig {
 		return controller;
 	}
 
-	@Bean
-	public CartController cartController() {
-		return new CartController();
-	}
-	
+
 //	@Bean
 //	public ModifyController changePwdController() {
 //		ModifyController controller = new ModifyController();

@@ -48,7 +48,6 @@ public class MemberService {
 			email.setSSL(true);
 			email.setHostName(hostSMTP);
 			email.setSmtpPort(587); 
-
 			email.setAuthentication(hostSMTPid, hostSMTPpwd);
 			email.setTLS(true);
 			email.addTo(mail, charSet);
@@ -87,7 +86,6 @@ public class MemberService {
 			memberDao.updatePw(mem);
 			// 비밀번호 변경 메일 발송
 			sendEmail(mem, "findPw");
-
 			out.print("<script>alert('이메일로 임시 비밀번호를 발송하였습니다.'); history.go(-1);</script>");
 			out.close();
 		}

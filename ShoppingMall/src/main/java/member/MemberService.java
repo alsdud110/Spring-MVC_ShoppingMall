@@ -17,14 +17,14 @@ public class MemberService {
 	public void sendEmail(Member mem, String div) throws Exception {
 		// TODO Auto-generated method stub
 		String charSet = "utf-8";
-		String hostSMTP = "smtp.gmail.com"; //네이버 이용시 smtp.naver.com
+		String hostSMTP = "smtp.naver.com"; //네이버 이용시 smtp.naver.com
 		//서버 이메일 주소(보내는 사람 이메일 주소)
-		String hostSMTPid = "";
+		String hostSMTPid = "alsdud110@naver.com";
 		//서버 이메일 비번(보내는 사람 이메일 비번)
-		String hostSMTPpwd = "";
+		String hostSMTPpwd = "#";
 
 		// 보내는 사람 EMail, 제목, 내용
-		String fromEmail = "";
+		String fromEmail = "alsdud110@naver.com";
 		//프로젝트이름 또는 보내는 사람 이름
 		String fromName = "4조 프로젝트";
 		String subject = "";
@@ -47,7 +47,7 @@ public class MemberService {
 			email.setCharset(charSet);
 			email.setSSL(true);
 			email.setHostName(hostSMTP);
-			email.setSmtpPort(465); 
+			email.setSmtpPort(587); 
 
 			email.setAuthentication(hostSMTPid, hostSMTPpwd);
 			email.setTLS(true);

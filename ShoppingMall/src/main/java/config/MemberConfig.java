@@ -7,15 +7,15 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import controller.ChangePasswordService;
 import edit.EditMemberService;
 import login.AuthService;
-import controller.ChangePasswordService;
-import login.IdCheckService;
 import member.MemberDao;
-import member.MemberServiceImpl;
-import register.MemberRegisterService;
+import member.MemberService;
 import product.ProductDAO;
 import product.ProductService;
+import register.IdCheckService;
+import register.MemberRegisterService;
 
 
 @Configuration
@@ -96,8 +96,8 @@ public class MemberConfig {
 	}
 	
 	@Bean
-	public MemberServiceImpl memberServiceImpl() {
-		return new MemberServiceImpl(memberDao());
+	public MemberService memberService() {
+		return new MemberService(memberDao());
 	}
 
 }

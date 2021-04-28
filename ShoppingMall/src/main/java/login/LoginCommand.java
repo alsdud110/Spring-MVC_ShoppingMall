@@ -4,6 +4,16 @@ public class LoginCommand {
 	
 	private String m_id;
 	private String m_pw;
+	private String m_email;
+	
+	public String getM_email() {
+		return m_email;
+	}
+
+	public void setM_email(String m_email) {
+		this.m_email = m_email;
+	}
+
 	private boolean rememberId;
 
 	public String getM_id() {

@@ -1,6 +1,7 @@
 package login;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -9,15 +10,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import member.Member;
-import member.MemberServiceImpl;
+import member.MemberService;
 
 @Controller
-@RequestMapping("/login")
+@RequestMapping
 public class LoginController {
 	@Autowired
     private AuthService authService;
@@ -27,15 +27,15 @@ public class LoginController {
     }
     
     @Autowired
-    private MemberServiceImpl memberServiceImpl;
+    private MemberService memberService;
     
-    public void setMemberServiceImpl(MemberServiceImpl memberServiceImpl) {
-    	this.memberServiceImpl = memberServiceImpl;
+    public void setMemberService(MemberService memberService) {
+    	this.memberService = memberService;
     }
 
     //아이디 기억하기 기능
     //일단 pass
-    @GetMapping
+    @GetMapping("/login")
     public String form(LoginCommand loginCommand,
     		@CookieValue(value = "REMEMBER", required = false) Cookie rCookie) {
 		if (rCookie != null) {
@@ -46,7 +46,7 @@ public class LoginController {
     }
 
     
-    @PostMapping
+    @PostMapping("/login")
     public String login(
     		LoginCommand loginCommand, Errors errors, HttpSession session,
     		HttpServletResponse response) {
@@ -78,9 +78,24 @@ public class LoginController {
         }
     }
     
-    @RequestMapping("/findpw")
-    public void findPw(@ModelAttribute Member member, HttpServletResponse response) throws Exception{
-    	memberServiceImpl.findPw(response, member);
+    @GetMapping("/findPw")
+    public String findPw() {
+    	return "login/findPw";
+    }
+    
+    @PostMapping("/findPw")
+    public void findPw(Member member, HttpServletResponse response, HttpServletRequest request) throws Exception{
+    	String m_id = request.getParameter("m_id");
+    	String m_email = request.getParameter("m_email");
+    	
+    	member.setM_id(m_id);
+    	member.setM_email(m_email);
+    	
+    	System.out.println(m_id);
+    	System.out.println(m_email);
+    	
+    	memberService.findPw(member, response);
+//    	return "login/findPw";
     }
     
 }

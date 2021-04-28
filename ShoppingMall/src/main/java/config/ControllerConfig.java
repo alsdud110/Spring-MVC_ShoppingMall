@@ -13,7 +13,7 @@ import edit.EditMemberService;
 import login.AuthService;
 import login.LoginController;
 import login.LogoutController;
-import member.MemberServiceImpl;
+import member.MemberService;
 import product.ProductController;
 import product.ProductService;
 import register.MemberRegisterService;
@@ -32,7 +32,7 @@ public class ControllerConfig {
 	@Autowired
 	private ProductService productServicec;
 	@Autowired
-	private MemberServiceImpl memberServiceImpl;
+	private MemberService memberServiceImpl;
 
 	@Bean
 	public RegisterController registerController() {
@@ -45,7 +45,7 @@ public class ControllerConfig {
 	public LoginController loginController() {
 		LoginController controller = new LoginController();
 		controller.setAuthService(authService);
-		controller.setMemberServiceImpl(memberServiceImpl);
+		controller.setMemberService(memberServiceImpl);
 		return controller;
 	}
 	

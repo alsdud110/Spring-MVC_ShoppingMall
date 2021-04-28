@@ -114,7 +114,7 @@ public class MemberDao {
 					throws SQLException {
 				// 파라미터로 전달받은 Connection을 이용해서 PreparedStatement 생성
 				PreparedStatement pstmt = con.prepareStatement(
-						"update member set m_pw = ? where id = ?");
+						"update member set m_pw = ? where m_id = ?");
 				// 인덱스 파라미터 값 설정
 				pstmt.setString(1, member.getM_pw());
 				pstmt.setString(2, member.getM_id());

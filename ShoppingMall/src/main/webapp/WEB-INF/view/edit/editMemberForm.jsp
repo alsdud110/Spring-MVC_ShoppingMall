@@ -85,20 +85,12 @@
 			<form:errors path="m_contact" /></label>
 		</div>
 		<div class="col-md-6 form-group p_star ">
-		<p>
-			<label><spring:message code="name" /> :<br>
-			 <form:input path="m_name"  value = "<%=//name %>"/> 
+			<label><spring:message code="email" /> :<br>
+			 <form:input path="m_name"  class = "form-control" value = "<%=email %>"/> 
 			 <form:errors path="m_name" /> 
 			 </label>
-		</p>
-		<p>
-			<label><spring:message code="tel" /> : <br> 
-			<form:input path="m_contact" value = "<%=//contact %>"  />
-			<form:errors path="m_contact" />
-			</label>
-		</p>
-		<p>
->>>>>>> 황현
+		</div>
+		<div class = "col-md-6 form-group p_star">
 			<label><spring:message code = "birth" /> : <br>
 				<form:select path = "year" name="year" id="year" title="년도" class="text-center" style = "width : 100px; border: 1px solid #ced4da;"/>
 				<form:select path = "month" name="month" id="month" title="월" class="text-center" style = "width : 100px; border: 1px solid #ced4da;"/>
@@ -114,22 +106,10 @@
 			<input type="text" id="sample6_extraAddress" placeholder="참고항목" class="text-center" style = "width : 100px; border-radius: .25rem; border: 1px solid #ced4da;">
 			</labeL>
 		</div>
-		<div class="col-md-6 form-group p_star">
-			<label><spring:message code="email" /> : <br>
-<<<<<<< HEAD
-			<form:input path="m_email" class="form-control" value = "<%=email %>"/>
-			<form:errors path="m_email" /> </label>
-		</div>
 		<div>
 			<input type="submit" value= "수정 완료" class = "btn-secondary text-center">
 		</div>
-=======
-			<form:input path="m_email" value = "<%=//email %>"/>
-			<form:errors path="m_email" />
-			 </label>
-		</p>
-		<input type="submit" value= "수정 완료" class = "btn btn-primary">
->>>>>>> 황현
+		
 	</form:form>
 	</div>
 	

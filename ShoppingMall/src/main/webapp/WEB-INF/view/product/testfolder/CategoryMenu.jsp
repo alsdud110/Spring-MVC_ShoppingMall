@@ -23,8 +23,4 @@
 	</tr>
 	</table>
 </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> 92755a5a4faddeaf8c45c3e25885439a4f2c62bb

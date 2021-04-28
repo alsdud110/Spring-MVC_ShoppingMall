@@ -13,6 +13,7 @@ public class MemberService {
 		this.memberDao = memberDao;
 	}
 	
+<<<<<<< HEAD
 
 	public void sendEmail(Member mem, String div) throws Exception {
 		// TODO Auto-generated method stub
@@ -29,6 +30,27 @@ public class MemberService {
 
 		if(div.equals("findpw")) {
 			subject = "정상현민 임시 비밀번호 입니다.";
+=======
+	//이메일 발송
+	public void sendEmail(Member mem, String div) throws Exception {
+		// TODO Auto-generated method stub
+		String charSet = "utf-8";
+		String hostSMTP = "smtp.naver.com"; //네이버 이용시 smtp.naver.com
+		//서버 이메일 주소(보내는 사람 이메일 주소)
+		String hostSMTPid = "alsdud110@naver.com";
+		//서버 이메일 비번(보내는 사람 이메일 비번)
+		String hostSMTPpwd = "#";
+
+		// 보내는 사람 EMail, 제목, 내용
+		String fromEmail = "alsdud110@naver.com";
+		//프로젝트이름 또는 보내는 사람 이름
+		String fromName = "4조 프로젝트";
+		String subject = "";
+		String msg = "";
+
+		if(div.equals("findPw")) {
+			subject = "4조 프로젝트 임시 비밀번호 입니다.";
+>>>>>>> 황민영
 			msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
 			msg += "<h3 style='color: blue;'>";
 			msg += mem.getM_id() + "님의 임시 비밀번호 입니다. 비밀번호를 변경하여 사용하세요.</h3>";
@@ -44,7 +66,11 @@ public class MemberService {
 			email.setCharset(charSet);
 			email.setSSL(true);
 			email.setHostName(hostSMTP);
+<<<<<<< HEAD
 			email.setSmtpPort(465); 
+=======
+			email.setSmtpPort(587); 
+>>>>>>> 황민영
 
 			email.setAuthentication(hostSMTPid, hostSMTPpwd);
 			email.setTLS(true);
@@ -58,20 +84,33 @@ public class MemberService {
 		}
 	}
 
+<<<<<<< HEAD
 
 	public void findPw(HttpServletResponse response, Member mem) throws Exception {
+=======
+	//비밀번호 찾기
+	public void findPw(Member mem, HttpServletResponse response) throws Exception {
+>>>>>>> 황민영
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=utf-8");
 		Member ck = memberDao.selectById(mem.getM_id());
 		PrintWriter out = response.getWriter();
 		// 가입된 아이디가 없으면
 		if(memberDao.checkById(mem.getM_id()) == 0) {
+<<<<<<< HEAD
 			out.print("등록되지 않은 아이디입니다.");
+=======
+			out.print("<script>alert('아이디를 확인해 주세요.'); history.go(-1);</script>");
+>>>>>>> 황민영
 			out.close();
 		}
 		// 가입된 이메일이 아니면
 		else if(!mem.getM_email().equals(ck.getM_email())) {
+<<<<<<< HEAD
 			out.print("등록되지 않은 이메일입니다.");
+=======
+			out.print("<script>alert('이메일을 확인해 주세요.'); history.go(-1);</script>");
+>>>>>>> 황민영
 			out.close();
 		}else {
 			// 임시 비밀번호 생성
@@ -83,9 +122,15 @@ public class MemberService {
 			// 비밀번호 변경
 			memberDao.updatePw(mem);
 			// 비밀번호 변경 메일 발송
+<<<<<<< HEAD
 			sendEmail(mem, "findpw");
 
 			out.print("이메일로 임시 비밀번호를 발송하였습니다.");
+=======
+			sendEmail(mem, "findPw");
+
+			out.print("<script>alert('이메일로 임시 비밀번호를 발송하였습니다.'); history.go(-1);</script>");
+>>>>>>> 황민영
 			out.close();
 		}
 	}

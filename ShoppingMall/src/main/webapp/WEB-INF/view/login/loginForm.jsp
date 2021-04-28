@@ -63,7 +63,7 @@
                                         <input type="submit" class = "btn_3" value="<spring:message code="login.btn" />">
                                     </div>
                                 </form:form>
-                                        <button class="lost_pass" id = "find_pw_btn">forget password?</button>
+                                        <a href = "<c:url value = "findPw"/>" class = "lost_pass">비밀번호 찾기</a>
                             </div>
                         </div>
                     </div>
@@ -77,11 +77,6 @@
     <!-- Footer -->
     <jsp:include page = "../footer.jsp"></jsp:include>
     
-    <script>
-    	$("#find_pw_btn").click(function(){
-    		location.href = "findPw.jsp";
-    	});
-    </script>
 	 		<!-- JS here -->
     <!-- All JS Custom Plugins Link Here here -->
     <script src="<c:url value = "/resources/js/vendor/modernizr-3.5.0.min.js"/>"></script>

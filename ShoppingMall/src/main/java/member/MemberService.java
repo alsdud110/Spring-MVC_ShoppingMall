@@ -69,7 +69,7 @@ public class MemberService {
 		PrintWriter out = response.getWriter();
 		// 가입된 아이디가 없으면
 		if(memberDao.checkById(mem.getM_id()) == 0) {
-			out.print("<script>alert('아이디를 확인해 주세요.');</script>");
+			out.print("<script>alert('아이디를 확인해 주세요.'); history.go(-1);</script>");
 			out.close();
 		}
 		// 가입된 이메일이 아니면

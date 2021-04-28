@@ -12,7 +12,7 @@ import login.AuthService;
 import controller.ChangePasswordService;
 import login.IdCheckService;
 import member.MemberDao;
-import member.MemberServiceImpl;
+import member.MemberService;
 import register.MemberRegisterService;
 import product.ProductDAO;
 import product.ProductService;
@@ -96,8 +96,8 @@ public class MemberConfig {
 	}
 	
 	@Bean
-	public MemberServiceImpl memberServiceImpl() {
-		return new MemberServiceImpl(memberDao());
+	public MemberService memberService() {
+		return new MemberService(memberDao());
 	}
 
 }

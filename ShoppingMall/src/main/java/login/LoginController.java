@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import member.Member;
 import member.MemberDao;
-import member.MemberServiceImpl;
+import member.MemberService;
 
 @Controller
 @RequestMapping("/login")
@@ -71,7 +71,7 @@ public class LoginController {
         }
     }
 
-	public void setMemberServiceImpl(MemberServiceImpl memberServiceImpl) {
+	public void setMemberService(MemberService memberService) {
 		// TODO Auto-generated method stub
 		
 	}

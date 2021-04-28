@@ -41,8 +41,8 @@
                     <td>
                       <div class="media">
                         <div class="d-flex">
-                          <img src="assets/img/gallery/card1.png" alt="" />
-                        </div>
+                            <img src="<c:url value = "resources/product_1.jpeg"/>" alt="">
+                            </div>
                         <div class="media-body">
                           <p>Minimalistic shop for multipurpose use</p>
                         </div>
@@ -66,8 +66,8 @@
                     <td>
                       <div class="media">
                         <div class="d-flex">
-                          <img src="assets/img/gallery/card2.png" alt="" />
-                        </div>
+                            <img src="<c:url value = "resources/product_2.jpeg"/>" alt="">
+                       	</div>
                         <div class="media-body">
                           <p>Minimalistic shop for multipurpose use</p>
                         </div>
@@ -88,14 +88,12 @@
                     </td>
                   </tr>
                   <tr class="bottom_button">
-                    <td>
-                      <a class="btn_1" href="#">Update Cart</a>
-                    </td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td>
                       <div class="cupon_text float-right">
-                        <a class="btn_1" href="#">Close Coupon</a>
+                        <a class="btn_1" href="#">Order</a>
                       </div>
                     </td>
                     </tr>

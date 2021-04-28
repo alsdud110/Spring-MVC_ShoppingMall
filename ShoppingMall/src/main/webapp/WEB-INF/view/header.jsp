@@ -30,11 +30,13 @@
                                 <ul id="navigation">  
                                     <li><a href="main">Main</a></li>
                                     <li><a href="index.html">Best50</a></li>
-
                                     <li><a href="<c:url value='/product/viewCategory/TOP'/>">TOP</a></li>
+<<<<<<< HEAD
 
                                   
 
+=======
+>>>>>>> branch '이정민' of https://gitlab.com/springproject041/testproject.git
                                     <li><a href="about.html">BOTTOM</a></li>
                                     <li><a href="about.html">ACC</a></li>
                                     <li class="hot"><a href="#">MY PAGE</a>
@@ -61,7 +63,10 @@
                                         </ul>
                                     </li>
                                      -->
+<<<<<<< HEAD
                             
+=======
+>>>>>>> branch '이정민' of https://gitlab.com/springproject041/testproject.git
                                 </ul>
                             </nav>
                         </div>

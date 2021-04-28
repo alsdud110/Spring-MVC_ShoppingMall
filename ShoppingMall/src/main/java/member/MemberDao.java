@@ -1,11 +1,9 @@
 package member;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -35,7 +33,7 @@ public class MemberDao {
 				member.setM_addr(rs.getString("m_addr"));
 				member.setM_contact(rs.getString("m_contact"));
 				member.setM_email(rs.getString("m_email"));
-				member.setRec_login(rs.getTimestamp("rec_login").toLocalDateTime());
+				member.setRec_login(rs.getTimestamp("rec_login"));
 				member.setM_birth(rs.getString("m_birth"));
 				member.setM_name(rs.getString("m_name"));
 				return member;

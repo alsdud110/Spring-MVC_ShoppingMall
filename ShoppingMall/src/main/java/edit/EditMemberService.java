@@ -14,7 +14,8 @@ public class EditMemberService {
 	public void edit(EditMemberCommand edit, String m_code) {
 		Member member = memberDao.selectByCode(m_code);
 		
-		Member newMember = new Member(member.getM_code(), member.getM_id(), member.getM_pw(), edit.getM_addr(), 
+		Member newMember = new Member(
+				member.getM_code(), member.getM_id(), member.getM_pw(), edit.getM_addr(), 
 				edit.getM_contact(), edit.getM_email(), 
 				edit.getM_birth(), edit.getM_name());
 		memberDao.update(newMember);

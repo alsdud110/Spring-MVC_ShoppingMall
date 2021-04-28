@@ -24,7 +24,7 @@ public class MemberRegisterService {
 		*/
 		/*
 		 * 문제점 1번
-		 * 현재 birth가 어떤식으로 합쳐지는지 전혀 모름
+		 * 현재 birth가 어떤식으로 합쳐지는지 전혀 모름 => birth 값이 유동적으로 변함: 원래는 birth값을 고정값으로 원했음
 		 * 
 		 * 문제점 2번
 		 * 자꾸 모르는 함수들이 생겨남

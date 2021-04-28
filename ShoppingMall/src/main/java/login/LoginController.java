@@ -34,7 +34,6 @@ public class LoginController {
     }
 
     //아이디 기억하기 기능
-    //일단 pass
     @GetMapping("/login")
     public String form(LoginCommand loginCommand,
     		@CookieValue(value = "REMEMBER", required = false) Cookie rCookie) {

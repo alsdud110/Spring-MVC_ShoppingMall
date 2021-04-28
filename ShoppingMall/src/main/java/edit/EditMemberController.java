@@ -28,11 +28,11 @@ public class EditMemberController {
 	
 //	@PostMapping("/edit")
 //	public String edit(Model model) {
-//		model.addAttribute("loginCommand", new LoginCommand());
+//		
 //		return "edit/editMemberForm";
 //	}
-	
-	
+//	
+//	
 	@PostMapping("/editSuccess")
 	public String editPro(EditMemberCommand editMemberCommand) {
 		//code 값을 cookie 값으로 갖고와서 입력해야함

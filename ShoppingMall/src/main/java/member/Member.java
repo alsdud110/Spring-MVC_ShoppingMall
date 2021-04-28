@@ -1,7 +1,7 @@
 package member;
 
-import java.sql.Date;
-import java.time.LocalDateTime;
+
+import java.sql.Timestamp;
 
 import login.WrongIdPasswordException;
 
@@ -14,7 +14,7 @@ public class Member {
 	private String m_addr;
 	private String m_contact;
 	private String m_email;
-	private LocalDateTime rec_login;
+	private Timestamp rec_login;
 	private String m_birth;
 	private String m_name;
 
@@ -82,11 +82,11 @@ public class Member {
 		this.m_email = m_email;
 	}
 
-	public LocalDateTime getRec_login() {
+	public Timestamp getRec_login() {
 		return rec_login;
 	}
 
-	public void setRec_login(LocalDateTime rec_login) {
+	public void setRec_login(Timestamp rec_login) {
 		this.rec_login = rec_login;
 	}
 
@@ -115,6 +115,5 @@ public class Member {
 	public boolean matchPassword(String password) {
 		return this.m_pw.equals(password);
 	}
-
 
 }

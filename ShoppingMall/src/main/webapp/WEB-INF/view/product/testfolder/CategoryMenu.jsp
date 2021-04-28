@@ -10,7 +10,6 @@
 </head>
 <body>
 <img src="https://drive.google.com/uc?id=173P8AUPIxf9KSYWyoZ1iSLVL73pU4pk8"> <!-- 홈페이지 로고 -->
-<a href="<c:url value='/123'/>">디테일페이지 </a> <!-- 미구현 -->
 	<table border="1">
 	<tr>
 
@@ -19,12 +18,8 @@
 	<td width="200"><input type="Button" style="WIDTH:300pt" value="긴팔" onclick="location.href='<c:url value='/product/viewCategory/TOP_LONG'/>'"></td>
 	<td width="200"><input type="Button" style="WIDTH:300pt" value="반팔" onclick="location.href='<c:url value='/product/viewCategory/TOP_SHORT'/>'"></td>
 	<td width="200"><input type="Button" style="WIDTH:300pt" value="아우터" onclick="location.href='<c:url value='/product/viewCategory/TOP_OUTER'/>'"></td>
-	<td><a href="<c:url value='/productDetail'/>">디테일페이지 </a></td>
 	</tr>
 	</table>
 </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> 92755a5a4faddeaf8c45c3e25885439a4f2c62bb
+

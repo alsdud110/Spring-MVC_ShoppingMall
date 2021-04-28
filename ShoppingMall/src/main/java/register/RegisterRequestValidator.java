@@ -43,6 +43,7 @@ public class RegisterRequestValidator implements Validator {
 //				errors.rejectValue("m_pw", "bad");
 //			}
 		}
+	
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "m_id", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "m_name", "required");
 		ValidationUtils.rejectIfEmpty(errors, "m_pw", "required");

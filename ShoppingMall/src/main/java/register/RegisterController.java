@@ -1,5 +1,7 @@
 package register;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,40 +35,51 @@ public class RegisterController {
 	public void setIdCheckService(IdCheckService idCheckService) {
 		this.idCheckService = idCheckService;
 	}
-
-	@PostMapping("/join")
-	public String handleStep2(
-			@RequestParam(value = "agree", defaultValue = "false") Boolean agree, Model model) {
-
+	
+	@RequestMapping("/join")
+	public String registerMember(Model model) {
 		model.addAttribute("registerCommand", new RegisterCommand());
 		return "register/join";
 	}
+
 	
 	// 아이디 중복 검사
 	@RequestMapping(value = "/id_check", method = RequestMethod.POST)
 	@ResponseBody
-	public String memberIdChkPOST(String m_id) throws Exception{
-		int result = idCheckService.checkId(m_id);  //result = 0 이면 중복 아이디 없음, 1이면 있음
-		if(result != 0) {		//result = 1
-			return "fail";	// 중복 아이디가 존재 1 -> fail
+	public String memberIdChkPOST(String m_id, HttpSession session) throws Exception{
+		int result = idCheckService.checkId(m_id);
+		
+		session.setAttribute("id check", null);
+		if(result != 0) {
+			session.setAttribute("id check", "fail");
+			return "fail";	
 		} else {
-			return "success";	// 중복 아이디 x 0 -> success
+			session.setAttribute("id check", "success");
+			return "success";
 		}	
 		
 		
 	} // memberIdChkPOST() 종료
 
-
-	@RequestMapping("/join")
-	public String signUp(Model model) {
-		model.addAttribute("registerCommand", new RegisterCommand());
-		return "register/join";
-	}
-
-
 	@PostMapping("/congrats")
-	public void handleStep3(RegisterCommand req, Errors errors) {
+	public String registerMember(RegisterCommand req, Errors errors, HttpSession session) {
+		
+		if (session.getAttribute("id check") != "success") {
+			return "register/join";
+		}
+		
 		new RegisterRequestValidator().validate(req, errors);
+		
+		if (errors.hasErrors())
+			return "register/join";
+		try {
+			memberRegisterService.regist(req);
+			return "register/congrats";
+		}
+		catch (DuplicateMemberException ex){
+			errors.rejectValue("email", "duplicate");
+			return "register/join";
+		}
 	}
 
 

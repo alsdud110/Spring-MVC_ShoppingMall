@@ -22,6 +22,15 @@ public class MemberRegisterService {
 		/*
 		if (
 		*/
+		/*
+		 * 문제점 1번
+		 * 현재 birth가 어떤식으로 합쳐지는지 전혀 모름
+		 * 
+		 * 문제점 2번
+		 * 자꾸 모르는 함수들이 생겨남
+		 * 
+		 * */
+		System.out.println("m_brith: " + req.getM_birth());
 		Member newMember = new Member(req.getM_code(), req.getM_id(), req.getM_pw(), req.getM_addr(), req.getM_contact(), req.getM_email(), req.getM_birth(), req.getM_name());
 		memberDao.insert(newMember);
 		return newMember.getM_id();

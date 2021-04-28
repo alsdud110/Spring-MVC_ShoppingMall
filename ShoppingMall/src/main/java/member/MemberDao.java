@@ -1,6 +1,7 @@
 package member;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -72,6 +73,24 @@ public class MemberDao {
 				pstmt.setString(7, member.getM_name());
 //				pstmt.executeUpdate();
 				// 생성한 PreparedStatement 객체 리턴
+				return pstmt;
+			}
+		});
+	}
+	
+	//Login마다 REC_LOGIN 갱신
+	public void updateRecLogin(String m_code) {
+		jdbcTemplate.update(new PreparedStatementCreator() {
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con)
+					throws SQLException {
+				// 파라미터로 전달받은 Connection을 이용해서 PreparedStatement 생성
+				PreparedStatement pstmt = con.prepareStatement(
+						"UPDATE MEMBER SET REC_LOGIN = SYSDATE WHERE M_CODE = ?");
+				// 인덱스 파라미터 값 설정
+				pstmt.setString(1, m_code);
+				//pstmt.setDate(2, new Date(0));
+
 				return pstmt;
 			}
 		});

@@ -78,11 +78,11 @@
                                 <li><a href="join"><span class="flaticon-user"> join</span></a> </li>
                             </ul>
                             	<%}else{
-                            		String name = authInfo.getM_name();
+                            		String name = authInfo.getM_name() + "님";
                             	
                             	%>
                             <ul>
-                            	<li><span class = "flaction-user"><%= name %></span></li>
+                            	<li><span class = "flaticon-user"> <%= name %></span></li>
                                 <li> <a href="logout"><span class="flaticon-user"> logout</span></a></li>
                                 <li><a href="cart"><span class="flaticon-shopping-cart"> cart</span></a> </li>
                              
@@ -94,7 +94,7 @@
                     </div>
              </div>
 	</header>
-	
+	<hr>
 
 </body>
 </html>

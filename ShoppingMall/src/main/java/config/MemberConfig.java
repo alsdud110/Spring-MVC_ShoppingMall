@@ -10,9 +10,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import edit.EditMemberService;
 import login.AuthService;
 import controller.ChangePasswordService;
-import login.IdCheckService;
 import member.MemberDao;
+<<<<<<< HEAD
 import member.MemberService;
+=======
+import member.MemberServiceImpl;
+import register.IdCheckService;
+>>>>>>> 8b5c2ffa7391b695c1e52d8f567805ef61a5d5fb
 import register.MemberRegisterService;
 import product.ProductDAO;
 import product.ProductService;

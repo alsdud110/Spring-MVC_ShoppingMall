@@ -11,6 +11,21 @@ public class CartDTO {
 	    private String p_color;
 	    private int sumMoney;//선택한 상품별 총금액?
 	    
+	    private String p_code; //productDatail 에서 필요해서 추가했슴다
+	    private String str;	//productDatail 에서 필요해서 추가했슴다
+	    
+		public String getP_code() {
+			return p_code;
+		}
+		public void setP_code(String p_code) {
+			this.p_code = p_code;
+		}
+		public String getStr() {
+			return str;
+		}
+		public void setStr(String str) {
+			this.str = str;
+		}
 		public String getP_name() {
 			return p_name;
 		}

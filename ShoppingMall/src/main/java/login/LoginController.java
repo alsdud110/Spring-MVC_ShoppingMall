@@ -14,10 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import member.Member;
-<<<<<<< HEAD
-import member.MemberDao;
-=======
->>>>>>> 황민영
 import member.MemberService;
 
 @Controller
@@ -81,13 +77,7 @@ public class LoginController {
             return "login/loginForm";
         }
     }
-<<<<<<< HEAD
 
-	public void setMemberService(MemberService memberService) {
-		// TODO Auto-generated method stub
-		
-	}
-=======
     
     @GetMapping("/findPw")
     public String findPw() {
@@ -109,5 +99,4 @@ public class LoginController {
 //    	return "login/findPw";
     }
     
->>>>>>> 황민영
 }

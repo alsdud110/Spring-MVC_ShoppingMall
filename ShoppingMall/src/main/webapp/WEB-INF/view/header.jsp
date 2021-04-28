@@ -33,9 +33,7 @@
 
                                     <li><a href="<c:url value='/product/viewCategory/TOP'/>">TOP</a></li>
 
-                                     <li><a href="<c:url value='/product/viewCategory/TOP'/>">TOP</a></li>
-
-									<li><a href="/product/viewCategory/TOP">TOP</a></li>
+                                  
 
                                     <li><a href="about.html">BOTTOM</a></li>
                                     <li><a href="about.html">ACC</a></li>
@@ -63,7 +61,7 @@
                                         </ul>
                                     </li>
                                      -->
-                                    <li><a href="contact.html">Contact</a></li>
+                            
                                 </ul>
                             </nav>
                         </div>

@@ -14,10 +14,11 @@
 <img src="https://i.pinimg.com/236x/7e/64/6b/7e646bd7120da69b67240999098e2984.jpg"> <!-- 홈페이지 로고 -->
 </center>
 </a>
-
+<center>
 <a href="<c:url value='/123'/>">디테일페이지 </a> <!-- 미구현 -->
-
 <a href="<c:url value='/productDetail'/>">디테일페이지2? </a>
+</center>
+
 	<center>
 	<table border="0">
 	<tr>
@@ -28,6 +29,9 @@
 	<td width="200"><input type="Button" style="WIDTH:150pt" value="아우터" onclick="location.href='<c:url value='/product/viewCategory/TOP_OUTER'/>'"></td>
 	</tr>
 	</center>
+	
 	</table>
 </body>
+
+
 </html>

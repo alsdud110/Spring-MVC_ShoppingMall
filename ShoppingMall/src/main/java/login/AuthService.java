@@ -11,7 +11,7 @@ public class AuthService {
 		this.memberDao = memberDao;
 	}
 
-	//session에 회원정보 전체 저장
+	//로그인 성공시 회원정보 return
 	public Member authenticate(String any_id, String any_pw) {
 		Member member = memberDao.selectById(any_id);
 		if (member == null) {

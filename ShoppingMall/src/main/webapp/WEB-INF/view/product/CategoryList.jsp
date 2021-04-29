@@ -35,14 +35,17 @@
 <title>상품보기</title>
 </head>
 <body>
+<center>
 <table border="0">
-	<!-- product 테이블 P_KIND에서 TOP분류중 긴팔/반팔/아우터 분류를 위해 TOP_LONG 식으로 설정함. -->
 	<tr>
-	<c:forEach var = "list" items = "${kind }">
-		<td width = "200"><input type = "button" class = "btn-secondary" style = "width : 150pt" value = "${list.p_KIND}" onclick = "location.href = '<c:url value = '/product/viewCategory/TOP_${p_kind }'/>'"></td>
-	</c:forEach>
+	<!-- product 테이블 P_KIND에서 TOP분류중 긴팔/반팔/아우터 분류를 위해 TOP_LONG 식으로 설정함. -->
+	<td width="200"><input type="Button" class = "btn-secondary" style="WIDTH:150pt" value="TOP 전체보기" onclick="location.href='<c:url value='/product/viewCategory/TOP'/>'"></td>
+	<td width="200"><input type="Button" class = "btn-secondary" style="WIDTH:150pt" value="긴팔" onclick="location.href='<c:url value='/product/viewCategory/TOP_LONG'/>'"></td>
+	<td width="200"><input type="Button" class = "btn-secondary" style="WIDTH:150pt" value="반팔" onclick="location.href='<c:url value='/product/viewCategory/TOP_SHORT'/>'"></td>
+	<td width="200"><input type="Button" class = "btn-secondary" style="WIDTH:150pt" value="아우터" onclick="location.href='<c:url value='/product/viewCategory/TOP_OUTER'/>'"></td>
 	</tr>
-</table>
+	</table>
+</center>
 	<hr>
 	<div class="imgCollage">
 		<c:forEach var="list" items="${kind }">

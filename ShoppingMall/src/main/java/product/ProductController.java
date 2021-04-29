@@ -20,6 +20,7 @@ public class ProductController {
 
 	// 카테고리별 상품 목록
 	@RequestMapping("/product/viewCategory/{kind}")
+<<<<<<< HEAD
 	public String getListByCategory(@PathVariable("kind") String kind, Model model) {
 		List<ProductVO> vo = productService.listByKind(kind);
 		List<ProductVO> list = productService.byKind(kind);
@@ -27,6 +28,12 @@ public class ProductController {
 		model.addAttribute("list", list);
 		return "product/CategoryList";
 
+=======
+	public String getListByCategory( @PathVariable("kind") String kind, Model model) {
+		List<ProductVO> vo =productService.listByKind(kind);
+		model.addAttribute("kind",vo);
+		return "product/"+kind+"CategoryList";
+>>>>>>> 이정민
 	}
 
 	// 전체 상품 목록

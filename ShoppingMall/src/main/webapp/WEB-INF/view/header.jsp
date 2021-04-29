@@ -29,11 +29,14 @@
                             <nav>                                                
                                 <ul id="navigation">  
                                     <li><a href="main">Main</a></li>
-                                    <li><a href="index.html">Best50</a></li>
+                                    <li class="hot"><a href="index.html">Best50</a></li>
                                     <li><a href="<c:url value='/product/viewCategory/TOP'/>">TOP</a></li>
-                                    <li><a href="about.html">BOTTOM</a></li>
-                                    <li><a href="about.html">ACC</a></li>
-                                    <li class="hot"><a href="#">MY PAGE</a>
+
+                                  
+
+                                    <li><a href="<c:url value='/product/viewCategory/BOTTOM'/>">BOTTOM</a></li>
+                                    <li><a href="<c:url value='/product/viewCategory/ACC'/>">ACC</a></li>
+                                    <li><a ref="#">MY PAGE</a>
                                         <ul class="submenu">
                                             <li><a href="shop.html"> 구매내역</a></li>
                                             <li><a href="edit"> 회원정보 수정</a></li>
@@ -57,7 +60,7 @@
                                         </ul>
                                     </li>
                                      -->
-                                </ul>
+								 </ul>
                             </nav>
                         </div>
                         <!-- Header Right -->

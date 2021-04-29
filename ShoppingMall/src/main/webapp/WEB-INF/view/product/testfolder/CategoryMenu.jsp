@@ -15,15 +15,20 @@
 <img src="https://i.pinimg.com/236x/7e/64/6b/7e646bd7120da69b67240999098e2984.jpg"> <!-- 홈페이지 로고 -->
 </center>
 </a>
-
+<center>
 <a href="<c:url value='/123'/>">디테일페이지 </a> <!-- 미구현 -->
+<<<<<<< HEAD
+=======
 =======
 <img src="https://drive.google.com/uc?id=173P8AUPIxf9KSYWyoZ1iSLVL73pU4pk8"> <!-- 홈페이지 로고 -->
 	<table border="1">
 	<tr>
 >>>>>>> 이상훈
 
+>>>>>>> branch '이정민' of https://gitlab.com/springproject041/testproject.git
 <a href="<c:url value='/productDetail'/>">디테일페이지2? </a>
+</center>
+
 	<center>
 	<table border="0">
 	<tr>
@@ -41,8 +46,11 @@
 >>>>>>> 이상훈
 	</tr>
 	</center>
+	
 	</table>
 </body>
+
+
 </html>
 <<<<<<< HEAD
 =======

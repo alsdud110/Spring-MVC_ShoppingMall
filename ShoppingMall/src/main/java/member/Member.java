@@ -1,7 +1,7 @@
 package member;
 
-import java.sql.Date;
-import java.time.LocalDateTime;
+
+import java.sql.Timestamp;
 
 import login.WrongIdPasswordException;
 
@@ -14,7 +14,7 @@ public class Member {
 	private String m_addr;
 	private String m_contact;
 	private String m_email;
-	private LocalDateTime rec_login;
+	private Timestamp rec_login;
 	private String m_birth;
 	private String m_name;
 
@@ -32,8 +32,18 @@ public class Member {
 		this.m_birth = m_birth;
 		this.m_name = m_name;
 	}
-
 	
+	public Member(String m_code, String m_addr, String m_contact, String m_email, String m_birth,
+			String m_name) {
+		super();
+		this.m_code = m_code;
+		this.m_addr = m_addr;
+		this.m_contact = m_contact;
+		this.m_email = m_email;
+		this.m_birth = m_birth;
+		this.m_name = m_name;
+	}
+
 	public String getM_code() {
 		return m_code;
 	}
@@ -82,11 +92,11 @@ public class Member {
 		this.m_email = m_email;
 	}
 
-	public LocalDateTime getRec_login() {
+	public Timestamp getRec_login() {
 		return rec_login;
 	}
 
-	public void setRec_login(LocalDateTime rec_login) {
+	public void setRec_login(Timestamp rec_login) {
 		this.rec_login = rec_login;
 	}
 
@@ -106,7 +116,7 @@ public class Member {
 		this.m_name = m_name;
 	}
 
-	public void changePassword(String oldPassword, String newPassword) {
+	public void changePassword(String m_code, String oldPassword, String newPassword) {
 		if (!m_pw.equals(oldPassword))
 			throw new WrongIdPasswordException();
 		this.m_pw = newPassword;
@@ -115,6 +125,5 @@ public class Member {
 	public boolean matchPassword(String password) {
 		return this.m_pw.equals(password);
 	}
-
 
 }

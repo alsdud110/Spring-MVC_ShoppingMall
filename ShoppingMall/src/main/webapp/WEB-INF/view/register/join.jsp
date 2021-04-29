@@ -64,7 +64,7 @@
 	<h2>
 		<spring:message code="member.info"/>
 	</h2>
-	<form:form action="congrats" modelAttribute = "registerCommand">
+	<form:form action="congrats" modelAttribute="registerCommand">
 		<div class="col-md-6 form-group p_star ">
 			<label><spring:message code="id" />:<br> 
 			<form:input path = "m_id" class="id_input form-control"/> &nbsp;&nbsp;&nbsp;
@@ -161,7 +161,7 @@
     			var memberId = $('.id_input').val();			// .id_input에 입력되는 값
    
     			
-    			var data = {memberId : memberId}				// '컨트롤에 넘길 데이터 이름' : '데이터(.id_input에 입력되는 값)'
+    			var data = {m_id : memberId}				// '컨트롤에 넘길 데이터 이름' : '데이터(.id_input에 입력되는 값)'
     			$.ajax({
     				type : "post",
     				url : "id_check",

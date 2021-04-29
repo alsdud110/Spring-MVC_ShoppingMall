@@ -1,5 +1,7 @@
 package login;
 
+import java.util.List;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,18 +16,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import member.Member;
-import member.MemberService;
 
 @Controller
-@RequestMapping
 public class LoginController {
 	@Autowired
-    private AuthService authService;
+    private LoginService loginService;
 
-    public void setAuthService(AuthService authService) {
-        this.authService = authService;
+    public void setLoginService(LoginService loginService) {
+        this.loginService = loginService;
     }
-    
+
+
     @Autowired
     private MemberService memberService;
     
@@ -33,8 +34,7 @@ public class LoginController {
     	this.memberService = memberService;
     }
 
-    //아이디 기억하기 기능
-    //일단 pass
+    
     @GetMapping("/login")
     public String form(LoginCommand loginCommand,
     		@CookieValue(value = "REMEMBER", required = false) Cookie rCookie) {
@@ -55,10 +55,13 @@ public class LoginController {
             return "login/loginForm";
         }
         try {
-        	Member authInfo = authService.authenticate(
+        	Member authInfo = loginService.authenticate(
                     loginCommand.getM_id(),
                     loginCommand.getM_pw()
-                    );	
+                    );
+        	if( session.getAttribute("findId") != null) {
+        		session.removeAttribute("findId");
+        	}
             session.setAttribute("authInfo", authInfo);
             
 			Cookie rememberCookie = 
@@ -77,28 +80,72 @@ public class LoginController {
             return "login/loginForm";
         }
     }
-
     
+
     @GetMapping("/findIdPassword")
     public String findPw() {
     	return "edit/findIdPassword";
+
     }
     
+    @PostMapping("/findId")
+    public String findId(Errors errors, HttpSession session, HttpServletRequest request) throws Exception{
+    	
+    	Member member = new Member();
+    	
+    	member.setM_name(request.getParameter("m_name"));
+    	member.setM_email(request.getParameter("m_email"));
+    	member.setM_contact(request.getParameter("m_contact"));
+    	member.setM_birth(request.getParameter("m_birth"));
+    	
+    	new FindIdValidator().validate(member, errors);
+    	
+    	if(errors.hasErrors()) {
+    		return "login/findIdPw";
+    	}
+    	
+    	try {
+    		List<Member> list_id=  memberService.findId(member);
+        	
+        	session.setAttribute("findId", list_id);
+        	return "login/findIdSuccess";
+    		
+    	}
+    	catch(Exception e){
+    		return "login/findIdPw";
+    	}
+    }
+
     @PostMapping("/findPw")
-    public void findPw(Member member, HttpServletResponse response, HttpServletRequest request) throws Exception{
-    	String m_id = request.getParameter("m_id");
-    	String m_email = request.getParameter("m_email");
+    public String findPw(Errors errors, HttpSession session, HttpServletResponse response, HttpServletRequest request) throws Exception{
     	
-    	member.setM_id(m_id);
-    	member.setM_email(m_email);
+    	Member member = new Member();
     	
-    	System.out.println(m_id);
-    	System.out.println(m_email);
+    	member.setM_id(request.getParameter("m_id"));
+    	member.setM_name(request.getParameter("m_name"));
+    	member.setM_email(request.getParameter("m_email"));
+    	member.setM_contact(request.getParameter("m_contact"));
+    	member.setM_birth(request.getParameter("m_birth"));
     	
-    	memberService.findPw(member, response);
-//    	return "login/findPw";
+    	new FindPwValidator().validate(member, errors);
+    	
+    	if(errors.hasErrors()) {
+    		return "login/findIdPw";
+    	}
+    	
+    	try {
+        	String m_code = memberService.findPw(member);
+        	
+        	session.setAttribute("findpw", m_code);
+        	
+        	return "login/findChangePwd";
+    		
+    	}
+    	catch(Exception e){
+    		return "login/findIdPw";
+    	}
     }
-    
+
     @RequestMapping("/findId")
     public String findId() {
     	return "edit/findId";

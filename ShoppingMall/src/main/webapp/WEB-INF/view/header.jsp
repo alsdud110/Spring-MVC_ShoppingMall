@@ -27,37 +27,19 @@
                         <!-- Main-menu -->
                         <div class="main-menu d-none d-lg-block">
                             <nav>                                                
-                                <ul id="navigation">  
-                                    <li><a href="<c:url value = '/main'/>">Main</a></li>
+                                <ul id="navigation">
+									<li><a href="<c:url value = '/main'/>">Main</a></li>
                                     <li><a href="index.html">Best50</a></li>
-                                    <li><a href="<c:url value='/product/viewCategory/TOP'/>">TOP</a></li>
+									<li><a href="<c:url value='/product/viewCategory/TOP'/>">TOP</a></li>
                                     <li><a href="<c:url value='/product/viewCategory/BOTTOM'/>">BOTTOM</a></li>
                                     <li><a href="<c:url value='/product/viewCategory/ACC'/>">ACC</a></li>
-                                    <li class="hot"><a href="#">MY PAGE</a>
+                                    <li><a href="#">MY PAGE</a>
                                         <ul class="submenu">
                                             <li><a href="shop.html"> 구매내역</a></li>
                                             <li><a href="<c:url value = '/edit'/>"> 회원정보 수정</a></li>
                                         </ul>
                                     </li>
-                                    <!-- 
-                                    <li><a href="blog.html">Blog</a>
-                                        <ul class="submenu">
-                                            <li><a href="blog.html">Blog</a></li>
-                                            <li><a href="blog-details.html">Blog Details</a></li>
-                                        </ul>
-                                    </li>
-                                   
-                                    <li><a href="#">Pages</a>
-                                        <ul class="submenu">
-                                            <li><a href="login.html">Login</a></li>
-                                            <li><a href="cart.html">Cart</a></li>
-                                            <li><a href="elements.html">Element</a></li>
-                                            <li><a href="confirmation.html">Confirmation</a></li>
-                                            <li><a href="checkout.html">Product Checkout</a></li>
-                                        </ul>
-                                    </li>
-                                     -->
-                                </ul>
+                                  </ul>
                             </nav>
                         </div>
                         <!-- Header Right -->

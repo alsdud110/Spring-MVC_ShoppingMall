@@ -86,45 +86,32 @@ public class ProductDAO {
 	}
 
 	// 탑3 뽑아오기
-	/*
-	 * public List<ProductVO> top3(){ List<ProductVO> results = jdbcTemplate.
-	 * query("select p.P_CODE,p.P_NAME,p.P_IMAGE,p.P_PRICE,sum(op.QTY) as QTY from product as p LEFT JOIN ordered_product as op on p.P_CODE=op.P_CODE group by P_CODE order by QTY DESC LIMIT 3"
-	 * , new RowMapper<ProductVO>() {
-	 * 
-	 * @Override public ProductVO mapRow(ResultSet rs, int rowNum) throws
-	 * SQLException { ProductVO productVO = new ProductVO();
-	 * productVO.setP_CODE(rs.getString("P_CODE"));
-	 * productVO.setP_NAME(rs.getString("P_NAME"));
-	 * productVO.setP_IMAGE(rs.getString("P_IMAGE"));
-	 * productVO.setP_PRICE(rs.getInt("P_PRICE"));
-	 * productVO.setQty(rs.getInt("QTY")); return productVO; } }); return results; }
-	 */
+	
+	  public List<ProductVO> top3(){ List<ProductVO> results = jdbcTemplate.
+	  query( "WITH SUM_QTY AS(SELECT SUM(QTY) AS A_QTY, P_CODE FROM ORDER_PRODUCT GROUP BY P_CODE),QTY_R AS(SELECT P_CODE, ROWNUM R FROM(SELECT *FROM SUM_QTY ORDER BY A_QTY DESC)), QTY_TOP_3 AS(SELECT P_CODE FROM QTY_R WHERE R < 4)	SELECT P.*FROM PRODUCT P, QTY_TOP_3 WHERE 1 =1 AND P.P_CODE = QTY_TOP_3.P_CODE"
+	  , new RowMapper<ProductVO>() {
+	  
+	  @Override public ProductVO mapRow(ResultSet rs, int rowNum) throws
+	  SQLException { ProductVO productVO = new ProductVO();
+	  productVO.setP_CODE(rs.getString("P_CODE"));
+	  productVO.setP_NAME(rs.getString("P_NAME"));
+	  productVO.setP_IMAGE(rs.getString("P_IMAGE"));
+	  productVO.setP_PRICE(rs.getInt("P_PRICE"));
+	  return productVO; } }); return results; }
+	 //상품 종류만 분류
+	  public List<ProductVO> listByKind(String kind){
+		  String sql = "select P_KIND from PRODUCT where P_KIND LIKE ? group by P_KIND";
+			String rekind = "%" + kind + "%";
+			List<ProductVO> results = jdbcTemplate.query(sql,
+					new RowMapper<ProductVO>() {
+				@Override
+				public ProductVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+					ProductVO vo = new ProductVO();
+					vo.setP_KIND(rs.getString("P_KIND"));
+					return vo;
+				}},rekind);
+
+			return results;
+	  }
 }
 
-/*현재 판매량 탑 3
-* WITH 
-  SUM_QTY AS(
-        SELECT SUM(QTY) AS A_QTY, P_CODE
-         FROM ORDER_PRODUCT
-        GROUP BY P_CODE
-      ),
-  QTY_R AS(
-         SELECT P_CODE, ROWNUM R 
-          FROM( 
-           SELECT * 
-            FROM SUM_QTY
-           ORDER BY A_QTY DESC
-          )
-  ),
-  QTY_TOP_3 AS(
-             SELECT P_CODE
-              FROM QTY_R
-             WHERE R < 4
-  )
-  
-	SELECT P.*
-	FROM PRODUCT P, QTY_TOP_3
-	WHERE
-	    1 =1 AND
-	    P.P_CODE = QTY_TOP_3.P_CODE;
-* */

@@ -41,11 +41,15 @@ public class ProductService {
 		return list;
 	}
 	//구매수량 높은순 상위 3품목
-/*	public List<ProductVO> listByTop3(){
+	public List<ProductVO> listByTop3(){
 		List<ProductVO> top3=productDAO.top3();
 		return top3;
 	}
-*/	
+	//상품 종류만 있는 목록
+	public List<ProductVO> byKind(String kind){
+		List<ProductVO> list = productDAO.listByKind(kind);
+		return list;
+	}
 	
 	
 }

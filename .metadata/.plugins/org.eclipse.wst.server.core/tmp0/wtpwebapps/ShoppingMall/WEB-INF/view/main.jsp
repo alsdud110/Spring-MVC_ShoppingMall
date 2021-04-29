@@ -20,6 +20,13 @@
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	
+	<!--top3 사용방법 -->
+	<c:forEach var="top3" items="${top3}">
+				<p>코드 ${top3.p_CODE}</p><br/>
+				<p>이름 ${top3.p_NAME}</p><br/>
+				<p> 종류${top3.p_KIND}</p><br/>
+				<p>이미지 ${top3.p_IMAGE}</p><br/>
+	</c:forEach>
 	
 	<section class="new-product-area section-padding30" style = "padding : 50px">
             <div class="container">

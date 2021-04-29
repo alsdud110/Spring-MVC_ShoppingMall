@@ -85,10 +85,5 @@ public class ControllerConfig {
 	public CartController cartController() {
 		return new CartController();
 	}
-//	@Bean
-//	public ModifyController changePwdController() {
-//		ModifyController controller = new ModifyController();
-//		controller.setChangePasswordService(changePasswordService);
-//		return controller;
-//	}
+
 }

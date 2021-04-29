@@ -28,8 +28,8 @@ public class MainController {
 	//실행시 top3메소드 실행
 	@RequestMapping("/")
 	public String main(Model model) {
-		List<ProductVO> top3=productService.listByTop3();
-		model.addAttribute("top3",top3);
+//		List<ProductVO> top3=productService.listByTop3();
+//		model.addAttribute("top3",top3);
 		return "main";
 	}
 

@@ -1,5 +1,5 @@
 package product;
-
+/*
 import java.util.List;
 
 public class ProductService {
@@ -40,6 +40,7 @@ public class ProductService {
 		List<ProductStdVO> list = productDAO.productstdselectByCode(code);
 		return list;
 	}
+*/
 	//구매수량 높은순 상위 3품목
 	public List<ProductVO> listByTop3(){
 		List<ProductVO> top3=productDAO.top3();
@@ -51,5 +52,7 @@ public class ProductService {
 		return list;
 	}
 	
-	
+/*
 }
+*/
+

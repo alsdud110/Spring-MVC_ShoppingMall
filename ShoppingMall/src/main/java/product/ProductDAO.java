@@ -18,35 +18,35 @@ public class ProductDAO {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
-	private RowMapper<ProductVO> proRowMapper = new RowMapper<ProductVO>() {
+	private RowMapper<Product> proRowMapper = new RowMapper<Product>() {
 		@Override
-		public ProductVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+		public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
 			System.out.println("------------mapRow 실행");
-			ProductVO productVO = new ProductVO();
-			productVO.setP_CODE(rs.getString("P_CODE"));
-			productVO.setP_NAME(rs.getString("P_NAME"));
-			productVO.setP_KIND(rs.getString("P_KIND"));
-			productVO.setP_IMAGE(rs.getString("P_IMAGE"));
-			productVO.setP_PRICE(rs.getInt("P_PRICE"));
-			// if(rs.getInt("QTY") != 0 ) { productVO.setQty(rs.getInt("QTY"));}
+			Product product = new Product();
+			product.setP_CODE(rs.getString("P_CODE"));
+			product.setP_NAME(rs.getString("P_NAME"));
+			product.setP_KIND(rs.getString("P_KIND"));
+			product.setP_IMAGE(rs.getString("P_IMAGE"));
+			product.setP_PRICE(rs.getInt("P_PRICE"));
+			// if(rs.getInt("QTY") != 0 ) { Product.setQty(rs.getInt("QTY"));}
 			System.out.println((rs.toString()));
-			return productVO;
+			return product;
 		}
 
 	};
 
 	// 종류별 상품 목록 가져오기
-	public List<ProductVO> selectByKind(String kind) {
+	public List<Product> selectByKind(String kind) {
 		String sql = "select * from product where P_KIND like ? ";
 		String rekind = "%" + kind + "%";
 		System.out.println("kind=" + kind + " " + "rekind=" + rekind);
-		List<ProductVO> results = jdbcTemplate.query(sql,
+		List<Product> results = jdbcTemplate.query(sql,
 				// proRowMapper,kind);
 				proRowMapper, rekind);
 
 		return results;
 		/*
-		 * List<ProductVO> results = jdbcTemplate.query(
+		 * List<Product> results = jdbcTemplate.query(
 		 * "select * from PRODUCT where P_KIND LIKE ?", proRowMapper,kind);
 		 * 
 		 * return results;
@@ -54,9 +54,9 @@ public class ProductDAO {
 	}
 
 	// 코드로 상품 목록 가져오기
-	public ProductVO productselectByCode(String code) {
-		List<ProductVO> results = jdbcTemplate.query("select * from PRODUCT where P_CODE=?", proRowMapper, code);
-		return results.isEmpty() ? null : results.get(0); // ProductVO는 한 객체만 필요. 그래서 results.get(0);
+	public Product productselectByCode(String code) {
+		List<Product> results = jdbcTemplate.query("select * from PRODUCT where P_CODE=?", proRowMapper, code);
+		return results.isEmpty() ? null : results.get(0); // Product는 한 객체만 필요. 그래서 results.get(0);
 	}
 
 	// 코드로 상품 규격 목록 가져오기
@@ -79,8 +79,8 @@ public class ProductDAO {
 	}
 
 	// 모든 상품 목록 가져오기
-	public List<ProductVO> selectAll() {
-		List<ProductVO> results = jdbcTemplate.query("select * from PRODUCT", proRowMapper);
+	public List<Product> selectAll() {
+		List<Product> results = jdbcTemplate.query("select * from PRODUCT", proRowMapper);
 
 		return results;
 	}

@@ -1,0 +1,85 @@
+package edit;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import member.Member;
+
+@Controller
+public class EditMemberController {
+	
+	@Autowired
+	private EditMemberService editMemberService;
+	
+	public EditMemberController(EditMemberService editMemberService) {
+		this.editMemberService = editMemberService;
+	}
+	
+/* 비밀번호 찾을 시 임시 비밀번호 설정인 것 같으나 아직 임시 비밀번호 logic은 안만들어서 일단 배제
+    @Autowired
+    private MemberService memberService;
+    
+    public void setMemberService(MemberService memberService) {
+    	this.memberService = memberService;
+    }
+*/
+	
+	@RequestMapping("/edit")
+	public String editForm(Model model) {
+		model.addAttribute("editMemberCommand", new EditMemberCommand());
+		return "edit/editMemberForm";
+	}
+		
+	@PostMapping("/editSuccess")
+	public String updateMemInfo(EditMemberCommand editMemberCommand, Errors errors, HttpSession session) {
+		
+        new EditMemberCommandValidator().validate(editMemberCommand, errors);
+        if (errors.hasErrors()) {
+        	return "edit/editMemberForm";
+        }
+        
+        try {
+    		Member member = (Member)session.getAttribute("authInfo");
+    		
+    		editMemberService.edit(editMemberCommand, member.getM_code());
+    		
+    		//mypage 생성 여부에 따라 url mapping 지점 변경
+    		return "main";
+        	
+        } catch(Exception e) {
+            errors.reject("");
+            return "edit/editMemberForm";
+        }
+	}
+	
+    @GetMapping("/findPw")
+    public String findPw() {
+    	return "login/findPw";
+    }
+    
+    @PostMapping("/findPw")
+    public void findPw(Member member, HttpServletResponse response, HttpServletRequest request) throws Exception{
+    	String m_id = request.getParameter("m_id");
+    	String m_email = request.getParameter("m_email");
+    	
+    	member.setM_id(m_id);
+    	member.setM_email(m_email);
+    	
+    	System.out.println(m_id);
+    	System.out.println(m_email);
+    	
+//    	memberService.findPw(member, response);
+//    	return "login/findPw";
+    }
+
+
+}

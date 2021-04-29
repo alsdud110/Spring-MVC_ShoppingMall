@@ -68,10 +68,13 @@ public class ControllerConfig {
 		return controller;
 	}
 	
-	@Bean
-	public MainController mainController() {
-		return new MainController();
-	}
+		@Bean
+		   public MainController mainController() { //최고 판마량 제품 보여주기위해 productService 추가
+		      MainController controller = new MainController();
+		      controller.setProductService(productService);
+		      return controller;
+		   }
+	
 
 	@Bean
 	public ProductController productController() {

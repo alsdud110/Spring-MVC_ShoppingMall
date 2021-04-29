@@ -13,6 +13,6 @@ public class CartController {
 		if(session.getAttribute("authInfo") != null) {
 			return "cart/cartList";
 		}
-		return "login";
+		return "login/loginForm";
 	}
 }

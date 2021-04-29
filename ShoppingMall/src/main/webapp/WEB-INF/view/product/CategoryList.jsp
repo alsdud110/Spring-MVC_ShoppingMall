@@ -3,11 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <jsp:include page="../header.jsp"></jsp:include>
-<<<<<<< HEAD
-<jsp:include page="testfolder/CategoryMenu.jsp"></jsp:include>
 
-=======
->>>>>>> í™©ë¯¼ì˜
 <html>
 <head>
 <link rel="stylesheet"
@@ -35,12 +31,7 @@
 <link rel="stylesheet"
 	href="<c:url value = "/resources/css/imgArray.css"/>">
 <meta charset="utf-8">
-<<<<<<< HEAD
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-=======
 <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
->>>>>>> í™©ë¯¼ì˜
 <title>»óÇ°º¸±â</title>
 </head>
 <body>
@@ -69,23 +60,6 @@
 							<ul>
 								<li class="prd-name">${list.p_NAME}</li>
 
-<<<<<<< HEAD
-	<hr>
-	<div class="imgCollage">
-		<c:forEach var="list" items="${kind }">
-			<div style="padding-left: 180px; text-align: center; width : 30%">
-				<div>
-					<dl class="item-list">
-						<dd class="thumb" style="height: 400px;">
-							<a href="<c:url value='/productDetail/${list.p_CODE}'/>"><img
-								src="${list.p_IMAGE}" style="width: 350px; height: 400px;"></a>
-						</dd>
-						<dd>
-							<ul>
-								<li class="prd-name">${list.p_NAME}</li>
-
-=======
->>>>>>> í™©ë¯¼ì˜
 								<li class="org_price"><font
 									style="font-weight: bold; color: #ff0000;">${list.p_PRICE}</font></li>
 								<li><span class='MK-product-icons'></span></li>

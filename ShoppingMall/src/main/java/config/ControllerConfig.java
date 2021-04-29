@@ -4,21 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-<<<<<<< HEAD
-=======
 import cart.CartController;
-import controller.ChangePasswordService;
-import controller.ChangePwdController;
->>>>>>> 황민영
 import controller.MainController;
 import edit.ChangePasswordService;
 import edit.ChangePwdController;
 import edit.EditMemberController;
 import edit.EditMemberService;
-import login.LoginService;
 import login.LoginController;
+import login.LoginService;
 import login.LogoutController;
-import login.MemberService;
+import product.ProductController;
+import product.ProductService;
 import register.MemberRegisterService;
 import register.RegisterController;
 
@@ -37,10 +33,10 @@ public class ControllerConfig {
 	@Autowired
 	private MemberRegisterService memberRegisterService;
 	
-	/*
+	
 	@Autowired
-	private ProductService productServicec;
-	*/
+	private ProductService productService;
+	
 
 	@Bean
 	public RegisterController registerController() {
@@ -77,23 +73,19 @@ public class ControllerConfig {
 	public MainController mainController() {
 		return new MainController();
 	}
-/*
+
 	@Bean
 	public ProductController productController() {
 		ProductController controller = new ProductController();
-		controller.setProductService(productServicec);
+		controller.setProductService(productService);
 		return controller;
 	}
-<<<<<<< HEAD
-*/
-
-=======
 
 	@Bean
 	public CartController cartController() {
 		return new CartController();
 	}
->>>>>>> 황민영
+
 //	@Bean
 //	public ModifyController changePwdController() {
 //		ModifyController controller = new ModifyController();

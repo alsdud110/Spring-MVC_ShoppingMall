@@ -80,9 +80,15 @@ public class LoginController {
         }
     }
     
+<<<<<<< HEAD
     @GetMapping("/findIdPW")
     public String findIdPwform() {
     	return "login/findIdPW";
+=======
+    @GetMapping("/findIdPassword")
+    public String findPw() {
+    	return "edit/findIdPassword";
+>>>>>>> 황민영
     }
     
     @PostMapping("/findId")
@@ -142,5 +148,14 @@ public class LoginController {
     		return "login/findIdPw";
     	}
     }
+<<<<<<< HEAD
 
+=======
+    
+    @RequestMapping("/findId")
+    public String findId() {
+    	return "edit/findId";
+    }
+    
+>>>>>>> 황민영
 }

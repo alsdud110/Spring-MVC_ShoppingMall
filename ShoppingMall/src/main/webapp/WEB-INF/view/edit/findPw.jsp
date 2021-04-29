@@ -13,7 +13,7 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 
-/* 	$(function(){
+	$(function(){
 		$("#findBtn").click(function(){
 			$.ajax({
 				url : "/findPw",
@@ -28,7 +28,7 @@
 			})
 		});
 	})
- */</script>
+ </script>
 <style type="text/css">
 .mybtn{
   width:150px;
@@ -68,6 +68,7 @@
 				</p>
 				<p class="w3-center">
 					<input type="submit" value = "찾기" class="w3-button w3-hover-white w3-ripple w3-margin-top w3-round mybtn">
+					<button type="button" onclick="history.go(-1);" class="w3-button w3-hover-white w3-ripple w3-margin-top w3-round mybtn">아이디 찾기</button>
 					<button type="button" onclick="history.go(-1);" class="w3-button w3-hover-white w3-ripple w3-margin-top w3-round mybtn">로그인으로</button>
 				</p>
 			</form>

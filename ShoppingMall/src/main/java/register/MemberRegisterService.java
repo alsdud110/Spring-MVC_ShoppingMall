@@ -2,7 +2,6 @@ package register;
 
 import member.Member;
 import member.MemberDao;
-import register.RegisterCommand;
 
 public class MemberRegisterService {
 

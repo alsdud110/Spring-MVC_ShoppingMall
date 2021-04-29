@@ -4,35 +4,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import controller.ChangePasswordService;
-import controller.ChangePwdController;
 import controller.MainController;
+import edit.ChangePasswordService;
+import edit.ChangePwdController;
 import edit.EditMemberController;
 import edit.EditMemberService;
-import login.AuthService;
+import login.LoginService;
 import login.LoginController;
 import login.LogoutController;
-import member.MemberService;
-import product.ProductController;
-import product.ProductService;
+import login.MemberService;
 import register.MemberRegisterService;
 import register.RegisterController;
 
 @Configuration
 public class ControllerConfig {
+	
 	@Autowired
-	private AuthService authService;
+	private LoginService loginService;
+	
 	@Autowired
 	private EditMemberService editMemberService;
+	
 	@Autowired
 	private ChangePasswordService changePasswordService;
+	
 	@Autowired
 	private MemberRegisterService memberRegisterService;
+	
+	/*
 	@Autowired
 	private ProductService productServicec;
-	@Autowired
-	private MemberService memberService;
-
+	*/
 
 	@Bean
 	public RegisterController registerController() {
@@ -44,9 +46,13 @@ public class ControllerConfig {
 	@Bean
 	public LoginController loginController() {
 		LoginController controller = new LoginController();
-		controller.setAuthService(authService);
-		controller.setMemberService(memberService);
+		controller.setLoginService(loginService);
 		return controller;
+	}
+	
+	@Bean
+	public LogoutController logoutController() {
+		return new LogoutController();
 	}
 	
 	@Bean
@@ -61,24 +67,18 @@ public class ControllerConfig {
 		return controller;
 	}
 	
-	
-	@Bean
-	public LogoutController logoutController() {
-		return new LogoutController();
-	}
-	
 	@Bean
 	public MainController mainController() {
 		return new MainController();
 	}
-	
+/*
 	@Bean
 	public ProductController productController() {
 		ProductController controller = new ProductController();
 		controller.setProductService(productServicec);
 		return controller;
 	}
-
+*/
 
 //	@Bean
 //	public ModifyController changePwdController() {

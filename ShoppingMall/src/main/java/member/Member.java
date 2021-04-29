@@ -32,8 +32,18 @@ public class Member {
 		this.m_birth = m_birth;
 		this.m_name = m_name;
 	}
-
 	
+	public Member(String m_code, String m_addr, String m_contact, String m_email, String m_birth,
+			String m_name) {
+		super();
+		this.m_code = m_code;
+		this.m_addr = m_addr;
+		this.m_contact = m_contact;
+		this.m_email = m_email;
+		this.m_birth = m_birth;
+		this.m_name = m_name;
+	}
+
 	public String getM_code() {
 		return m_code;
 	}
@@ -106,7 +116,7 @@ public class Member {
 		this.m_name = m_name;
 	}
 
-	public void changePassword(String oldPassword, String newPassword) {
+	public void changePassword(String m_code, String oldPassword, String newPassword) {
 		if (!m_pw.equals(oldPassword))
 			throw new WrongIdPasswordException();
 		this.m_pw = newPassword;

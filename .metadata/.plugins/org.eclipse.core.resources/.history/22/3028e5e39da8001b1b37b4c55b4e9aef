@@ -1,0 +1,119 @@
+package login;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import member.Member;
+
+@Controller
+public class LoginController {
+	@Autowired
+    private LoginService loginService;
+
+    public void setLoginService(LoginService loginService) {
+        this.loginService = loginService;
+    }
+
+/* 비밀번호 찾을 시 임시 비밀번호 설정인 것 같으나 아직 임시 비밀번호 logic은 안만들어서 일단 배제
+    @Autowired
+    private MemberService memberService;
+    
+    public void setMemberService(MemberService memberService) {
+    	this.memberService = memberService;
+    }
+*/
+	
+    
+    @GetMapping("/login")
+    public String form(LoginCommand loginCommand,
+    		@CookieValue(value = "REMEMBER", required = false) Cookie rCookie) {
+		if (rCookie != null) {
+			loginCommand.setM_id(rCookie.getValue());
+			loginCommand.setRememberId(true);
+		}
+    	return "login/loginForm";
+    }
+
+    
+    @PostMapping("/login")
+    public String login(
+    		LoginCommand loginCommand, Errors errors, HttpSession session,
+    		HttpServletResponse response) {
+        new LoginCommandValidator().validate(loginCommand, errors);
+        if (errors.hasErrors()) {
+            return "login/loginForm";
+        }
+        try {
+        	Member authInfo = loginService.authenticate(
+                    loginCommand.getM_id(),
+                    loginCommand.getM_pw()
+                    );	
+            session.setAttribute("authInfo", authInfo);
+            
+			Cookie rememberCookie = 
+					new Cookie("REMEMBER", loginCommand.getM_id());
+			rememberCookie.setPath("/");
+			if (loginCommand.isRememberId()) {
+				rememberCookie.setMaxAge(60 * 60 * 24 * 30);
+			} else {
+				rememberCookie.setMaxAge(0);
+			}
+			response.addCookie(rememberCookie);
+
+			return "main";
+        } catch (WrongIdPasswordException e) {
+            errors.reject("idPasswordNotMatching");
+            return "login/loginForm";
+        }
+    }
+    
+    @GetMapping("/findIdPW")
+    public String findIdPwform(LoginCommand loginCommand,
+    		@CookieValue(value = "REMEMBER", required = false) Cookie rCookie) {
+		if (rCookie != null) {
+			loginCommand.setM_id(rCookie.getValue());
+			loginCommand.setRememberId(true);
+		}
+    	return "login/findIdPW";
+    }
+    
+    @PostMapping("/findId")
+    public void findId(Member member, HttpServletResponse response, HttpServletRequest request) throws Exception{
+    	
+    	member.setM_name(request.getParameter("m_name"));
+    	member.setM_email(request.getParameter("m_email"));
+    	member.setM_contact(request.getParameter("m_contact"));
+    	member.setM_birth(request.getParameter("m_birth"));
+    	
+    	
+    	
+//    	memberService.findPw(member, response);
+//    	return "login/findPw";
+    }
+
+    @PostMapping("/findPw")
+    public void findPw(Member member, HttpServletResponse response, HttpServletRequest request) throws Exception{
+    	String m_id = request.getParameter("m_id");
+    	String m_email = request.getParameter("m_email");
+    	
+    	member.setM_id(m_id);
+    	member.setM_email(m_email);
+    	
+    	System.out.println(m_id);
+    	System.out.println(m_email);
+    	
+//    	memberService.findPw(member, response);
+//    	return "login/findPw";
+    }
+
+    
+}

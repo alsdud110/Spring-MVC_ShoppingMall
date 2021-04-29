@@ -6,4 +6,9 @@
 <fullyQualifiedTypeName name="register.MemberRegisterService"/>
 <fullyQualifiedTypeName name="spring.MemberServiceImpl"/>
 <fullyQualifiedTypeName name="member.MemberServiceImpl"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="java.sql.Date"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+<fullyQualifiedTypeName name="java.sql.SQLException"/>
 </qualifiedTypeNameHistroy>

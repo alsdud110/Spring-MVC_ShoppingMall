@@ -1,0 +1,24 @@
+package edit;
+
+import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
+
+import edit.EditMemberCommand;
+
+
+public class EditMemberCommandValidator {
+
+
+
+	public void validate(EditMemberCommand editMemberCommand, Errors errors) {
+		System.out.println("EditMemberCommandValidator#validate(): " + this);
+		
+		ValidationUtils.rejectIfEmpty(errors, "m_name", "required");
+		ValidationUtils.rejectIfEmpty(errors, "m_birth", "required");
+		ValidationUtils.rejectIfEmpty(errors, "m_email", "required");
+		ValidationUtils.rejectIfEmpty(errors, "m_contact", "required");
+		ValidationUtils.rejectIfEmpty(errors, "m_addr", "required");
+
+	}
+
+}

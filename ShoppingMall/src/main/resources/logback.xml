@@ -11,4 +11,5 @@
 	</root>
 
 	<logger name="org.springframework.web.servlet" level="DEBUG" />
+<typeAliases></typeAliases>
 </configuration>

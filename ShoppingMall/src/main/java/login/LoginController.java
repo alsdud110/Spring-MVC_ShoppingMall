@@ -13,6 +13,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import member.Member;
 
@@ -81,9 +82,11 @@ public class LoginController {
         }
     }
     
+
     @GetMapping("/findIdPassword")
     public String findPw() {
     	return "edit/findIdPassword";
+
     }
     
     @PostMapping("/findId")
@@ -143,6 +146,10 @@ public class LoginController {
     		return "login/findIdPw";
     	}
     }
-    
+
+    @RequestMapping("/findId")
+    public String findId() {
+    	return "edit/findId";
+    }
     
 }

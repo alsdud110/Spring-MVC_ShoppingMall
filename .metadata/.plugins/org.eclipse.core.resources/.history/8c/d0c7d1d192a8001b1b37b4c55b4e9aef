@@ -1,0 +1,22 @@
+package service;
+
+import member.Member;
+import member.MemberDao;
+
+public class EditMemberService {
+
+	private MemberDao memberDao;
+	
+	public EditMemberService(MemberDao memberDao) {
+		this.memberDao = memberDao;
+	}
+	
+	public void edit(EditMemberCommand edit, String m_code) {
+
+		Member newMember = new Member(
+				m_code, edit.getM_addr(), 
+				edit.getM_contact(), edit.getM_email(), 
+				edit.getM_birth(), edit.getM_name());
+		memberDao.updateMember(newMember);
+	}
+}

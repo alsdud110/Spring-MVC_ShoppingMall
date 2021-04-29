@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +12,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
-	$(function(){
+
+/* 	$(function(){
 		$("#findBtn").click(function(){
 			$.ajax({
 				url : "/findPw",
@@ -24,7 +28,7 @@
 			})
 		});
 	})
-</script>
+ */</script>
 <style type="text/css">
 .mybtn{
   width:150px;
@@ -53,18 +57,20 @@
 				<h3>비밀번호 찾기</h3>
 			</div>
 			<div>
+			<form action = "findPw" method = "post">
 				<p>
 					<label>아이디</label>
-					<input class="w3-input" type="text" id="m_id" name="m_id" placeholder="회원가입한 아이디를 입력하세요" required>
+					<input type = "text" name = "m_id" class = "w3-input" id = "m_id" placeholder = "회원가입한 아이디를 입력하세요"/>
 				</p>
 				<p>
 					<label>이메일</label>
-					<input class="w3-input" type="text" id="m_email" name="m_email" placeholder="회원가입한 이메일주소를 입력하세요" required>
+					<input type = "text" name = "m_email" class = "w3-input" id = "m_email" placeholder = "회원가입한 아이디를 입력하세요"/>
 				</p>
 				<p class="w3-center">
-					<button type="button" id="findBtn" class="w3-button w3-hover-white w3-ripple w3-margin-top w3-round mybtn">찾기</button>
+					<input type="submit" value = "찾기" class="w3-button w3-hover-white w3-ripple w3-margin-top w3-round mybtn">
 					<button type="button" onclick="history.go(-1);" class="w3-button w3-hover-white w3-ripple w3-margin-top w3-round mybtn">로그인으로</button>
 				</p>
+			</form>
 			</div>
 		</div>
 	</div>

@@ -1,0 +1,13 @@
+package cart;
+
+import cart.CartDao;
+
+public class CartService {
+
+private CartDao cartDao;
+	
+	public CartService(CartDao cartDao) {
+		this.cartDao = cartDao;
+	}
+}
+

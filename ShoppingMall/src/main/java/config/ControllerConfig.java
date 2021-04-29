@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import cart.CartController;
 import controller.ChangePasswordService;
 import controller.ChangePwdController;
 import controller.MainController;
@@ -79,7 +80,10 @@ public class ControllerConfig {
 		return controller;
 	}
 
-
+	@Bean
+	public CartController cartController() {
+		return new CartController();
+	}
 //	@Bean
 //	public ModifyController changePwdController() {
 //		ModifyController controller = new ModifyController();

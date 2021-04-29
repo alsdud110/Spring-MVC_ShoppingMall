@@ -31,8 +31,8 @@
                                     <li><a href="<c:url value = '/main'/>">Main</a></li>
                                     <li><a href="index.html">Best50</a></li>
                                     <li><a href="<c:url value='/product/viewCategory/TOP'/>">TOP</a></li>
-                                    <li><a href="about.html">BOTTOM</a></li>
-                                    <li><a href="about.html">ACC</a></li>
+                                    <li><a href="<c:url value='/product/viewCategory/BOTTOM'/>">BOTTOM</a></li>
+                                    <li><a href="<c:url value='/product/viewCategory/ACC'/>">ACC</a></li>
                                     <li class="hot"><a href="#">MY PAGE</a>
                                         <ul class="submenu">
                                             <li><a href="shop.html"> 구매내역</a></li>

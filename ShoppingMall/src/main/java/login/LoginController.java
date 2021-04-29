@@ -79,9 +79,9 @@ public class LoginController {
     }
 
     
-    @GetMapping("/findPw")
+    @GetMapping("/findIdPassword")
     public String findPw() {
-    	return "login/findPw";
+    	return "edit/findIdPassword";
     }
     
     @PostMapping("/findPw")
@@ -97,6 +97,11 @@ public class LoginController {
     	
     	memberService.findPw(member, response);
 //    	return "login/findPw";
+    }
+    
+    @RequestMapping("/findId")
+    public String findId() {
+    	return "edit/findId";
     }
     
 }

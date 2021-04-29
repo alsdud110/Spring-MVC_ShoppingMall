@@ -7,13 +7,13 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import controller.ChangePasswordService;
+import delete.DeleteMemberService;
+import edit.ChangePasswordService;
 import edit.EditMemberService;
-import login.AuthService;
+import login.LoginService;
+import login.MemberService;
 import member.MemberDao;
-import member.MemberService;
 import product.ProductDAO;
-import product.ProductService;
 import register.IdCheckService;
 import register.MemberRegisterService;
 
@@ -49,22 +49,35 @@ public class MemberConfig {
 		tm.setDataSource(dataSource());
 		return tm;
 	}
-
 	@Bean
 	public MemberDao memberDao() {
 		return new MemberDao(dataSource());
 	}
-
+	
 	@Bean
-	public MemberRegisterService memberRegSvc() {
-		return new MemberRegisterService(memberDao());
+	public MemberService memberService() {
+		return new MemberService(memberDao());
 	}
+	
+	@Bean
+	public LoginService authService() {
+		return new LoginService(memberDao());
+	}
+	
 
 	@Bean
 	public ChangePasswordService changePwdSvc() {
-		ChangePasswordService pwdSvc = new ChangePasswordService();
-		pwdSvc.setMemberDao(memberDao());
-		return pwdSvc;
+		return new ChangePasswordService(memberDao());
+	}
+	
+	@Bean
+	public MemberRegisterService memberRegSvc() {
+		return new MemberRegisterService(memberDao());
+	}	
+	
+	@Bean
+	public IdCheckService idCheckService() {
+		return new IdCheckService(memberDao());
 	}
 	
 	@Bean
@@ -73,16 +86,11 @@ public class MemberConfig {
 	}
 	
 	@Bean
-	public AuthService authService() {
-		AuthService authService = new AuthService();
-		authService.setMemberDao(memberDao());
-		return authService;
+	
+	public DeleteMemberService deleteMemberService() {
+		return new DeleteMemberService(memberDao());
 	}
 	
-	@Bean
-	public IdCheckService idCheckService() {
-		return new IdCheckService(memberDao());
-	}
 	
 	//ProductDAO 생성에 따른 빈 생성
 	@Bean
@@ -90,14 +98,11 @@ public class MemberConfig {
 		return new ProductDAO(dataSource());
 	}
 	//ProductService 생성에 따른 빈 생성
+	/*
 	@Bean
 	public ProductService productService() {
 		return new ProductService(productDAO());
 	}
-	
-	@Bean
-	public MemberService memberService() {
-		return new MemberService(memberDao());
-	}
+	*/
 
 }

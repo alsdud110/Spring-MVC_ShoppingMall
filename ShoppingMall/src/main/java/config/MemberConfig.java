@@ -14,6 +14,7 @@ import login.LoginService;
 import login.MemberService;
 import member.MemberDao;
 import product.ProductDAO;
+import product.ProductService;
 import register.IdCheckService;
 import register.MemberRegisterService;
 
@@ -97,12 +98,12 @@ public class MemberConfig {
 	public ProductDAO productDAO() {
 		return new ProductDAO(dataSource());
 	}
+	
 	//ProductService 생성에 따른 빈 생성
-	/*
 	@Bean
 	public ProductService productService() {
 		return new ProductService(productDAO());
 	}
-	*/
+	
 
 }

@@ -33,7 +33,6 @@ public class ControllerConfig {
 	@Autowired
 	private MemberRegisterService memberRegisterService;
 	
-	
 	@Autowired
 	private ProductService productService;
 	

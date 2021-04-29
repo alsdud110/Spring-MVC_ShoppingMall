@@ -1,23 +1,5 @@
-<<<<<<< HEAD
-Manifest-Version: 1.0
-<<<<<<< HEAD
-<<<<<<< HEAD
-Built-By: ITSC
-Build-Jdk: 1.8.0_291
-=======
-Built-By: h4admin
-Build-Jdk: 1.8.0_281
->>>>>>> 이상훈
-=======
-Built-By: JM LEE
-Build-Jdk: 1.8.0_271
->>>>>>> 이정민
-Created-By: Maven Integration for Eclipse
-
-=======
 Manifest-Version: 1.0
 Built-By: hwangmin-yeong
 Build-Jdk: 11.0.10
 Created-By: Maven Integration for Eclipse
 
->>>>>>> 황민영

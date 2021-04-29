@@ -24,7 +24,7 @@ public class ProductController {
 	public String getListByCategory( @PathVariable("kind") String kind, Model model) {
 		List<ProductVO> vo =productService.listByKind(kind);
 		model.addAttribute("kind",vo);
-		return "product/CategoryList";
+		return "product/"+kind+"CategoryList";
 	}
 
 	//전체 상품 목록

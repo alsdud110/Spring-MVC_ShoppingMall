@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%@ page import = "member.Member" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,11 +72,19 @@ function select(str) {
 }
 	
 </script>
+
+<% 
+String m_code=null;
+Member authInfo=(Member)session.getAttribute("authInfo");
+if(authInfo !=null){
+	m_code=authInfo.getM_code();
+}
+%>
 </head>
 <body>
 
 	<h2>상품 클릭시 넘어올 상세페이지. 카트or구매 쪽으로 데이터 넘길 예정</h2>
-	<form:form action="123" modelAttribute = "CartVO">	<!-- action 주소 = 현재주소/123주소     : productDetail/123  >>>>>카트나 구매쪽으로 넘길 예정-->
+	<form:form modelAttribute = "CartVO">	<!-- action 주소 = 현재주소/123주소     : productDetail/123  >>>>>카트나 구매쪽으로 넘길 예정-->
 	<input type="hidden" name="p_code" value="${product.p_CODE}"/>	
 	
 
@@ -138,6 +146,7 @@ function select(str) {
 	</tr>
 	
 
+<<<<<<< HEAD
 
 <table>
 
@@ -154,8 +163,16 @@ function select(str) {
 	
 	<td><div class="wishlist" align="left"> <a href="#" class="genric-btn primary-border e-large">위시리스트 담기</a> 
 	</div></td>
+=======
+    <td colspan="2"><input type="submit" value=구매하기 formaction="order"></td>
 	</tr>
-
+	
+	<tr>
+	<td><input type="submit" value="카트" formaction="cart"></td>
+	<td>wish (링크추가)</td>
+>>>>>>> 이상훈
+	</tr>
+	<input type="hidden" name="m_code" value="<%=m_code %>">
 	</table>
 	<br></br>
 	<br></br>

@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import cart.CartController;
+import cart.CartService;
 import controller.MainController;
 import edit.ChangePasswordService;
 import edit.ChangePwdController;
@@ -35,6 +36,9 @@ public class ControllerConfig {
 	
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private CartService cartService;
 	
 
 	@Bean
@@ -69,6 +73,7 @@ public class ControllerConfig {
 	}
 	/*
 	@Bean
+<<<<<<< HEAD
 	public MainController mainController() { //최고 판마량 제품 보여주기위해 productService 추가
 		MainController controller = new MainController();
 		controller.setProductService(productService);
@@ -78,6 +83,13 @@ public class ControllerConfig {
 */
 =======
 	
+=======
+	   public MainController mainController() { //최고 판마량 제품 보여주기위해 productService 추가
+	      MainController controller = new MainController();
+	      controller.setProductService(productService);
+	      return controller;
+	   }
+>>>>>>> 이상훈
 
 >>>>>>> 황민영
 	@Bean
@@ -89,7 +101,9 @@ public class ControllerConfig {
 
 	@Bean
 	public CartController cartController() {
-		return new CartController();
+		CartController controller = new CartController();
+		controller.setCartService(cartService);
+		return controller;
 	}
 
 

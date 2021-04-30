@@ -70,6 +70,11 @@ public class ProductService {
 		List<ProductVO> list = productDAO.listByKind(kind);
 		return list;
 	}
+	//신상품 목록
+	public List<ProductVO> listByNewTop3(){
+		List<ProductVO> newtop3=productDAO.newProductTop3();
+		return newtop3;
+	}
 	
 	
 }

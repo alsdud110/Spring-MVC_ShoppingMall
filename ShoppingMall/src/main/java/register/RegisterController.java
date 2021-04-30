@@ -60,20 +60,20 @@ public class RegisterController {
 	public String registerMember(RegisterCommand req, Errors errors, HttpSession session) {
 		
 		if (session.getAttribute("id check") != "success") {
-			return "register/join";
+			return "redirect:/join";
 		}
 		
 		new RegisterRequestValidator().validate(req, errors);
 		
 		if (errors.hasErrors())
-			return "register/join";
+			return "redirect:/join";
 		try {
 			memberRegisterService.regist(req);
 			return "register/congrats";
 		}
 		catch (DuplicateMemberException ex){
 			errors.rejectValue("email", "duplicate");
-			return "register/join";
+			return "redirect:/join";
 		}
 	}
 

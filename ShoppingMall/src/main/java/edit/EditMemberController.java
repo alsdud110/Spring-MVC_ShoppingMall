@@ -24,27 +24,21 @@ public class EditMemberController {
 		this.editMemberService = editMemberService;
 	}
 	
-/* 비밀번호 찾을 시 임시 비밀번호 설정인 것 같으나 아직 임시 비밀번호 logic은 안만들어서 일단 배제
-    @Autowired
-    private MemberService memberService;
-    
-    public void setMemberService(MemberService memberService) {
-    	this.memberService = memberService;
-    }
-*/
 	
 	@RequestMapping("/edit")
 	public String editForm(Model model) {
 		model.addAttribute("editMemberCommand", new EditMemberCommand());
 		return "edit/editMemberForm";
 	}
-		
-	@PostMapping("/editSuccess")
+	
+	
+	//register와는 다르게 get방식을 통해 데이터를 보냄, 어디서 문제가 발생한지 알 수 없음
+	@PostMapping("/editMember")
 	public String updateMemInfo(EditMemberCommand editMemberCommand, Errors errors, HttpSession session) {
 		
         new EditMemberCommandValidator().validate(editMemberCommand, errors);
         if (errors.hasErrors()) {
-        	return "edit/editMemberForm";
+        	return "redirect:/edit";
         }
         
         try {
@@ -52,20 +46,13 @@ public class EditMemberController {
     		
     		editMemberService.edit(editMemberCommand, member.getM_code());
     		
-    		//mypage 생성 여부에 따라 url mapping 지점 변경
-    		return "main";
+    		return "edit/editMember";
         	
         } catch(Exception e) {
-            errors.reject("");
-            return "edit/editMemberForm";
+        	//errors.reject("");
+            return "redirect:/edit";
         }
 	}
 	
-    @GetMapping("/findPw")
-    public String findPw() {
-    	return "login/findPw";
-    }
-    
-
 
 }

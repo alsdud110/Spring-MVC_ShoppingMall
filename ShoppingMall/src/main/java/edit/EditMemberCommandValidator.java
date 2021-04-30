@@ -20,7 +20,7 @@ public class EditMemberCommandValidator implements Validator{
 		ValidationUtils.rejectIfEmpty(errors, "m_birth", "required");
 		ValidationUtils.rejectIfEmpty(errors, "m_email", "required");
 		ValidationUtils.rejectIfEmpty(errors, "m_contact", "required");
-		ValidationUtils.rejectIfEmpty(errors, "m_addr", "required");
+
 	}
 
 }

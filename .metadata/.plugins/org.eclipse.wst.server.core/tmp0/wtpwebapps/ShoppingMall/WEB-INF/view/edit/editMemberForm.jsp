@@ -65,7 +65,7 @@
 	<h2>
 		회원정보 수정
 	</h2>
-		<form:form modelAttribute = "editMemberCommand">
+		<form:form action="editMember" modelAttribute="editMemberCommand">
 		<%
 		
 			Member member = (Member)session.getAttribute("authInfo");
@@ -87,8 +87,8 @@
 		</div>
 		<div class="col-md-6 form-group p_star ">
 			<label><spring:message code="email" /> :<br>
-			 <form:input path="m_name"  class = "form-control" value = "<%=email %>"/> 
-			 <form:errors path="m_name" /> 
+			 <form:input path="m_email"  class = "form-control" value = "<%=email %>"/> 
+			 <form:errors path="m_email" /> 
 			 </label>
 		</div>
 		<div class = "col-md-6 form-group p_star">

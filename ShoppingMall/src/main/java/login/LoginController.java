@@ -52,7 +52,7 @@ public class LoginController {
     		HttpServletResponse response) {
         new LoginCommandValidator().validate(loginCommand, errors);
         if (errors.hasErrors()) {
-            return "login/loginForm";
+            return "redirect:/login";
         }
         try {
         	Member authInfo = loginService.authenticate(
@@ -61,6 +61,9 @@ public class LoginController {
                     );
         	if( session.getAttribute("findId") != null) {
         		session.removeAttribute("findId");
+        	}
+        	if( session.getAttribute("findPW") != null) {
+        		session.removeAttribute("findPw");
         	}
             session.setAttribute("authInfo", authInfo);
             
@@ -73,16 +76,16 @@ public class LoginController {
 				rememberCookie.setMaxAge(0);
 			}
 			response.addCookie(rememberCookie);
-
-			return "main";
+			
+			return "redirect:/";
         } catch (WrongIdPasswordException e) {
             errors.reject("idPasswordNotMatching");
-            return "login/loginForm";
+            return "redirect:/login";
         }
     }
     
 
-    @GetMapping("/findIdPassword")
+    @RequestMapping("/findIdPassword")
     public String findPw() {
     	return "edit/findIdPassword";
 
@@ -95,24 +98,23 @@ public class LoginController {
     	
     	member.setM_name(request.getParameter("m_name"));
     	member.setM_email(request.getParameter("m_email"));
-    	member.setM_contact(request.getParameter("m_contact"));
-    	member.setM_birth(request.getParameter("m_birth"));
     	
     	new FindIdValidator().validate(member, errors);
     	
     	if(errors.hasErrors()) {
-    		return "login/findIdPw";
+    		return "redirect:/findIdPassword";
     	}
     	
     	try {
     		List<Member> list_id=  memberService.findId(member);
         	
         	session.setAttribute("findId", list_id);
-        	return "login/findIdSuccess";
+        	return "edit/findId";
     		
     	}
     	catch(Exception e){
-    		return "login/findIdPw";
+    		//errors.reject("");
+    		return "redirect:/findIdPassword";
     	}
     }
 
@@ -130,7 +132,7 @@ public class LoginController {
     	new FindPwValidator().validate(member, errors);
     	
     	if(errors.hasErrors()) {
-    		return "login/findIdPw";
+    		return "redirect:/findIdPassword";
     	}
     	
     	try {
@@ -138,17 +140,13 @@ public class LoginController {
         	
         	session.setAttribute("findpw", m_code);
         	
-        	return "login/findChangePwd";
+        	return "edit/findPw";
     		
     	}
     	catch(Exception e){
-    		return "login/findIdPw";
+    		//errors.reject("");
+    		return "redirect:/findIdPassword";
     	}
-    }
-
-    @RequestMapping("/findId")
-    public String findId() {
-    	return "edit/findId";
     }
     
 }

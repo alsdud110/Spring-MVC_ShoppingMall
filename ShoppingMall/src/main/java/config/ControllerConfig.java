@@ -68,12 +68,12 @@ public class ControllerConfig {
 		controller.setChangePasswordService(changePasswordService);
 		return controller;
 	}
-	
+	/*
 	@Bean
 	public MainController mainController() {
 		return new MainController();
 	}
-
+*/
 	@Bean
 	public ProductController productController() {
 		ProductController controller = new ProductController();

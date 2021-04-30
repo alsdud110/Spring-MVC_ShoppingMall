@@ -14,7 +14,6 @@ public class EditMemberCommand {
 	private String m_addr;
 	private String m_contact;
 	private String m_email;
-	private LocalDateTime reg_login;
 	
 	public String getM_name() {
 		return m_name;
@@ -80,14 +79,6 @@ public class EditMemberCommand {
 
 	public void setM_email(String m_email) {
 		this.m_email = m_email;
-	}
-
-	public LocalDateTime getReg_login() {
-		return reg_login;
-	}
-
-	public void setReg_login(LocalDateTime reg_login) {
-		this.reg_login = reg_login;
 	}
 
 	public String getYear() {

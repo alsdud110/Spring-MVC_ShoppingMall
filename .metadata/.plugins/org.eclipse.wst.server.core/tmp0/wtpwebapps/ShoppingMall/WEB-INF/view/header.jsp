@@ -28,7 +28,11 @@
                         <div class="main-menu d-none d-lg-block">
                             <nav>                                                
                                 <ul id="navigation">
+<<<<<<< HEAD
 									<li><a href="<c:url value = 'main'/>">Main</a></li>
+=======
+									<li><a href="<c:url value = '/main'/>">Main</a></li>
+>>>>>>> 황현
                                     <li><a href="index.html">Best50</a></li>
 									<li><a href="<c:url value='/product/viewCategory/TOP'/>">TOP</a></li>
 

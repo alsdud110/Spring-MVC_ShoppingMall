@@ -72,7 +72,6 @@
 			String name = member.getM_name();
 			String email = member.getM_email();
 			String contact = member.getM_contact();
-		
 		%>
 
 	 	<div class="col-md-6 form-group p_star ">

@@ -19,4 +19,13 @@ public class EditMemberService {
 				edit.getM_birth(), edit.getM_name());
 		memberDao.updateMember(newMember);
 	}
+	
+	public void editFindPw(String m_code, String new_pw) {
+
+		Member member = new Member();
+		
+		member.setM_code(m_code);
+		member.setM_pw(new_pw);
+		memberDao.updateMember(member);
+	}
 }

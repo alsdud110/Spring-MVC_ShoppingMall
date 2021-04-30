@@ -131,9 +131,8 @@
 		    setDateBox();
 		});
 		function setDateBox(){
-			var date = new Date();
 			var year = "";
-			var com_year = date.getFullYear();
+			var com_year = 2021;
 			
 			$("#year").append("<option value = ''>년도</option>");
 			

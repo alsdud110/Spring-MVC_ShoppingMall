@@ -2,14 +2,17 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
 <fullyQualifiedTypeName name="member.MemberDao"/>
-<fullyQualifiedTypeName name="member.Member"/>
 <fullyQualifiedTypeName name="register.MemberRegisterService"/>
 <fullyQualifiedTypeName name="spring.MemberServiceImpl"/>
 <fullyQualifiedTypeName name="member.MemberServiceImpl"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="java.sql.Date"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
-<fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
 <fullyQualifiedTypeName name="java.sql.SQLException"/>
 <fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+<fullyQualifiedTypeName name="member.Member"/>
 </qualifiedTypeNameHistroy>

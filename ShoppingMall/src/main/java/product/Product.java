@@ -17,7 +17,6 @@ public class Product {
 		this.qty = qty;
 	}
 
-	public Product() { }
 
 	//값 불러와서 저장하기 위한 모든 값 구현.
 	public Product(String P_CODE, String P_NAME, String P_KIND, String P_IMAGE, int P_PRICE,int qty) {

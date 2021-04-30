@@ -18,6 +18,10 @@ public class MainController {
 	public void setProductService(ProductService productService) {
 		this.productService=productService;
 	}
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 황민영
 	//실행시 top3메소드 실행
 	@RequestMapping("/main")
 	public String handler(Model model) {

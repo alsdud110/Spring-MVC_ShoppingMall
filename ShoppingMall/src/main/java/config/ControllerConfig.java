@@ -33,7 +33,6 @@ public class ControllerConfig {
 	@Autowired
 	private MemberRegisterService memberRegisterService;
 	
-	
 	@Autowired
 	private ProductService productService;
 	
@@ -70,10 +69,17 @@ public class ControllerConfig {
 	}
 	/*
 	@Bean
-	public MainController mainController() {
-		return new MainController();
+	public MainController mainController() { //최고 판마량 제품 보여주기위해 productService 추가
+		MainController controller = new MainController();
+		controller.setProductService(productService);
+		return controller;
 	}
+<<<<<<< HEAD
 */
+=======
+	
+
+>>>>>>> 황민영
 	@Bean
 	public ProductController productController() {
 		ProductController controller = new ProductController();

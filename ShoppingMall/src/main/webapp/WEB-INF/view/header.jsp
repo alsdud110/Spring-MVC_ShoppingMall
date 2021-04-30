@@ -13,8 +13,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-아아아아아아
 	 <!-- Preloader Start -->
     <header>
         <!-- Header Start -->

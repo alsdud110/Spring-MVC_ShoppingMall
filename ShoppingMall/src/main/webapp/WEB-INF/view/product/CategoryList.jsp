@@ -35,18 +35,27 @@
 <title>상품보기</title>
 </head>
 <body>
+<a href= "<c:url value = "/main"/>">
+<center>
+<img src="https://i.pinimg.com/236x/7e/64/6b/7e646bd7120da69b67240999098e2984.jpg"> <!-- 홈페이지 로고 -->
+</center>
+</a>
+
 <center>
 <table border="0">
 	<tr>
 	<!-- product 테이블 P_KIND에서 TOP분류중 긴팔/반팔/아우터 분류를 위해 TOP_LONG 식으로 설정함. -->
-	<td width="200"><input type="Button" class = "btn-secondary" style="WIDTH:150pt" value="TOP 전체보기" onclick="location.href='<c:url value='/product/viewCategory/TOP'/>'"></td>
-	<td width="200"><input type="Button" class = "btn-secondary" style="WIDTH:150pt" value="긴팔" onclick="location.href='<c:url value='/product/viewCategory/TOP_LONG'/>'"></td>
-	<td width="200"><input type="Button" class = "btn-secondary" style="WIDTH:150pt" value="반팔" onclick="location.href='<c:url value='/product/viewCategory/TOP_SHORT'/>'"></td>
-	<td width="200"><input type="Button" class = "btn-secondary" style="WIDTH:150pt" value="아우터" onclick="location.href='<c:url value='/product/viewCategory/TOP_OUTER'/>'"></td>
+	<td width="200"><input type="Button" class="genric-btn primary-border circle" style="WIDTH:150pt" value="TOP 전체보기" onclick="location.href='<c:url value='/product/viewCategory/TOP'/>'"></td>
+	<td width="200"><input type="Button" class="genric-btn primary-border circle" style="WIDTH:150pt" value="긴팔" onclick="location.href='<c:url value='/product/viewCategory/TOP_LONG'/>'"></td>
+	<td width="200"><input type="Button" class="genric-btn primary-border circle" style="WIDTH:150pt" value="반팔" onclick="location.href='<c:url value='/product/viewCategory/TOP_SHORT'/>'"></td>
+	<td width="200"><input type="Button" class="genric-btn primary-border circle" style="WIDTH:150pt" value="아우터" onclick="location.href='<c:url value='/product/viewCategory/TOP_OUTER'/>'"></td>
 	</tr>
 	</table>
 </center>
-	<hr>
+
+<br>
+</br>
+
 	<div class="imgCollage">
 		<c:forEach var="list" items="${kind }">
 			<div style="padding-left: 9%; padding-top : 50px; text-align: center; width : 30%" >

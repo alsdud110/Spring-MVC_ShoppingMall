@@ -7,8 +7,45 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<!-- 헤더 -->
+        <jsp:include page="../header.jsp"></jsp:include>
+<link rel="stylesheet" href="<c:url value = "/resources/css/bootstrap.min.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/owl.carousel.min.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/flaticon.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/slicknav.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/animate.min.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/magnific-popup.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/fontawesome-all.min.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/themify-icons.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/slick.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/nice-select.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/style.css"/>">
+        
+<!-- 메인로고 -->
+<a href= "<c:url value = "/main"/>">
+<center>
+<img src="https://i.pinimg.com/236x/7e/64/6b/7e646bd7120da69b67240999098e2984.jpg"> <!-- 홈페이지 로고 -->
+</center>
+</a>
+
+
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+ <style>
+      table {
+        width: 100%;
+        border-top: 1px solid #444444;
+        border-collapse: collapse;
+      }
+      th, td {
+        border-bottom: 1px solid #444444;
+        padding: 10px;
+        text-align: center;
+      }
+    </style>
 
 <script type="text/javascript">
 function setQty() {
@@ -37,30 +74,40 @@ function select(str) {
 </script>
 </head>
 <body>
+
 	<h2>상품 클릭시 넘어올 상세페이지. 카트or구매 쪽으로 데이터 넘길 예정</h2>
 	<form:form action="123" modelAttribute = "CartVO">	<!-- action 주소 = 현재주소/123주소     : productDetail/123  >>>>>카트나 구매쪽으로 넘길 예정-->
 	<input type="hidden" name="p_code" value="${product.p_CODE}"/>	
-	<table border="1">
+	
+
+	
+	
+	<center>
+	<table>
+		
 	<tr>
+	<div align="center" style="border-radius: 2em;">
 	<td rowspan="8">${product.p_IMAGE}
 	<input type="hidden" name="p_image" value="${product.p_IMAGE}"/>
 	</td>
 	</tr>
 	
+	<thread>
 	<tr>
-	<td colspan="2"><p>${product.p_NAME}</p></td>
+	<td colspan="2"><center><p>${product.p_NAME}</p></td>
 	<input type="hidden" name="p_name" value="${product.p_NAME}"/>
 
 	</tr>
 	
 	<tr>
-	<td colspan="2">${product.p_PRICE}</td>
+	<td colspan="2"><center><p>${product.p_PRICE}</p></td>
 	<input type="hidden" name="p_price" value="${product.p_PRICE}"/>
 	</tr>
 	
 	<tr>
-	<td>사이즈</td>
+	<td>size</td>
 	<td>
+	<center>
 	<select name="str" onchange="select(this.value)">
 	<option value="none">=== 선택 ===</option>
 	<c:forEach var="std" items="${productStd}" varStatus="status">
@@ -72,29 +119,88 @@ function select(str) {
 	</td> 
 	</tr>
 
+
 	<tr>
-	<td>수량</td>
+	<td>qty</td>
 	<td>
-	<input type="text" id="qty" name="qty" onblur='setQty()'><td>
+
+	<input class="product_count_item inumber-decrement" type="text" id="qty" name="qty" onblur='setQty()'><td>
+
+   
 	</td>
 	</tr>
 	
 	<tr>
-	<td colspan="2"><input type="text" id='result' name="sumMoney" value="" readonly onblur='choice()'></td> <!-- readonly : 수정불가, form 전달가능  -->
+	<td>총 상품 금액</td>
+	<div align="center"></div>
+	<td><input type="text" id='result' name="sumMoney" value="" readonly onblur='choice()'></td> <!-- readonly : 수정불가, form 전달가능  -->
+	<td></td>
 	</tr>
 	
-	<tr>
 
-    <td colspan="2"><input type="submit" value=구매하기></td>
+
+<table>
+
+    <td colspan="2"><div class="Proceed to checkout" padding:20px; align="right"> <input type="submit" class="genric-btn primary e-large" value=구매하기></td>
 	</tr>
 	
 	<tr>
-	<td>카트 (링크추가)</td>
-	<td>wish (링크추가)</td>
+	
+	<td>   
+	<div class="add_to_cart" align="right"> <a href="#" class="genric-btn primary-border e-large" >장바구니 담기</a> 
+	</div></td>
+	
+	
+	
+	<td><div class="wishlist" align="left"> <a href="#" class="genric-btn primary-border e-large">위시리스트 담기</a> 
+	</div></td>
 	</tr>
 
 	</table>
+	<br></br>
+	<br></br>
+	<br></br>
 	</form:form>
+	</center>
 	
+	 <!-- Footer -->
+    <jsp:include page = "../footer.jsp"></jsp:include>
+    
+	 		<!-- JS here -->
+    <!-- All JS Custom Plugins Link Here here -->
+    <script src="<c:url value = "/resources/js/vendor/modernizr-3.5.0.min.js"/>"></script>
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="<c:url value = "/resources/js/vendor/jquery-1.12.4.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/popper.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/bootstrap.min.js"/>"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="<c:url value = "/resources/js/jquery.slicknav.min.js"/>"></script>
+
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="<c:url value = "/resources/js/owl.carousel.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/slick.min.js"/>"></script>
+
+    <!-- One Page, Animated-HeadLin -->
+    <script src="<c:url value = "/resources/js/wow.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/animated.headline.js"/>"></script>
+
+    <!-- Scroll up, nice-select, sticky -->
+    <script src="<c:url value = "/resources/js/jquery.scrollUp.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/jquery.nice-select.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/jquery.sticky.js"/>"></script>
+    <script src="<c:url value = "/resources/js/jquery.magnific-popup.js"/>"></script>
+    
+    <!-- contact js -->
+    <script src="<c:url value = "/resources/js/contact.js"/>"></script>
+    <script src="<c:url value = "/resources/js/jquery.form.js"/>"></script>
+    <script src="<c:url value = "/resources/js/jquery.validate.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/mail-script.js"/>"></script>
+    <script src="<c:url value = "/resources/js/jquery.ajaxchimp.min.js"/>"></script>
+    
+    <!-- Jquery Plugins, main Jquery -->	
+    <script src="<c:url value = "/resources/js/plugins.js"/>"></script>
+    <script src="<c:url value = "/resources/js/main.js"/>"></script>
 </body>
 </html>
+	
+

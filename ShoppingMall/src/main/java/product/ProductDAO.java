@@ -129,10 +129,7 @@ public class ProductDAO {
 
 			return results;
 	  }
-<<<<<<< HEAD
 
-=======
-	  
 	  public List<ProductVO> newProductTop3(){
 		  System.out.println("------------newtop3 시작-----------");
 		  List<ProductVO> results = jdbcTemplate.query(
@@ -145,6 +142,6 @@ public class ProductDAO {
 				}
 		  return results;
 	  }
->>>>>>> 이상훈
+
 }
 

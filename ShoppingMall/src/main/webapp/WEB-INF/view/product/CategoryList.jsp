@@ -32,29 +32,24 @@
 	href="<c:url value = "/resources/css/imgArray.css"/>">
 <meta charset="utf-8">
 <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
-<title>»óÇ°º¸±â</title>
+<title>ìƒí’ˆë³´ê¸°</title>
 </head>
 <body>
 <a href= "<c:url value = "/main"/>">
 <center>
-<img src="https://i.pinimg.com/236x/7e/64/6b/7e646bd7120da69b67240999098e2984.jpg"> <!-- È¨ÆäÀÌÁö ·Î°í -->
+<img src="https://i.pinimg.com/236x/7e/64/6b/7e646bd7120da69b67240999098e2984.jpg"> <!-- í™ˆíŽ˜ì´ì§€ ë¡œê³  -->
 </center>
 </a>
 
 <center>
 <table border="0">
 	<tr>
-<<<<<<< HEAD
-	<!-- product Å×ÀÌºí P_KIND¿¡¼­ TOPºÐ·ùÁß ±äÆÈ/¹ÝÆÈ/¾Æ¿ìÅÍ ºÐ·ù¸¦ À§ÇØ TOP_LONG ½ÄÀ¸·Î ¼³Á¤ÇÔ. -->
-	<td width="200"><input type="Button" class="genric-btn primary-border circle" style="WIDTH:150pt" value="TOP ÀüÃ¼º¸±â" onclick="location.href='<c:url value='/product/viewCategory/TOP'/>'"></td>
-	<td width="200"><input type="Button" class="genric-btn primary-border circle" style="WIDTH:150pt" value="±äÆÈ" onclick="location.href='<c:url value='/product/viewCategory/TOP_LONG'/>'"></td>
-	<td width="200"><input type="Button" class="genric-btn primary-border circle" style="WIDTH:150pt" value="¹ÝÆÈ" onclick="location.href='<c:url value='/product/viewCategory/TOP_SHORT'/>'"></td>
-	<td width="200"><input type="Button" class="genric-btn primary-border circle" style="WIDTH:150pt" value="¾Æ¿ìÅÍ" onclick="location.href='<c:url value='/product/viewCategory/TOP_OUTER'/>'"></td>
-=======
+
+	<!-- product í…Œì´ë¸” P_KINDì—ì„œ TOPë¶„ë¥˜ì¤‘ ê¸´íŒ”/ë°˜íŒ”/ì•„ìš°í„° ë¶„ë¥˜ë¥¼ ìœ„í•´ TOP_LONG ì‹ìœ¼ë¡œ ì„¤ì •í•¨. -->
 	<c:forEach var="list" items="${list}">
-	<td width="200"><input type="Button" class = "btn-secondary" style="WIDTH:150pt" value="${list.p_KIND }" onclick="location.href='<c:url value='/product/viewCategory/${list.p_KIND }'/>'"></td>
+	<td width="200"><input type="Button" class="genric-btn primary-border circle" style="WIDTH:150pt" value="${list.p_KIND }" onclick="location.href='<c:url value='/product/viewCategory/${list.p_KIND }'/>'"></td>
 	</c:forEach>
->>>>>>> ì´ìƒí›ˆ
+
 	</tr>
 	</table>
 </center>

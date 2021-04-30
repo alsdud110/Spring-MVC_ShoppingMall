@@ -102,10 +102,6 @@ public class MemberConfig {
 	}
 	
 	//ProductService 생성에 따른 빈 생성
-<<<<<<< HEAD
-	
-=======
->>>>>>> 황민영
 	@Bean
 	public ProductService productService() {
 		return new ProductService(productDAO());

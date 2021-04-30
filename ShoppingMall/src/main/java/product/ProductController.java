@@ -86,14 +86,7 @@ public class ProductController {
 		model.addAttribute("list", list);
 		return "product/CategoryList";
 	}
-//	//카테고리별 메뉴
-//	@RequestMapping("/product/Category/{kind}")
-//	public String CategoryBykind(@PathVariable("kind") String kind, Model model) {
-//		List<ProductVO> list =productService.byKind(kind);
-//		model.addAttribute("list", list);
-//		return "product/CategoryMenu";
-//	}
-	
+
 	//상품 클릭시 상세 페이지로 이동.
 	@RequestMapping("/productDetail/{code}")
 	public String detailview(@PathVariable("code") String p_code, Model model, HttpServletRequest request) {
@@ -110,22 +103,19 @@ public class ProductController {
 		model.addAttribute("productStd", stdvo);
 		return "product/productDetail";
 	}
-<<<<<<< HEAD
-	
-	//카트나 구매하기 클릭시 사용
-	@PostMapping("/addCart")  //form url 지정
-	public String addCart(HttpServletRequest request, HttpSession session) {
-		
-		Member member = (Member)session.getAttribute("authInfo");
-		String p_code = request.getParameter("p_name");
-		String m_code = member.getM_code();
-		String p_kind = request.getParameter("p_kind");
-		String p_image = request.getParameter("p_image");
-		int p_price = Integer.valueOf(request.getParameter("p_price"));
-		int qty = Integer.valueOf(request.getParameter("qty"));
-		
-		return "product/123";
-=======
+
+//	//카트나 구매하기 클릭시 사용
+//	@PostMapping("/addCart")  //form url 지정
+//	public String addCart(HttpServletRequest request, HttpSession session) {
+//		
+//		Member member = (Member)session.getAttribute("authInfo");
+//		String p_code = request.getParameter("p_name");
+//		String m_code = member.getM_code();
+//		String p_kind = request.getParameter("p_kind");
+//		String p_image = request.getParameter("p_image");
+//		int p_price = Integer.valueOf(request.getParameter("p_price"));
+//		int qty = Integer.valueOf(request.getParameter("qty"));
+//		return "product/123";
 
 	//구매 클릭시 사용
 	@RequestMapping("productDetail/order")  //form url 지정
@@ -137,7 +127,6 @@ public class ProductController {
 				"p_image;" + cartVO.getP_image() + "p_price;" + cartVO.getP_price() + "qty;" + cartVO.getQty() +" p_size=" + cartVO.getP_size() 
 				+" p_color=" +cartVO.getP_color() +"sumMoney;" + cartVO.getSumMoney());
 			return "product/order";  //이동 페이지 지정.
->>>>>>> 이상훈
 	}
 	
 }

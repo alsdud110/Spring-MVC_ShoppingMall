@@ -17,18 +17,7 @@ public class MainController {
 	
 	public void setProductService(ProductService productService) {
 		this.productService=productService;
-<<<<<<< HEAD
 	}
-<<<<<<< HEAD
-=======
-	
->>>>>>> 황민영
-	//실행시 top3메소드 실행
-	@RequestMapping("/main")
-	public String handler(Model model) {
-
-=======
-		}
 
 	@RequestMapping("/main")
 	public String handler(Model model) {
@@ -38,22 +27,17 @@ public class MainController {
 		//신상품 순 top3
 		List<ProductVO> newtop3=productService.listByNewTop3();
 		model.addAttribute("newtop3",newtop3 );
->>>>>>> 이상훈
 		return "main";
 	}
 	
 	@RequestMapping("/")
 	public String main(Model model) {
-<<<<<<< HEAD
-
-=======
 		//주문량 순 top3
 		List<ProductVO> top3=productService.listByTop3();
 		model.addAttribute("top3",top3);
 		//신상품 순 top3
 		List<ProductVO> newtop3=productService.listByNewTop3();
 		model.addAttribute("newtop3",newtop3 );
->>>>>>> 이상훈
 		return "main";
 	}
 

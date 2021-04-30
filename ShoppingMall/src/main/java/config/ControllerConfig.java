@@ -71,27 +71,14 @@ public class ControllerConfig {
 		controller.setChangePasswordService(changePasswordService);
 		return controller;
 	}
-	/*
+
 	@Bean
-<<<<<<< HEAD
 	public MainController mainController() { //최고 판마량 제품 보여주기위해 productService 추가
 		MainController controller = new MainController();
 		controller.setProductService(productService);
 		return controller;
 	}
-<<<<<<< HEAD
-*/
-=======
-	
-=======
-	   public MainController mainController() { //최고 판마량 제품 보여주기위해 productService 추가
-	      MainController controller = new MainController();
-	      controller.setProductService(productService);
-	      return controller;
-	   }
->>>>>>> 이상훈
 
->>>>>>> 황민영
 	@Bean
 	public ProductController productController() {
 		ProductController controller = new ProductController();

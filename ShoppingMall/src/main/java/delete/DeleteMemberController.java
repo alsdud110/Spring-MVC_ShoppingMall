@@ -1,6 +1,7 @@
 package delete;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,25 +32,43 @@ public class DeleteMemberController {
     }
 
     
-    @PostMapping("/delete_do")
-    public String deleteMember(Errors errors, HttpSession session, HttpServletRequest request) {
+    @PostMapping("/deleteSucess")
+    public String deleteMember(Errors errors, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+    
+    	Member deleteMem = new Member();
     	
-    	Member member = new Member();
-
-    	//new DeleteMemberCommandValidator().validate(deleteMemberCommand, errors);
-
-        if (errors.hasErrors()) {
-        	return "edit/editMemberForm";
-        }
+    	String m_pw = request.getParameter("m_pw");
+    	String m_birth = request.getParameter("m_birth");
+    	String m_contact = request.getParameter("m_contact");
+    	
+    	deleteMem.setM_pw(m_pw);
+    	deleteMem.setM_birth(m_birth);
+    	deleteMem.setM_contact(m_contact);
         
+    	new DeleteMemberValidator().validate(deleteMem, errors);
+		if (errors.hasErrors()) {
+			return "redirect:/deleteForm";
+		}
+		
+    	Member member = (Member)session.getAttribute("authInfo");
+    	
+    	if(m_pw != member.getM_pw() || m_birth != member.getM_birth() || m_contact != member.getM_contact()) {
+    		return "delete/deleteForm";
+    	}
+    	
         try {
-    		member = (Member)session.getAttribute("authInfo");
     		
-    		return "main";
+        	deleteMemberService.delete(member.getM_code());
+    		
+        	session.invalidate();
+        	
+        	response.reset();
+        	
+    		return "redirect:/";
         	
         } catch(Exception e) {
-            errors.reject("");
-            return "edit/editMemberForm";
+        	//errors.reject("");
+            return "redirect:/deleteForm";
         }
     }
 }

@@ -13,9 +13,9 @@ public class DeleteMemberService {
 	}
 
 	//실행 완료시 삭제
-	public void authenticate(String any_id, String any_pw) {
+	public void delete(String m_code) throws Exception {
 
-		memberDao.selectById(any_id);
+		memberDao.deleteMember(m_code);
 
 	}
 

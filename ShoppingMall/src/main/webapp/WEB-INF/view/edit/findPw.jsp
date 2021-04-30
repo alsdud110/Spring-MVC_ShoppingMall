@@ -16,7 +16,7 @@
 	$(function(){
 		$("#findBtn").click(function(){
 			$.ajax({
-				url : "/findPw",
+				url : "/changeFindPw",
 				type : "POST",
 				data : {
 					id : $("#m_id").val(),

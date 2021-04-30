@@ -19,6 +19,26 @@ public class ProductService {
 			}
 		return vo;
 	}
+	
+	public List<ProductVO> listPageNum(int num) {
+		List<ProductVO> vo = productDAO.selectAllByPage(num);
+		System.out.println("--------selectAll 데이터 요청 확인하기---------------");
+		for (ProductVO m : vo) { 
+			System.out.println("P_CODE=" + m.getP_CODE() + ", " +"P_NAME=" + m.getP_NAME() + ", " +
+					"P_KIND=" + m.getP_KIND() + ", " +"P_IMAGE=" + m.getP_IMAGE() + ", " + "P_PRICE=" + m.getP_PRICE());
+			}
+		return vo;
+	}
+	
+	public List<ProductVO> listSearch(int num, String any_name) {
+		List<ProductVO> vo = productDAO.selectSearch(num, any_name);
+		System.out.println("--------selectAll 데이터 요청 확인하기---------------");
+		for (ProductVO m : vo) { 
+			System.out.println("P_CODE=" + m.getP_CODE() + ", " +"P_NAME=" + m.getP_NAME() + ", " +
+					"P_KIND=" + m.getP_KIND() + ", " +"P_IMAGE=" + m.getP_IMAGE() + ", " + "P_PRICE=" + m.getP_PRICE());
+			}
+		return vo;
+	}
 	//종류별 상품 목록
 	public List<ProductVO> listByKind(String kind) {
 		List<ProductVO> list = productDAO.selectByKind(kind);

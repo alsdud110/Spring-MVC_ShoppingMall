@@ -34,7 +34,27 @@ public class ProductDAO {
 		}
 
 	};
+	
+	// 모든 상품 목록 가져오기
+	public List<ProductVO> selectAll() {
+		List<ProductVO> results = jdbcTemplate.query("select * from PRODUCT", proRowMapper);
 
+		return results;
+	}
+	
+	// 모든 상품 목록 가져오기
+	public List<ProductVO> selectAllByPage(int page_num) {
+		List<ProductVO> results = jdbcTemplate.query("select *, rownum from PRODUCT where 30 * (? - 1) < rownum and rownum <= 30 * ?", proRowMapper, page_num, page_num);
+
+		return results;
+	}
+
+	public List<ProductVO> selectSearch(int page_num, String p_name) {
+		List<ProductVO> results = jdbcTemplate.query("select *, rownum from PRODUCT where P_NAME LIKE %?% 30 * (? - 1) < rownum and rownum <= 30 * ?", proRowMapper, p_name, page_num, page_num);
+
+		return results;
+	}
+	
 	// 종류별 상품 목록 가져오기
 	public List<ProductVO> selectByKind(String kind) {
 		String sql = "select * from product where P_KIND like ? ";
@@ -78,13 +98,6 @@ public class ProductDAO {
 		return results;
 	}
 
-	// 모든 상품 목록 가져오기
-	public List<ProductVO> selectAll() {
-		List<ProductVO> results = jdbcTemplate.query("select * from PRODUCT", proRowMapper);
-
-		return results;
-	}
-
 	// 탑3 뽑아오기
 	
 	  public List<ProductVO> top3(){ List<ProductVO> results = jdbcTemplate.
@@ -113,5 +126,6 @@ public class ProductDAO {
 
 			return results;
 	  }
+
 }
 

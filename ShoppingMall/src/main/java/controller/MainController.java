@@ -12,24 +12,32 @@ import product.ProductVO;
 @Controller
 public class MainController {
 	
-	//최고 판마량 제품 보여주기위해 productService 추가
+	// 메인에 표시할 상품을 위해 추가.
 	ProductService productService;
 	
 	public void setProductService(ProductService productService) {
 		this.productService=productService;
 		}
-	//실행시 top3메소드 실행
+
 	@RequestMapping("/main")
 	public String handler(Model model) {
+		//주문량 순 top3
 		List<ProductVO> top3=productService.listByTop3();
 		model.addAttribute("top3",top3);
+		//신상품 순 top3
+		List<ProductVO> newtop3=productService.listByNewTop3();
+		model.addAttribute("newtop3",newtop3 );
 		return "main";
 	}
-	//실행시 top3메소드 실행
+	
 	@RequestMapping("/")
 	public String main(Model model) {
-//		List<ProductVO> top3=productService.listByTop3();
-//		model.addAttribute("top3",top3);
+		//주문량 순 top3
+		List<ProductVO> top3=productService.listByTop3();
+		model.addAttribute("top3",top3);
+		//신상품 순 top3
+		List<ProductVO> newtop3=productService.listByNewTop3();
+		model.addAttribute("newtop3",newtop3 );
 		return "main";
 	}
 

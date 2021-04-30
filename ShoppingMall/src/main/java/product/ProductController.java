@@ -22,7 +22,8 @@ public class ProductController {
 	public String getListByCategory( @PathVariable("kind") String kind, Model model) {
 		List<ProductVO> vo =productService.listByKind(kind);
 		model.addAttribute("kind",vo);
-		List<ProductVO> list =productService.byKind(kind);
+		String[] arr = kind.split("_");
+		List<ProductVO> list =productService.byKind(arr[0]);
 		model.addAttribute("list", list);
 		return "product/CategoryList";
 	}
@@ -54,16 +55,17 @@ public class ProductController {
 		return "product/productDetail";
 		//return "product/prdocutDetail";
 	}
-	//카트나 구매하기 클릭시 사용
-	@RequestMapping("productDetail/123")  //form url 지정
-	public String qqqview(Model model,CartVO cartVO) {
+
+	//구매 클릭시 사용
+	@RequestMapping("productDetail/order")  //form url 지정
+	public String orderview(Model model,CartVO cartVO) {
 		model.addAttribute("CartVO", cartVO);
-		//값 넘어 왔는지 확인. m_code는 insert시 추가
-		System.out.println("-----------------path테스트 =-=-=-=-=--------------------");
+		//값 넘어 왔는지 확인.
+		System.out.println("-----------------order테스트 =-=-=-=-=--------------------");
 		System.out.println(" p_code " +cartVO.getP_code() +	" m_code " + cartVO.getM_code() +"p_name;" + cartVO.getP_name() +
 				"p_image;" + cartVO.getP_image() + "p_price;" + cartVO.getP_price() + "qty;" + cartVO.getQty() +" p_size=" + cartVO.getP_size() 
 				+" p_color=" +cartVO.getP_color() +"sumMoney;" + cartVO.getSumMoney());
-			return "product/123";  //이동 페이지 지정.
+			return "product/order";  //이동 페이지 지정.
 	}
 	
 }

@@ -113,5 +113,18 @@ public class ProductDAO {
 
 			return results;
 	  }
+	  
+	  public List<ProductVO> newProductTop3(){
+		  System.out.println("------------newtop3 시작-----------");
+		  List<ProductVO> results = jdbcTemplate.query(
+				  "WITH PRODUCT_ORDER AS(SELECT * FROM PRODUCT ORDER BY REG_DATE DESC),\r\n" + 
+				  "NEW_PRODUCT AS (SELECT P.*, ROWNUM R FROM PRODUCT_ORDER P)\r\n" + 
+				  " SELECT NP.* FROM NEW_PRODUCT NP WHERE R<4",proRowMapper);
+		  for (ProductVO m : results) { 
+				System.out.println("P_CODE=" + m.getP_CODE() + ", " +"P_NAME=" + m.getP_NAME() + ", " +
+						"P_KIND=" + m.getP_KIND() + ", " +"P_IMAGE=" + m.getP_IMAGE() + ", " + "P_PRICE=" + m.getP_PRICE());
+				}
+		  return results;
+	  }
 }
 

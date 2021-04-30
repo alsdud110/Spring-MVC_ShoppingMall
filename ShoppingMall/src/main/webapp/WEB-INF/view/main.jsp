@@ -19,15 +19,19 @@
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
-	
-	<!--top3 사용방법 -->
-	<c:forEach var="top3" items="${top3}">
-				<p>코드 ${top3.p_CODE}</p><br/>
-				<p>이름 ${top3.p_NAME}</p><br/>
-				<p> 종류${top3.p_KIND}</p><br/>
-				<p>이미지 ${top3.p_IMAGE}</p><br/>
-	</c:forEach>
-	
+
+	<!--주문량 순 top3 사용방법 
+				<p>코드 ${top3[0].p_CODE}</p><br/>
+				<p>이름 ${top3[0].p_NAME}</p><br/>
+				<p> 종류${top3[0].p_KIND}</p><br/>
+				<p>이미지 ${top3[0].p_IMAGE}</p><br/>
+		-->
+		<!--신상품 순 top3 사용방법 
+				<p>코드 ${newtop3[0].p_CODE}</p><br/>
+				<p>이름 ${newtop3[0].p_NAME}</p><br/>
+				<p> 종류${newtop3[0].p_KIND}</p><br/>
+				<p>이미지 ${newtop3[0].p_IMAGE}</p><br/>
+		-->
 	<section class="new-product-area section-padding30" style = "padding : 50px">
             <div class="container">
                 <!-- Section tittle -->

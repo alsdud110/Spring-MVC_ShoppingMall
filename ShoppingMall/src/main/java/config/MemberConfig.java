@@ -7,6 +7,8 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import cart.CartDAO;
+import cart.CartService;
 import delete.DeleteMemberService;
 import edit.ChangePasswordService;
 import edit.EditMemberService;
@@ -105,5 +107,13 @@ public class MemberConfig {
 		return new ProductService(productDAO());
 	}
 	
+	@Bean
+	public CartDAO cartDAO() {
+		return new CartDAO(dataSource());
+	}
+	@Bean 
+	public CartService cartService() {
+		return new CartService(cartDAO());
+	}
 
 }

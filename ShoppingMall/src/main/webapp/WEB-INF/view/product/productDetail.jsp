@@ -51,7 +51,7 @@
 function setQty() {
 	  const qty=document.getElementById('qty').value;
 	  const price=${product.p_PRICE};
-	document.getElementById('result').value = price*qty;
+	document.getElementById('sumMoney').value = price*qty;
 }
 
 function select(str) {
@@ -74,7 +74,7 @@ function InCart(){
 	var size =document.getElementById('p_size').value;
 	var color = document.getElementById('p_color').value;
 	var qty = document.getElementById('qty').value;
-	var sumMoney = document.getElementById('qty').value;
+	var sumMoney = document.getElementById('sumMoney').value;
 	if(confirm(
 			"아래의 상품이 맞습니까?? \n\n"+
 			"상품명:" + name+"\n"+
@@ -151,7 +151,7 @@ if(authInfo !=null){
 	<td>qty</td>
 	<td>
 
-	<input class="product_count_item inumber-decrement" type="text" id="qty" name="qty" onblur='setQty()'><td>
+	<input class="product_count_item inumber-decrement" type="number" id="qty" name="qty" onblur='setQty()' value="1" min="1"><td>
 
    
 	</td>
@@ -160,7 +160,7 @@ if(authInfo !=null){
 	<tr>
 	<td>총 상품 금액</td>
 	<div align="center"></div>
-	<td><input type="text" id='result' name="sumMoney" value="" readonly onblur='choice()'></td> <!-- readonly : 수정불가, form 전달가능  -->
+	<td><input type="text" id='sumMoney' name="sumMoney" value="" readonly onblur='choice()'></td> <!-- readonly : 수정불가, form 전달가능  -->
 	<td></td>
 	</tr>
 <table>

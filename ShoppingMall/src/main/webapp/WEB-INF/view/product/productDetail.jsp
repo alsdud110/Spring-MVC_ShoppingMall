@@ -87,7 +87,7 @@ function InCart(){
 		}
 	else{
 		alert("취소했어");
-		return;
+		return false;
 	}
 }
 </script>
@@ -103,7 +103,7 @@ if(authInfo !=null){
 <body>
 
 	<h2>상품 클릭시 넘어올 상세페이지. 카트or구매 쪽으로 데이터 넘길 예정</h2>
-	<form:form modelAttribute = "CartVO" name="form">	<!-- action 주소 = 현재주소/123주소     : productDetail/123  >>>>>카트나 구매쪽으로 넘길 예정-->
+	<form:form modelAttribute="CartVO" onsubmit="return InCart()">	<!-- action 주소 = 현재주소/123주소     : productDetail/123  >>>>>카트나 구매쪽으로 넘길 예정-->
 	<input type="hidden" name="p_code" value="${product.p_CODE}"/>	
 	
 
@@ -171,7 +171,7 @@ if(authInfo !=null){
 	<tr>
 	
 	<td>   
-	<div class="add_to_cart" align="right"> <input type="submit" onclick="InCart()" class="genric-btn primary-border e-large" formaction="<c:url value="/AddCart"/>" value="장바구니 담기">
+	<div class="add_to_cart" align="right"> <input type="submit" class="genric-btn primary-border e-large" formaction="<c:url value="/AddCart"/>" value="장바구니 담기">
 	</div></td>
 	
 	

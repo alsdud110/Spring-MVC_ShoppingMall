@@ -49,7 +49,8 @@
                         	if(authInfo == null){%>
                             <ul>
                                 <li> <a href="<c:url value = '/login'/>"><span class="flaticon-user"> login</span></a></li>
-                                <li><a href="<c:url value = '/login'/>"><span class="flaticon-shopping-cart"> cart</span></a> </li>
+                                <!--   <li><a href="<c:url value = '/login'/>"><span class="flaticon-shopping-cart"> cart</span></a> </li>	 -->
+                               <li><a href="<c:url value = '/cart'/>"><span class="flaticon-shopping-cart"> cart</span></a> </li>	<!-- 카트 테스트용 추가/ 테스트후 교체 -->
                                 <li><a href="<c:url value = '/join'/>"><span class="flaticon-user"> join</span></a> </li>
                             </ul>
                             	<%}else{

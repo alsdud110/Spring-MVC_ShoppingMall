@@ -1,5 +1,7 @@
 package cart;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -17,13 +19,17 @@ public class CartController {
 		this.cartService=cartService;
 	}
 	
-//	@RequestMapping("/cart")
-//	public String cart(HttpSession session) {
+	@RequestMapping("/cart")
+	public String cart(HttpSession session,Model model) {
 //		if(session.getAttribute("authInfo") != null) {
 //			return "cart/cartList";
 //		}
 //		return "login/loginForm";
-//	}
+		List<CartVO> vo=cartService.listByM_CODE();
+		model.addAttribute("cartlist", vo);
+		
+		return "cart/cartList";
+	}
 	
 	@RequestMapping("/AddCart")  //form url 지정
 	public String addCart(Model model,CartVO cartVO) {

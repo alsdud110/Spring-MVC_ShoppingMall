@@ -63,14 +63,33 @@ function select(str) {
 	p_size.push("${std.p_size}");
 	p_color.push("${std.p_color}");
 	</c:forEach>
-
-	alert(num);
-		
-	document.getElementById('p_color').value =p_size[num];
-	document.getElementById('p_size').value =p_color[num];
+			
+	document.getElementById('p_size').value =p_size[num];
+	document.getElementById('p_color').value =p_color[num];
 
 }
-	
+
+function InCart(){
+	var name = "${product.p_NAME}";
+	var size =document.getElementById('p_size').value;
+	var color = document.getElementById('p_color').value;
+	var qty = document.getElementById('qty').value;
+	var sumMoney = document.getElementById('qty').value;
+	if(confirm(
+			"아래의 상품이 맞습니까?? \n\n"+
+			"상품명:" + name+"\n"+
+			"사이즈="+size +"\n"+
+			"컬러="+color +"\n"+
+			"수량="+qty +"\n"+
+			"총 가격="+sumMoney
+			)== true){
+		alert("담았어");
+		}
+	else{
+		alert("취소했어");
+		return;
+	}
+}
 </script>
 
 <% 
@@ -84,7 +103,7 @@ if(authInfo !=null){
 <body>
 
 	<h2>상품 클릭시 넘어올 상세페이지. 카트or구매 쪽으로 데이터 넘길 예정</h2>
-	<form:form modelAttribute = "CartVO">	<!-- action 주소 = 현재주소/123주소     : productDetail/123  >>>>>카트나 구매쪽으로 넘길 예정-->
+	<form:form modelAttribute = "CartVO" name="form">	<!-- action 주소 = 현재주소/123주소     : productDetail/123  >>>>>카트나 구매쪽으로 넘길 예정-->
 	<input type="hidden" name="p_code" value="${product.p_CODE}"/>	
 	
 
@@ -144,35 +163,23 @@ if(authInfo !=null){
 	<td><input type="text" id='result' name="sumMoney" value="" readonly onblur='choice()'></td> <!-- readonly : 수정불가, form 전달가능  -->
 	<td></td>
 	</tr>
-	
-
-<<<<<<< HEAD
-
 <table>
 
-    <td colspan="2"><div class="Proceed to checkout" padding:20px; align="right"> <input type="submit" class="genric-btn primary e-large" value=구매하기></td>
+    <td colspan="2"><div class="Proceed to checkout" padding:20px; align="right"> <input type="submit" class="genric-btn primary e-large" value=구매하기 formaction="<c:url value="/order"/>"></td>
 	</tr>
 	
 	<tr>
 	
 	<td>   
-	<div class="add_to_cart" align="right"> <a href="#" class="genric-btn primary-border e-large" >장바구니 담기</a> 
+	<div class="add_to_cart" align="right"> <input type="submit" onclick="InCart()" class="genric-btn primary-border e-large" formaction="<c:url value="/AddCart"/>" value="장바구니 담기">
 	</div></td>
+	
 	
 	
 	
 	<td><div class="wishlist" align="left"> <a href="#" class="genric-btn primary-border e-large">위시리스트 담기</a> 
 	</div></td>
-=======
-    <td colspan="2"><input type="submit" value=구매하기 formaction="order"></td>
-	</tr>
-	
-	<tr>
-	<td><input type="submit" value="카트" formaction="cart"></td>
-	<td>wish (링크추가)</td>
->>>>>>> 이상훈
-	</tr>
-	<input type="hidden" name="m_code" value="<%=m_code %>">
+    </tr>
 	</table>
 	<br></br>
 	<br></br>

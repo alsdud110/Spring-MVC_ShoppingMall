@@ -27,9 +27,14 @@ public class CartDAO {
 						throws SQLException {
 					// 파라미터로 전달받은 Connection을 이용해서 PreparedStatement 생성
 					PreparedStatement pstmt = con.prepareStatement(
-							"insert into cart(m_code, p_code,qty, p_size, p_color, reg_date) values(?,?,?,?,?,sysdate)");
+							"insert into cart values(?,?,sysdate,?,?,?)");
 					// 인덱스 파라미터 값 설정
-					pstmt.setString(1, cartvo.getM_code());
+					if(cartvo.getM_code()!=null) {
+						pstmt.setString(1, cartvo.getM_code());
+					}else {
+						pstmt.setString(1, "1");
+					}
+					
 					pstmt.setString(2, cartvo.getP_code());
 					pstmt.setInt(3, cartvo.getQty());
 					pstmt.setString(4, cartvo.getP_size());

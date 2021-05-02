@@ -32,39 +32,19 @@
                     </div>
                 </div>
                 <div class="row">
+					<c:forEach var="top3" items="${top3}">
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
                         <div class="single-new-pro mb-30 text-center">
                             <div class="product-img">
-                                <img src="${top3[0].p_IMAGE }"/>
+                                <img src="<c:url value='${top3.p_IMAGE }'/>"/>
                             </div>
                             <div class="product-caption">
-                                <h3><a href="product_details.html">${top3[0].p_NAME }</a></h3>
-                                <span>${top3[0].p_PRICE}</span>
+                                <h3><a href="product_details.html">${top3.p_NAME }</a></h3>
+                                <span>${top3.p_PRICE}</span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-new-pro mb-30 text-center">
-                            <div class="product-img">
-                               <img src="${top3[1].p_IMAGE}"/>
-                             </div>
-                            <div class="product-caption">
-                                <h3><a href="product_details.html">${top3[1].p_NAME}</a></h3>
-                                <span>${top3[1].p_PRICE}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-new-pro mb-30 text-center">
-                            <div class="product-img">
-                               <img src="${top3[2].p_IMAGE}"/>
-                             </div>
-                            <div class="product-caption">
-                                <h3><a href="product_details.html">${top3[2].p_NAME}</a></h3>
-                                <span>${top3[1].p_PRICE}</span>
-                            </div>
-                        </div>
-                    </div>
+					</c:forEach>
                  </div>
              </div>
           </section>
@@ -81,39 +61,19 @@
                     </div>
                 </div>
                 <div class="row">
+                    <c:forEach var="newtop3" items="${newtop3}">
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
                         <div class="single-new-pro mb-30 text-center">
                             <div class="product-img">
-                                <img src="${newtop3[0].p_IMAGE }"/>
+                                <img src="<c:url value='${newtop3.p_IMAGE }'/>"/>
                             </div>
                             <div class="product-caption">
-                                <h3><a href="product_details.html">${newtop3[0].p_NAME }</a></h3>
-                                <span>${newtop3[0].p_PRICE}</span>
+                                <h3><a href="product_details.html">${newtop3.p_NAME }</a></h3>
+                                <span>${newtop3.p_PRICE}</span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-new-pro mb-30 text-center">
-                            <div class="product-img">
-                               <img src="${newtop3[1].p_IMAGE}"/>
-                             </div>
-                            <div class="product-caption">
-                                <h3><a href="product_details.html">${newtop3[1].p_NAME}</a></h3>
-                                <span>${newtop3[1].p_PRICE}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-new-pro mb-30 text-center">
-                            <div class="product-img">
-                               <img src="${newtop3[2].p_IMAGE}"/>
-                             </div>
-                            <div class="product-caption">
-                                <h3><a href="product_details.html">${newtop3[2].p_NAME}</a></h3>
-                                <span>${newtop3[1].p_PRICE}</span>
-                            </div>
-                        </div>
-                    </div>
+       				</c:forEach>
                  </div>
              </div>
           </section>

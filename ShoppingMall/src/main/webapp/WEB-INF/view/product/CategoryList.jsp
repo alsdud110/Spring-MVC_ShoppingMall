@@ -64,7 +64,7 @@
 					<dl class="item-list">
 						<dd class="thumb" style="height: 400px;">
 							<a href="<c:url value='/productDetail/${kind.p_CODE}'/>"><img
-								src="${kind.p_IMAGE}" style="width: 350px; height: 400px;"></a>
+								src="<c:url value='${kind.p_IMAGE}'/>" style="width: 350px; height: 400px;"></a>
 						</dd>
 						<dd>
 							<ul>

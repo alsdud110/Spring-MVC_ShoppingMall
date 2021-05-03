@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 INDEX VERSION 1.4+D:\eGovFrameDev-3.10.0-64bit\workspace\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
 1251880845.index
 1698424281.index
@@ -5,3 +6,23 @@ INDEX VERSION 1.4+D:\eGovFrameDev-3.10.0-64bit\workspace\.metadata\.plugins\org.
 1373723380.index
 1621330776.index
 2141423680.index
+=======
+INDEX VERSION 1.4+/Users/hwangmin-yeong/eclipse-workspace-new/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+4269192411.index
+1095747754.index
+2682160947.index
+1175747164.index
+2746778474.index
+1678949434.index
+4269192411.index
+2416044625.index
+3483826154.index
+531620608.index
+3483826154.index
+39688175.index
+531620608.index
+1001494550.index
+1960895094.index
+870345634.index
+3966946837.index
+>>>>>>> 황민영

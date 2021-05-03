@@ -106,7 +106,7 @@ public class LoginController {
     	}
     	
     	try {
-    		List<Member> list_id=  memberService.findId(member);
+    		List<Member> list_id=  memberService.findId(member); //m_id
         	
         	session.setAttribute("findId", list_id);
         	return "edit/findId";

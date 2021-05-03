@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
+<<<<<<< HEAD
 <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
 <fullyQualifiedTypeName name="member.MemberDao"/>
 <fullyQualifiedTypeName name="register.MemberRegisterService"/>
@@ -16,4 +17,18 @@
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="cart.CartVO"/>
 <fullyQualifiedTypeName name="member.Member"/>
+=======
+    <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
+    <fullyQualifiedTypeName name="member.MemberDao"/>
+    <fullyQualifiedTypeName name="member.Member"/>
+    <fullyQualifiedTypeName name="register.MemberRegisterService"/>
+    <fullyQualifiedTypeName name="spring.MemberServiceImpl"/>
+    <fullyQualifiedTypeName name="member.MemberServiceImpl"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="java.sql.SQLException"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
+>>>>>>> 황민영
 </qualifiedTypeNameHistroy>

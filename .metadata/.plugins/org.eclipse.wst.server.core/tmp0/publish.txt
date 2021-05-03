@@ -1,2 +1,7 @@
 #Tomcat publish data
+<<<<<<< HEAD
 #Mon May 03 10:34:13 KST 2021
+=======
+#Fri Apr 30 16:50:03 KST 2021
+org.eclipse.jst.jee.server\:/binary\:/Users/hwangmin-yeong/.m2/repository/org/springframework/spring-web/5.0.2.RELEASE/spring-web-5.0.2.RELEASE.jar=WEB-INF/lib/spring-web-5.0.2.RELEASE.jar
+>>>>>>> 황민영

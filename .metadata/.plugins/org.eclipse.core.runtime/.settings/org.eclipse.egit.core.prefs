@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 GitRepositoriesView.GitDirectories=D\:\\eGovFrameDev-3.10.0-64bit\\workspace\\.git;C\:\\Users\\h4admin\\git\\repository\\.git;
 GitRepositoriesView.GitDirectories.relative=.git;C\:\\Users\\h4admin\\git\\repository\\.git;
+=======
+GitRepositoriesView.GitDirectories=/Users/hwangmin-yeong/eclipse-workspace-new/.git\:
+GitRepositoriesView.GitDirectories.relative=.git\:
+>>>>>>> 황민영
 core_autoIgnoreDerivedResources=false
 eclipse.preferences.version=1

@@ -25,7 +25,6 @@ INDEX VERSION 1.131+D:\eGovFrameDev-3.10.0-64bit\workspace\.metadata\.plugins\or
 1832244094.index
 1927393819.index
 1230375882.index
-3947683423.index
 2867282437.index
 1284572765.index
 113544824.index

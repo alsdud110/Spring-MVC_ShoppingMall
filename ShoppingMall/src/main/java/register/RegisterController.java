@@ -69,7 +69,7 @@ public class RegisterController {
 	@PostMapping("/congrats")
 	public String registerMember(RegisterCommand req,  Errors errors, HttpSession session) {
 		
-		if (session.getAttribute("id check").equals("success")) {
+		if ((String)session.getAttribute("id check") != ("success")) {
 			return "redirect:/join";
 		}
 		

@@ -32,7 +32,7 @@
 
 
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품 상세피이지</title>
 
  <style>
       table {
@@ -40,11 +40,13 @@
         border-top: 1px solid #444444;
         border-collapse: collapse;
       }
-      th, td {
+      th, td, tr {
         border-bottom: 1px solid #444444;
         padding: 10px;
         text-align: center;
-      }
+       
+     
+  
     </style>
 
 <script type="text/javascript">
@@ -82,40 +84,36 @@ if(authInfo !=null){
 %>
 </head>
 <body>
+	<center>
+	<h2>상품 상세 페이지</h2>
 
-	<h2>상품 클릭시 넘어올 상세페이지. 카트or구매 쪽으로 데이터 넘길 예정</h2>
 	<form:form modelAttribute = "CartVO">	<!-- action 주소 = 현재주소/123주소     : productDetail/123  >>>>>카트나 구매쪽으로 넘길 예정-->
 	<input type="hidden" name="p_code" value="${product.p_CODE}"/>	
 	
 
 	
-	
-	<center>
 	<table>
-		
-	<tr>
-	<div align="center" style="border-radius: 2em;">
-	<td rowspan="8">${product.p_IMAGE}
-	<input type="hidden" name="p_image" value="${product.p_IMAGE}"/>
-	</td>
-	</tr>
-	
-	<thread>
-	<tr>
-	<td colspan="2"><center><p>${product.p_NAME}</p></td>
-	<input type="hidden" name="p_name" value="${product.p_NAME}"/>
 
+	<tr>
+	<td rowspan="7"> <img src="${product.p_IMAGE}" width="400" height="400"></td>
+
+
+	<td>상품명</td>
+	<td><p><b>${product.p_NAME}</b></p></td>
+	<tr>
+	<input type="hidden" name="p_name" value="${product.p_NAME}"/>
 	</tr>
+
+	<td>가격</td>
+	<td><p><b>${product.p_PRICE}</b></p></td>
 	
 	<tr>
-	<td colspan="2"><center><p>${product.p_PRICE}</p></td>
 	<input type="hidden" name="p_price" value="${product.p_PRICE}"/>
-	</tr>
-	
+</tr>
+
 	<tr>
 	<td>size</td>
 	<td>
-	<center>
 	<select name="str" onchange="select(this.value)">
 	<option value="none">=== 선택 ===</option>
 	<c:forEach var="std" items="${productStd}" varStatus="status">
@@ -124,59 +122,51 @@ if(authInfo !=null){
 	</select>
 		<input type="hidden" id="p_color" name="p_color"/>  
 		<input type="hidden" id="p_size" name="p_size"/>
-	</td> 
 	</tr>
+	</td> 
+
+
+
 
 
 	<tr>
-	<td>qty</td>
+	<td>수량</td>
+	<div align="center"></div>
 	<td>
 
-	<input class="product_count_item inumber-decrement" type="text" id="qty" name="qty" onblur='setQty()'><td>
+<span class="product_count_item inumber-decrement"> <i class="ti-minus"></i></span>
+<input class="product_count_item input-number" type="text" id="qty" name="qty" onblur='setQty()' min="1" max="10">
+<span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
+</div>
 
    
-	</td>
-	</tr>
 	
 	<tr>
 	<td>총 상품 금액</td>
 	<div align="center"></div>
 	<td><input type="text" id='result' name="sumMoney" value="" readonly onblur='choice()'></td> <!-- readonly : 수정불가, form 전달가능  -->
-	<td></td>
+
 	</tr>
 	
+	<td>
+	<td>
+    <td><div class="Proceed to checkout"> <input type="submit" class="genric-btn primary e-large" value=구매하기 formaction="<c:url value="/order"/>"></td>
 
-<<<<<<< HEAD
 
-<table>
+<tr>
 
-    <td colspan="2"><div class="Proceed to checkout" padding:20px; align="right"> <input type="submit" class="genric-btn primary e-large" value=구매하기></td>
-	</tr>
-	
-	<tr>
-	
-	<td>   
-	<div class="add_to_cart" align="right"> <a href="#" class="genric-btn primary-border e-large" >장바구니 담기</a> 
+	<td colspan="2"><div class="add_to_cart" "width:200px; height:150px; style=float:right; margin-right:10px;"> <a href="#" class="genric-btn primary-border e-large" formaction="<c:url value="/cart"/>">장바구니 담기</a></td></div>
+
+	<td><div class="wishlist" style=float:right;"> <a href="#" class="genric-btn primary-border e-large" formaction="<c:url value="/wishlist"/>"><i class="fa fa-heart" aria-hidden="true"></i> 위시리스트 담기</a> 
+
 	</div></td>
-	
-	
-	
-	<td><div class="wishlist" align="left"> <a href="#" class="genric-btn primary-border e-large">위시리스트 담기</a> 
-	</div></td>
-=======
-    <td colspan="2"><input type="submit" value=구매하기 formaction="order"></td>
-	</tr>
-	
-	<tr>
-	<td><input type="submit" value="카트" formaction="cart"></td>
-	<td>wish (링크추가)</td>
->>>>>>> 이상훈
-	</tr>
-	<input type="hidden" name="m_code" value="<%=m_code %>">
+	<tr></tr>
+    </tr>
+
+	<br></br>
+	<br></br>
+	<br></br>
 	</table>
-	<br></br>
-	<br></br>
-	<br></br>
 	</form:form>
 	</center>
 	

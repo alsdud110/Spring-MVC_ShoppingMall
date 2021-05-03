@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import login.LoginService;
+import member.Member;
+
 
 
 @Controller
@@ -22,6 +25,13 @@ public class RegisterController {
 	public void setMemberRegisterService(
 			MemberRegisterService memberRegisterService) {
 		this.memberRegisterService = memberRegisterService;
+	}
+	
+	@Autowired
+	private LoginService loginService;
+	
+	public void setLoginService(LoginService loginService) {
+		this.loginService = loginService;
 	}
 	
 	@Autowired
@@ -57,9 +67,9 @@ public class RegisterController {
 	} // memberIdChkPOST() 종료
 
 	@PostMapping("/congrats")
-	public String registerMember(RegisterCommand req, Errors errors, HttpSession session) {
+	public String registerMember(RegisterCommand req,  Errors errors, HttpSession session) {
 		
-		if (session.getAttribute("id check") != "success") {
+		if (session.getAttribute("id check").equals("success")) {
 			return "redirect:/join";
 		}
 		
@@ -68,8 +78,13 @@ public class RegisterController {
 		if (errors.hasErrors())
 			return "redirect:/join";
 		try {
-			memberRegisterService.regist(req);
-			return "register/congrats";
+			memberRegisterService.regist(req);			//회원가입
+			
+			Member authInfo = loginService.authenticate(req.getM_id(), req.getM_pw());	//회원가입 성공 후 로그
+			
+			session.setAttribute("authInfo", authInfo);		//로그인 후 세션 유지
+			
+			return "redirect:/";	//메인페이지 이동
 		}
 		catch (DuplicateMemberException ex){
 			errors.rejectValue("email", "duplicate");

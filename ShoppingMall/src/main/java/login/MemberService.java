@@ -24,9 +24,10 @@ public class MemberService {
 		return m_code;
 	}
 
+	//아이디 찾기
 	public List<Member> findId(Member member) {
 		
-		List<Member> result = memberDao.selectFindId(member);
+		List<Member> result = memberDao.selectFindId(member);  //m_id
 		
 		return result;
 	}

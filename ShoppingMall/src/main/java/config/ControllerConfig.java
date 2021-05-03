@@ -45,6 +45,7 @@ public class ControllerConfig {
 	public RegisterController registerController() {
 		RegisterController controller = new RegisterController();
 		controller.setMemberRegisterService(memberRegisterService);
+		controller.setLoginService(loginService);
 		return controller;
 	}
 

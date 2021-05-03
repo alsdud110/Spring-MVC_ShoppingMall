@@ -72,6 +72,16 @@
 			String name = member.getM_name();
 			String email = member.getM_email();
 			String contact = member.getM_contact();
+			String year = member.getYear();
+			String month = member.getMonth();
+			String day = member.getDay();
+			String addr[] = member.getM_addr().split(" ,");
+			String addr_road = addr[0];
+			String addr_detail = addr[1];
+			
+			session.setAttribute("year", year);
+			session.setAttribute("month", month);
+			session.setAttribute("day", day);
 		%>
 
 	 	<div class="col-md-6 form-group p_star ">
@@ -92,7 +102,7 @@
 		</div>
 		<div class = "col-md-6 form-group p_star">
 			<label><spring:message code = "birth" /> : <br>
-				<form:select path = "year" name="year" id="year" title="년도" class="text-center" style = "width : 100px; border: 1px solid #ced4da;"/>
+				<form:select path = "year"  name="year" id="year" title="년도" class="text-center" style = "width : 100px; border: 1px solid #ced4da;"/>
 				<form:select path = "month" name="month" id="month" title="월" class="text-center" style = "width : 100px; border: 1px solid #ced4da;"/>
 				<form:select path = "day" name="day" id="day" title="일" class="text-center" style = "width : 100px; border: 1px solid #ced4da;"/>
 			</label>
@@ -101,8 +111,8 @@
 			<labeL>주소 : <br>
 			<input type="text" id="sample6_postcode" placeholder="우편번호" class="text-center" style = "width : 200px; border-radius: .25rem; border: 1px solid #ced4da; ">
 			<button type="button" onclick="findAddr()" class = "btn-secondary" >우편번호 찾기</button><br>
-			<form:input path = "addr_road" id="sample6_address" placeholder="주소" class="text-center" style = "width : 200px; border-radius: .25rem; border: 1px solid #ced4da;" /><br>
-			<form:input path = "addr_detail" id="sample6_detailAddress" placeholder="상세주소" class="text-center" style = "width : 200px; border-radius: .25rem; border: 1px solid #ced4da;"/>
+			<form:input path = "addr_road" id="sample6_address" placeholder="주소" value = "<%=addr[0] %>" class="text-center" style = "width : 200px; border-radius: .25rem; border: 1px solid #ced4da;" /><br>
+			<form:input path = "addr_detail" id="sample6_detailAddress" placeholder="상세주소"  value = "<%=addr[1] %>" class="text-center" style = "width : 200px; border-radius: .25rem; border: 1px solid #ced4da;"/>
 			<input type="text" id="sample6_extraAddress" placeholder="참고항목" class="text-center" style = "width : 100px; border-radius: .25rem; border: 1px solid #ced4da;">
 			</labeL>
 		</div>
@@ -125,23 +135,23 @@
 		});
 		function setDateBox(){
 			var date = new Date();
-			var year = "";
 			var com_year = date.getFullYear();
+			var year = '<%=(String)session.getAttribute("year")%>';
 			
-			$("#year").append("<option value = ''>년도</option>");
+			$("#year").append("<option value = ''>"+year+"년도</option>");
 			
 			for(var y = com_year ; y >= (com_year - 80); y--){
 				$("#year").append("<option value = '" + y +"'>" + y + " 년" + "</option>");
 			}
 			
-			var month = "";
-			$("#month").append("<option value = ''>월</option>");
+			var month = '<%=(String)session.getAttribute("month")%>';
+			$("#month").append("<option value = ''>"+ month +"월</option>");
 			for(var y = 1 ; y <= 12 ; y++){
 				$("#month").append("<option value = '" + y +"'>" + y + " 월" + "</option>");
 			}
 			
-			var day = "";
-			$("#day").append("<option value = ''>일</option>");
+			var day = '<%=(String)session.getAttribute("day")%>';
+			$("#day").append("<option value = ''>" + day + "일</option>");
 			for(var y = 1; y <= 31; y++){
 				$("#day").append("<option value = '" + y + "'>" + y + " 일" + "</option>");
 			}

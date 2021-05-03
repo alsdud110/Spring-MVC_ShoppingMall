@@ -131,6 +131,7 @@
 		    setDateBox();
 		});
 		function setDateBox(){
+			
 			var year = "";
 			var com_year = 2021;
 			

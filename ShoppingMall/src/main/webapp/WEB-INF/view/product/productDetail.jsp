@@ -53,7 +53,7 @@
 function setQty() {
 	  const qty=document.getElementById('qty').value;
 	  const price=${product.p_PRICE};
-	document.getElementById('sumMoney').value = price*qty;
+	document.getElementById('result').value = price*qty;
 }
 
 function select(str) {
@@ -65,33 +65,14 @@ function select(str) {
 	p_size.push("${std.p_size}");
 	p_color.push("${std.p_color}");
 	</c:forEach>
-			
-	document.getElementById('p_size').value =p_size[num];
-	document.getElementById('p_color').value =p_color[num];
+
+	alert(num);
+		
+	document.getElementById('p_color').value =p_size[num];
+	document.getElementById('p_size').value =p_color[num];
 
 }
-
-function InCart(){
-	var name = "${product.p_NAME}";
-	var size =document.getElementById('p_size').value;
-	var color = document.getElementById('p_color').value;
-	var qty = document.getElementById('qty').value;
-	var sumMoney = document.getElementById('sumMoney').value;
-	if(confirm(
-			"아래의 상품이 맞습니까?? \n\n"+
-			"상품명:" + name+"\n"+
-			"사이즈="+size +"\n"+
-			"컬러="+color +"\n"+
-			"수량="+qty +"\n"+
-			"총 가격="+sumMoney
-			)== true){
-		alert("담았어");
-		}
-	else{
-		alert("취소했어");
-		return false;
-	}
-}
+	
 </script>
 
 <% 
@@ -106,9 +87,7 @@ if(authInfo !=null){
 	<center>
 	<h2>상품 상세 페이지</h2>
 
-
-	<form:form modelAttribute="CartVO" onsubmit="return InCart()">	<!-- action 주소 = 현재주소/123주소     : productDetail/123  >>>>>카트나 구매쪽으로 넘길 예정-->
-
+	<form:form modelAttribute = "CartVO">	<!-- action 주소 = 현재주소/123주소     : productDetail/123  >>>>>카트나 구매쪽으로 넘길 예정-->
 	<input type="hidden" name="p_code" value="${product.p_CODE}"/>	
 	
 
@@ -159,12 +138,12 @@ if(authInfo !=null){
 <input class="product_count_item input-number" type="text" id="qty" name="qty" onblur='setQty()' min="1" max="10">
 <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
 </div>
+
    
 	
 	<tr>
 	<td>총 상품 금액</td>
 	<div align="center"></div>
-<<<<<<< ShoppingMall/src/main/webapp/WEB-INF/view/product/productDetail.jsp
 	<td><input type="text" id='result' name="sumMoney" value="" readonly onblur='choice()'></td> <!-- readonly : 수정불가, form 전달가능  -->
 
 	</tr>
@@ -184,29 +163,6 @@ if(authInfo !=null){
 	<tr></tr>
     </tr>
 
-=======
-	<td><input type="text" id='sumMoney' name="sumMoney" value="" readonly onblur='choice()'></td> <!-- readonly : 수정불가, form 전달가능  -->
-	<td></td>
-	</tr>
-<table>
-
-    <td colspan="2"><div class="Proceed to checkout" padding:20px; align="right"> <input type="submit" class="genric-btn primary e-large" value=구매하기 formaction="<c:url value="/order"/>"></td>
-	</tr>
-	
-	<tr>
-	
-	<td>   
-	<div class="add_to_cart" align="right"> <input type="submit" class="genric-btn primary-border e-large" formaction="<c:url value="/AddCart"/>" value="장바구니 담기">
-	</div></td>
-	
-	
-	
-	
-	<td><div class="wishlist" align="left"> <a href="#" class="genric-btn primary-border e-large">위시리스트 담기</a> 
-	</div></td>
-    </tr>
-	</table>
->>>>>>> ShoppingMall/src/main/webapp/WEB-INF/view/product/productDetail.jsp
 	<br></br>
 	<br></br>
 	<br></br>

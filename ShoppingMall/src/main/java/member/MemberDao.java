@@ -99,7 +99,7 @@ public class MemberDao {
 		return results.isEmpty() ? null : results.get(0).getM_code();  //results가 비어잇으면 null, 잇으면 0
 	}
 	
-	public void insert(Member member) {
+	public void insertMember(Member member) {
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con)

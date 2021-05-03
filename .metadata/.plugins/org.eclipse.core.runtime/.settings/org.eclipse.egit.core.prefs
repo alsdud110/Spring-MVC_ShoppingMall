@@ -1,4 +1,4 @@
-GitRepositoriesView.GitDirectories=C\:\\Users\\h4admin\\git\\repository\\.git;
-GitRepositoriesView.GitDirectories.relative=C\:\\Users\\h4admin\\git\\repository\\.git;
+GitRepositoriesView.GitDirectories=D\:\\eGovFrameDev-3.10.0-64bit\\workspace\\.git;C\:\\Users\\h4admin\\git\\repository\\.git;
+GitRepositoriesView.GitDirectories.relative=.git;C\:\\Users\\h4admin\\git\\repository\\.git;
 core_autoIgnoreDerivedResources=false
 eclipse.preferences.version=1

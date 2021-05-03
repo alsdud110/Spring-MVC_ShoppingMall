@@ -81,7 +81,7 @@ public class ProductDAO {
 
 	// 코드로 상품 규격 목록 가져오기
 	public List<ProductStdVO> productstdselectByCode(String code) {
-		List<ProductStdVO> results = jdbcTemplate.query("select * from PRODUCT_STD", new RowMapper<ProductStdVO>() {
+		List<ProductStdVO> results = jdbcTemplate.query("select * from PRODUCT_STD where p_code=?", new RowMapper<ProductStdVO>() {
 
 			@Override
 			public ProductStdVO mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -92,7 +92,7 @@ public class ProductDAO {
 				vo.setStock(rs.getInt("STOCK"));
 				return vo;
 			}
-		});
+		},code);
 
 		System.out.println(results.size());
 		return results;

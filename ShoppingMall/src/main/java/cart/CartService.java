@@ -2,13 +2,7 @@ package cart;
 
 import java.util.List;
 
-<<<<<<< HEAD
-import product.CartVO;
-import product.ProductStdVO;
-import product.ProductVO;
 
-=======
->>>>>>> 황현
 public class CartService {
 
 private CartDAO cartDAO;
@@ -16,23 +10,7 @@ private CartDAO cartDAO;
 	public CartService(CartDAO cartDAO) {
 		this.cartDAO = cartDAO;
 	}
-	
-<<<<<<< HEAD
-	public CartVO addCart(CartVO cartVO) {
-		System.out.println("동작?");
-		cartDAO.insert(cartVO);
-		return cartVO;
-	}
-	
-	public List<CartVO> listByM_CODE(){
-		System.out.println("------서비스----------listByM_CODE 시작");
-		List<CartVO> vo=cartDAO.selectAll();
-		for (CartVO m : vo) { 
-			System.out.println("getP_code=" + m.getP_code() + ", " +"getP_color=" + m.getP_color() + ", " +
-					"getP_image=" + m.getP_image() + ", " +"getP_name=" + m.getP_name() + ", " + "getP_price=" + m.getP_price() +" getP_size "+ m.getP_size());
-			}
-		return vo;
-=======
+
 	//아직 오류 처리 안됨
 	public int addCart(CartVO cart) {
 		int num = 0;
@@ -66,7 +44,7 @@ private CartDAO cartDAO;
 	public void deleteCart(String[] p_code_list, String m_code) {
 		
 		cartDAO.deleteCart(p_code_list, m_code);
->>>>>>> 황현
+
 	}
 
 }

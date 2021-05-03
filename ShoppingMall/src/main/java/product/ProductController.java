@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import cart.CartVO;
 import member.Member;
 
 @Controller
@@ -54,6 +55,7 @@ public class ProductController {
 	
 	}
 	
+	//상품 검색하기
 	@PostMapping("/product/search/{page_num}")
 	public String listSearch(Model model, HttpServletRequest request, HttpSession session) {
 		String name = request.getParameter("search_name");
@@ -77,52 +79,43 @@ public class ProductController {
 	}
 	
 	//카테고리별 상품 목록
-	@RequestMapping("/product/viewCategory/{kind}{value}")
+	@RequestMapping("/product/viewCategory/{kind}")
 	public String getListByCategory( @PathVariable("kind") String kind, Model model) {
 		List<ProductVO> vo =productService.listByKind(kind);
 		model.addAttribute("kind",vo);
-		List<ProductVO> list =productService.byKind(kind);
+		String[] arr = kind.split(" ");
+		List<ProductVO> list =productService.byKind(arr[0]);
 		model.addAttribute("list", list);
 		return "product/CategoryList";
 	}
-//	//카테고리별 메뉴
-//	@RequestMapping("/product/Category/{kind}")
-//	public String CategoryBykind(@PathVariable("kind") String kind, Model model) {
-//		List<ProductVO> list =productService.byKind(kind);
-//		model.addAttribute("list", list);
-//		return "product/CategoryMenu";
-//	}
-	
+
 	//상품 클릭시 상세 페이지로 이동.
 	@RequestMapping("/productDetail/{code}")
 	public String detailview(@PathVariable("code") String p_code, Model model, HttpServletRequest request) {
 		
-		String p_name = request.getParameter("p_name");
-		String p_kind = request.getParameter("p_kind");
-		String p_image = request.getParameter("p_image");
-		int p_price = Integer.valueOf(request.getParameter("p_price"));
-		int qty = Integer.valueOf(request.getParameter("qty"));
+//		String p_name = request.getParameter("p_name");
+//		String p_kind = request.getParameter("p_kind");
+//		String p_image = request.getParameter("p_image");
+//		int p_price = Integer.valueOf(request.getParameter("p_price"));
+//		int qty = Integer.valueOf(request.getParameter("qty"));
 		List<ProductStdVO> stdvo=productService.productstd_selectByCode(p_code);
-		
-		Product vo = new Product(p_code, p_name, p_kind, p_image, p_price, qty);
+		ProductVO vo =productService.product_selectByCode(p_code);
+		//Product vo = new Product(p_code, p_name, p_kind, p_image, p_price, qty);
 		model.addAttribute("product", vo);
 		model.addAttribute("productStd", stdvo);
 		return "product/productDetail";
 	}
 	
-	//카트나 구매하기 클릭시 사용
-	@PostMapping("/addCart")  //form url 지정
-	public String addCart(HttpServletRequest request, HttpSession session) {
-		
-		Member member = (Member)session.getAttribute("authInfo");
-		String p_code = request.getParameter("p_name");
-		String m_code = member.getM_code();
-		String p_kind = request.getParameter("p_kind");
-		String p_image = request.getParameter("p_image");
-		int p_price = Integer.valueOf(request.getParameter("p_price"));
-		int qty = Integer.valueOf(request.getParameter("qty"));
-		
-		return "product/123";
+	//구매 클릭시 사용
+	@RequestMapping("productDetail/order")  //form url 지정
+	public String orderview(Model model,CartVO cartVO) {
+		model.addAttribute("CartVO", cartVO);
+		//값 넘어 왔는지 확인.
+		System.out.println("-----------------order테스트 =-=-=-=-=--------------------");
+		System.out.println(" p_code " +cartVO.getP_code() +	" m_code " + cartVO.getM_code() +"p_name;" + cartVO.getP_name() +
+				"p_image;" + cartVO.getP_image() + "p_price;" + cartVO.getP_price() + "qty;" + cartVO.getQty() +" p_size=" + cartVO.getP_size() 
+				+" p_color=" +cartVO.getP_color() +"sumMoney;" + cartVO.getSumMoney());
+			return "product/order";  //이동 페이지 지정.
 	}
 	
 }

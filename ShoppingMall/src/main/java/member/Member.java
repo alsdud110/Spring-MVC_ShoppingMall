@@ -15,6 +15,9 @@ public class Member {
 	private String m_contact;
 	private String m_email;
 	private Timestamp rec_login;
+	private String year;
+	private String month;
+	private String day;
 	private String m_birth;
 	private String m_name;
 
@@ -43,7 +46,34 @@ public class Member {
 		this.m_birth = m_birth;
 		this.m_name = m_name;
 	}
+	
+	//회원 정보 수정 시 생년월일 값
+	//----------------------------------------
+	public String getYear() {
+		return m_birth.substring(0,4);
+	}
+	
+	public void setYear(String year) {
+		this.year = year;
+	}
+	
+	public String getMonth() {
+		return m_birth.substring(4, 6);
+	}
+	
+	public void setMonth(String month) {
+		this.month = month;
+	}
 
+	public String getDay() {
+		return m_birth.substring(6, 8);
+	}
+	
+	public void setDay(String day) {
+		this.day = day;
+	}
+	//------------------------------------------
+	
 	public String getM_code() {
 		return m_code;
 	}

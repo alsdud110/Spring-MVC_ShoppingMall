@@ -46,7 +46,7 @@ public class EditMemberController {
     		
     		editMemberService.edit(editMemberCommand, member.getM_code());
     		
-    		return "edit/editMember";
+    		return "/main";
         	
         } catch(Exception e) {
         	//errors.reject("");

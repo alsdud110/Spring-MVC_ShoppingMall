@@ -61,17 +61,7 @@ public class RegisterCommand {
 	}
 
 	public String getM_birth() {
-		if(Integer.parseInt(month) >= 10) {
-			this.month = month;
-		}else {
-			this.month = "0"+month;
-		}
-		if(Integer.parseInt(day) >= 10) {
-			this.day = month;
-		}else {
-			this.day = "0"+day;
-		}
-		return year + "년 " + month + "월 " + day + "일";
+		return year + month + day;
 	}
 
 	public void setM_birth(String m_birth) {
@@ -79,7 +69,7 @@ public class RegisterCommand {
 	}
 
 	public String getM_addr() {
-		return addr_road + " " + addr_detail;
+		return addr_road + " ," + addr_detail;
 	}
 	
 	public void setM_addr(String m_addr) {

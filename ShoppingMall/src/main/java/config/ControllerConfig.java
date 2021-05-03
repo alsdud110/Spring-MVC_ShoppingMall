@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import cart.CartController;
+import cart.CartService;
 import controller.MainController;
 import edit.ChangePasswordService;
 import edit.ChangePwdController;
@@ -33,15 +34,18 @@ public class ControllerConfig {
 	@Autowired
 	private MemberRegisterService memberRegisterService;
 	
-	
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private CartService cartService;
 	
 
 	@Bean
 	public RegisterController registerController() {
 		RegisterController controller = new RegisterController();
 		controller.setMemberRegisterService(memberRegisterService);
+		controller.setLoginService(loginService);
 		return controller;
 	}
 
@@ -68,12 +72,14 @@ public class ControllerConfig {
 		controller.setChangePasswordService(changePasswordService);
 		return controller;
 	}
-	/*
+
 	@Bean
-	public MainController mainController() {
-		return new MainController();
+	public MainController mainController() { //최고 판마량 제품 보여주기위해 productService 추가
+		MainController controller = new MainController();
+		controller.setProductService(productService);
+		return controller;
 	}
-*/
+
 	@Bean
 	public ProductController productController() {
 		ProductController controller = new ProductController();
@@ -83,7 +89,9 @@ public class ControllerConfig {
 
 	@Bean
 	public CartController cartController() {
-		return new CartController();
+		CartController controller = new CartController();
+		controller.setCartService(cartService);
+		return controller;
 	}
 
 }

@@ -6,10 +6,24 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+<<<<<<< HEAD
 			<item value="D:\eGovFrameDev-3.10.0-64bit\workspace\Servers"/>
 			<item value="D:\eGovFrameDev-3.10.0-64bit\workspace\ShoppingMall"/>
+=======
+<<<<<<< HEAD
+			<item value="D:\eGovFrameDev-3.10.0-64bit\workspace\ShoppingMall"/>
+			<item value="D:\eGovFrameDev-3.10.0-64bit\workspace\Servers"/>
+>>>>>>> 6ebb578e6f40821c37fd1c18b59685b96fc7d119
 			<item value="D:\spring5fs-master\sp5-chap13"/>
 			<item value="D:\eclipse-workspace\spring5fs-master\spring5fs-master\sp5-chap13"/>
+=======
+			<item value="/Users/hwangmin-yeong/eclipse-workspace-new/ShoppingMall"/>
+			<item value="/Users/hwangmin-yeong/git/ShoppingMall"/>
+			<item value="/Users/hwangmin-yeong/eclipse-workspace-new/testproject"/>
+			<item value="/Users/hwangmin-yeong/eclipse-workspace-new/testproject/ShoppingMall"/>
+>>>>>>> 황민영
 		</list>
+	</section>
+	<section name="NewWizardAction">
 	</section>
 </section>

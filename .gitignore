@@ -1,3 +1,7 @@
 Servers/
+<<<<<<< HEAD
 .metadata/
 MANIFEST.MF
+=======
+/.metadata/
+>>>>>>> 6ebb578e6f40821c37fd1c18b59685b96fc7d119

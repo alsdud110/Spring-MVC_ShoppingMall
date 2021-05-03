@@ -81,7 +81,7 @@ public class ProductDAO {
 
 	// 코드로 상품 규격 목록 가져오기
 	public List<ProductStdVO> productstdselectByCode(String code) {
-		List<ProductStdVO> results = jdbcTemplate.query("select * from PRODUCT_STD", new RowMapper<ProductStdVO>() {
+		List<ProductStdVO> results = jdbcTemplate.query("select * from PRODUCT_STD where p_code=?", new RowMapper<ProductStdVO>() {
 
 			@Override
 			public ProductStdVO mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -92,7 +92,7 @@ public class ProductDAO {
 				vo.setStock(rs.getInt("STOCK"));
 				return vo;
 			}
-		});
+		},code);
 
 		System.out.println(results.size());
 		return results;
@@ -104,13 +104,16 @@ public class ProductDAO {
 	  query( "WITH SUM_QTY AS(SELECT SUM(QTY) AS A_QTY, P_CODE FROM ORDER_PRODUCT GROUP BY P_CODE),QTY_R AS(SELECT P_CODE, ROWNUM R FROM(SELECT *FROM SUM_QTY ORDER BY A_QTY DESC)), QTY_TOP_3 AS(SELECT P_CODE FROM QTY_R WHERE R < 4)	SELECT P.*FROM PRODUCT P, QTY_TOP_3 WHERE 1 =1 AND P.P_CODE = QTY_TOP_3.P_CODE"
 	  , new RowMapper<ProductVO>() {
 	  
-	  @Override public ProductVO mapRow(ResultSet rs, int rowNum) throws
-	  SQLException { ProductVO productVO = new ProductVO();
+	  @Override public ProductVO mapRow(ResultSet rs, int rowNum) throws SQLException { 
+	  ProductVO productVO = new ProductVO();
 	  productVO.setP_CODE(rs.getString("P_CODE"));
 	  productVO.setP_NAME(rs.getString("P_NAME"));
 	  productVO.setP_IMAGE(rs.getString("P_IMAGE"));
 	  productVO.setP_PRICE(rs.getInt("P_PRICE"));
-	  return productVO; } }); return results; }
+	  return productVO; } 
+	  }); 
+	  return results; }
+	  
 	 //상품 종류만 분류
 	  public List<ProductVO> listByKind(String kind){
 		  String sql = "select P_KIND from PRODUCT where P_KIND LIKE ? group by P_KIND";
@@ -125,6 +128,19 @@ public class ProductDAO {
 				}},rekind);
 
 			return results;
+	  }
+
+	  public List<ProductVO> newProductTop3(){
+		  System.out.println("------------newtop3 시작-----------");
+		  List<ProductVO> results = jdbcTemplate.query(
+				  "WITH PRODUCT_ORDER AS(SELECT * FROM PRODUCT ORDER BY REG_DATE DESC),\r\n" + 
+				  "NEW_PRODUCT AS (SELECT P.*, ROWNUM R FROM PRODUCT_ORDER P)\r\n" + 
+				  " SELECT NP.* FROM NEW_PRODUCT NP WHERE R<4",proRowMapper);
+		  for (ProductVO m : results) { 
+				System.out.println("P_CODE=" + m.getP_CODE() + ", " +"P_NAME=" + m.getP_NAME() + ", " +
+						"P_KIND=" + m.getP_KIND() + ", " +"P_IMAGE=" + m.getP_IMAGE() + ", " + "P_PRICE=" + m.getP_PRICE());
+				}
+		  return results;
 	  }
 
 }

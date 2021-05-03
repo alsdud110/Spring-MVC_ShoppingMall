@@ -31,7 +31,7 @@ public class MemberRegisterService {
 		 * */
 		System.out.println("m_brith: " + req.getM_birth());
 		Member newMember = new Member(req.getM_code(), req.getM_id(), req.getM_pw(), req.getM_addr(), req.getM_contact(), req.getM_email(), req.getM_birth(), req.getM_name());
-		memberDao.insert(newMember);
+		memberDao.insertMember(newMember);
 		return newMember.getM_id();
 	}
 }

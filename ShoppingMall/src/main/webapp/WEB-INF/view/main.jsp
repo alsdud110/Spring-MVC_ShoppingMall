@@ -15,68 +15,12 @@
         <link rel="stylesheet" href="<c:url value = "/resources/css/slick.css"/>">
         <link rel="stylesheet" href="<c:url value = "/resources/css/nice-select.css"/>">
         <link rel="stylesheet" href="<c:url value = "/resources/css/style.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/imgArray.css"/>">
     <title>메인</title>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
-	
-	<!--top3 사용방법 -->
-	<c:forEach var="top3" items="${top3}">
-				<p>코드 ${top3.p_CODE}</p><br/>
-				<p>이름 ${top3.p_NAME}</p><br/>
-				<p> 종류${top3.p_KIND}</p><br/>
-				<p>이미지 ${top3.p_IMAGE}</p><br/>
-	</c:forEach>
-	
-	<section class="new-product-area section-padding30" style = "padding : 50px">
-            <div class="container">
-                <!-- Section tittle -->
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="section-tittle mb-70">
-                            <h2>New Arrivals</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-new-pro mb-30 text-center">
-                            <div class="product-img">
-                                <img src="<c:url value = "resources/product_1.jpeg"/>" alt="">
-                            </div>
-                            <div class="product-caption">
-                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                                <span>$ 45,743</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-new-pro mb-30 text-center">
-                            <div class="product-img">
-                               <img src="<c:url value = "resources/product_2.jpeg"/>" alt="">
-                             </div>
-                            <div class="product-caption">
-                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                                <span>$ 45,743</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-new-pro mb-30 text-center">
-                            <div class="product-img">
-                               <img src="<c:url value = "resources/product_3.jpeg"/>" alt="">
-                             </div>
-                            <div class="product-caption">
-                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                                <span>$ 45,743</span>
-                            </div>
-                        </div>
-                    </div>
-                 </div>
-             </div>
-          </section>
-          
-    <hr>      
+
 	<section class="new-product-area section-padding30" style = "padding : 50px">
             <div class="container">
                 <!-- Section tittle -->
@@ -91,33 +35,84 @@
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
                         <div class="single-new-pro mb-30 text-center">
                             <div class="product-img">
-                                <img src="<c:url value = "resources/product_4.jpeg"/>" alt="">
+
+                                <img src="<c:url value = '${top3[0].p_IMAGE }'/>"/>
                             </div>
                             <div class="product-caption">
-                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                                <span>$ 45,743</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-new-pro mb-30 text-center">
-                            <div class="product-img">
-                               <img src="<c:url value = "resources/product_5.jpeg"/>" alt="">
-                             </div>
-                            <div class="product-caption">
-                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                                <span>$ 45,743</span>
+                                <h3><a href="product_details.html">${top3[0].p_NAME }</a></h3>
+                                <span>${top3[0].p_PRICE}</span>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
                         <div class="single-new-pro mb-30 text-center">
                             <div class="product-img">
-                               <img src="<c:url value = "resources/product_6.jpeg"/>" alt="">
+                                <img src="<c:url value = '${top3[1].p_IMAGE }'/>"/>
                              </div>
                             <div class="product-caption">
-                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                                <span>$ 45,743</span>
+                                <h3><a href="product_details.html">${top3[1].p_NAME}</a></h3>
+                                <span>${top3[1].p_PRICE}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-new-pro mb-30 text-center">
+                            <div class="product-img">
+                                <img src="<c:url value = '${top3[2].p_IMAGE }'/>"/>
+                             </div>
+                            <div class="product-caption">
+                                <h3><a href="product_details.html">${top3[2].p_NAME}</a></h3>
+                                <span>${top3[1].p_PRICE}</span>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+             </div>
+          </section>
+          
+          <hr>
+	<section class="new-product-area section-padding30" style = "padding : 50px">
+            <div class="container">
+                <!-- Section tittle -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="section-tittle mb-70">
+                            <h2>New Arrival</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-new-pro mb-30 text-center">
+                            <div class="product-img">
+                                <img src="<c:url value = '${newtop3[0].p_IMAGE }'/>"/>
+                            </div>
+                            <div class="product-caption">
+                                <h3><a href="product_details.html">${newtop3[0].p_NAME }</a></h3>
+                                <span>${newtop3[0].p_PRICE}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-new-pro mb-30 text-center">
+                            <div class="product-img">
+                                <img src="<c:url value = '${newtop3[1].p_IMAGE }'/>"/>
+                             </div>
+                            <div class="product-caption">
+                                <h3><a href="product_details.html">${newtop3[1].p_NAME}</a></h3>
+                                <span>${newtop3[1].p_PRICE}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-new-pro mb-30 text-center">
+                            <div class="product-img">
+                                 <img src="<c:url value = '${top3[2].p_IMAGE }'/>"/>
+                            
+                             </div>
+                            <div class="product-caption">
+                                <h3><a href="product_details.html">${newtop3[2].p_NAME}</a></h3>
+                                <span>${newtop3[1].p_PRICE}</span>
                             </div>
                         </div>
                     </div>

@@ -3,18 +3,57 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%@ page import = "member.Member" %>
 <!DOCTYPE html>
 <html>
 <head>
+
+<!-- 헤더 -->
+        <jsp:include page="../header.jsp"></jsp:include>
+<link rel="stylesheet" href="<c:url value = "/resources/css/bootstrap.min.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/owl.carousel.min.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/flaticon.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/slicknav.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/animate.min.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/magnific-popup.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/fontawesome-all.min.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/themify-icons.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/slick.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/nice-select.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/style.css"/>">
+        
+<!-- 메인로고 -->
+<a href= "<c:url value = "/main"/>">
+<center>
+<img src="https://i.pinimg.com/236x/7e/64/6b/7e646bd7120da69b67240999098e2984.jpg"> <!-- 홈페이지 로고 -->
+</center>
+</a>
+
+
+
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품 상세피이지</title>
+
+ <style>
+      table {
+        width: 100%;
+        border-top: 1px solid #444444;
+        border-collapse: collapse;
+      }
+      th, td, tr {
+        border-bottom: 1px solid #444444;
+        padding: 10px;
+        text-align: center;
+       
+     
+  
+    </style>
 
 <script type="text/javascript">
 function setQty() {
 	  const qty=document.getElementById('qty').value;
 	  const price=${product.p_PRICE};
-	document.getElementById('result').value = price*qty;
+	document.getElementById('sumMoney').value = price*qty;
 }
 
 function select(str) {
@@ -26,40 +65,75 @@ function select(str) {
 	p_size.push("${std.p_size}");
 	p_color.push("${std.p_color}");
 	</c:forEach>
-
-	alert(num);
-		
-	document.getElementById('p_color').value =p_size[num];
-	document.getElementById('p_size').value =p_color[num];
+			
+	document.getElementById('p_size').value =p_size[num];
+	document.getElementById('p_color').value =p_color[num];
 
 }
-	
+
+function InCart(){
+	var name = "${product.p_NAME}";
+	var size =document.getElementById('p_size').value;
+	var color = document.getElementById('p_color').value;
+	var qty = document.getElementById('qty').value;
+	var sumMoney = document.getElementById('sumMoney').value;
+	if(confirm(
+			"아래의 상품이 맞습니까?? \n\n"+
+			"상품명:" + name+"\n"+
+			"사이즈="+size +"\n"+
+			"컬러="+color +"\n"+
+			"수량="+qty +"\n"+
+			"총 가격="+sumMoney
+			)== true){
+		alert("담았어");
+		}
+	else{
+		alert("취소했어");
+		return false;
+	}
+}
 </script>
+
+<% 
+String m_code=null;
+Member authInfo=(Member)session.getAttribute("authInfo");
+if(authInfo !=null){
+	m_code=authInfo.getM_code();
+}
+%>
 </head>
 <body>
-	<h2>상품 클릭시 넘어올 상세페이지. 카트or구매 쪽으로 데이터 넘길 예정</h2>
-	<form:form action="123" modelAttribute = "CartVO">	<!-- action 주소 = 현재주소/123주소     : productDetail/123  >>>>>카트나 구매쪽으로 넘길 예정-->
-	<input type="hidden" name="p_code" value="${product.p_CODE}"/>	
-	<table border="1">
-	<tr>
-	<td rowspan="8">${product.p_IMAGE}
-	<input type="hidden" name="p_image" value="${product.p_IMAGE}"/>
-	</td>
-	</tr>
-	
-	<tr>
-	<td colspan="2"><p>${product.p_NAME}</p></td>
-	<input type="hidden" name="p_name" value="${product.p_NAME}"/>
+	<center>
+	<h2>상품 상세 페이지</h2>
 
+
+	<form:form modelAttribute="CartVO" onsubmit="return InCart()">	<!-- action 주소 = 현재주소/123주소     : productDetail/123  >>>>>카트나 구매쪽으로 넘길 예정-->
+
+	<input type="hidden" name="p_code" value="${product.p_CODE}"/>	
+	
+
+	
+	<table>
+
+	<tr>
+	<td rowspan="7"> <img src="${product.p_IMAGE}" width="400" height="400"></td>
+
+
+	<td>상품명</td>
+	<td><p><b>${product.p_NAME}</b></p></td>
+	<tr>
+	<input type="hidden" name="p_name" value="${product.p_NAME}"/>
 	</tr>
+
+	<td>가격</td>
+	<td><p><b>${product.p_PRICE}</b></p></td>
 	
 	<tr>
-	<td colspan="2">${product.p_PRICE}</td>
 	<input type="hidden" name="p_price" value="${product.p_PRICE}"/>
-	</tr>
-	
+</tr>
+
 	<tr>
-	<td>사이즈</td>
+	<td>size</td>
 	<td>
 	<select name="str" onchange="select(this.value)">
 	<option value="none">=== 선택 ===</option>
@@ -69,32 +143,115 @@ function select(str) {
 	</select>
 		<input type="hidden" id="p_color" name="p_color"/>  
 		<input type="hidden" id="p_size" name="p_size"/>
-	</td> 
 	</tr>
+	</td> 
+
+
+
+
 
 	<tr>
 	<td>수량</td>
+	<div align="center"></div>
 	<td>
-	<input type="text" id="qty" name="qty" onblur='setQty()'><td>
-	</td>
-	</tr>
-	
-	<tr>
-	<td colspan="2"><input type="text" id='result' name="sumMoney" value="" readonly onblur='choice()'></td> <!-- readonly : 수정불가, form 전달가능  -->
-	</tr>
-	
-	<tr>
 
-    <td colspan="2"><input type="submit" value=구매하기></td>
+<span class="product_count_item inumber-decrement"> <i class="ti-minus"></i></span>
+<input class="product_count_item input-number" type="text" id="qty" name="qty" onblur='setQty()' min="1" max="10">
+<span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
+</div>
+   
+	
+	<tr>
+	<td>총 상품 금액</td>
+	<div align="center"></div>
+<<<<<<< ShoppingMall/src/main/webapp/WEB-INF/view/product/productDetail.jsp
+	<td><input type="text" id='result' name="sumMoney" value="" readonly onblur='choice()'></td> <!-- readonly : 수정불가, form 전달가능  -->
+
+	</tr>
+	
+	<td>
+	<td>
+    <td><div class="Proceed to checkout"> <input type="submit" class="genric-btn primary e-large" value=구매하기 formaction="<c:url value="/order"/>"></td>
+
+
+<tr>
+
+	<td colspan="2"><div class="add_to_cart" "width:200px; height:150px; style=float:right; margin-right:10px;"> <a href="#" class="genric-btn primary-border e-large" formaction="<c:url value="/cart"/>">장바구니 담기</a></td></div>
+
+	<td><div class="wishlist" style=float:right;"> <a href="#" class="genric-btn primary-border e-large" formaction="<c:url value="/wishlist"/>"><i class="fa fa-heart" aria-hidden="true"></i> 위시리스트 담기</a> 
+
+	</div></td>
+	<tr></tr>
+    </tr>
+
+=======
+	<td><input type="text" id='sumMoney' name="sumMoney" value="" readonly onblur='choice()'></td> <!-- readonly : 수정불가, form 전달가능  -->
+	<td></td>
+	</tr>
+<table>
+
+    <td colspan="2"><div class="Proceed to checkout" padding:20px; align="right"> <input type="submit" class="genric-btn primary e-large" value=구매하기 formaction="<c:url value="/order"/>"></td>
 	</tr>
 	
 	<tr>
-	<td>카트 (링크추가)</td>
-	<td>wish (링크추가)</td>
-	</tr>
-
+	
+	<td>   
+	<div class="add_to_cart" align="right"> <input type="submit" class="genric-btn primary-border e-large" formaction="<c:url value="/AddCart"/>" value="장바구니 담기">
+	</div></td>
+	
+	
+	
+	
+	<td><div class="wishlist" align="left"> <a href="#" class="genric-btn primary-border e-large">위시리스트 담기</a> 
+	</div></td>
+    </tr>
+	</table>
+>>>>>>> ShoppingMall/src/main/webapp/WEB-INF/view/product/productDetail.jsp
+	<br></br>
+	<br></br>
+	<br></br>
 	</table>
 	</form:form>
+	</center>
 	
+	 <!-- Footer -->
+    <jsp:include page = "../footer.jsp"></jsp:include>
+    
+	 		<!-- JS here -->
+    <!-- All JS Custom Plugins Link Here here -->
+    <script src="<c:url value = "/resources/js/vendor/modernizr-3.5.0.min.js"/>"></script>
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="<c:url value = "/resources/js/vendor/jquery-1.12.4.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/popper.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/bootstrap.min.js"/>"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="<c:url value = "/resources/js/jquery.slicknav.min.js"/>"></script>
+
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="<c:url value = "/resources/js/owl.carousel.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/slick.min.js"/>"></script>
+
+    <!-- One Page, Animated-HeadLin -->
+    <script src="<c:url value = "/resources/js/wow.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/animated.headline.js"/>"></script>
+
+    <!-- Scroll up, nice-select, sticky -->
+    <script src="<c:url value = "/resources/js/jquery.scrollUp.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/jquery.nice-select.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/jquery.sticky.js"/>"></script>
+    <script src="<c:url value = "/resources/js/jquery.magnific-popup.js"/>"></script>
+    
+    <!-- contact js -->
+    <script src="<c:url value = "/resources/js/contact.js"/>"></script>
+    <script src="<c:url value = "/resources/js/jquery.form.js"/>"></script>
+    <script src="<c:url value = "/resources/js/jquery.validate.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/mail-script.js"/>"></script>
+    <script src="<c:url value = "/resources/js/jquery.ajaxchimp.min.js"/>"></script>
+    
+    <!-- Jquery Plugins, main Jquery -->	
+    <script src="<c:url value = "/resources/js/plugins.js"/>"></script>
+    <script src="<c:url value = "/resources/js/main.js"/>"></script>
 </body>
 </html>
+	
+

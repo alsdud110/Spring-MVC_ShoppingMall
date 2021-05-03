@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +15,44 @@
     });
 </script>
 </head>
-<body>
+<body> <!-- ${cartlist} -->
+<table>
+<tr>
+<td colspan="2">상품</td>
+<td>사이즈</td>
+<td>컬러</td>
+<td>가격</td>
+<td>수량</td>
+<td>total</td>
+</tr>
+ 
+<c:forEach var="list" items="${cartlist}">
+<tr>
+<td>${list.p_image}</td>
+<td>${list.p_name }</td>
+<td>${list.p_size }</td>
+<td>${list.p_color }</td>
+<td>${list.p_price}</td>
+<td>${list.qty }</td>
+<td>${list.qty }*${list.p_price}</td>
+</tr>
+</c:forEach> 
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+<hr>
+<h5>위 : 신규   / 아래 : 기존</h5>
+<hr>
 
     <h2>장바구니 확인</h2>
     <c:choose>

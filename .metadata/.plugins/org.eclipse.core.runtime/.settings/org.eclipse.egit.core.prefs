@@ -1,4 +1,14 @@
+<<<<<<< HEAD
 GitRepositoriesView.GitDirectories=D\:\\eGovFrameDev-3.10.0-64bit\\workspace\\.git;C\:\\Users\\h4admin\\git\\repository\\.git;
 GitRepositoriesView.GitDirectories.relative=.git;C\:\\Users\\h4admin\\git\\repository\\.git;
+=======
+<<<<<<< HEAD
+GitRepositoriesView.GitDirectories=D\:\\eGovFrameDev-3.10.0-64bit\\workspace\\.git;C\:\\Users\\h4admin\\git\\repository\\.git;
+GitRepositoriesView.GitDirectories.relative=.git;C\:\\Users\\h4admin\\git\\repository\\.git;
+=======
+GitRepositoriesView.GitDirectories=/Users/hwangmin-yeong/eclipse-workspace-new/.git\:
+GitRepositoriesView.GitDirectories.relative=.git\:
+>>>>>>> 황민영
+>>>>>>> 6ebb578e6f40821c37fd1c18b59685b96fc7d119
 core_autoIgnoreDerivedResources=false
 eclipse.preferences.version=1

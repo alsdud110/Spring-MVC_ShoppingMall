@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import cart.CartVO;
 import member.Member;
 
 @Controller
@@ -54,6 +55,7 @@ public class ProductController {
 	
 	}
 	
+	//상품 검색하기
 	@PostMapping("/product/search/{page_num}")
 	public String listSearch(Model model, HttpServletRequest request, HttpSession session) {
 		String name = request.getParameter("search_name");
@@ -103,20 +105,7 @@ public class ProductController {
 		model.addAttribute("productStd", stdvo);
 		return "product/productDetail";
 	}
-
-//	//카트나 구매하기 클릭시 사용
-//	@PostMapping("/addCart")  //form url 지정
-//	public String addCart(HttpServletRequest request, HttpSession session) {
-//		
-//		Member member = (Member)session.getAttribute("authInfo");
-//		String p_code = request.getParameter("p_name");
-//		String m_code = member.getM_code();
-//		String p_kind = request.getParameter("p_kind");
-//		String p_image = request.getParameter("p_image");
-//		int p_price = Integer.valueOf(request.getParameter("p_price"));
-//		int qty = Integer.valueOf(request.getParameter("qty"));
-//		return "product/123";
-
+	
 	//구매 클릭시 사용
 	@RequestMapping("productDetail/order")  //form url 지정
 	public String orderview(Model model,CartVO cartVO) {

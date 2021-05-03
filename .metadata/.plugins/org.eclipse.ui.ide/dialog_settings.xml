@@ -6,6 +6,8 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="D:\eGovFrameDev-3.10.0-64bit\workspace\ShoppingMall"/>
+			<item value="D:\eGovFrameDev-3.10.0-64bit\workspace\Servers"/>
 			<item value="D:\spring5fs-master\sp5-chap13"/>
 			<item value="D:\eclipse-workspace\spring5fs-master\spring5fs-master\sp5-chap13"/>
 		</list>

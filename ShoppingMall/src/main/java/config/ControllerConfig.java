@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import cart.CartController;
 import cart.CartService;
 import controller.MainController;
+import delete.DeleteMemberController;
+import delete.DeleteMemberService;
 import edit.ChangePasswordService;
 import edit.ChangePwdController;
 import edit.EditMemberController;
@@ -40,6 +42,8 @@ public class ControllerConfig {
 	@Autowired
 	private CartService cartService;
 	
+	@Autowired
+	private DeleteMemberService deleteMemberService;
 
 	@Bean
 	public RegisterController registerController() {
@@ -74,6 +78,12 @@ public class ControllerConfig {
 	}
 
 	@Bean
+	public DeleteMemberController deleteMemberController() {
+		DeleteMemberController controller = new DeleteMemberController();
+		controller.setDeleteService(deleteMemberService);
+		return controller;
+	}
+	@Bean
 	public MainController mainController() { //최고 판마량 제품 보여주기위해 productService 추가
 		MainController controller = new MainController();
 		controller.setProductService(productService);
@@ -93,5 +103,6 @@ public class ControllerConfig {
 		controller.setCartService(cartService);
 		return controller;
 	}
-
+	
+	
 }

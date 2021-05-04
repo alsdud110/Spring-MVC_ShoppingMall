@@ -11,27 +11,9 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script>
-
-	$(function(){
-		$("#findBtn").click(function(){
-			$.ajax({
-				url : "/changeFindPw",
-				type : "POST",
-				data : {
-					id : $("#m_id").val(),
-					email : $("#m_email").val()
-				},
-				success : function(result) {
-					alert(result);
-				},
-			})
-		});
-	})
- </script>
 <style type="text/css">
 .mybtn{
-  width:150px;
+  width:110px;
   height:40px;
   padding:0;
   display:inline; 
@@ -48,30 +30,48 @@
   text-decoration: none;
 }
 </style>
+<script>
+function changePw(changePwForm){
+	if(!changePwForm.m_pw.value){
+		alert('새 비밀번호를 입력하십시요.');
+		changePwForm.m_pw.focus();
+		return false;
+	}
+	
+	if(!changePwForm.m_pw_new.value){
+		alert('새 비밀번호 확인을 입력하십시오.');
+		changePwForm.m_pw_new.focus();
+		return false;
+	}
+	changePwForm.action = "findPwSuccess";
+	changePwForm.submit();
+}
+</script>
 <title>비밀번호 찾기</title>
 </head>
 <body>
 	<div class="w3-content w3-container w3-margin-top">
 		<div class="w3-container w3-card-4 w3-auto" style="width: 382px;height: 456.3px;">
 			<div class="w3-center w3-large w3-margin-top">
-				<h3>비밀번호 찾기</h3>
+				<h3>비밀번호 변경</h3>
 			</div>
 			<div>
-			<form action = "findPw" method = "post">
+			<form:form modelAttribute = "findPw" action = "findPwSuccess" method = "post" name = "changePwForm">
 				<p>
-					<label>아이디</label>
-					<input type = "text" name = "m_id" class = "w3-input" id = "m_id" placeholder = "회원가입한 아이디를 입력하세요"/>
+					<label>새 비밀번호</label>
+					<input type = "password" name = "m_pw" class = "w3-input" id = "m_pw" placeholder = "새 비밀번호를 입력하세요"/>
 				</p>
 				<p>
-					<label>이메일</label>
-					<input type = "text" name = "m_email" class = "w3-input" id = "m_email" placeholder = "회원가입한 아이디를 입력하세요"/>
+					<label>새 비밀번호 확인</label>
+					<input type = "password" name = "m_pw_new" class = "w3-input" id = "m_pw_new" placeholder = "새 비밀번호를 입력하세요"/>
 				</p>
+				<br><br><br><br>
 				<p class="w3-center">
-					<input type="submit" value = "찾기" class="w3-button w3-hover-white w3-ripple w3-margin-top w3-round mybtn">
-					<button type="button" onclick="history.go(-1);" class="w3-button w3-hover-white w3-ripple w3-margin-top w3-round mybtn">아이디 찾기</button>
-					<button type="button" onclick="history.go(-1);" class="w3-button w3-hover-white w3-ripple w3-margin-top w3-round mybtn">로그인으로</button>
+					<input type="button" value = "변경하기" onclick = "changePw(this.form)" class="w3-button w3-hover-white w3-ripple w3-margin-top w3-round mybtn">
+					<button type="button" onclick = "location.href = '<c:url value = '/main'/>'" class="w3-button w3-hover-white w3-ripple w3-margin-top w3-round mybtn">메인으로</button>
+					<button type="button" onclick = "location.href = '<c:url value = '/login/loginForm'/>'" class="w3-button w3-hover-white w3-ripple w3-margin-top w3-round mybtn">로그인으로</button>
 				</p>
-			</form>
+			</form:form>
 			</div>
 		</div>
 	</div>

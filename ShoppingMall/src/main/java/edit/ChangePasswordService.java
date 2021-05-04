@@ -24,20 +24,20 @@ public class ChangePasswordService {
 
 		member.changePassword(m_code, m_pw, new_m_pw);
 		
-		memberDao.updatePw(member);
+		memberDao.updatePwAfterLogin(member);
 
 	}
 	
-	@Transactional
-	public void findChangePassword(String m_code, String m_pw) throws Exception {
-		Member member = memberDao.selectByCode(m_code);
-		if (member == null)
-			throw new MemberNotFoundException();
+	//비밀번호 찾기
+		public String findPw(Member member) throws Exception {
+			
+			String m_code = memberDao.selectFindPW(member);
+			
+			return m_code;
+		}
 		
-		member.setM_code(m_code);
-		member.setM_pw(m_pw);
-		
-		memberDao.updatePw(member);
-
-	}
+		//비밀번호 변경
+		public void changePw(String m_pw, String m_code) throws Exception {
+			memberDao.updatePw(m_pw, m_code);
+		}
 }

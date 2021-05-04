@@ -27,7 +27,7 @@ public class MemberDao {
 			@Override
 			public Member mapRow(ResultSet rs, int nowNum) throws SQLException{
 				Member member = new Member();
-				member.setM_code(rs.getNString("m_code"));
+				member.setM_code(rs.getString("m_code"));
 				member.setM_id(rs.getString("m_id"));
 				member.setM_pw(rs.getString("m_pw"));
 				member.setM_addr(rs.getString("m_addr"));
@@ -60,36 +60,20 @@ public class MemberDao {
 		return results.isEmpty() ? null : results.get(0);  //results가 비어잇으면 null, 잇으면 0
 	}
 	
-	public List<Member> selectFindId(Member member) {
-		List<Member> results = jdbcTemplate.query(
-				"SELECT M_ID" + 
-				"FROM MEBER" + 
-				"WHERE" + 
-				"M_NAME = ? AND" + 
-				"M_EMAIL = ? AND" + 
-				"M_CONTACT = ? AND" + 
-				"M_BIRTH = ?", 
+	public String selectFindId(Member member) {
+		List<Member> resultId = jdbcTemplate.query("select * from member where m_email = ? and m_name = ?",
 				memRowMapper, 
-				member.getM_name(),
 				member.getM_email(),
-				member.getM_contact(),
-				member.getM_birth()
+				member.getM_name()
 				);
-	
-		return results.isEmpty() ? null : results;  //results가 비어잇으면 null, 잇으면 0
+		
+		return resultId.isEmpty() ? null : resultId.get(0).getM_id();  //results가 비어잇으면 null, 잇으면 0
 	}
 	
 	public String selectFindPW(Member member) {
-		List<Member> results = jdbcTemplate.query(
-				"SELECT M_CODE" + 
-				"FROM MEBER" + 
-				"WHERE" + 
-				"M_ID = ? AND" +
-				"M_NAME = ? AND" + 
-				"M_EMAIL = ? AND" + 
-				"M_CONTACT = ? AND" + 
-				"M_BIRTH = ?", 
+		List<Member> results = jdbcTemplate.query("select * from member where m_id = ? and m_name = ? and m_email = ? and m_contact = ? and m_birth = ?",
 				memRowMapper, 
+				member.getM_id(),
 				member.getM_name(),
 				member.getM_email(),
 				member.getM_contact(),
@@ -164,7 +148,7 @@ public class MemberDao {
 		});
 	}
 
-	public void updatePw(Member member) throws Exception {
+	public void updatePw(String m_pw, String m_code) throws Exception {
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con)
@@ -173,11 +157,9 @@ public class MemberDao {
 				PreparedStatement pstmt = con.prepareStatement(
 						"UPDATE MEMBER SET M_PW = ? WHERE M_CODE = ?");
 				// 인덱스 파라미터 값 설정
-				pstmt.setString(1, member.getM_pw());
-				pstmt.setString(2, member.getM_code());
+				pstmt.setString(1, m_pw);
+				pstmt.setString(2, m_code);
 				
-				pstmt.executeUpdate();
-
 				return pstmt;
 			}
 		});
@@ -190,15 +172,19 @@ public class MemberDao {
 			public PreparedStatement createPreparedStatement(Connection con)
 					throws SQLException {
 				// 파라미터로 전달받은 Connection을 이용해서 PreparedStatement 생성
-				PreparedStatement pstmt = con.prepareStatement(
-						"DELETE MEMBER WHERE M_CODE = ?");
+				PreparedStatement pstmt = con.prepareStatement("delete from member where m_code = ?");
 				// 인덱스 파라미터 값 설정
 				pstmt.setString(1, m_code);
 
-				pstmt.executeUpdate();
 				return pstmt;
 			}
 		});
+		
+	}
+
+	public void updatePwAfterLogin(Member member) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

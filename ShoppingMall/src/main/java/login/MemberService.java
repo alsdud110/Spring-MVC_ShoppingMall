@@ -16,20 +16,14 @@ public class MemberService {
 		this.memberDao = memberDao;
 	}
 
-	//비밀번호 찾기
-	public String findPw(Member member) throws Exception {
-		
-		String m_code = memberDao.selectFindPW(member);
-		
-		return m_code;
-	}
-
 	//아이디 찾기
-	public List<Member> findId(Member member) {
+	public String findId(Member member) {
 		
-		List<Member> result = memberDao.selectFindId(member);  //m_id
-		
-		return result;
+		String resultId = memberDao.selectFindId(member);  //m_id
+		System.out.println(resultId);
+		return resultId;
 	}
+	
+	
 
 }

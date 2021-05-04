@@ -19,9 +19,9 @@ public class FindIdValidator implements Validator{
 	public void validate(Object target, Errors errors) {
 		// TODO Auto-generated method stub
 		System.out.println("FindIdValidator#validate(): " + this);
-		
-		ValidationUtils.rejectIfEmpty(errors, "m_name", "required");
+	
 		ValidationUtils.rejectIfEmpty(errors, "m_email", "required");
+		ValidationUtils.rejectIfEmpty(errors, "m_name", "required");
 	}
 
 }

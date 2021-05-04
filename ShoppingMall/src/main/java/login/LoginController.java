@@ -1,7 +1,5 @@
 package login;
 
-import java.util.List;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -91,13 +89,13 @@ public class LoginController {
 
     }
     
-    @PostMapping("/findId")
-    public String findId(Errors errors, HttpSession session, HttpServletRequest request) throws Exception{
+    @RequestMapping("/findId")
+    public String findId(FindId findId, Errors errors, HttpSession session, HttpServletRequest request) throws Exception{
     	
     	Member member = new Member();
     	
-    	member.setM_name(request.getParameter("m_name"));
-    	member.setM_email(request.getParameter("m_email"));
+    	member.setM_email(findId.getM_email());
+    	member.setM_name(findId.getM_name());
     	
     	new FindIdValidator().validate(member, errors);
     	
@@ -106,9 +104,10 @@ public class LoginController {
     	}
     	
     	try {
-    		List<Member> list_id=  memberService.findId(member); //m_id
+    		String find_Id =  memberService.findId(member); //m_id
+
+    		session.setAttribute("findId", find_Id);
         	
-        	session.setAttribute("findId", list_id);
         	return "edit/findId";
     		
     	}
@@ -118,35 +117,5 @@ public class LoginController {
     	}
     }
 
-    @PostMapping("/findPw")
-    public String findPw(Errors errors, HttpSession session, HttpServletResponse response, HttpServletRequest request) throws Exception{
-    	
-    	Member member = new Member();
-    	
-    	member.setM_id(request.getParameter("m_id"));
-    	member.setM_name(request.getParameter("m_name"));
-    	member.setM_email(request.getParameter("m_email"));
-    	member.setM_contact(request.getParameter("m_contact"));
-    	member.setM_birth(request.getParameter("m_birth"));
-    	
-    	new FindPwValidator().validate(member, errors);
-    	
-    	if(errors.hasErrors()) {
-    		return "redirect:/findIdPassword";
-    	}
-    	
-    	try {
-        	String m_code = memberService.findPw(member);
-        	
-        	session.setAttribute("findpw", m_code);
-        	
-        	return "edit/findPw";
-    		
-    	}
-    	catch(Exception e){
-    		//errors.reject("");
-    		return "redirect:/findIdPassword";
-    	}
-    }
-    
+   
 }

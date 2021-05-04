@@ -29,10 +29,10 @@
 </center>
 </a>
 
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <meta charset="UTF-8">
-<title>상품 상세피이지</title>
+<title>상품 상세페이지</title>
 
  <style>
       table {
@@ -44,6 +44,11 @@
         border-bottom: 1px solid #444444;
         padding: 10px;
         text-align: center;
+       }
+       
+       .jungmin{
+       		margin-left : 253px;
+       }
        
      
   
@@ -68,8 +73,8 @@ function select(str) {
 
 	alert(num);
 		
-	document.getElementById('p_size').value =p_size[num];
-	document.getElementById('p_color').value =p_color[num];
+	document.getElementById('p_color').value =p_size[num];
+	document.getElementById('p_size').value =p_color[num];
 
 }
 	
@@ -114,7 +119,7 @@ if(authInfo !=null){
 	<tr>
 	<td>size</td>
 	<td>
-	<select name="str" onchange="select(this.value)">
+	<select class = "jungmin" name="str" onchange="select(this.value)">
 	<option value="none">=== 선택 ===</option>
 	<c:forEach var="std" items="${productStd}" varStatus="status">
 	<option value="${status.index}">${std.p_color}-${std.p_size}</option>
@@ -144,30 +149,29 @@ if(authInfo !=null){
 	<tr>
 	<td>총 상품 금액</td>
 	<div align="center"></div>
-	<td><input type="text" id='result' name="sumMoney" value="" readonly></td> <!-- readonly : 수정불가, form 전달가능  -->
+	<td><input type="text" id='result' name="sumMoney" value="" readonly onblur='choice()'></td> <!-- readonly : 수정불가, form 전달가능  -->
 
 	</tr>
 	
 	<td>
 	<td>
-    <td><div class="Proceed to checkout"> <input type="submit" class="genric-btn primary e-large" value=구매하기 formaction="<c:url value="/purchase/productDetail"/>"></td>
+    <td><div class="Proceed to checkout"> <input type="submit" class="genric-btn primary e-large" value=구매하기 formaction="<c:url value="/order"/>"></td>
 
 
 <tr>
 
-	<td colspan="2"><div class="add_to_cart" "width:200px; height:150px; style=float:right; margin-right:10px;"> <a href="#" class="genric-btn primary-border e-large" formaction="<c:url value="/addCart"/>">장바구니 담기</a></td></div>
 
-	<td><div class="wishlist" style=float:right;"> <a href="#" class="genric-btn primary-border e-large" formaction="<c:url value="/wishlist"/>"><i class="fa fa-heart" aria-hidden="true"></i> 위시리스트 담기</a> 
-
-	</div></td>
 	<tr></tr>
-
-</tr>
+    </tr>
 
 	<br></br>
 	<br></br>
 	<br></br>
 	</table>
+	<div style="margin-top:15px; margin-left:850px;">
+	<a href="${path}/cart/cartList.do"; class="genric-btn primary-border e-large" formaction="<c:url value="/cart"/>">장바구니 담기</a>
+	<a href="#" class="genric-btn primary-border e-large" formaction="<c:url value="/wishlist"/>"><i class="fa fa-heart" aria-hidden="true"></i> 위시리스트 담기</a> 
+	</div>
 	</form:form>
 	</center>
 	

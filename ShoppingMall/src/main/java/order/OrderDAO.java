@@ -70,7 +70,6 @@ public class OrderDAO {
 				pstmt.setString(1, m_code);
 				pstmt.setString(2, o_addr);
 				
-				pstmt.executeUpdate();
 				
 				pstmt = con.prepareStatement(
 						"iNSERT INTO ORDER_PRODUCT                           \r\n" + 

@@ -86,7 +86,7 @@ if(authInfo !=null){
 <body>
 	<h2 class = "text-center">상품 상세 페이지</h2>
 
-	<form:form modelAttribute = "CartVO">	<!-- action 주소 = 현재주소/123주소     : productDetail/123  >>>>>카트나 구매쪽으로 넘길 예정-->
+	<form:form modelAttribute = "CartVO" action = "accCart" method = "post">	<!-- action 주소 = 현재주소/123주소     : productDetail/123  >>>>>카트나 구매쪽으로 넘길 예정-->
 	<input type="hidden" name="p_code" value="${product.p_CODE}"/>	
 	
 
@@ -123,11 +123,6 @@ if(authInfo !=null){
 		<input type="hidden" id="p_size" name="p_size"/>
 	</tr>
 	</td> 
-
-
-
-
-
 	<tr>
 	<td>수량</td>
 	<div align="center"></div>
@@ -137,38 +132,34 @@ if(authInfo !=null){
 <input class="product_count_item input-number" type="text" id="qty" name="qty" onblur='setQty()' min="1" max="10">
 <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
 </div>
-
-   
-	
 	<tr>
 	<td>총 상품 금액</td>
 	<div align="center"></div>
 	<td><input type="text" id='result' name="sumMoney" value="" readonly></td> <!-- readonly : 수정불가, form 전달가능  -->
-
 	</tr>
-	
 	<td>
 	<td>
     <td><div class="Proceed to checkout"> <input type="submit" class="genric-btn primary e-large" value=구매하기 formaction="<c:url value="/purchase/productDetail"/>"></td>
-
-
 <tr>
-
-	<td colspan="2"><div class="add_to_cart" "width:200px; height:150px; style=float:right; margin-right:10px;"> <a href="#" class="genric-btn primary-border e-large" formaction="<c:url value="/addCart"/>">장바구니 담기</a></td></div>
-
-	<td><div class="wishlist" style=float:right;"> <a href="#" class="genric-btn primary-border e-large" formaction="<c:url value="/wishlist"/>"><i class="fa fa-heart" aria-hidden="true"></i> 위시리스트 담기</a> 
-
-	</div></td>
+	<td colspan="2">
+	<div class="add_to_cart" style="float:right; margin-right:10px; width:200px; height:150px;"> 
+	<input type = "submit" value = "장바구니 담기" class="genric-btn primary-border e-large">
+	</td>
+	</div>
+	<td>
+	<div class="wishlist" style=float:right;>
+	 <a href="#" class="genric-btn primary-border e-large" formaction="<c:url value="/wishlist"/>">
+	 <i class="fa fa-heart" aria-hidden="true"></i> 위시리스트 담기
+	 </a> 
+	</div>
+	</td>
 	<tr></tr>
-
 </tr>
-
 	<br></br>
 	<br></br>
 	<br></br>
 	</table>
 	</form:form>
-	
 	 <!-- Footer -->
     <jsp:include page = "../footer.jsp"></jsp:include>
     

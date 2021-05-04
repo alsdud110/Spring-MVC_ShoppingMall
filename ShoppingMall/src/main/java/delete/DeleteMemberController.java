@@ -43,20 +43,14 @@ public class DeleteMemberController {
 		
     	Member member = (Member)session.getAttribute("authInfo");
     	
-    	System.out.println(member.getM_code());
-    	System.out.println(member.getM_pw());
-    	System.out.println(pw);
     	if(!pw.equals(member.getM_pw())) {
-    		System.out.println("다름");
     		return "delete/deleteForm";
     	}
     		try {
-    			System.out.println("삭제 시작");
     			deleteMemberService.delete(member.getM_code());
-    			System.out.println("삭제완료");
     			session.invalidate();
     			
-//        	response.reset();
+    			response.reset();
     			
     			return "redirect:/main";
     			

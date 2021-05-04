@@ -180,7 +180,6 @@ public class MemberDao {
 			}
 		});
 		
-		System.out.println("삭제성공!");
 	}
 
 	public void updatePwAfterLogin(Member member) {

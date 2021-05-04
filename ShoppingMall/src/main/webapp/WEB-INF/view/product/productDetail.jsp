@@ -29,10 +29,10 @@
 </center>
 </a>
 
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <meta charset="UTF-8">
-<title>상품 상세피이지</title>
+<title>상품 상세페이지</title>
 
  <style>
       table {
@@ -44,6 +44,11 @@
         border-bottom: 1px solid #444444;
         padding: 10px;
         text-align: center;
+       }
+       
+       .jungmin{
+       		margin-left : 253px;
+       }
        
      
   
@@ -68,8 +73,8 @@ function select(str) {
 
 	alert(num);
 		
-	document.getElementById('p_size').value =p_size[num];
-	document.getElementById('p_color').value =p_color[num];
+	document.getElementById('p_color').value =p_size[num];
+	document.getElementById('p_size').value =p_color[num];
 
 }
 	
@@ -139,26 +144,23 @@ if(authInfo !=null){
 	</tr>
 	<td>
 	<td>
-    <td><div class="Proceed to checkout"> <input type="submit" class="genric-btn primary e-large" value=구매하기 formaction="<c:url value="/purchase/productDetail"/>"></td>
+    <td><div class="Proceed to checkout"> <input type="submit" class="genric-btn primary e-large" value=구매하기 formaction="<c:url value="/order"/>"></td>
+
+
 <tr>
-	<td colspan="2">
-	<div class="add_to_cart" style="float:right; margin-right:10px; width:200px; height:150px;"> 
-	<input type = "submit" value = "장바구니 담기" class="genric-btn primary-border e-large">
-	</td>
-	</div>
-	<td>
-	<div class="wishlist" style=float:right;>
-	 <a href="#" class="genric-btn primary-border e-large" formaction="<c:url value="/wishlist"/>">
-	 <i class="fa fa-heart" aria-hidden="true"></i> 위시리스트 담기
-	 </a> 
-	</div>
-	</td>
+
+
 	<tr></tr>
-</tr>
+    </tr>
+
 	<br></br>
 	<br></br>
 	<br></br>
 	</table>
+	<div style="margin-top:15px; margin-left:850px;">
+	<a href="${path}/cart/cartList.do"; class="genric-btn primary-border e-large" formaction="<c:url value="/cart"/>">장바구니 담기</a>
+	<a href="#" class="genric-btn primary-border e-large" formaction="<c:url value="/wishlist"/>"><i class="fa fa-heart" aria-hidden="true"></i> 위시리스트 담기</a> 
+	</div>
 	</form:form>
 	 <!-- Footer -->
     <jsp:include page = "../footer.jsp"></jsp:include>

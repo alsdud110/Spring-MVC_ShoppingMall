@@ -6,6 +6,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>상품장바구니 목록</title>
 	<jsp:include page="../header.jsp"></jsp:include>
+	<link rel="stylesheet" href="<c:url value = "/resources/css/bootstrap.min.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/owl.carousel.min.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/flaticon.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/slicknav.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/animate.min.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/magnific-popup.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/fontawesome-all.min.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/themify-icons.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/slick.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/nice-select.css"/>">
+        <link rel="stylesheet" href="<c:url value = "/resources/css/style.css"/>">
+        
 <script>
     $(document).ready(function(){
         // 리스트 페이지로 이동
@@ -16,6 +28,16 @@
 </script>
 </head>
 <body> <!-- ${cartlist} -->
+<h2>SHOPPING CART</h2>
+
+<center>
+<div>
+  <span class="this" title="현재페이지"><b>Cart</b></span>
+  <span>Order</span>
+  <span class="end">Order confirmed</span>         
+</div>
+</center>
+
 <table>
 <tr>
 <td colspan="2">상품</td>
@@ -49,7 +71,6 @@
 
 
 
-
 <hr>
 <h5>위 : 신규   / 아래 : 기존</h5>
 <hr>
@@ -73,17 +94,17 @@
                         ${row.productName}
                     </td>
                     <td style="width: 80px" align="right">
-                        <fmt:formatNumber pattern="###,###,###" value="${row.productPrice}"/>
+                        <fmt:formatNumber pattern="###,###,###" value="${row.p_price}"/>
                     </td>
                     <td>
-                        <input type="number" style="width: 40px" name="amount" value="${row.amount}" min="1">
-                        <input type="hidden" name="productId" value="${row.productId}">
+                        <input type="number" style="width: 40px" name="amount" value="${row.qty}" min="1">
+                        <input type="hidden" name="p_code" value="${row.p_code}">
                     </td>
                     <td style="width: 100px" align="right">
                         <fmt:formatNumber pattern="###,###,###" value="${row.money}"/>
                     </td>
                     <td>
-                        <a href="${path}/shop/cart/delete.do?cartId=${row.cartId}">삭제</a>
+                        <a href="${path}/cart/delete.do?cartId=${row.cartId}">삭제</a>
                     </td>
                 </tr>
                 </c:forEach>
@@ -99,5 +120,50 @@
 		</c:otherwise>
         </c:choose>
     <button type="button" id="btnList">상품목록</button>
+    
+    
+    
+     <!-- Footer -->
+    <jsp:include page = "../footer.jsp"></jsp:include>
+    
+	 		<!-- JS here -->
+    <!-- All JS Custom Plugins Link Here here -->
+    <script src="<c:url value = "/resources/js/vendor/modernizr-3.5.0.min.js"/>"></script>
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="<c:url value = "/resources/js/vendor/jquery-1.12.4.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/popper.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/bootstrap.min.js"/>"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="<c:url value = "/resources/js/jquery.slicknav.min.js"/>"></script>
+
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="<c:url value = "/resources/js/owl.carousel.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/slick.min.js"/>"></script>
+
+    <!-- One Page, Animated-HeadLin -->
+    <script src="<c:url value = "/resources/js/wow.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/animated.headline.js"/>"></script>
+
+    <!-- Scroll up, nice-select, sticky -->
+    <script src="<c:url value = "/resources/js/jquery.scrollUp.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/jquery.nice-select.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/jquery.sticky.js"/>"></script>
+    <script src="<c:url value = "/resources/js/jquery.magnific-popup.js"/>"></script>
+    
+    <!-- contact js -->
+    <script src="<c:url value = "/resources/js/contact.js"/>"></script>
+    <script src="<c:url value = "/resources/js/jquery.form.js"/>"></script>
+    <script src="<c:url value = "/resources/js/jquery.validate.min.js"/>"></script>
+    <script src="<c:url value = "/resources/js/mail-script.js"/>"></script>
+    <script src="<c:url value = "/resources/js/jquery.ajaxchimp.min.js"/>"></script>
+    
+    <!-- Jquery Plugins, main Jquery -->	
+    <script src="<c:url value = "/resources/js/plugins.js"/>"></script>
+    <script src="<c:url value = "/resources/js/main.js"/>"></script>
+</body>
+</html>
+	
+
+    
 </body>
 </html>

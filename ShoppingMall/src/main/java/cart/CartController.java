@@ -47,8 +47,8 @@ public class CartController {
 		
 		String p_code = request.getParameter("p_code");
 		String m_code = (String)((Member) session.getAttribute("authInfo")).getM_code();
-		String p_size = request.getParameter("p_size");
-		String p_color = request.getParameter("p_color");
+		String p_size = "Large";
+		String p_color = "White";
 		int qty = Integer.valueOf(request.getParameter("qty"));
 		
 		CartVO cart = new CartVO(p_code, m_code, p_size, p_color, qty);
@@ -56,6 +56,7 @@ public class CartController {
 		new CartValidator().validate(cart, errors);
 		
 		if (errors.hasErrors()) {
+			System.out.println("ERROR");
 			return "redirect:/productDetail/{"+ p_code + "}";
 		}
 		
@@ -67,13 +68,15 @@ public class CartController {
 				List<CartVO> cart_list = cartService.cartview(m_code);
 				
 				session.setAttribute("cartInfo", cart_list);
+				
 			}
 			
+			System.out.println("담겨짐");
 			//추가 성공
 			return "redirect:/productDetail/{"+ p_code + "}";
 		}
 		catch(Exception e) {
-			
+			System.out.println("안 담겨짐");
 			//추가 실패
 			return "redirect:/productDetail/{"+ p_code + "}";
 		}

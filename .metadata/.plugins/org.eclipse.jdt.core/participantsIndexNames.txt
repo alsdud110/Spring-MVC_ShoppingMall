@@ -17,6 +17,8 @@ D:\eGovFrameDev-3.10.0-64bit\workspace\.metadata\.plugins\org.eclipse.jst.jsp.co
 /ShoppingMall/src/main/java
 D:\eGovFrameDev-3.10.0-64bit\workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1649961523.index
 \ShoppingMall\src\main\java
+/Users/hwangmin-yeong/eclipse-workspace-new/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/422912724.index
+/ShoppingMall/src/main/java
 /Users/hwangmin-yeong/eclipse-workspace-new/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/1960895094.index
 /ShoppingMall/src/main/java
 /Users/hwangmin-yeong/eclipse-workspace-new/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/3483826154.index

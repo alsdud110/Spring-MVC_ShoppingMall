@@ -58,7 +58,7 @@ public class OrderController {
 				
 				orderService.purchaseByPstd(m_code,o_addr,p_color,p_size,p_code,qty);
 				
-				return "order/123";
+				return "order/order";
 				
 			} catch(Exception e) {
 				//Exception 처리 나중에

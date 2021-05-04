@@ -24,18 +24,13 @@ public class CartController {
 	
 
 	@RequestMapping("/cart")
-	public String cart(HttpSession session) {
+	public String cart(HttpSession session,Model model) {
 		
 		if(session.getAttribute("authInfo") != null) {
-			
-			//session에 카트 정보 설정
-			if(session.getAttribute("cartInfo") == null) {
-				String m_code = (String)((Member) session.getAttribute("authInfo")).getM_code();
-				
-				List<CartVO> cart_list = cartService.cartview(m_code);
-				
-				session.setAttribute("cartInfo", cart_list);
-			}
+			Member authInfo=(Member)session.getAttribute("authInfo");
+			String m_code=authInfo.getM_code();
+			List<CartVO> vo=cartService.cartview(m_code);
+			model.addAttribute("cartlist", vo);
 			return "cart/cartList";
 		}
 		return "login/loginForm";
@@ -43,6 +38,7 @@ public class CartController {
 	
 	//카트에 상품 추가
 	@PostMapping("/addCart")
+<<<<<<< HEAD
 	public String addCart(HttpServletRequest request, HttpSession session, Errors errors) {
 		
 		String p_code = request.getParameter("p_code");
@@ -58,8 +54,25 @@ public class CartController {
 		if (errors.hasErrors()) {
 			System.out.println("ERROR");
 			return "redirect:/productDetail/{"+ p_code + "}";
+=======
+	public String addCart(HttpSession session,Model model,CartVO cartVO) {
+		Member authInfo=(Member)session.getAttribute("authInfo");
+		String m_code=authInfo.getM_code();
+		cartVO.setM_code(m_code);
+		if(m_code==null) {
+			return "redirect:/main";
+>>>>>>> 이상훈
 		}
+		cartService.addCart(cartVO);
+		model.addAttribute("CartVO", cartVO);
+		//값 넘어 왔는지 확인. 비 회원시 m_code는??
+		System.out.println("-----------------cart테스트 =-=-=-=-=--------------------");
+		System.out.println(" p_code " +cartVO.getP_code() +	" m_code " + cartVO.getM_code() +"p_name;" + cartVO.getP_name() +
+				"p_image;" + cartVO.getP_image() + "p_price;" + cartVO.getP_price() + "qty;" + cartVO.getQty() +" p_size=" + cartVO.getP_size() 
+				+" p_color=" +cartVO.getP_color() +"sumMoney;" + cartVO.getSumMoney());
+		return "cart/insert";
 		
+<<<<<<< HEAD
 		try {
 			cartService.addCart(cart);
 
@@ -80,6 +93,32 @@ public class CartController {
 			//추가 실패
 			return "redirect:/productDetail/{"+ p_code + "}";
 		}
+=======
+//		new CartValidator().validate(cartVO, errors);
+//		
+//		if (errors.hasErrors()) {
+//			return "redirect:/productDetail/{"+ cartVO.getP_code() + "}";
+//		}
+//		
+//		try {
+//			cartService.addCart(cart);
+//
+//			//갱신된 정보 session에 재설정
+//			if (session.getAttribute("cartInfo") != null) {
+//				List<CartVO> cart_list = cartService.cartview(m_code);
+//				
+//				session.setAttribute("cartInfo", cart_list);
+//			}
+//			
+//			//추가 성공
+//			return "redirect:/productDetail/{"+ p_code + "}";
+//		}
+//		catch(Exception e) {
+//			
+//			//추가 실패
+//			return "redirect:/productDetail/{"+ p_code + "}";
+//		}
+>>>>>>> 이상훈
 		
 	}
 	
@@ -141,6 +180,16 @@ public class CartController {
 			return "redirect:/cart";
 		}
 		
+	}
+	
+	@PostMapping("/test")
+	public String testCart(HttpSession session,Model model,CartVO cartVO) {
+		
+		System.out.println("-----------------test 테스트 =-=-=-=-=--------------------");
+		System.out.println(" p_code " +cartVO.getP_code() +	" m_code " + cartVO.getM_code() +"p_name;" + cartVO.getP_name() +
+				"p_image;" + cartVO.getP_image() + "p_price;" + cartVO.getP_price() + "qty;" + cartVO.getQty() +" p_size=" + cartVO.getP_size() 
+				+" p_color=" +cartVO.getP_color() +"sumMoney;" + cartVO.getSumMoney());
+	return "cart/carttest";
 	}
 	
 }

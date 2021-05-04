@@ -149,7 +149,15 @@ if(authInfo !=null){
 
 <tr>
 
+<<<<<<< HEAD
 
+=======
+	<td colspan="2"><div class="add_to_cart" "width:200px; height:150px; style=float:right; margin-right:10px;"> <input type="submit" class="genric-btn primary e-large" value="장바구니 담기" formaction="<c:url value="/addCart"/>"></td></div>
+																												
+	<td><div class="wishlist" style=float:right;"> <a href="#" class="genric-btn primary-border e-large" formaction="<c:url value="/wishlist"/>"><i class="fa fa-heart" aria-hidden="true"></i> 위시리스트 담기</a> 
+
+	</div></td>
+>>>>>>> 이상훈
 	<tr></tr>
     </tr>
 

@@ -11,22 +11,19 @@ private CartDAO cartDAO;
 		this.cartDAO = cartDAO;
 	}
 
-	//아직 오류 처리 안됨
-	public int addCart(CartVO cart) {
-		int num = 0;
-		
-		try {
-			cartDAO.insertCart(cart);
-			
-			num = 1;
-		}
-		catch(Exception e) {
-			num = 0;
-		}
-		
-		return num;
+	public CartVO addCart(CartVO cartVO) {
+		System.out.println("동작?");
+		cartDAO.insert(cartVO);
+		return cartVO;
+//		try {
+//			cartDAO.insertCart(cart);
+//			
+//			num = 1;
+//		}
+//		catch(Exception e) {
+//			num = 0;
+//		}
 	}
-	
 	public void updateQty(String m_code, String[] p_code_list, String[] qty_list, String[] p_size_list, String[] p_color_list) {
 		
 		cartDAO.updateQty(m_code, p_code_list, qty_list, p_size_list, p_color_list);

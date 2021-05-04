@@ -110,12 +110,12 @@
                 </c:forEach>
                 <tr>
                     <td colspan="5" align="right">
-                        장바구니 금액 합계 : <fmt:formatNumber pattern="###,###,###" value="${map.sumMoney}"/><br>
+                        	장바구니 금액 합계 : <fmt:formatNumber pattern="###,###,###" value="${map.sumMoney}"/><br>
                     </td>
                 </tr>
             </table>
             <input type="hidden" name="count" value="${map.count}">
-            <button type="submit" id="btnUpdate">수정</button>
+            <button type="submit" id="updateCart">수정</button>
         </form>
 		</c:otherwise>
         </c:choose>

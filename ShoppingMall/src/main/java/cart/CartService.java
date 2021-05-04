@@ -27,9 +27,9 @@ private CartDAO cartDAO;
 		return num;
 	}
 	
-	public void updateQty(String m_code, String[] p_code_list, String[] qty_list) {
+	public void updateQty(String m_code, String[] p_code_list, String[] qty_list, String[] p_size_list, String[] p_color_list) {
 		
-		cartDAO.updateQty(m_code, p_code_list, qty_list);
+		cartDAO.updateQty(m_code, p_code_list, qty_list, p_size_list, p_color_list);
 	}
 	
 	//카트 정보 불러오기
@@ -41,9 +41,9 @@ private CartDAO cartDAO;
 	}
 
 	//카트 정보 삭제
-	public void deleteCart(String[] p_code_list, String m_code) {
+	public void deleteCart(String[] p_code_list, String[] p_size_list, String[] p_color_list, String m_code) {
 		
-		cartDAO.deleteCart(p_code_list, m_code);
+		cartDAO.deleteCart(p_code_list, p_size_list, p_color_list, m_code);
 
 	}
 

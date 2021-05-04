@@ -78,7 +78,7 @@ public class CartDAO {
          });
       }
       
-      public void deleteCart(String[] p_code_list, String m_code) {
+      public void deleteCart(String[] p_code_list, String[] p_size_list, String[] p_color_list, String m_code) {
          jdbcTemplate.update(new PreparedStatementCreator() {
             @Override
             public PreparedStatement createPreparedStatement(Connection con)
@@ -86,18 +86,29 @@ public class CartDAO {
                // 파라미터로 전달받은 Connection을 이용해서 PreparedStatement 생성
                PreparedStatement pstmt = null;
                // 인덱스 파라미터 값 설정
-               for(String p_code: p_code_list) {
+               for(int i=0; i < p_code_list.length; i++ ) {
+                   String p_code = p_code_list[i];
+                   String p_size = p_size_list[i];
+                   String p_color = p_size_list[i];
                   pstmt = con.prepareStatement(
-                        "DELETE FROM CART WHERE M_CODE = ? AND P_CODE = ?");
+                        "DELETE FROM CART "
+                        + "WHERE "
+                        + "		1=1 AND"
+                        + "		M_CODE = ? AND "
+                        + "		P_CODE = ? AND"
+                        + "		P_SIZE = ? AND"
+                        + "		P_COLOR = ?");
                   pstmt.setString(1, m_code);
                   pstmt.setString(2, p_code);
+                  pstmt.setString(3, p_size);
+                  pstmt.setString(4, p_color);
                }
                return pstmt;
             }
          });
       }
 
-      public void updateQty(String m_code, String[] p_code_list, String[] qty_list) {
+      public void updateQty(String m_code, String[] p_code_list, String[] qty_list, String[] p_size_list, String[] p_color_list) {
          // TODO Auto-generated method stub
          jdbcTemplate.update(new PreparedStatementCreator() {
             @Override
@@ -108,15 +119,22 @@ public class CartDAO {
                // 인덱스 파라미터 값 설정
                for(int i=0; i < p_code_list.length; i++ ) {
                   String p_code = p_code_list[i];
+                  String p_size = p_size_list[i];
+                  String p_color = p_size_list[i];
                   String qty = qty_list[i];
                   pstmt = con.prepareStatement(
                         "UPDATE CART"
                         + " SET QTY = ? "
                         + "WHERE M_CODE = ? AND"
-                        + "P_CODE = ?");
+                        + "P_CODE = ? AND"
+                        + "P_SIZE = ? AND"
+                        + "P_COLOR = ?"
+                        );
                   pstmt.setString(1, qty);
                   pstmt.setString(2, m_code);
-                  pstmt.setString(2, p_code);
+                  pstmt.setString(3, p_code);
+                  pstmt.setString(4, p_size);
+                  pstmt.setString(5, p_color);
                }
                return pstmt;
             }

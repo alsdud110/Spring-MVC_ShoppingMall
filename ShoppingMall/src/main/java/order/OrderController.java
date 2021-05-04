@@ -49,11 +49,13 @@ public class OrderController {
 		if(request.getParameter("order_route") == "p_std") {
 			
 			String p_code = request.getParameter("p_code");
+			String p_size = request.getParameter("p_size");
+			String p_color = request.getParameter("p_color");
 			String qty = request.getParameter("qty");
 			
 			try {
 				
-				orderService.purchaseByPstd(m_code, o_addr, p_code, qty);
+				orderService.purchaseByPstd(m_code, o_addr, p_code,  p_size, p_color, qty);
 				
 				return "order/purchaseComplete";
 				

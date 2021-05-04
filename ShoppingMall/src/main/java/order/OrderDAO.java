@@ -54,7 +54,7 @@ public class OrderDAO {
 	}
 	
 	//상품 정보 페이지에서 주문 정보 담기
-	public void insertOrderByPstd(String m_code, String p_code, String o_addr, String qty) {
+	public void insertOrderByPstd(String m_code, String o_addr, String p_code, String p_size, String p_color, String qty) {
 
 		//결론적으로 orderlist에 담기는 정보는 하나가 아닌 한꺼번에 bulk insert 과정이 절대적으로 필요
 		jdbcTemplate.update(new PreparedStatementCreator() {
@@ -74,17 +74,16 @@ public class OrderDAO {
 				
 				pstmt = con.prepareStatement(
 						"INSERT INTO ORDER_PRODUCT" + 
-						"SELECT O.O_CODE, INFO.*, ?" + 
-						"FROM  ORDER_LIST O," + 
-						"      (SELECT STD.P_SIZE, STD.P_COLOR" + 
-						"        FROM PRODUCT_STD STD" + 
-						"       WHERE STD.P_CODE = ?) INFO" + 
+						"SELECT O_CODE, ?, ?, ?" + 
+						"FROM  ORDER_LIST"+
 						"WHERE" + 
 						"    1=1 AND" + 
 						"    O.M_CODE = ?");
 				pstmt.setString(1, qty);
-				pstmt.setString(2, p_code);
-				pstmt.setString(3, m_code);
+				pstmt.setString(2, p_size);
+				pstmt.setString(3, p_color);
+				pstmt.setString(4, p_code);
+				pstmt.setString(5, m_code);
 				return pstmt;
 			}
 		});

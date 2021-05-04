@@ -23,6 +23,7 @@ public class CartController {
 	}
 	
 
+	@RequestMapping("/cart")
 	public String cart(HttpSession session) {
 		
 		if(session.getAttribute("authInfo") != null) {
@@ -42,10 +43,7 @@ public class CartController {
 	
 	//카트에 상품 추가
 	@PostMapping("/addCart")
-	public int addCart(HttpServletRequest request, HttpSession session, Errors errors) {
-		
-		//추가 실행 자체가 안됨
-		int cart_val = 0;
+	public String addCart(HttpServletRequest request, HttpSession session, Errors errors) {
 		
 		String p_code = request.getParameter("p_code");
 		String m_code = (String)((Member) session.getAttribute("authInfo")).getM_code();
@@ -58,7 +56,7 @@ public class CartController {
 		new CartValidator().validate(cart, errors);
 		
 		if (errors.hasErrors()) {
-			cart_val = -1;
+			return "redirect:/productDetail/{"+ p_code + "}";
 		}
 		
 		try {
@@ -72,26 +70,24 @@ public class CartController {
 			}
 			
 			//추가 성공
-			cart_val = 1;
+			return "redirect:/productDetail/{"+ p_code + "}";
 		}
 		catch(Exception e) {
 			
 			//추가 실패
-			cart_val = -1;
+			return "redirect:/productDetail/{"+ p_code + "}";
 		}
-		
-		return cart_val;
 		
 	}
 	
-	public int updateCart(HttpServletRequest request, HttpSession session, Errors errors) {
-		
-		int upt_cart_val = 0;
+	@PostMapping("/updateCart")
+	public String updateCart(HttpServletRequest request, HttpSession session, Errors errors) {
 		
 		String m_code = (String)((Member) session.getAttribute("authInfo")).getM_code();
+		String[] p_size_list = request.getParameterValues("p_size");
+		String[] p_color_list = request.getParameterValues("p_color");
 		String[] p_code_list = request.getParameterValues("p_code");
 		String[] qty_list = request.getParameterValues("qty");
-		
 		
 		try {
 
@@ -102,31 +98,30 @@ public class CartController {
 				session.setAttribute("cartInfo", cart_list);
 			}
 			
-			cartService.updateQty(m_code, p_code_list, qty_list);
+			cartService.updateQty(m_code, p_code_list, qty_list, p_size_list, p_color_list);
 			//추가 성공
-			upt_cart_val = 1;
+			return "redirect:/cart";
 		}
 		catch(Exception e) {
 			
 			//추가 실패
-			upt_cart_val = -1;
+			return "redirect:/cart";
 		}
 		
-		return upt_cart_val;
 	}
 	
 	//장바구니 정보 삭제
-	public int deleteCart(HttpServletRequest request, HttpSession session, Errors errors) {
-		
-		//삭제 자체가 실행 안됨
-		int cart_del_val = 0;
+	@PostMapping("/deleteCart")
+	public String deleteCart(HttpServletRequest request, HttpSession session, Errors errors) {
 		
 		//p_code를 list로 형태로 가져옴
-		String[] p_code = request.getParameterValues("p_code");
+		String[] p_code_list = request.getParameterValues("p_code");
+		String[] p_size_list = request.getParameterValues("p_size");
+		String[] p_color_list = request.getParameterValues("p_color");
 		String m_code = (String)((Member) session.getAttribute("authInfo")).getM_code();
 		
 		try {
-			cartService.deleteCart(p_code, m_code);
+			cartService.deleteCart(p_code_list, p_size_list, p_color_list, m_code);
 
 			//갱신된 정보 session에 재설정
 			if (session.getAttribute("cartInfo") != null) {
@@ -136,14 +131,13 @@ public class CartController {
 			}
 			
 			//삭제 성공
-			cart_del_val = 1;
+			return "redirect:/cart";
 		}
 		catch(Exception e) {
 			//삭제 실패
-			cart_del_val = -1;
+			return "redirect:/cart";
 		}
 		
-		return cart_del_val;
 	}
 	
 }

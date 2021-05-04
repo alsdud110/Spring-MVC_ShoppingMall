@@ -45,12 +45,11 @@ public class ControllerConfig {
 	private CartService cartService;
 	
 	@Autowired
-<<<<<<< HEAD
 	private DeleteMemberService deleteMemberService;
 
-=======
+	@Autowired
 	private OrderService orderService;
->>>>>>> 이상훈
+
 	@Bean
 	public RegisterController registerController() {
 		RegisterController controller = new RegisterController();
@@ -109,10 +108,6 @@ public class ControllerConfig {
 		controller.setCartService(cartService);
 		return controller;
 	}
-<<<<<<< HEAD
-	
-	
-=======
 
 	@Bean
 	public OrderController orderController() {
@@ -120,5 +115,5 @@ public class ControllerConfig {
 		controller.setOrderService(orderService);
 		return controller;
 	}
->>>>>>> 이상훈
+
 }

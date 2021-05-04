@@ -12,9 +12,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 
-import member.Member;
-import product.ProductVO;
-
 public class CartDAO {
 
    // JdbcTemplate 객체 생성
@@ -33,8 +30,8 @@ public class CartDAO {
             cart.setP_name(rs.getString("P_NAME"));
             cart.setP_image(rs.getString("P_IMAGE"));
             cart.setP_price(rs.getInt("P_PRICE"));
-            cart.setQty(rs.getInt("P_CODE"));
-            cart.setP_code(rs.getString("P_CODE"));
+            cart.setQty(rs.getInt("QTY"));
+            cart.setP_size(rs.getNString("P_SIZE"));
             cart.setP_color(rs.getString("P_COLOR"));
             cart.setSumMoney(0);
             cart.setStr("");
@@ -47,36 +44,33 @@ public class CartDAO {
       
       //Cart, Product 정보 가져오기
       public List<CartVO> showCart(String m_code) {
-         List<CartVO> results = jdbcTemplate.query("SELECT P.*, REG_DATE_C, QTY, P_SIZE, P_COLOR \r\n" + 
-               "FROM PRODUCT P, CART C" + 
-               "WHERE" + 
-               "1=1 AND" +
-               "M_CODE = ? AND" +
-               "P.P_CODE = C.P_CODE" + 
-               "", cartRowMapper, m_code);
+         List<CartVO> results = jdbcTemplate.query("select c.*,p.p_name,p.p_price,p.p_image from cart c,product p where 1=1 and c.p_code=p.p_code and m_code=?", cartRowMapper, m_code);
          
          
          return results.isEmpty() ? null : results;
       }
       
-      public void insertCart(CartVO cartvo) {
-         jdbcTemplate.update(new PreparedStatementCreator() {
-            @Override
-            public PreparedStatement createPreparedStatement(Connection con)
-                  throws SQLException {
-               // 파라미터로 전달받은 Connection을 이용해서 PreparedStatement 생성
-               PreparedStatement pstmt = con.prepareStatement(
-                     "insert into cart(m_code, p_code,qty, p_size, p_color, reg_date_c) values(?,?,?,?,?,sysdate)");
-               // 인덱스 파라미터 값 설정
-               pstmt.setString(1, cartvo.getM_code());
-               pstmt.setString(2, cartvo.getP_code());
-               pstmt.setInt(3, cartvo.getQty());
-               pstmt.setString(4, cartvo.getP_size());
-               pstmt.setString(5, cartvo.getP_color());
-               return pstmt;
-            }
-         });
-      }
+  	public void insert(CartVO cartvo) {
+		jdbcTemplate.update(new PreparedStatementCreator() {
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+				// 파라미터로 전달받은 Connection을 이용해서 PreparedStatement 생성
+				PreparedStatement pstmt = con.prepareStatement("insert into cart values(?,?,sysdate,?,?,?)");
+				// 인덱스 파라미터 값 설정
+				if (cartvo.getM_code() != null) {
+					pstmt.setString(1, cartvo.getM_code());
+				} else {
+					pstmt.setString(1, "C1644DED398F5EF1E05011AC140021AA");
+				}
+
+				pstmt.setString(2, cartvo.getP_code());
+				pstmt.setInt(3, cartvo.getQty());
+				pstmt.setString(4, cartvo.getP_size());
+				pstmt.setString(5, cartvo.getP_color());
+				return pstmt;
+			}
+		});
+	}
       
       public void deleteCart(String[] p_code_list, String[] p_size_list, String[] p_color_list, String m_code) {
          jdbcTemplate.update(new PreparedStatementCreator() {

@@ -15,6 +15,8 @@ import edit.EditMemberService;
 import login.LoginService;
 import login.MemberService;
 import member.MemberDao;
+import order.OrderDAO;
+import order.OrderService;
 import product.ProductDAO;
 import product.ProductService;
 import register.IdCheckService;
@@ -115,4 +117,12 @@ public class MemberConfig {
 		return new CartService(cartDAO());
 	}
 
+	@Bean
+	public OrderDAO orderDAO() {
+		return new OrderDAO(dataSource());
+	}
+	@Bean
+	public OrderService orderService() {
+		return new OrderService(orderDAO());
+	}
 }

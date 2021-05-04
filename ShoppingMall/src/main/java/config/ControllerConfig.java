@@ -16,6 +16,8 @@ import edit.EditMemberService;
 import login.LoginController;
 import login.LoginService;
 import login.LogoutController;
+import order.OrderController;
+import order.OrderService;
 import product.ProductController;
 import product.ProductService;
 import register.MemberRegisterService;
@@ -43,8 +45,12 @@ public class ControllerConfig {
 	private CartService cartService;
 	
 	@Autowired
+<<<<<<< HEAD
 	private DeleteMemberService deleteMemberService;
 
+=======
+	private OrderService orderService;
+>>>>>>> 이상훈
 	@Bean
 	public RegisterController registerController() {
 		RegisterController controller = new RegisterController();
@@ -103,6 +109,16 @@ public class ControllerConfig {
 		controller.setCartService(cartService);
 		return controller;
 	}
+<<<<<<< HEAD
 	
 	
+=======
+
+	@Bean
+	public OrderController orderController() {
+		OrderController controller = new OrderController();
+		controller.setOrderService(orderService);
+		return controller;
+	}
+>>>>>>> 이상훈
 }

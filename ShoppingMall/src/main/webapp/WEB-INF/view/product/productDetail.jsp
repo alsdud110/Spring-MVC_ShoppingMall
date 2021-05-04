@@ -68,8 +68,8 @@ function select(str) {
 
 	alert(num);
 		
-	document.getElementById('p_color').value =p_size[num];
-	document.getElementById('p_size').value =p_color[num];
+	document.getElementById('p_size').value =p_size[num];
+	document.getElementById('p_color').value =p_color[num];
 
 }
 	
@@ -144,13 +144,13 @@ if(authInfo !=null){
 	<tr>
 	<td>총 상품 금액</td>
 	<div align="center"></div>
-	<td><input type="text" id='result' name="sumMoney" value="" readonly onblur='choice()'></td> <!-- readonly : 수정불가, form 전달가능  -->
+	<td><input type="text" id='result' name="sumMoney" value="" readonly></td> <!-- readonly : 수정불가, form 전달가능  -->
 
 	</tr>
 	
 	<td>
 	<td>
-    <td><div class="Proceed to checkout"> <input type="submit" class="genric-btn primary e-large" value=구매하기 formaction="<c:url value="/order"/>"></td>
+    <td><div class="Proceed to checkout"> <input type="submit" class="genric-btn primary e-large" value=구매하기 formaction="<c:url value="/purchase/productDetail"/>"></td>
 
 
 <tr>

@@ -93,14 +93,9 @@ public class ProductController {
 	@RequestMapping("/productDetail/{code}")
 	public String detailview(@PathVariable("code") String p_code, Model model, HttpServletRequest request) {
 		
-//		String p_name = request.getParameter("p_name");
-//		String p_kind = request.getParameter("p_kind");
-//		String p_image = request.getParameter("p_image");
-//		int p_price = Integer.valueOf(request.getParameter("p_price"));
-//		int qty = Integer.valueOf(request.getParameter("qty"));
+
 		List<ProductStdVO> stdvo=productService.productstd_selectByCode(p_code);
 		ProductVO vo =productService.product_selectByCode(p_code);
-		//Product vo = new Product(p_code, p_name, p_kind, p_image, p_price, qty);
 		model.addAttribute("product", vo);
 		model.addAttribute("productStd", stdvo);
 		return "product/productDetail";

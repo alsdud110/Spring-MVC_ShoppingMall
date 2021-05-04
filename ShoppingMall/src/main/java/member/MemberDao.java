@@ -172,15 +172,15 @@ public class MemberDao {
 			public PreparedStatement createPreparedStatement(Connection con)
 					throws SQLException {
 				// 파라미터로 전달받은 Connection을 이용해서 PreparedStatement 생성
-				PreparedStatement pstmt = con.prepareStatement(
-						"DELETE MEMBER WHERE M_CODE = ?");
+				PreparedStatement pstmt = con.prepareStatement("delete from member where m_code = ?");
 				// 인덱스 파라미터 값 설정
 				pstmt.setString(1, m_code);
 
-				pstmt.executeUpdate();
 				return pstmt;
 			}
 		});
+		
+		System.out.println("삭제성공!");
 	}
 
 	public void updatePwAfterLogin(Member member) {

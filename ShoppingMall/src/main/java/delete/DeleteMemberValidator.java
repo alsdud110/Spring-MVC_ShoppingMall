@@ -20,8 +20,6 @@ public class DeleteMemberValidator implements Validator{
 		System.out.println("DeleteMemberValidator#validate(): " + this);
 		
 		ValidationUtils.rejectIfEmpty(errors, "m_pw", "required");
-		ValidationUtils.rejectIfEmpty(errors, "m_birth", "required");
-		ValidationUtils.rejectIfEmpty(errors, "m_contact", "required");
 		
 	}
 

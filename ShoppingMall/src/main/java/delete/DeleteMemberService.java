@@ -16,7 +16,7 @@ public class DeleteMemberService {
 	public void delete(String m_code) throws Exception {
 
 		memberDao.deleteMember(m_code);
-
+		System.out.println("YES");
 	}
 
 }

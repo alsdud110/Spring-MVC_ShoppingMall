@@ -89,7 +89,6 @@ public class MemberConfig {
 	}
 	
 	@Bean
-	
 	public DeleteMemberService deleteMemberService() {
 		return new DeleteMemberService(memberDao());
 	}

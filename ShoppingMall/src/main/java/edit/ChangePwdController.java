@@ -1,9 +1,10 @@
 package edit;
 
-import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,13 +12,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import login.FindPw;
+import login.FindPwValidator;
+import login.LoginCommand;
 import login.WrongIdPasswordException;
 import member.Member;
 
 @Controller
-@RequestMapping("/edit/changePassword")
 public class ChangePwdController {
 
+	@Autowired
 	private ChangePasswordService changePasswordService;
 
 	public void setChangePasswordService(
@@ -53,37 +57,60 @@ public class ChangePwdController {
 	}
 	
 	@RequestMapping("/findPw")
-	public String findPW() {
-		return "edit/findPw";
-	}
-	
-	@PostMapping("/findPwSuccess")
-	public String findChangePwForm(HttpSession session, Errors errors, HttpServletRequest request) {
-		String m_code = (String)session.getAttribute("findpw");
-		String m_pw = request.getParameter("m_pw");
-		String m_pw_confirmed = request.getParameter("m_pw_confirmed");
-		
-		if (m_pw == null || m_pw_confirmed == null) {
-			//errors.rejectValue("");
-			return "redirect:/findPw";
-		}
-		
-		else if (m_pw != m_pw_confirmed) {
-			//errors.rejectValue("");
-			return "redirect:/findPw";
-		}
-		
-		try {
-			
-			changePasswordService.findChangePassword(
-					m_code , m_pw);
-			return "redirect:/login";
-			
-		} catch (Exception e) {
-			//errors.rejectValue("");
-			return "redirect:/findPw";
-		}
-		
-		
-	}
+	    public String findPw(FindPw findPw, Errors errors, HttpSession session, HttpServletResponse response, HttpServletRequest request) throws Exception{
+	    	
+	    	Member member = new Member();
+	    	
+	    	member.setM_id(findPw.getM_id());
+	    	member.setM_name(findPw.getM_name());
+	    	member.setM_birth(findPw.getM_birth());
+	    	member.setM_email(findPw.getM_email());
+	    	member.setM_contact(findPw.getM_contact());
+	    	
+	    	System.out.println(member.getM_id());
+	    	System.out.println(member.getM_name());
+	    	new FindPwValidator().validate(member, errors);
+	    	
+	    	if(errors.hasErrors()) {
+	    		return "redirect:/findIdPassword";
+	    	}
+	    	try {
+	        	String m_code = changePasswordService.findPw(member);  	//m_code
+	        	session.setAttribute("m_code", m_code);
+	        	return "edit/findPw";
+	    	}catch(Exception e){
+	    		//errors.reject("");
+	    		return "redirect:/findIdPassword";
+	    	}
+	    }
+	    
+	    @PostMapping("/findPwSuccess")
+	    public String findPwSuccess(FindPw findPw, LoginCommand loginCommand,Errors errors, HttpSession session, HttpServletResponse response, HttpServletRequest request) {
+	    	if(errors.hasErrors()) {
+	    		return "redirect:/findPw";
+	    	}
+	    	
+	    	try {
+	    		String m_pw = findPw.getM_pw();
+	    		String m_pw_new = findPw.getM_pw_new();
+	    		String m_code = (String)session.getAttribute("m_code");
+	    		
+	    		if(m_pw == null || m_pw_new == null) {
+	    			return "redirect:/findPw";
+	    		}
+	    		
+	    		if(!m_pw.equals(m_pw_new)) {
+	    			return "redirect:/findPw";
+	    		}
+	    		
+	    		System.out.println(m_code);
+	    		System.out.println(m_pw);
+	    		changePasswordService.changePw(m_pw, m_code);
+	    		
+	    		return "redirect:/login";
+	    	}catch(Exception e) {
+	    		e.printStackTrace();
+	    		return "redirect:/findPw";
+	    	}
+	    }
 }

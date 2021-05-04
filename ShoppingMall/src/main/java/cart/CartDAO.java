@@ -44,14 +44,8 @@ public class CartDAO {
       
       //Cart, Product 정보 가져오기
       public List<CartVO> showCart(String m_code) {
-<<<<<<< HEAD
-         List<CartVO> results = jdbcTemplate.query( "select p.code, p.name, p.color, p.size from product p, cart c where 1=1 and m_code = ? and p.p_code = c.p_code", cartRowMapper, m_code);
-        
-=======
-         List<CartVO> results = jdbcTemplate.query("select c.*,p.p_name,p.p_price,p.p_image from cart c,product p where 1=1 and c.p_code=p.p_code and m_code=?", cartRowMapper, m_code);
-         
-         
->>>>>>> 이상훈
+ List<CartVO> results = jdbcTemplate.query("select c.*,p.p_name,p.p_price,p.p_image from cart c,product p where 1=1 and c.p_code=p.p_code and m_code=?", cartRowMapper, m_code);
+
          return results.isEmpty() ? null : results;
       }
       

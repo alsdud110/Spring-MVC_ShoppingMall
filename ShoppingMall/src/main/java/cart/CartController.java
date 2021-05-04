@@ -38,30 +38,12 @@ public class CartController {
 	
 	//카트에 상품 추가
 	@PostMapping("/addCart")
-<<<<<<< HEAD
-	public String addCart(HttpServletRequest request, HttpSession session, Errors errors) {
-		
-		String p_code = request.getParameter("p_code");
-		String m_code = (String)((Member) session.getAttribute("authInfo")).getM_code();
-		String p_size = "Large";
-		String p_color = "White";
-		int qty = Integer.valueOf(request.getParameter("qty"));
-		
-		CartVO cart = new CartVO(p_code, m_code, p_size, p_color, qty);
-		
-		new CartValidator().validate(cart, errors);
-		
-		if (errors.hasErrors()) {
-			System.out.println("ERROR");
-			return "redirect:/productDetail/{"+ p_code + "}";
-=======
 	public String addCart(HttpSession session,Model model,CartVO cartVO) {
 		Member authInfo=(Member)session.getAttribute("authInfo");
 		String m_code=authInfo.getM_code();
 		cartVO.setM_code(m_code);
 		if(m_code==null) {
 			return "redirect:/main";
->>>>>>> 이상훈
 		}
 		cartService.addCart(cartVO);
 		model.addAttribute("CartVO", cartVO);
@@ -72,28 +54,6 @@ public class CartController {
 				+" p_color=" +cartVO.getP_color() +"sumMoney;" + cartVO.getSumMoney());
 		return "cart/insert";
 		
-<<<<<<< HEAD
-		try {
-			cartService.addCart(cart);
-
-			//갱신된 정보 session에 재설정
-			if (session.getAttribute("cartInfo") != null) {
-				List<CartVO> cart_list = cartService.cartview(m_code);
-				
-				session.setAttribute("cartInfo", cart_list);
-				
-			}
-			
-			System.out.println("담겨짐");
-			//추가 성공
-			return "redirect:/productDetail/{"+ p_code + "}";
-		}
-		catch(Exception e) {
-			System.out.println("안 담겨짐");
-			//추가 실패
-			return "redirect:/productDetail/{"+ p_code + "}";
-		}
-=======
 //		new CartValidator().validate(cartVO, errors);
 //		
 //		if (errors.hasErrors()) {
@@ -118,7 +78,6 @@ public class CartController {
 //			//추가 실패
 //			return "redirect:/productDetail/{"+ p_code + "}";
 //		}
->>>>>>> 이상훈
 		
 	}
 	

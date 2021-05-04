@@ -35,10 +35,8 @@
 <link rel="stylesheet"
 	href="<c:url value = "/resources/css/style.css"/>">
 
-<<<<<<< HEAD
-=======
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
->>>>>>> 이상훈
+
 <script>
 	$(document).ready(function() {
 		// 리스트 페이지로 이동
@@ -86,7 +84,7 @@
 </head>
 <body>
 	<!-- ${cartlist} -->
-<<<<<<< HEAD
+
 	<div class="container text-center" style = "margin-top : 40px;">
 		<div class="row">
 			<div class="col-xl-12">
@@ -108,7 +106,7 @@
 						<th>금액</th>
 						<th>취소</th>
 					</tr>
-					<c:forEach var="list" items="${cartlist}" varStatus="i">
+					<c:forEach var="list" items="${cartlist2}" varStatus="i">
 						<tr>
 							<td><input type = "checkbox">Blue</td>
 							<td>${list.productName}</td>
@@ -129,7 +127,9 @@
 				<input type="hidden" name="count" value="${map.count}">
 				<input type="submit" value = "구매하기" id="updateCart" class = "btn_3" style = "margin-left : 1450px;">
 			</form>
-=======
+
+>>>>>>> 이상훈
+
 	<h2>SHOPPING CART</h2>
 
 	<center>
@@ -167,14 +167,6 @@
 	</table>
 	<button id="delete"  value="테스트" formaction="<c:url value="/test"/>">테스트</button>
 	</form:form>
-
-
-
-
-
-
->>>>>>> 이상훈
-
 
 
 	<!-- Footer -->

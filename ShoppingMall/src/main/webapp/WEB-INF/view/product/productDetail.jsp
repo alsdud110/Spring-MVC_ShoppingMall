@@ -84,15 +84,14 @@ if(authInfo !=null){
 %>
 </head>
 <body>
-	<center>
-	<h2>상품 상세 페이지</h2>
+	<h2 class = "text-center">상품 상세 페이지</h2>
 
 	<form:form modelAttribute = "CartVO">	<!-- action 주소 = 현재주소/123주소     : productDetail/123  >>>>>카트나 구매쪽으로 넘길 예정-->
 	<input type="hidden" name="p_code" value="${product.p_CODE}"/>	
 	
 
 	
-	<table>
+	<table> 
 
 	<tr>
 	<td rowspan="7"> <img src="${product.p_IMAGE}" width="400" height="400"></td>
@@ -113,7 +112,7 @@ if(authInfo !=null){
 
 	<tr>
 	<td>size</td>
-	<td>
+	<td style = "margin : 100px;">
 	<select name="str" onchange="select(this.value)">
 	<option value="none">=== 선택 ===</option>
 	<c:forEach var="std" items="${productStd}" varStatus="status">
@@ -169,7 +168,6 @@ if(authInfo !=null){
 	<br></br>
 	</table>
 	</form:form>
-	</center>
 	
 	 <!-- Footer -->
     <jsp:include page = "../footer.jsp"></jsp:include>

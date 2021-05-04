@@ -110,7 +110,7 @@ public class ProductController {
 		System.out.println(" p_code " +cartVO.getP_code() +	" m_code " + cartVO.getM_code() +"p_name;" + cartVO.getP_name() +
 				"p_image;" + cartVO.getP_image() + "p_price;" + cartVO.getP_price() + "qty;" + cartVO.getQty() +" p_size=" + cartVO.getP_size() 
 				+" p_color=" +cartVO.getP_color() +"sumMoney;" + cartVO.getSumMoney());
-			return "product/order";  //이동 페이지 지정.
+			return "order/order";  //이동 페이지 지정.
 	}
 	
 }

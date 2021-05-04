@@ -44,12 +44,15 @@ public class EditMemberController {
         try {
     		Member member = (Member)session.getAttribute("authInfo");
     		
+    		System.out.println("수정 시작");
+    		
     		editMemberService.edit(editMemberCommand, member.getM_code());
     		
+    		System.out.println("수정완료");
     		return "/main";
         	
         } catch(Exception e) {
-        	//errors.reject("");
+        	errors.reject("");
             return "redirect:/edit";
         }
 	}

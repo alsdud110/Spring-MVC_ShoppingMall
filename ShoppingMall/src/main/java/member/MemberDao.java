@@ -146,6 +146,7 @@ public class MemberDao {
 				return pstmt;
 			}
 		});
+		System.out.println("update failed");
 	}
 
 	public void updatePw(String m_pw, String m_code) throws Exception {

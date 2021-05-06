@@ -35,48 +35,12 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
 <script>
-	$(document).ready(function() {
-		// 리스트 페이지로 이동
-		$("#delete").click(function() {
-			//  alert("언제되냐");
-			var rowData = new Array();
-			var tdArr = new Array();
-			var checkbox = $("input[name=user_CheckBox]:checked");
+const totalmoney=0;
+<c:forEach var="list" items="${cartlist}">
+	totalmoney= totalmoney+${list.p_price * list.qty};
+</c:forEach>
 
-			// 체크된 체크박스 값을 가져온다
-			checkbox.each(function(i) {
-
-				// checkbox.parent() : checkbox의 부모는 <td>이다.
-				// checkbox.parent().parent() : <td>의 부모이므로 <tr>이다.
-				var tr = checkbox.parent().parent().eq(i);
-				var td = tr.children();
-
-				// 체크된 row의 모든 값을 배열에 담는다.
-				rowData.push(tr.text());
-
-				// td.eq(0)은 체크박스 이므로  td.eq(1)의 값부터 가져온다.
-				var p_image = td.eq(1).text() + ", "
-				var p_name = td.eq(2).text() + ", ";
-				var p_size = td.eq(3).text() + ", ";
-				var color = td.eq(4).text() + ", ";
-
-				// 가져온 값을 배열에 담는다.
-				tdArr.push(p_image);
-				tdArr.push(p_name);
-				tdArr.push(p_size);
-				tdArr.push(color);
-				CartVO[i].val(tdArr);
-				//console.log("no : " + no);
-				//console.log("userid : " + userid);
-				//console.log("name : " + name);
-				//console.log("email : " + email);
-			});
-			alert("체크된 ROW의 모든 데이터 =" + rowData + "행 값 " + tdArr);
-			//	$("#ex3_Result1").html(" * 체크된 Row의 모든 데이터 = "+rowData);	
-			//	$("#ex3_Result2").html(tdArr);	
-			$("#test").submit();
-		});
-	});
+document.getElementById('totalmoney').value=totalmoney;
 </script>
 </head>
 <body>
@@ -97,32 +61,53 @@
 			<span class="this" title="현재페이지"><b>Order</b></span>
 			<span class="end">Order confirmed</span>
 		</div>
-	<form:form modelAttribute = "CartVO" id="test">
-	<table border="1" width = "80%" class = "text-center" style = "margin-left : 160px;">
-		<tr>
-			<td>상품</td>
-			<td>사이즈</td>
-			<td>컬러</td>
-			<td>가격</td>
-			<td>수량</td>
-			<td>total</td>
-		</tr>
+	<form name="form1" id="form1" method="post" action="order">
+        <div class="container">
+          <div class="cart_inner">
+          	<div class = "table-responsive">
+              		<table class="table">
+              		  <thead>
+                 		 <tr>
+							<th scope = "col">상품</th>
+							<th scope = "col">단가</th>
+							<th scope = "col">수량</th>
+							<th scope = "col">금액</th>
+                 		</tr>
+               		 </thead>
+                <tbody>
+                <c:forEach var="list" items="${orderlist}" varStatus="i">
+                  <tr>
+                    <td>
+                      <div class="media">
+                        <div class="d-flex">
+                          <img src=	"<c:url value = "${list.p_image }"/>" alt="" />
+                        </div>
+                        <div class="media-body">
+                          <p>${list.p_name }</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <h5><fmt:formatNumber pattern="###,###,###" value="${list.p_price}" /></h5>
+                    </td>
+                    <td>
+						<input type="number" style="width: 50px" name="amount"
+						value="${list.qty}" min="1" readonly> <input type="hidden"
+						name="p_code" value="${list.p_code}">
+                    </td>
+                    <td id = "sumMoney" >
+                      <h5><fmt:formatNumber pattern="###,###,###" value="${list.sumMoney}" /></h5>
+                    </td>
+                  </tr>
+                  </c:forEach>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+				  <input type="submit" value="구매하기" id="updateCart" class="btn_3" style = "margin-left : 75%;">
+	     </form>
 
-		<c:forEach var="list" items="${cartlist}">
-			<tr>
-				<td><c:url value = "${list.p_image}"/></td>
-				<td>${list.p_size }</td>
-				<td>${list.p_color }</td>
-				<td><fmt:formatNumber pattern="###,###,###" value="${list.p_price}" />원</td>
-				<td>${list.qty }</td>
-				<td><fmt:formatNumber pattern="###,###,###" value="${list.sumMoney}" />원</td>
-			</tr>
-		</c:forEach>
-		
-		
-	</table>
-	<button id="delete"  value="테스트" formaction="<c:url value="/test"/>">테스트</button>
-	</form:form>
  
 
 

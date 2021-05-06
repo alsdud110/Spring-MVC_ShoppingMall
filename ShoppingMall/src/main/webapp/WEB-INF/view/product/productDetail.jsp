@@ -61,6 +61,12 @@ function setQty() {
 	document.getElementById('sumMoney').value = price*qty;
 }
 
+function setQty2(){
+	const qty=document.getElementById('qty2').value;
+	  const price=${product.p_PRICE};
+	document.getElementById('sumMoney').value = price*qty;
+}
+
 function select(str) {
 	const num=str;
 	var p_size = new Array();
@@ -148,26 +154,26 @@ if(authInfo !=null){
 	</select>
 		<input type="hidden" id="p_color" name="p_color"/>  
 		<input type="hidden" id="p_size" name="p_size"/>
-	</tr>
 	</td> 
+	</tr>
 	<tr>
 	<td>수량</td>
 	<div align="center"></div>
 	<td>
+	
+<span class="product_count_item inumber-decrement"> <i class="ti-minus qty2" onclick = 'setQty2()'></i></span>
+<input class="product_count_item input-number" type="number" id="qty" name="qty" onblur='setQty()' value = "1" min="1" max="10" >
+<span class="product_count_item number-increment"> <i class="ti-plus qty2" onclick = 'setQty2()'></i></span>
 
-<span class="product_count_item inumber-decrement"> <i class="ti-minus"></i></span>
-<input class="product_count_item input-number" type="number" id="qty" name="qty" onblur='setQty()' value="1" min="1" max="10">
-<span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
-</div>
 	<tr>
 	<td>총 상품 금액</td>
-	<div align="center"></div>
 	<td><input type="text" id='sumMoney' name="sumMoney" value="${product.p_PRICE}" readonly></td> <!-- readonly : 수정불가, form 전달가능  -->
 	</tr>
-	<td>
-	<td>
-    <td><div class="Proceed to checkout"> <input type="submit" class="genric-btn primary e-large" value=구매하기 formaction="<c:url value="/order"/>"></td>
-
+	<tr>
+	<td></td>
+	<td></td>
+    <td><input type="submit" class="genric-btn primary e-large" value=구매하기 formaction="<c:url value="/order"/>"></td>
+	</tr>
 
 <tr>
 
@@ -220,5 +226,3 @@ if(authInfo !=null){
     <script src="<c:url value = "/resources/js/main.js"/>"></script>
 </body>
 </html>
-	
-

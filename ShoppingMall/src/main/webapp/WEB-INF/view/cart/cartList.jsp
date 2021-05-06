@@ -71,7 +71,12 @@ document.getElementById('totalmoney').value=totalmoney;
 		</div>
 	</div>
 	
-      <form name="form1" id="form1" method="post" action="">
+	<div class = "text-center">
+			<span class = "this" title = "현재페이지"><b>Cart</b></span> 
+			<span>Order</span>
+			<span class="end">Order confirmed</span>
+		</div>
+      <form name="form1" id="form1" method="post" action = "">
         <div class="container">
           <div class="cart_inner">
           	<div class = "table-responsive">
@@ -119,7 +124,7 @@ document.getElementById('totalmoney').value=totalmoney;
         </div>
 				  <input type="hidden" name="count" value="${map.count}">
 				  <input type="submit" value="삭제" id="delete" class="btn_3" formaction="<c:url value="/cart/delete"/>" style="margin-left: 1220px;" >
-				  <input type="submit" value="구매하기" id="updateCart" class="btn_3">
+				  <input type="submit" value="구매하기" id="updateCart" class="btn_3" formaction = "<c:url value = "/orderList"/>">
 	     </form>
       <!--================End Cart Area =================-->
 

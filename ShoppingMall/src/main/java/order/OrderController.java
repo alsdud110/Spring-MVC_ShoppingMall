@@ -1,12 +1,17 @@
 package order;
 
+
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import cart.CartVO;
 import member.Member;
 @Controller
 public class OrderController {
@@ -17,16 +22,6 @@ public class OrderController {
 		this.orderService = orderService;
 	}
 
-	@RequestMapping("/order")
-	public String showOrderCart(HttpSession session) {
-		
-		if (session.getAttribute("cartInfo") == null) {
-			return "redirect:/main";
-		}
-		return "order/order";
-		
-	}
-	
 	//구매하기 버튼
 	@RequestMapping("/purchase/{route}")
 	public String productToOrder(@PathVariable("route") String route,HttpSession session, HttpServletRequest request) {
@@ -65,22 +60,35 @@ public class OrderController {
 				return "redirect:/order";
 			}
 		}
-		
 		return "order/order";
-		
 	}
 	
+		
 		//장바구니에서 구매하기 정보로 넘어갈 때
 		@RequestMapping("/orderList")
-		public String cartToOrder(HttpSession session, HttpServletRequest request) {
+		public String cartToOrder(Model model, HttpSession session , HttpServletRequest request) {
 				
-				try {
+			if (session.getAttribute("cartInfo") == null) {
+				return "redirect:/main";
+			}
+			if(session.getAttribute("authInfo") == null) {
+				return "redirect:/login/loginForm";
+			}
+			try {
 					Member authInfo = (Member)session.getAttribute("authInfo");
+					CartVO cartVO = (CartVO)session.getAttribute("cartInfo");
 					String m_code = authInfo.getM_code();
-					String o_addr = authInfo.getM_addr();
-					orderService.purchaseByCart(m_code, o_addr);
-					
-					return "order/purchaseComplete";
+
+					String[] arr = request.getParameterValues("checkid");	//arr배열에 c_code를 담
+						orderService.insertOrderList(arr);
+						
+						for(int i = 0 ; i < arr.length; i++) {
+						List<OrderVO> order_list = orderService.orderview(arr[i]);
+						model.addAttribute(order_list);
+						session.setAttribute("orderlist", order_list);
+						}
+						
+					return "order/order";
 					
 				} catch(Exception e) {
 					//Exception 처리 나중에

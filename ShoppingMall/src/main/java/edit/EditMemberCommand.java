@@ -24,8 +24,18 @@ public class EditMemberCommand {
 	}
 
 	public String getM_birth() {
-		return year + month + day;
-	}
+		if(Integer.parseInt(month) < 10) {
+				if(Integer.parseInt(day) < 10) {
+					return year + "0" + month + "0" + day;
+				}else {
+					return year + "0" + month + day;
+				}
+			}else if(Integer.parseInt(day) < 10){
+				return year + month + "0" + day;
+			}
+			return year + month + day;
+		}
+	
 
 	public void setM_birth(String m_birth) {
 		this.m_birth = m_birth;

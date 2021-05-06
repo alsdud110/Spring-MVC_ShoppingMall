@@ -220,5 +220,3 @@ if(authInfo !=null){
     <script src="<c:url value = "/resources/js/main.js"/>"></script>
 </body>
 </html>
-	
-

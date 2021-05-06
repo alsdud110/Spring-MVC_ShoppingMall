@@ -23,13 +23,13 @@ public class OrderController {
 		if (session.getAttribute("cartInfo") == null) {
 			return "redirect:/main";
 		}
-		return "order/orderProduct";
+		return "order/order";
 		
 	}
 	
 	//구매하기 버튼
 	@RequestMapping("/purchase/{route}")
-	public String purchaseProduct(@PathVariable("route") String route,HttpSession session, HttpServletRequest request) {
+	public String productToOrder(@PathVariable("route") String route,HttpSession session, HttpServletRequest request) {
 		System.out.println("----------오더컨트롤러---------" +route);
 //		if (session.getAttribute("cartInfo") == null) {
 //			return "redirect:/main";
@@ -65,23 +65,29 @@ public class OrderController {
 				return "redirect:/order";
 			}
 		}
-
+		
+		return "order/order";
+		
+	}
+	
 		//장바구니에서 구매하기 정보로 넘어갈 때
-		if(request.getParameter("order_route") == "cart") {
+		@RequestMapping("/orderList")
+		public String cartToOrder(HttpSession session, HttpServletRequest request) {
+				
+				try {
+					Member authInfo = (Member)session.getAttribute("authInfo");
+					String m_code = authInfo.getM_code();
+					String o_addr = authInfo.getM_addr();
+					orderService.purchaseByCart(m_code, o_addr);
+					
+					return "order/purchaseComplete";
+					
+				} catch(Exception e) {
+					//Exception 처리 나중에
+					return "redirect:/order";
+				}
 			
-			try {
-				orderService.purchaseByCart(m_code, o_addr);
-				
-				return "order/purchaseComplete";
-				
-			} catch(Exception e) {
-				//Exception 처리 나중에
-				return "redirect:/order";
+			//return "redirect:/order";
+
 			}
 		}
-		
-		//return "redirect:/order";
-		return "order/123";
-
-	}
-}

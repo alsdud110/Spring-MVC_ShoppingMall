@@ -150,7 +150,3 @@ document.getElementById('totalmoney').value=totalmoney;
 </body>
 </html>
 
-
-
-</body>
-</html>

@@ -58,7 +58,7 @@
 function setQty() {
 	  const qty=document.getElementById('qty').value;
 	  const price=${product.p_PRICE};
-	document.getElementById('result').value = price*qty;
+	document.getElementById('sumMoney').value = price*qty;
 }
 
 function select(str) {
@@ -73,11 +73,33 @@ function select(str) {
 
 	alert(num);
 		
-	document.getElementById('p_color').value =p_size[num];
-	document.getElementById('p_size').value =p_color[num];
+	document.getElementById('p_size').value =p_size[num];
+	document.getElementById('p_color').value =p_color[num];
 
 }
 	
+function checkdata(){
+	alert("왜 안하냐 동작")
+	var name = "${product.p_NAME}";
+	var size =document.getElementById('p_size').value;
+	var color = document.getElementById('p_color').value;
+	var qty = document.getElementById('qty').value;
+	var sumMoney = document.getElementById('sumMoney').value;
+	if(confirm(
+			"아래의 상품이 맞습니까?? \n\n"+
+			"상품명:" + name+"\n"+
+			"사이즈="+size +"\n"+
+			"컬러="+color +"\n"+
+			"수량="+qty +"\n"+
+			"총 가격="+sumMoney)== true){
+		alert("담았어");
+		}
+	else{
+		alert("취소했어");
+		return false;
+	}
+	
+}
 </script>
 
 <% 
@@ -91,7 +113,7 @@ if(authInfo !=null){
 <body>
 	<h2 class = "text-center">상품 상세 페이지</h2>
 
-	<form:form modelAttribute = "CartVO" action = "accCart" method = "post">	<!-- action 주소 = 현재주소/123주소     : productDetail/123  >>>>>카트나 구매쪽으로 넘길 예정-->
+	<form:form modelAttribute="CartVO" onsubmit="return checkdata()">	<!-- action 주소 = 현재주소/123주소     : productDetail/123  >>>>>카트나 구매쪽으로 넘길 예정-->
 	<input type="hidden" name="p_code" value="${product.p_CODE}"/>	
 	
 
@@ -99,7 +121,7 @@ if(authInfo !=null){
 	<table> 
 
 	<tr>
-	<td rowspan="7"> <img src="${product.p_IMAGE}" width="400" height="400"></td>
+	<td rowspan="7"> <img src="<c:url value="${product.p_IMAGE}"/>" width="400" height="400"></td>
 
 
 	<td>상품명</td>
@@ -134,13 +156,13 @@ if(authInfo !=null){
 	<td>
 
 <span class="product_count_item inumber-decrement"> <i class="ti-minus"></i></span>
-<input class="product_count_item input-number" type="text" id="qty" name="qty" onblur='setQty()' min="1" max="10">
+<input class="product_count_item input-number" type="number" id="qty" name="qty" onblur='setQty()' value="1" min="1" max="10">
 <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
 </div>
 	<tr>
 	<td>총 상품 금액</td>
 	<div align="center"></div>
-	<td><input type="text" id='result' name="sumMoney" value="" readonly></td> <!-- readonly : 수정불가, form 전달가능  -->
+	<td><input type="text" id='sumMoney' name="sumMoney" value="${product.p_PRICE}" readonly></td> <!-- readonly : 수정불가, form 전달가능  -->
 	</tr>
 	<td>
 	<td>
@@ -149,26 +171,15 @@ if(authInfo !=null){
 
 <tr>
 
-<<<<<<< HEAD
-
-=======
-	<td colspan="2"><div class="add_to_cart" "width:200px; height:150px; style=float:right; margin-right:10px;"> <input type="submit" class="genric-btn primary e-large" value="장바구니 담기" formaction="<c:url value="/addCart"/>"></td></div>
+	<td colspan="2"><div class="add_to_cart" "width:200px; height:150px; style=float:right; margin-right:10px;"> <input type="submit" class="genric-btn primary e-large" value="장바구니 담기" formaction="<c:url value="/cart/addCart"/>"></div></td>
 																												
 	<td><div class="wishlist" style=float:right;"> <a href="#" class="genric-btn primary-border e-large" formaction="<c:url value="/wishlist"/>"><i class="fa fa-heart" aria-hidden="true"></i> 위시리스트 담기</a> 
 
 	</div></td>
->>>>>>> 이상훈
 	<tr></tr>
     </tr>
 
-	<br></br>
-	<br></br>
-	<br></br>
 	</table>
-	<div style="margin-top:15px; margin-left:850px;">
-	<a href="${path}/cart/cartList.do"; class="genric-btn primary-border e-large" formaction="<c:url value="/cart"/>">장바구니 담기</a>
-	<a href="#" class="genric-btn primary-border e-large" formaction="<c:url value="/wishlist"/>"><i class="fa fa-heart" aria-hidden="true"></i> 위시리스트 담기</a> 
-	</div>
 	</form:form>
 	 <!-- Footer -->
     <jsp:include page = "../footer.jsp"></jsp:include>

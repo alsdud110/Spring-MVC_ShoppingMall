@@ -38,9 +38,13 @@ private CartDAO cartDAO;
 	}
 
 	//카트 정보 삭제
-	public void deleteCart(String[] p_code_list, String[] p_size_list, String[] p_color_list, String m_code) {
-		
-		cartDAO.deleteCart(p_code_list, p_size_list, p_color_list, m_code);
+	public void deleteCart(String[] arr) {
+		System.out.println("delete 동작 테스트");
+		for(String check : arr) {
+			System.out.println(check);
+		}
+		cartDAO.deleteCart(arr);
+		//cartDAO.deleteCart(p_code_list, p_size_list, p_color_list, m_code);
 
 	}
 

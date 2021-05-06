@@ -1,5 +1,7 @@
 package cart;
 
+import java.util.List;
+
 public class CartVO {
 	private String p_code;
 	private String m_code;
@@ -11,9 +13,17 @@ public class CartVO {
     private String p_color;
     private int sumMoney;//선택한 상품별 총금액?
     private String str;
+    private int c_code;
    
-    
-    public String getStr() {
+  	public int getC_code() {
+		return c_code;
+	}
+
+	public void setC_code(int c_code) {
+		this.c_code = c_code;
+	}
+
+	public String getStr() {
 		return str;
 	}
 

@@ -37,22 +37,23 @@ public class CartController {
 	}
 	
 	//카트에 상품 추가
-	@PostMapping("/addCart")
+	@PostMapping("/cart/addCart")
 	public String addCart(HttpSession session,Model model,CartVO cartVO) {
 		Member authInfo=(Member)session.getAttribute("authInfo");
 		String m_code=authInfo.getM_code();
 		cartVO.setM_code(m_code);
+		System.out.println("-----------------cart테스트 =-=-=-=-=--------------------");
+		System.out.println(" p_code " +cartVO.getP_code() +	" m_code " + cartVO.getM_code() +"p_name;" + cartVO.getP_name() +
+				"p_image;" + cartVO.getP_image() + "p_price;" + cartVO.getP_price() + "qty;" + cartVO.getQty() +" p_size=" + cartVO.getP_size() 
+				+" p_color=" +cartVO.getP_color() +"sumMoney;" + cartVO.getSumMoney());
 		if(m_code==null) {
 			return "redirect:/main";
 		}
 		cartService.addCart(cartVO);
 		model.addAttribute("CartVO", cartVO);
 		//값 넘어 왔는지 확인. 비 회원시 m_code는??
-		System.out.println("-----------------cart테스트 =-=-=-=-=--------------------");
-		System.out.println(" p_code " +cartVO.getP_code() +	" m_code " + cartVO.getM_code() +"p_name;" + cartVO.getP_name() +
-				"p_image;" + cartVO.getP_image() + "p_price;" + cartVO.getP_price() + "qty;" + cartVO.getQty() +" p_size=" + cartVO.getP_size() 
-				+" p_color=" +cartVO.getP_color() +"sumMoney;" + cartVO.getSumMoney());
-		return "cart/insert";
+		
+		return "redirect:/cart";
 		
 //		new CartValidator().validate(cartVO, errors);
 //		
@@ -112,43 +113,23 @@ public class CartController {
 	}
 	
 	//장바구니 정보 삭제
-	@PostMapping("/deleteCart")
-	public String deleteCart(HttpServletRequest request, HttpSession session, Errors errors) {
-		
-		//p_code를 list로 형태로 가져옴
-		String[] p_code_list = request.getParameterValues("p_code");
-		String[] p_size_list = request.getParameterValues("p_size");
-		String[] p_color_list = request.getParameterValues("p_color");
-		String m_code = (String)((Member) session.getAttribute("authInfo")).getM_code();
-		
-		try {
-			cartService.deleteCart(p_code_list, p_size_list, p_color_list, m_code);
 
-			//갱신된 정보 session에 재설정
-			if (session.getAttribute("cartInfo") != null) {
-				List<CartVO> cart_list = cartService.cartview(m_code);
-				
-				session.setAttribute("cartInfo", cart_list);
-			}
-			
-			//삭제 성공
+	@PostMapping("/cart/delete")
+	public String deleteCart(HttpServletRequest request, HttpSession session) {
+
+		System.out.println("-----------------delete 테스트 =-=-=-=-=--------------------");
+		String[] arr=request.getParameterValues("checkid");
+		if(arr==null) {
+			System.out.println("볐다");
 			return "redirect:/cart";
 		}
-		catch(Exception e) {
-			//삭제 실패
-			return "redirect:/cart";
+		for(String check : arr) {
+			System.out.println(check);
 		}
+		cartService.deleteCart(arr);
+		return "redirect:/cart";
 		
-	}
-	
-	@PostMapping("/test")
-	public String testCart(HttpSession session,Model model,CartVO cartVO) {
-		
-		System.out.println("-----------------test 테스트 =-=-=-=-=--------------------");
-		System.out.println(" p_code " +cartVO.getP_code() +	" m_code " + cartVO.getM_code() +"p_name;" + cartVO.getP_name() +
-				"p_image;" + cartVO.getP_image() + "p_price;" + cartVO.getP_price() + "qty;" + cartVO.getQty() +" p_size=" + cartVO.getP_size() 
-				+" p_color=" +cartVO.getP_color() +"sumMoney;" + cartVO.getSumMoney());
-	return "cart/carttest";
+
 	}
 	
 }

@@ -1,5 +1,7 @@
 package interceptor;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,7 +22,14 @@ public class AuthCheckInterceptor implements HandlerInterceptor {
 				return true;
 			}
 		}
-		response.sendRedirect(request.getContextPath() + "/login");
+		String login=request.getContextPath() + "/login";
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter printwriter = response.getWriter();
+		printwriter.print("<script>alert('로그인이 필요합니다.'); location.href='"+login+"'; </script>");
+		printwriter.flush();
+		printwriter.close();
 		return false;
 	}
 

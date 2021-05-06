@@ -1,8 +1,6 @@
-package cart;
+package order;
 
-import java.util.List;
-
-public class CartVO {
+public class OrderVO {
 	private String p_code;
 	private String m_code;
     private String p_name;
@@ -13,17 +11,9 @@ public class CartVO {
     private String p_color;
     private int sumMoney;//선택한 상품별 총금액?
     private String str;
-    private int c_code;
    
-  	public int getC_code() {
-		return c_code;
-	}
-
-	public void setC_code(int c_code) {
-		this.c_code = c_code;
-	}
-
-	public String getStr() {
+    
+    public String getStr() {
 		return str;
 	}
 
@@ -31,9 +21,9 @@ public class CartVO {
 		this.str = str;
 	}
 
-	public CartVO() {}
+	public OrderVO() {}
 	
-	public CartVO(String p_code, String m_code, String p_size, String p_color, int qty) {
+	public OrderVO(String p_code, String m_code, String p_size, String p_color, int qty) {
 		super();
 		this.m_code = m_code;
 		this.qty = qty;
@@ -42,7 +32,7 @@ public class CartVO {
 		this.p_code = p_code;
 	}
     
-    public CartVO(String p_code, String m_code, String p_name,String p_image,
+    public OrderVO(String p_code, String m_code, String p_name,String p_image,
     		int p_price,int qty,String p_size,String p_color,int sumMoney) {
     	this.m_code=m_code;
     	this.p_code=p_code;

@@ -39,6 +39,7 @@ public class MvcConfig implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(authCheckInterceptor())
 			.addPathPatterns("/edit/**")
+			.addPathPatterns("/cart/**")
 			.excludePathPatterns("/edit/help/**");
 	}
 
@@ -54,5 +55,6 @@ public class MvcConfig implements WebMvcConfigurer {
 		ms.setDefaultEncoding("UTF-8");
 		return ms;
 	}
-
 }
+	
+

@@ -35,6 +35,7 @@ public class CartDAO {
             cart.setP_color(rs.getString("P_COLOR"));
             cart.setSumMoney(0);
             cart.setStr("");
+            cart.setC_code(rs.getInt("C_CODE"));
 
             return cart;
          }
@@ -53,13 +54,15 @@ public class CartDAO {
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+				System.out.println("---------insert cart 시작 -------------");
+				System.out.println("-----P_CODE=-------" + cartvo.getP_code());
 				// 파라미터로 전달받은 Connection을 이용해서 PreparedStatement 생성
-				PreparedStatement pstmt = con.prepareStatement("insert into cart values(?,?,sysdate,?,?,?)");
+				PreparedStatement pstmt = con.prepareStatement("insert into cart(m_code,p_code,reg_date_c,qty,p_size,p_color) values(?,?,sysdate,?,?,?)");
 				// 인덱스 파라미터 값 설정
 				if (cartvo.getM_code() != null) {
 					pstmt.setString(1, cartvo.getM_code());
 				} else {
-					pstmt.setString(1, "C1644DED398F5EF1E05011AC140021AA");
+					pstmt.setString(1, "C17C4461EEFB6479E05011AC140043DE");
 				}
 
 				pstmt.setString(2, cartvo.getP_code());
@@ -71,7 +74,7 @@ public class CartDAO {
 		});
 	}
       
-      public void deleteCart(String[] p_code_list, String[] p_size_list, String[] p_color_list, String m_code) {
+      public void deleteCart(String[] arr) {
          jdbcTemplate.update(new PreparedStatementCreator() {
             @Override
             public PreparedStatement createPreparedStatement(Connection con)
@@ -79,22 +82,12 @@ public class CartDAO {
                // 파라미터로 전달받은 Connection을 이용해서 PreparedStatement 생성
                PreparedStatement pstmt = null;
                // 인덱스 파라미터 값 설정
-               for(int i=0; i < p_code_list.length; i++ ) {
-                   String p_code = p_code_list[i];
-                   String p_size = p_size_list[i];
-                   String p_color = p_size_list[i];
+               for(int i=0; i < arr.length; i++ ) {
+            	   int c_code=Integer.parseInt(arr[i]);
                   pstmt = con.prepareStatement(
-                        "DELETE FROM CART "
-                        + "WHERE "
-                        + "		1=1 AND"
-                        + "		M_CODE = ? AND "
-                        + "		P_CODE = ? AND"
-                        + "		P_SIZE = ? AND"
-                        + "		P_COLOR = ?");
-                  pstmt.setString(1, m_code);
-                  pstmt.setString(2, p_code);
-                  pstmt.setString(3, p_size);
-                  pstmt.setString(4, p_color);
+                        "DELETE FROM CART WHERE C_CODE=?");
+                  pstmt.setInt(1, c_code);
+                  pstmt.executeUpdate();
                }
                return pstmt;
             }

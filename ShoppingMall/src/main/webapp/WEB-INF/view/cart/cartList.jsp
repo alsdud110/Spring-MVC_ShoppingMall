@@ -70,58 +70,42 @@ document.getElementById('totalmoney').value=totalmoney;
 			</div>
 		</div>
 	</div>
-	
-      <form name="form1" id="form1" method="post" action="">
-        <div class="container">
-          <div class="cart_inner">
-          	<div class = "table-responsive">
-              		<table class="table">
-              		  <thead>
-                 		 <tr>
-                  		  	<th scope = "col">선택</th>
-							<th scope = "col">상품</th>
-							<th scope = "col">단가</th>
-							<th scope = "col">수량</th>
-							<th scope = "col">금액</th>
-                 		</tr>
-               		 </thead>
-                <tbody>
-                <c:forEach var="list" items="${cartlist}" varStatus="i">
-                  <tr>
-                  	<td><input type="checkbox" name="checkid" value=${list.c_code }></td>
-                    <td>
-                      <div class="media">
-                        <div class="d-flex">
-                          <img src=	"<c:url value = "${list.p_image }"/>" alt="" />
-                        </div>
-                        <div class="media-body">
-                          <p>${list.p_name }</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <h5><fmt:formatNumber pattern="###,###,###" value="${list.p_price}" /></h5>
-                    </td>
-                    <td>
-                      <input type="number" style="width: 50px" name="amount"
+
+
+	<form name="form1" id="form1" method="post" action="">
+		<table border="1" width="80%" class="text-center"
+			style="margin-left: 160px;">
+			<tr>
+				<th>선택</th>
+				<th>상품</th>
+				<th>단가</th>
+				<th>수량</th>
+				<th>금액</th>
+			</tr>
+			<c:forEach var="list" items="${cartlist}" varStatus="i">
+				<tr>
+					<td><input type="checkbox" name="checkid" value=${list.c_code }></td>
+					<td>${list.p_name}</td>
+					<td style="width: 80px" align="right"><fmt:formatNumber
+							pattern="###,###,###" value="${list.p_price}" /></td>
+					<td><input type="number" style="width: 40px" name="amount"
 						value="${list.qty}" min="1"> <input type="hidden"
-						name="p_code" value="${list.p_code}">
-                    </td>
-                    <td>
-                      <h5><fmt:formatNumber pattern="###,###,###" value="${list.p_price*list.qty}" /></h5>
-                    </td>
-                  </tr>
-                  </c:forEach>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-				  <input type="hidden" name="count" value="${map.count}">
-				  <input type="submit" value="삭제" id="delete" class="btn_3" formaction="<c:url value="/cart/delete"/>" style="margin-left: 1220px;" >
-				  <input type="submit" value="구매하기" id="updateCart" class="btn_3">
-	     </form>
-      <!--================End Cart Area =================-->
+						name="p_code" value="${list.p_code}"></td>
+					<td style="width: 100px" align="right"><fmt:formatNumber
+							pattern="###,###,###" value="${list.p_price*list.qty}" /></td>
+				</tr>
+			</c:forEach>
+			<tr>
+				<td colspan="6" align="right">장바구니 금액 합계 : <fmt:formatNumber
+						pattern="###,###,###" value="0000" /><br>
+				</td>
+			</tr>
+		</table>
+		<input type="hidden" name="count" value="${map.count}">
+		<input	type="submit" value="삭제" id="delete" class="btn_3" formaction="<c:url value="/cart/delete"/>" style="margin-left: 1450px;" >
+		 <input	type="submit" value="구매하기" id="updateCart" class="btn_3" style="margin-left: 1450px;">
+	</form>
+
 
 	<!-- Footer -->
 	<jsp:include page="../footer.jsp"></jsp:include>

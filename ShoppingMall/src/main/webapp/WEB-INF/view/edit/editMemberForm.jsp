@@ -65,7 +65,7 @@
 	<h2>
 		회원정보 수정
 	</h2>
-		<form:form action="editMember">
+		<form:form modelAttribute = "editMemberCommand"  action="editMember">
 		<%
 		
 			Member member = (Member)session.getAttribute("authInfo");

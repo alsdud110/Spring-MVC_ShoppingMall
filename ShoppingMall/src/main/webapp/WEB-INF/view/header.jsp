@@ -29,7 +29,6 @@
                             <nav>                                                
                                 <ul id="navigation">
 									<li><a href="<c:url value = '/main'/>">Main</a></li>
-                                    <li><a href="index.html">Best50</a></li>
 									<li><a href="<c:url value='/product/viewCategory/TOP'/>">TOP</a></li>
                                     <li><a href="<c:url value='/product/viewCategory/BOTTOM'/>">BOTTOM</a></li>
                                     <li><a href="<c:url value='/product/viewCategory/ETC'/>">ETC</a></li>

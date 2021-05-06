@@ -35,20 +35,26 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
 <script>
+function fnGetdata(){
+    var obj = $("[name=btn]");
+    var chkArray = new Array(); // 배열 선언
 
-$(document).ready(function(){
-	var sumMoneey=0;
-	$("input[type='checkbox']").on('change', function(){
-	      console.log('clicked');
-	      if($(this).is(":checked")){
-	       alert("체크"+$(this));
-	      }
-	      else{
-	    	  alert("해제"+sumMoneey);
-	      } });
-	
-});
+    $('input:checkbox[name=btn]:checked').each(function() { // 체크된 체크박스의 value 값을 가지고 온다.
+        chkArray.push(this.value);
+    alert(this.value);
+    });
+    $('#hiddenValue').val(chkArray);
+    
+    alert($('#hiddenValue').val()); // 아래 체크박스가 모두 체크되어 있다면 1,2,3,4 가 출력 된다.
+    
+}
 
+const totalmoney=0;
+<c:forEach var="list" items="${cartlist}">
+	totalmoney= totalmoney+${list.p_price * list.qty};
+</c:forEach>
+
+document.getElementById('totalmoney').value=totalmoney;
 </script>
 
 </head>
@@ -64,92 +70,58 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
-
-
-	<form name="form1" id="form1" method="post" action="">
-		<table border="1" width="80%" class="text-center"
-			style="margin-left: 160px;">
-			<tr>
-				<th>선택</th>
-				<th>상품</th>
-				<th>단가</th>
-				<th>수량</th>
-				<th>금액</th>
-				<th>취소</th>
-			</tr>
-			<c:forEach var="list" items="${cartlist}" varStatus="i">
-				<tr>
-					<td><input type="checkbox" name="checkid" id="checkid" value=${list.c_code }></td>
-					<td>${list.p_name}</td>
-					<td style="width: 80px" align="right"><fmt:formatNumber
-							pattern="###,###,###" value="${list.p_price}" /></td>
-					<td><input type="number" style="width: 40px" name="amount"
+	
+      <form name="form1" id="form1" method="post" action="">
+        <div class="container">
+          <div class="cart_inner">
+          	<div class = "table-responsive">
+              		<table class="table">
+              		  <thead>
+                 		 <tr>
+                  		  	<th scope = "col">선택</th>
+							<th scope = "col">상품</th>
+							<th scope = "col">단가</th>
+							<th scope = "col">수량</th>
+							<th scope = "col">금액</th>
+                 		</tr>
+               		 </thead>
+                <tbody>
+                <c:forEach var="list" items="${cartlist}" varStatus="i">
+                  <tr>
+                  	<td><input type="checkbox" name="checkid" value=${list.c_code }></td>
+                    <td>
+                      <div class="media">
+                        <div class="d-flex">
+                          <img src=	"<c:url value = "${list.p_image }"/>" alt="" />
+                        </div>
+                        <div class="media-body">
+                          <p>${list.p_name }</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <h5><fmt:formatNumber pattern="###,###,###" value="${list.p_price}" /></h5>
+                    </td>
+                    <td>
+                      <input type="number" style="width: 50px" name="amount"
 						value="${list.qty}" min="1"> <input type="hidden"
-						name="p_code" value="${list.p_code}"></td>
-					<td style="width: 100px" align="right"><fmt:formatNumber
-							pattern="###,###,###" value="${list.p_price*list.qty}" /></td>
-					<td><a href="${path}/cart/delete.do?cartId=${list.m_code}">삭제</a>
-					</td>
-				</tr>
-			</c:forEach>
-			<tr>
-				<td colspan="6" align="right"><input type="text" id="sumMoney" value="">장바구니 금액 합계 : <fmt:formatNumber
-						pattern="###,###,###" value="11111" /><br>
-				</td>
-			</tr>
-		</table>
-		<input type="hidden" name="count" value="${map.count}">
-		<input	type="submit" value="삭제" id="delete" class="btn_3" formaction="<c:url value="/cart/delete"/>" style="margin-left: 1450px;" >
-		 <input	type="submit" value="구매하기" id="updateCart" class="btn_3" style="margin-left: 1450px;">
-	</form>
-
-	>>>>>>> 이상훈
-
-	<h2>SHOPPING CART</h2>
-
-	<center>
-		<div>
-			<span class="this" title="현재페이지"><b>Cart</b></span> <span>Order</span>
-			<span class="end">Order confirmed</span>
-		</div>
-	</center>
-	<form:form modelAttribute="CartCommand" id="test">
-		<table>
-			<tr>
-				<td colspan="2">상품</td>
-				<td>사이즈</td>
-				<td>컬러</td>
-				<td>가격</td>
-				<td>수량</td>
-				<td>total</td>
-				<td></td>
-			</tr>
-
-			<c:forEach var="list" items="${cartlist}" varStatus="num">
-				<tr>
-					<td><input type="checkbox" name="checkid" value=${list.c_code }></td>
-					<input type="hidden" name="count" value="${num.count}">
-					<td>"${list.p_image}"</td>
-
-					<td>${list.p_name }</td>
-
-					<td>${list.p_size }</td>
-
-					<td>${list.p_color }</td>
-
-					<td>${list.p_price}</td>
-					<td>${list.qty }</td>
-
-					<td>${list.qty }*${list.p_price}</td>
-				</tr>
-
-			</c:forEach>
-
-
-		</table>
-		<button id="delete" value="삭제" formaction="<c:url value="/cart/delete"/>">삭제</button>
-	</form:form>
-
+						name="p_code" value="${list.p_code}">
+                    </td>
+                    <td>
+                      <h5><fmt:formatNumber pattern="###,###,###" value="${list.p_price*list.qty}" /></h5>
+                    </td>
+                  </tr>
+                  </c:forEach>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+				  <input type="hidden" name="count" value="${map.count}">
+				  <input type="submit" value="삭제" id="delete" class="btn_3" formaction="<c:url value="/cart/delete"/>" style="margin-left: 1220px;" >
+				  <input type="submit" value="구매하기" id="updateCart" class="btn_3">
+	     </form>
+      <!--================End Cart Area =================-->
 
 	<!-- Footer -->
 	<jsp:include page="../footer.jsp"></jsp:include>
@@ -181,20 +153,15 @@ $(document).ready(function(){
 	<script src="<c:url value = "/resources/js/jquery.sticky.js"/>"></script>
 	<script src="<c:url value = "/resources/js/jquery.magnific-popup.js"/>"></script>
 
-	<!-- contact js -->
+	<!— contact js —>
 	<script src="<c:url value = "/resources/js/contact.js"/>"></script>
 	<script src="<c:url value = "/resources/js/jquery.form.js"/>"></script>
 	<script src="<c:url value = "/resources/js/jquery.validate.min.js"/>"></script>
 	<script src="<c:url value = "/resources/js/mail-script.js"/>"></script>
 	<script src="<c:url value = "/resources/js/jquery.ajaxchimp.min.js"/>"></script>
 
-	<!-- Jquery Plugins, main Jquery -->
+	<!— Jquery Plugins, main Jquery —>
 	<script src="<c:url value = "/resources/js/plugins.js"/>"></script>
 	<script src="<c:url value = "/resources/js/main.js"/>"></script>
-</body>
-</html>
-
-
-
 </body>
 </html>

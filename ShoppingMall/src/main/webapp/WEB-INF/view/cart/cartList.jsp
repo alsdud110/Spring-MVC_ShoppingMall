@@ -159,14 +159,14 @@ $(document).ready(function(){
 	<script src="<c:url value = "/resources/js/jquery.sticky.js"/>"></script>
 	<script src="<c:url value = "/resources/js/jquery.magnific-popup.js"/>"></script>
 
-	<!— contact js —>
+	<!-- contact js -->
 	<script src="<c:url value = "/resources/js/contact.js"/>"></script>
 	<script src="<c:url value = "/resources/js/jquery.form.js"/>"></script>
 	<script src="<c:url value = "/resources/js/jquery.validate.min.js"/>"></script>
 	<script src="<c:url value = "/resources/js/mail-script.js"/>"></script>
 	<script src="<c:url value = "/resources/js/jquery.ajaxchimp.min.js"/>"></script>
 
-	<!— Jquery Plugins, main Jquery —>
+	<!-- Jquery Plugins, main Jquery -->
 	<script src="<c:url value = "/resources/js/plugins.js"/>"></script>
 	<script src="<c:url value = "/resources/js/main.js"/>"></script>
 </body>

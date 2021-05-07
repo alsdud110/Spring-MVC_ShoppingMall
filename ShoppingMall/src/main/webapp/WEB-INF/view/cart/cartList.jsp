@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>상품장바구니 목록</title>
 <jsp:include page="../header.jsp"></jsp:include>
@@ -71,6 +72,16 @@ document.getElementById('totalmoney').value=totalmoney;
 		</div>
 	</div>
 	
+	<center>
+
+			<span class="this" title="현재페이지"><b>Cart</b> ></span> 
+			<span>Order</span> >
+			<span class="end">Order confirmed</span>
+
+	</center>
+
+<br></br>
+
       <form name="form1" id="form1" method="post" action="">
         <div class="container">
           <div class="cart_inner">
@@ -118,8 +129,9 @@ document.getElementById('totalmoney').value=totalmoney;
           </div>
         </div>
 				  <input type="hidden" name="count" value="${map.count}">
-				  <input type="submit" value="삭제" id="delete" class="btn_3" formaction="<c:url value="/cart/delete"/>" style="margin-left: 1220px;" >
-				  <input type="submit" value="구매하기" id="updateCart" class="btn_3">
+				  <center>
+				  <input type="submit" value="삭제" id="delete" class="genric-btn primary radius" formaction="<c:url value="/cart/delete"/>" style="margin-left:20px;">
+				  <input type="submit" value="구매하기" id="updateCart" class="genric-btn primary radius" formaction="<c:url value="/order/"/>">
 	     </form>
       <!--================End Cart Area =================-->
 

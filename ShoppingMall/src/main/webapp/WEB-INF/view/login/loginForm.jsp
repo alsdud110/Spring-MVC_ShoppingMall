@@ -63,6 +63,24 @@
                                         <input type="submit" class = "btn_3" value="<spring:message code="login.btn" />">
                                     </div>
                                 </form:form>
+                                		<a id="kakao-login-btn"></a>
+    <a href="http://developers.kakao.com/logout">Logout</a>
+    <script type='text/javascript'>
+        //<![CDATA[
+        // 사용할 앱의 JavaScript 키를 설정해 주세요.
+        Kakao.init('Your KEY');
+        // 카카오 로그인 버튼을 생성합니다.
+        Kakao.Auth.createLoginButton({
+            container: '#kakao-login-btn',
+            success: function (authObj) {
+                alert(JSON.stringify(authObj));
+            },
+            fail: function (err) {
+                alert(JSON.stringify(err));
+            }
+        });
+      //]]>
+    </script>
                                         <a href = "<c:url value = "/findIdPassword"/>" class = "lost_pass">아이디/비밀번호 찾기</a>
                             </div>
                         </div>

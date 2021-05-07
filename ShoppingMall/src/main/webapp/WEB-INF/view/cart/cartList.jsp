@@ -35,26 +35,20 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
 <script>
-function fnGetdata(){
-    var obj = $("[name=btn]");
-    var chkArray = new Array(); // 배열 선언
-
-    $('input:checkbox[name=btn]:checked').each(function() { // 체크된 체크박스의 value 값을 가지고 온다.
-        chkArray.push(this.value);
-    alert(this.value);
-    });
-    $('#hiddenValue').val(chkArray);
-    
-    alert($('#hiddenValue').val()); // 아래 체크박스가 모두 체크되어 있다면 1,2,3,4 가 출력 된다.
-    
-}
-
-const totalmoney=0;
-<c:forEach var="list" items="${cartlist}">
-	totalmoney= totalmoney+${list.p_price * list.qty};
-</c:forEach>
-
-document.getElementById('totalmoney').value=totalmoney;
+$(document).ready(function(){
+	   var sumMoney=0;
+	   $("input[type='checkbox']").on('change', function(){
+	      var tr = $(this).parent().parent();
+	      var td = tr.children();
+	        if($(this).is(":checked")){
+	           sumMoney+=parseInt(td.eq(4).text());
+	        }else{
+	           sumMoney-=parseInt(td.eq(4).text());
+	        }
+	        $('input[name=sumMoney]').val(sumMoney*1000);
+	        document.getElementById('aaa').innerHTML = sumMoney*1000;
+	    });
+	});
 </script>
 
 </head>
@@ -71,7 +65,12 @@ document.getElementById('totalmoney').value=totalmoney;
 		</div>
 	</div>
 	
-      <form name="form1" id="form1" method="post" action="">
+	<div class = "text-center">
+			<span class = "this" title = "현재페이지"><b>Cart</b></span> 
+			<span>Order</span>
+			<span class="end">Order confirmed</span>
+		</div>
+      <form name="form1" id="form1" method="post" action = "orderList">
         <div class="container">
           <div class="cart_inner">
           	<div class = "table-responsive">
@@ -103,7 +102,7 @@ document.getElementById('totalmoney').value=totalmoney;
                       <h5><fmt:formatNumber pattern="###,###,###" value="${list.p_price}" /></h5>
                     </td>
                     <td>
-                      <input type="number" style="width: 50px" name="amount"
+                      <input type="number" style="width: 50px" name="qty"
 						value="${list.qty}" min="1"> <input type="hidden"
 						name="p_code" value="${list.p_code}">
                     </td>
@@ -117,9 +116,10 @@ document.getElementById('totalmoney').value=totalmoney;
             </div>
           </div>
         </div>
-				  <input type="hidden" name="count" value="${map.count}">
+              <input type="hidden" name="sumMoney" value="0">
+              <span>선택한 총 금액 : ￦  </span><span id="aaa"></span>
 				  <input type="submit" value="삭제" id="delete" class="btn_3" formaction="<c:url value="/cart/delete"/>" style="margin-left: 1220px;" >
-				  <input type="submit" value="구매하기" id="updateCart" class="btn_3">
+				  <input type="submit" value="구매하기" id="updateCart" class="btn_3" formaction = "<c:url value = "/orderList"/>">
 	     </form>
       <!--================End Cart Area =================-->
 

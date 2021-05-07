@@ -31,6 +31,7 @@ public class CartController {
 			String m_code=authInfo.getM_code();
 			List<CartVO> vo=cartService.cartview(m_code);
 			model.addAttribute("cartlist", vo);
+			session.setAttribute("cartInfo", vo);
 			return "cart/cartList";
 		}
 		return "login/loginForm";

@@ -61,6 +61,15 @@ public class RegisterCommand {
 	}
 
 	public String getM_birth() {
+		if(Integer.parseInt(month) < 10) {
+			if(Integer.parseInt(day) < 10) {
+				return year + "0" + month + "0" + day;
+			}else {
+				return year + "0" + month + day;
+			}
+		}else if(Integer.parseInt(day) < 10){
+			return year + month + "0" + day;
+		}
 		return year + month + day;
 	}
 

@@ -136,7 +136,6 @@
 			var com_year = 2021;
 			
 			$("#year").append("<option value = ''>년도</option>");
-			
 			for(var y = com_year ; y >= (com_year - 80); y--){
 				$("#year").append("<option value = '" + y +"'>" + y + " 년" + "</option>");
 			}

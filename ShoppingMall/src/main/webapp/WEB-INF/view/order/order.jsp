@@ -33,15 +33,6 @@
 	href="<c:url value = "/resources/css/style.css"/>">
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-
-<script>
-const totalmoney=0;
-<c:forEach var="list" items="${cartlist}">
-	totalmoney= totalmoney+${list.p_price * list.qty};
-</c:forEach>
-
-document.getElementById('totalmoney').value=totalmoney;
-</script>
 </head>
 <body>
 	<!-- ${cartlist} -->

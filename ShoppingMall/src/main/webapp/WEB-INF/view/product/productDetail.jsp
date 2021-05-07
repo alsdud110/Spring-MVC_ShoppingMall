@@ -22,12 +22,6 @@
         <link rel="stylesheet" href="<c:url value = "/resources/css/nice-select.css"/>">
         <link rel="stylesheet" href="<c:url value = "/resources/css/style.css"/>">
         
-<!-- 메인로고 -->
-<a href= "<c:url value = "/main"/>">
-<center>
-<img src="https://i.pinimg.com/236x/7e/64/6b/7e646bd7120da69b67240999098e2984.jpg"> <!-- 홈페이지 로고 -->
-</center>
-</a>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -47,9 +41,12 @@
        }
        
        .jungmin{
-       		margin-left : 253px;
+       		margin-left : 350px;
        }
        
+       .jungmin2{
+       		margin-left : 500px;
+       }
      
   
     </style>
@@ -79,23 +76,22 @@ function select(str) {
 }
 	
 function checkdata(){
-	alert("왜 안하냐 동작")
 	var name = "${product.p_NAME}";
 	var size =document.getElementById('p_size').value;
 	var color = document.getElementById('p_color').value;
 	var qty = document.getElementById('qty').value;
 	var sumMoney = document.getElementById('sumMoney').value;
 	if(confirm(
-			"아래의 상품이 맞습니까?? \n\n"+
-			"상품명:" + name+"\n"+
+			"선택하신 상품 내역을 확인해주세요. \n\n"+
+			"상품명=" + name+"\n"+
 			"사이즈="+size +"\n"+
 			"컬러="+color +"\n"+
 			"수량="+qty +"\n"+
 			"총 가격="+sumMoney)== true){
-		alert("담았어");
+		alert("장바구니에 상품이 담겼습니다.");
 		}
 	else{
-		alert("취소했어");
+		alert("장바구니에 상품 담기를 취소했습니다.");
 		return false;
 	}
 	
@@ -111,8 +107,17 @@ if(authInfo !=null){
 %>
 </head>
 <body>
-	<h2 class = "text-center">상품 상세 페이지</h2>
 
+<br></br>
+
+	<div class="col-xl-12">
+	<div class="section-tittle mb-70">
+	<center>
+	<h2><b>Product Info.</b></h2>
+	</center>
+<br></br>
+</div>
+</div>
 	<form:form modelAttribute="CartVO" onsubmit="return checkdata()">	<!-- action 주소 = 현재주소/123주소     : productDetail/123  >>>>>카트나 구매쪽으로 넘길 예정-->
 	<input type="hidden" name="p_code" value="${product.p_CODE}"/>	
 	
@@ -121,7 +126,7 @@ if(authInfo !=null){
 	<table> 
 
 	<tr>
-	<td rowspan="7"> <img src="<c:url value="${product.p_IMAGE}"/>" width="400" height="400"></td>
+	<td rowspan="7"> <img src="<c:url value="${product.p_IMAGE}"/>" width="550" height="600"></td>
 
 
 	<td>상품명</td>
@@ -139,7 +144,8 @@ if(authInfo !=null){
 
 	<tr>
 	<td>size</td>
-	<td style = "margin : 100px;">
+	<td>
+	<div class="jungmin">
 	<select name="str" onchange="select(this.value)">
 	<option value="none">=== 선택 ===</option>
 	<c:forEach var="std" items="${productStd}" varStatus="status">
@@ -164,23 +170,21 @@ if(authInfo !=null){
 	<div align="center"></div>
 	<td><input type="text" id='sumMoney' name="sumMoney" value="${product.p_PRICE}" readonly></td> <!-- readonly : 수정불가, form 전달가능  -->
 	</tr>
-	<td>
-	<td>
-    <td><div class="Proceed to checkout"> <input type="submit" class="genric-btn primary e-large" value=구매하기 formaction="<c:url value="/order"/>"></td>
+</table>
 
 
-<tr>
-
-	<td colspan="2"><div class="add_to_cart" "width:200px; height:150px; style=float:right; margin-right:10px;"> <input type="submit" class="genric-btn primary e-large" value="장바구니 담기" formaction="<c:url value="/cart/addCart"/>"></div></td>
-																												
-	<td><div class="wishlist" style=float:right;"> <a href="#" class="genric-btn primary-border e-large" formaction="<c:url value="/wishlist"/>"><i class="fa fa-heart" aria-hidden="true"></i> 위시리스트 담기</a> 
-
-	</div></td>
-	<tr></tr>
-    </tr>
-
+<table>
+    <td><input type="submit" class="genric-btn primary e-large" style="float:right; margin-top:10px; margin-bottom:10px; margin-left:665px;" value=구매하기 formaction="<c:url value="/order"/>"></td>
+	<td colspan="2"><input type="submit" class="genric-btn primary-border e-large" style="float:left; margin-top:10px; margin-bottom:10px; margin-right:50px;" value="장바구니 담기" formaction="<c:url value="/cart/addCart"/>"></div></td>
+	
 	</table>
+	
 	</form:form>
+	
+	<br>
+	<br>
+	<br>
+	
 	 <!-- Footer -->
     <jsp:include page = "../footer.jsp"></jsp:include>
     

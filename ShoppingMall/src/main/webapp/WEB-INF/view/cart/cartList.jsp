@@ -76,7 +76,7 @@ document.getElementById('totalmoney').value=totalmoney;
 			<span>Order</span>
 			<span class="end">Order confirmed</span>
 		</div>
-      <form name="form1" id="form1" method="post" action = "">
+      <form name="form1" id="form1" method="post" action = "orderList">
         <div class="container">
           <div class="cart_inner">
           	<div class = "table-responsive">
@@ -108,7 +108,7 @@ document.getElementById('totalmoney').value=totalmoney;
                       <h5><fmt:formatNumber pattern="###,###,###" value="${list.p_price}" /></h5>
                     </td>
                     <td>
-                      <input type="number" style="width: 50px" name="amount"
+                      <input type="number" style="width: 50px" name="qty"
 						value="${list.qty}" min="1"> <input type="hidden"
 						name="p_code" value="${list.p_code}">
                     </td>

@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -12,8 +11,6 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
-
-import cart.CartVO;
 
 public class OrderDAO {
 	
@@ -44,15 +41,39 @@ public class OrderDAO {
         }
 
      };
+     
+     public OrderVO selectOrder(int c_code) {
+         List<OrderVO> result =jdbcTemplate.query("select c.*,p.p_name,p.p_price,p.p_image from cart c,product p where 1=1 and c.p_code=p.p_code and c_code=?", orderRowMapper, c_code);
+      
+         return result.isEmpty() ? null : result.get(0);
+      }
+     
 	//장바구니 선택 상품 구매 리스트 이동
-	public List<OrderVO> selectOrder(String arr) {
-		List<OrderVO> result = null;
-		
-		int c_code = Integer.parseInt(arr);
-		
-		result = jdbcTemplate.query("select c.*,p.p_name,p.p_price,p.p_image from cart c,product p where 1=1 and c.p_code=p.p_code and c_code=?", orderRowMapper, c_code);
-		
-		return result.isEmpty() ? null : result;
+//	public List<OrderVO> selectOrder(String p_code, String m_code) {
+//		List<OrderVO> result = null;
+//			result = jdbcTemplate.query("select c.*,p.p_name,p.p_price,p.p_image from cart c,product p where c.p_code = p.p_code and c.p_code = ? and c.m_code = ?"
+//					, orderRowMapper
+//					, p_code
+//					, m_code);
+//		
+//		return result.isEmpty() ? null : result;
+//	}
+
+	public List<OrderVO> selectOrder2(String[] arr){
+		jdbcTemplate.update(new PreparedStatementCreator() {
+			
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+				PreparedStatement pstmt = null;
+				for(int i = 0; i <= arr.length ; i++) {
+				pstmt = con.prepareStatement("select c.*,p.p_name,p.p_price,p.p_image from cart c,product p where 1=1 and c.p_code=p.p_code and c_code=?");
+				pstmt.setInt(1, Integer.parseInt(arr[i]));
+				pstmt.executeUpdate();
+				}
+				return pstmt;
+			}		
+		});
+		return null;
 	}
 	
 	//장바구니에서 주문 정보 담기

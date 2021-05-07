@@ -1,6 +1,7 @@
 package order;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import cart.CartVO;
 import member.Member;
 @Controller
 public class OrderController {
@@ -71,25 +71,20 @@ public class OrderController {
 			if (session.getAttribute("cartInfo") == null) {
 				return "redirect:/main";
 			}
+			
 			if(session.getAttribute("authInfo") == null) {
 				return "redirect:/login/loginForm";
 			}
+			
 			try {
-					Member authInfo = (Member)session.getAttribute("authInfo");
-					CartVO cartVO = (CartVO)session.getAttribute("cartInfo");
-					String m_code = authInfo.getM_code();
+				String[] arr = request.getParameterValues("checkid"); // arr배열에 c_code를 담
 
-					String[] arr = request.getParameterValues("checkid");	//arr배열에 c_code를 담
-						orderService.insertOrderList(arr);
-						
-						for(int i = 0 ; i < arr.length; i++) {
-						List<OrderVO> order_list = orderService.orderview(arr[i]);
-						model.addAttribute(order_list);
-						session.setAttribute("orderlist", order_list);
-						}
-						
-					return "order/order";
-					
+		         List<OrderVO> order_list = orderService.orderview(arr);
+		         model.addAttribute(order_list);
+		         session.setAttribute("orderlist", order_list);
+
+		         return "order/order";
+				
 				} catch(Exception e) {
 					//Exception 처리 나중에
 					return "redirect:/order";
@@ -97,5 +92,6 @@ public class OrderController {
 			
 			//return "redirect:/order";
 
-			}
+			
 		}
+}

@@ -41,16 +41,16 @@
                             <div class="login_part_form_iner">
                                 <h3>어서오세요! <br>
                                     4조 프로젝트 의류 쇼핑몰입니다!!</h3>
-                                <form:form modelAttribute = "loginCommand" class="row contact_form" novalidate="novalidate">
+                                <form:form modelAttribute = "loginCommand" class="row contact_form" novalidate="novalidate" onsubmit = "return checkIdPw()">
                                     <div class="col-md-12 form-group p_star">
                                         <label><spring:message code="id" />:<br>
-       										<form:input path="m_id" class = "form-control"/>
+       										<form:input path="m_id" class = "form-control" id = "m_id" placeholder = "아이디를 입력하세요."/>
 									      	<form:errors path="m_id"/>
 									        </label>
                                     </div>
                                     <div class="col-md-12 form-group p_star">
                                        <label><spring:message code="password" />:<br>
-									        <form:password path="m_pw" class = "form-control"/>
+									        <form:password path="m_pw" class = "form-control" id = "m_pw" placeholder = "비밀번호를 입력하세요."/>
 									        <form:errors path="m_pw" />
 									        </label>
                                     </div>
@@ -60,25 +60,9 @@
 										        <form:checkbox path="rememberId" /> 
 										      </label>
                                         </div>
-                                        <input type="submit" class = "btn_3" value="<spring:message code="login.btn" />">
+                                        <input type="submit" class = "btn_3" value="<spring:message code="login.btn" />" formaction = "<c:url value = "/login"/>">
                                     </div>
                                 </form:form>
-                                		<a id="custom-login-btn" href="javascript:kakaoLogin();">
-  										<img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" width="222"/></a>
-  										<button class="api-btn" onclick="kakaoLogout()">로그아웃</button>
-
-<script type="text/javascript">
-  function kakaoLogout() {
-    if (!Kakao.Auth.getAccessToken()) {
-      alert('Not logged in.')
-      return
-    }
-    Kakao.Auth.logout(function() {
-      alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken())
-    })
-  }
-</script>
-  										
                                         <a href = "<c:url value = "/findIdPassword"/>" class = "lost_pass">아이디/비밀번호 찾기</a>
                             </div>
                         </div>
@@ -93,29 +77,64 @@
     
     <!-- Footer -->
     <jsp:include page = "../footer.jsp"></jsp:include>
-    
-	 		<!-- JS here -->
-	 		
-	<script src = "https://developers.kakao.com/sdk/js/kakao.js"></script>
-	<script>
-		window.Kakao.init("da8096da6f5a819784236fc7d70a5947");
+    <script>
+	function checkIdPw(){
+		console.log('${pageContext.request.contextPath}');
+		var memberId = $('#m_id').val();			// .id_input에 입력되는 값
+		var memberPw = $('#m_pw').val();
+		alert(memberId);
+		alert(memberPw);
 		
-		function kakaoLogin(){
-			window.Kakao.Auth.login({
-				scope : 'profile, account_email, gender',
-				success : function(authObj){
-					console.log(authObj);
-					window.Kakao.API.request({
-						url : '/v2/user/me',
-						success : res => {
-							const kakao_account = res.kakao_account;
-							console.log(kakao_account);
-						}
-					});
-				}
-			});
-		}
-	</script> 		
+		var data = {m_id : memberId, m_pw : memberPw}				// '컨트롤에 넘길 데이터 이름' : '데이터(.id_input에 입력되는 값)'
+		$.ajax({
+			type : "post",
+			url : "IdPwCheck",
+			data : data,
+			success : function(result){
+				console.log("성공 여부 " + result);
+				if(memberId === null  || memberId === ""){
+					alert("아이디를 입력하세요.");	
+    			}else if(result != 'true'){
+					alert("비밀번호를 확인해 주세요.");
+				} else {
+					alert("아이디를 확인해 주세요");
+				} 
+			}
+		});
+
+	}
+    </script>
+     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script type="text/javascript">
+ 		 function kakaoLogout() {
+    		if (!Kakao.Auth.getAccessToken()) {
+     		 alert('Not logged in.')
+     		 return
+    		}
+    		Kakao.Auth.logout(function() {
+      		alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken())
+    		})
+ 		 }
+ 	</script>
+ 	<script type = "text/javascript">
+ 		 function kakao_Login(){
+        //<![CDATA[
+        // 사용할 앱의 JavaScript 키를 설정해 주세요.
+        Kakao.init('da8096da6f5a819784236fc7d70a5947');
+        // 카카오 로그인 버튼을 생성합니다.
+        Kakao.Auth.createLoginButton({
+            container: '#kakao-login-btn',
+            success: function (authObj) {
+                alert(JSON.stringify(authObj));
+            },
+            fail: function (err) {
+                alert(JSON.stringify(err));
+            }
+        });
+ 		 }
+      //]]>
+    </script>				
+	 		<!-- JS here -->
     <!-- All JS Custom Plugins Link Here here -->
     <script src="<c:url value = "/resources/js/vendor/modernizr-3.5.0.min.js"/>"></script>
     <!-- Jquery, Popper, Bootstrap -->

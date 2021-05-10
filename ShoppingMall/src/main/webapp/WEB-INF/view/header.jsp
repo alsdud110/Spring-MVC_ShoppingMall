@@ -28,7 +28,7 @@
                         <div class="main-menu d-none d-lg-block">
                             <nav>                                                
                                 <ul id="navigation">
-									<li><a href="<c:url value = '/main'/>">Main</a></li>
+									<li><a href="<c:url value = '/main'/>">MAIN</a></li>
 									<li><a href="<c:url value='/product/viewCategory/TOP'/>">TOP</a></li>
                                     <li><a href="<c:url value='/product/viewCategory/BOTTOM'/>">BOTTOM</a></li>
                                     <li><a href="<c:url value='/product/viewCategory/ETC'/>">ETC</a></li>

@@ -70,7 +70,7 @@ $(document).ready(function(){
 			<span>Order</span>
 			<span class="end">Order confirmed</span>
 		</div>
-      <form name="form1" id="form1" method="post" action = "orderList">
+      <form name="form1" id="form1" method="post" >
         <div class="container">
           <div class="cart_inner">
           	<div class = "table-responsive">
@@ -119,7 +119,7 @@ $(document).ready(function(){
               <input type="hidden" name="sumMoney" value="0">
               <span>선택한 총 금액 : ￦  </span><span id="aaa"></span>
 				  <input type="submit" value="삭제" id="delete" class="btn_3" formaction="<c:url value="/cart/delete"/>" style="margin-left: 1220px;" >
-				  <input type="submit" value="구매하기" id="updateCart" class="btn_3" formaction = "<c:url value = "/orderList"/>">
+				  <input type="submit" value="구매하기" id="updateCart" class="btn_3" formaction = "<c:url value = "/order/orderList"/>">
 	     </form>
       <!--================End Cart Area =================-->
 

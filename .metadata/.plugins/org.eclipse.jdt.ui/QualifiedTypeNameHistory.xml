@@ -3,6 +3,7 @@
     <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
     <fullyQualifiedTypeName name="org.springframework.validation.BindingResult"/>
     <fullyQualifiedTypeName name="java.awt.List"/>
-    <fullyQualifiedTypeName name="org.springframework.jdbc.core.PreparedStatementCreator"/>
     <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="org.springframework.jdbc.core.PreparedStatementCreator"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
 </qualifiedTypeNameHistroy>

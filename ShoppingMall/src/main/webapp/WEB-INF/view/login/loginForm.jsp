@@ -44,7 +44,7 @@
                                 <form:form modelAttribute = "loginCommand" class="row contact_form" novalidate="novalidate">
                                     <div class="col-md-12 form-group p_star">
                                         <label><spring:message code="id" />:<br>
-       										<form:input path="m_id" class = "form-control" />
+       										<form:input path="m_id" class = "form-control"/>
 									      	<form:errors path="m_id"/>
 									        </label>
                                     </div>
@@ -63,24 +63,22 @@
                                         <input type="submit" class = "btn_3" value="<spring:message code="login.btn" />">
                                     </div>
                                 </form:form>
-                                		<a id="kakao-login-btn"></a>
-    <a href="http://developers.kakao.com/logout">Logout</a>
-    <script type='text/javascript'>
-        //<![CDATA[
-        // 사용할 앱의 JavaScript 키를 설정해 주세요.
-        Kakao.init('Your KEY');
-        // 카카오 로그인 버튼을 생성합니다.
-        Kakao.Auth.createLoginButton({
-            container: '#kakao-login-btn',
-            success: function (authObj) {
-                alert(JSON.stringify(authObj));
-            },
-            fail: function (err) {
-                alert(JSON.stringify(err));
-            }
-        });
-      //]]>
-    </script>
+                                		<a id="custom-login-btn" href="javascript:kakaoLogin();">
+  										<img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" width="222"/></a>
+  										<button class="api-btn" onclick="kakaoLogout()">로그아웃</button>
+
+<script type="text/javascript">
+  function kakaoLogout() {
+    if (!Kakao.Auth.getAccessToken()) {
+      alert('Not logged in.')
+      return
+    }
+    Kakao.Auth.logout(function() {
+      alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken())
+    })
+  }
+</script>
+  										
                                         <a href = "<c:url value = "/findIdPassword"/>" class = "lost_pass">아이디/비밀번호 찾기</a>
                             </div>
                         </div>
@@ -89,6 +87,7 @@
             </div>
         </section>
 	</main>
+
         <!--================login_part end =================-->
 
     
@@ -96,6 +95,27 @@
     <jsp:include page = "../footer.jsp"></jsp:include>
     
 	 		<!-- JS here -->
+	 		
+	<script src = "https://developers.kakao.com/sdk/js/kakao.js"></script>
+	<script>
+		window.Kakao.init("da8096da6f5a819784236fc7d70a5947");
+		
+		function kakaoLogin(){
+			window.Kakao.Auth.login({
+				scope : 'profile, account_email, gender',
+				success : function(authObj){
+					console.log(authObj);
+					window.Kakao.API.request({
+						url : '/v2/user/me',
+						success : res => {
+							const kakao_account = res.kakao_account;
+							console.log(kakao_account);
+						}
+					});
+				}
+			});
+		}
+	</script> 		
     <!-- All JS Custom Plugins Link Here here -->
     <script src="<c:url value = "/resources/js/vendor/modernizr-3.5.0.min.js"/>"></script>
     <!-- Jquery, Popper, Bootstrap -->

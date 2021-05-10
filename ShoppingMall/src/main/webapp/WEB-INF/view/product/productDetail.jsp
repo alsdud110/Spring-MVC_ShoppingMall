@@ -41,12 +41,9 @@
        }
        
        .jungmin{
-       		margin-left : 350px;
+       		margin-left : 150px;
        }
        
-       .jungmin2{
-       		margin-left : 500px;
-       }
      
   
     </style>
@@ -151,7 +148,7 @@ if(authInfo !=null){
 	<tr>
 	<td>size</td>
 	<td>
-	<div class="jungmin"> <!-- div 안닫힘. -->
+	<div class="jungmin">
 	<select name="str" onchange="select(this.value)">
 	<option value="none">=== 선택 ===</option>
 	<c:forEach var="std" items="${productStd}" varStatus="status">
@@ -160,17 +157,20 @@ if(authInfo !=null){
 	</select>
 		<input type="hidden" id="p_color" name="p_color"/>  
 		<input type="hidden" id="p_size" name="p_size"/>
-
+	</div>
 	</td> 
 	</tr>
+	
 	<tr>
-	<td>수량</td>
-	<div align="center"></div>	<!-- 아무것도 없는데 div내에 ?  -->
+	<td>수량</td>	
 	<td>
 	
 <span class="product_count_item inumber-decrement"> <i class="ti-minus qty2" onclick = 'setQty2()'></i></span>
 <input class="product_count_item input-number" type="number" id="qty" name="qty" onblur='setQty()' value = "1" min="1" max="10" >
 <span class="product_count_item number-increment"> <i class="ti-plus qty2" onclick = 'setQty2()'></i></span>
+</td>
+</tr>
+
 
 	<tr>
 	<td>총 상품 금액</td>
@@ -179,8 +179,8 @@ if(authInfo !=null){
 </table>
 <table>
 <tr>
-    <td><input type="submit" class="genric-btn primary e-large" style="float:right; margin-top:10px; margin-bottom:10px; margin-left:665px;" value=구매하기 formaction="<c:url value="/order"/>"></td>
-	<td colspan="2"><input type="submit" class="genric-btn primary-border e-large" style="float:left; margin-top:10px; margin-bottom:10px; margin-right:50px;" value="장바구니 담기" formaction="<c:url value="/cart/addCart"/>"></div></td>  <!-- div 시작지점이?? -->
+    <td><input type="submit" class="genric-btn primary e-large" style="float:right; margin-top:10px; margin-bottom:10px; margin-left:900px;" value=구매하기 formaction="<c:url value="/order"/>"></td>
+	<td colspan="2"><input type="submit" class="genric-btn primary-border e-large" style="float:left; margin-top:10px; margin-bottom:10px; margin-right:50px;" value="장바구니 담기" formaction="<c:url value="/cart/addCart"/>"></td>  
 </tr>	
 	</table>
 	

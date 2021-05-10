@@ -41,16 +41,9 @@
        }
        
        .jungmin{
-<<<<<<< HEAD
        		margin-left : 35%;
-=======
-       		margin-left : 350px;
->>>>>>> branch '황민영' of https://gitlab.com/springproject041/testproject.git
        }
-       
-       .jungmin2{
-       		margin-left : 500px;
-       }
+      
      
   
     </style>
@@ -135,15 +128,10 @@ if(authInfo !=null){
 	<table> 
 
 	<tr>
-<<<<<<< HEAD
 	<td rowspan="7"> <img src="<c:url value="${product.p_IMAGE}"/>" width="550" height="600">
 	<input type = "hidden" name = "p_img" value = "${product.p_IMAGE }"/>
 	</td>
 
-
-=======
-	<td rowspan="7"> <img src="<c:url value="${product.p_IMAGE}"/>" width="550" height="600"></td>
->>>>>>> branch '황민영' of https://gitlab.com/springproject041/testproject.git
 	<td>상품명</td>
 	<td><p><b>${product.p_NAME}</b></p>
 	<input type="hidden" name="p_name" value="${product.p_NAME}"/>
@@ -162,11 +150,7 @@ if(authInfo !=null){
 	<tr>
 	<td>size</td>
 	<td>
-<<<<<<< HEAD
-	<div class = "jungmin">
-=======
 	<div class="jungmin"> <!-- div 안닫힘. -->
->>>>>>> branch '황민영' of https://gitlab.com/springproject041/testproject.git
 	<select name="str" onchange="select(this.value)">
 	<option value="none">=== 선택 ===</option>
 	<c:forEach var="std" items="${productStd}" varStatus="status">
@@ -174,13 +158,8 @@ if(authInfo !=null){
 	</c:forEach>
 	</select>
 		<input type="hidden" id="p_color" name="p_color"/>  
-<<<<<<< HEAD
 		<input type="hidden" id="p_size" name="p_size"/>	
 	</div>
-=======
-		<input type="hidden" id="p_size" name="p_size"/>
-
->>>>>>> branch '황민영' of https://gitlab.com/springproject041/testproject.git
 	</td> 
 	</tr>
 	<tr>
@@ -199,13 +178,9 @@ if(authInfo !=null){
 </table>
 <table>
 <tr>
-<<<<<<< HEAD
     <td>
     <input type="submit" class="genric-btn primary e-large" style="float:right; margin-top:10px; margin-bottom:10px; margin-left:665px;" value=구매하기 formaction = "<c:url value="/order/detailToOrder"/>">
     </td>
-=======
-    <td><input type="submit" class="genric-btn primary e-large" style="float:right; margin-top:10px; margin-bottom:10px; margin-left:665px;" value=구매하기 formaction="<c:url value="/order"/>"></td>
->>>>>>> branch '황민영' of https://gitlab.com/springproject041/testproject.git
 	<td colspan="2"><input type="submit" class="genric-btn primary-border e-large" style="float:left; margin-top:10px; margin-bottom:10px; margin-right:50px;" value="장바구니 담기" formaction="<c:url value="/cart/addCart"/>"></div></td>  <!-- div 시작지점이?? -->
 </tr>	
 	</table>

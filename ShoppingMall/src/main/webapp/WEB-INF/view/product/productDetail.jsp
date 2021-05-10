@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import = "member.Member" %>
 <!DOCTYPE html>
@@ -85,15 +86,14 @@ function checkdata(){
 		
 	if(confirm(
 			"선택하신 상품 내역을 확인해주세요. \n\n"+
-			"상품명=" + name+"\n"+
-			"사이즈="+size +"\n"+
-			"컬러="+color +"\n"+
-			"수량="+qty +"\n"+
-			"총 가격="+sumMoney)== true){
-		alert("장바구니에 상품이 담겼습니다.");
+			"상품명 : " + name+"\n"+
+			"사이즈 : "+size +"\n"+
+			"컬러 : "+color +"\n"+
+			"수량 : "+qty +"\n"+
+			"총 가격 : "+sumMoney + "원")== true){
 		}
 	else{
-		alert("장바구니에 상품 담기를 취소했습니다.");
+		alert('취소하셨습니다.');
 		return false;
 	}
 	
@@ -139,7 +139,7 @@ if(authInfo !=null){
 	
 	<tr>
 	<td>가격</td>
-	<td><p><b>${product.p_PRICE}</b></p>
+	<td><p><b><fmt:formatNumber pattern="###,###,###" value="${product.p_PRICE}" />원</b></p>
 	<input type="hidden" name="p_price" value="${product.p_PRICE}"/>
 	</td>
 	</tr>

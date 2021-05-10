@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>상품장바구니 목록</title>
 <jsp:include page="../header.jsp"></jsp:include>
@@ -69,8 +70,11 @@ $(document).ready(function(){
 			<span class = "this" title = "현재페이지"><b>Cart</b></span> 
 			<span>Order</span>
 			<span class="end">Order confirmed</span>
-		</div>
-      <form name="form1" id="form1" method="post" >
+	</div>
+
+<br></br>		
+
+      <form name="form1" id="form1" method="post" action = "orderList">
         <div class="container">
           <div class="cart_inner">
           	<div class = "table-responsive">
@@ -116,10 +120,12 @@ $(document).ready(function(){
             </div>
           </div>
         </div>
+
               <input type="hidden" name="sumMoney" value="0">
               <span>선택한 총 금액 : ￦  </span><span id="aaa"></span>
 				  <input type="submit" value="삭제" id="delete" class="btn_3" formaction="<c:url value="/cart/delete"/>" style="margin-left: 1220px;" >
 				  <input type="submit" value="구매하기" id="updateCart" class="btn_3" formaction = "<c:url value = "/order/orderList"/>">
+
 	     </form>
       <!--================End Cart Area =================-->
 
@@ -153,14 +159,14 @@ $(document).ready(function(){
 	<script src="<c:url value = "/resources/js/jquery.sticky.js"/>"></script>
 	<script src="<c:url value = "/resources/js/jquery.magnific-popup.js"/>"></script>
 
-	<!— contact js —>
+	<!-- contact js -->
 	<script src="<c:url value = "/resources/js/contact.js"/>"></script>
 	<script src="<c:url value = "/resources/js/jquery.form.js"/>"></script>
 	<script src="<c:url value = "/resources/js/jquery.validate.min.js"/>"></script>
 	<script src="<c:url value = "/resources/js/mail-script.js"/>"></script>
 	<script src="<c:url value = "/resources/js/jquery.ajaxchimp.min.js"/>"></script>
 
-	<!— Jquery Plugins, main Jquery —>
+	<!-- Jquery Plugins, main Jquery -->
 	<script src="<c:url value = "/resources/js/plugins.js"/>"></script>
 	<script src="<c:url value = "/resources/js/main.js"/>"></script>
 </body>

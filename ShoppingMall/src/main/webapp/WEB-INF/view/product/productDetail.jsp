@@ -22,12 +22,6 @@
         <link rel="stylesheet" href="<c:url value = "/resources/css/nice-select.css"/>">
         <link rel="stylesheet" href="<c:url value = "/resources/css/style.css"/>">
         
-<!-- 메인로고 -->
-<a href= "<c:url value = "/main"/>">
-<center>
-<img src="https://i.pinimg.com/236x/7e/64/6b/7e646bd7120da69b67240999098e2984.jpg"> <!-- 홈페이지 로고 -->
-</center>
-</a>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -47,9 +41,16 @@
        }
        
        .jungmin{
+<<<<<<< HEAD
        		margin-left : 35%;
+=======
+       		margin-left : 350px;
+>>>>>>> branch '황민영' of https://gitlab.com/springproject041/testproject.git
        }
        
+       .jungmin2{
+       		margin-left : 500px;
+       }
      
   
     </style>
@@ -115,8 +116,17 @@ if(authInfo !=null){
 %>
 </head>
 <body>
-	<h2 class = "text-center">상품 상세 페이지</h2>
 
+<br></br>
+
+	<div class="col-xl-12">
+	<div class="section-tittle mb-70">
+	<div class="text-center">
+	<h2><b>Product Info.</b></h2>
+	</div>
+<br></br>
+</div>
+</div>
 	<form:form modelAttribute="CartVO" onsubmit="return checkdata()">	<!-- action 주소 = 현재주소/123주소     : productDetail/123  >>>>>카트나 구매쪽으로 넘길 예정-->
 	<input type="hidden" name="p_code" value="${product.p_CODE}"/>	
 	
@@ -125,28 +135,38 @@ if(authInfo !=null){
 	<table> 
 
 	<tr>
+<<<<<<< HEAD
 	<td rowspan="7"> <img src="<c:url value="${product.p_IMAGE}"/>" width="550" height="600">
 	<input type = "hidden" name = "p_img" value = "${product.p_IMAGE }"/>
 	</td>
 
 
+=======
+	<td rowspan="7"> <img src="<c:url value="${product.p_IMAGE}"/>" width="550" height="600"></td>
+>>>>>>> branch '황민영' of https://gitlab.com/springproject041/testproject.git
 	<td>상품명</td>
-	<td><p><b>${product.p_NAME}</b></p></td>
-	<tr>
+	<td><p><b>${product.p_NAME}</b></p>
 	<input type="hidden" name="p_name" value="${product.p_NAME}"/>
-	</tr>
-
-	<td>가격</td>
-	<td><p><b>${product.p_PRICE}</b></p></td>
+	</td>
 	
 	<tr>
+	<td>가격</td>
+	<td><p><b>${product.p_PRICE}</b></p>
 	<input type="hidden" name="p_price" value="${product.p_PRICE}"/>
+	</td>
+	</tr>
+	<tr>
+	
 </tr>
 
 	<tr>
 	<td>size</td>
 	<td>
+<<<<<<< HEAD
 	<div class = "jungmin">
+=======
+	<div class="jungmin"> <!-- div 안닫힘. -->
+>>>>>>> branch '황민영' of https://gitlab.com/springproject041/testproject.git
 	<select name="str" onchange="select(this.value)">
 	<option value="none">=== 선택 ===</option>
 	<c:forEach var="std" items="${productStd}" varStatus="status">
@@ -154,13 +174,18 @@ if(authInfo !=null){
 	</c:forEach>
 	</select>
 		<input type="hidden" id="p_color" name="p_color"/>  
+<<<<<<< HEAD
 		<input type="hidden" id="p_size" name="p_size"/>	
 	</div>
+=======
+		<input type="hidden" id="p_size" name="p_size"/>
+
+>>>>>>> branch '황민영' of https://gitlab.com/springproject041/testproject.git
 	</td> 
 	</tr>
 	<tr>
 	<td>수량</td>
-	<div align="center"></div>
+	<div align="center"></div>	<!-- 아무것도 없는데 div내에 ?  -->
 	<td>
 	
 <span class="product_count_item inumber-decrement"> <i class="ti-minus qty2" onclick = 'setQty2()'></i></span>
@@ -174,13 +199,23 @@ if(authInfo !=null){
 </table>
 <table>
 <tr>
+<<<<<<< HEAD
     <td>
     <input type="submit" class="genric-btn primary e-large" style="float:right; margin-top:10px; margin-bottom:10px; margin-left:665px;" value=구매하기 formaction = "<c:url value="/order/detailToOrder"/>">
     </td>
+=======
+    <td><input type="submit" class="genric-btn primary e-large" style="float:right; margin-top:10px; margin-bottom:10px; margin-left:665px;" value=구매하기 formaction="<c:url value="/order"/>"></td>
+>>>>>>> branch '황민영' of https://gitlab.com/springproject041/testproject.git
 	<td colspan="2"><input type="submit" class="genric-btn primary-border e-large" style="float:left; margin-top:10px; margin-bottom:10px; margin-right:50px;" value="장바구니 담기" formaction="<c:url value="/cart/addCart"/>"></div></td>  <!-- div 시작지점이?? -->
 </tr>	
 	</table>
+	
 	</form:form>
+	
+	<br>
+	<br>
+	<br>
+	
 	 <!-- Footer -->
     <jsp:include page = "../footer.jsp"></jsp:include>
     

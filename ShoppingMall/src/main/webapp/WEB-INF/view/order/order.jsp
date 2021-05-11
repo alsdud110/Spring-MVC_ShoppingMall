@@ -228,7 +228,7 @@ $(document).ready(function(){
                             
                             
                             <tr>
-                                <th class="ta-l required" aria-required="true">받으실분</th>
+                                <th class="ta-l required" aria-required="true">받으실분 *</th>
                                 <td>
                                     <div class="txt-field hs" style="width:380px;">
                                         <input type="text" name="receiverName" value="" maxlength="20" class="text">
@@ -236,7 +236,7 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                             <tr>
-                                <th class="ta-l required" aria-required="true">배송지 입력</th>
+                                <th class="ta-l required" aria-required="true">배송지 입력 *</th>
                                 <td>
                                      <div class="post">
                                         <id class="txt-field hs" style="width:250px;">
@@ -258,7 +258,7 @@ $(document).ready(function(){
                                 </td>
                             </tr>
                             <tr>
-                                <th class="ta-l required" aria-required="true">휴대폰 번호</th>
+                                <th class="ta-l required" aria-required="true">휴대폰 번호 *</th>
                                 <td>
                                     <span class="txt-field hs" style="width:380px;">
                                         <input type="text" id="receiverCellPhone" name="receiverCellPhone" value="" class="text" placeholder=" - 제외 입력" numberonly="true">

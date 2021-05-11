@@ -10434,3 +10434,9 @@ Caused by: java.io.FileNotFoundException: /Users/hwangmin-yeong/eclipse-workspac
 
 !ENTRY org.eclipse.m2e.logback.appender 2 0 2021-05-12 06:05:04.130
 !MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-05-12 06:07:41.443
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2021-05-12 06:07:41.446
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!

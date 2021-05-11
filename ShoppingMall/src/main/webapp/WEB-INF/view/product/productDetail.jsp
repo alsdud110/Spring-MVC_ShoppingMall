@@ -88,7 +88,7 @@ function checkdata(){
 				"사이즈="+size +"\n"+
 				"수량="+qty +"\n"+
 				"총 가격="+sumMoney)== true){
-			alert("진행하겠습니다.");
+			alert("구매 페이지로 이동합니다.");
 			}
 		else{
 			alert("취소했습니다.");
@@ -197,9 +197,7 @@ if(authInfo !=null){
 	<td>수량</td>	
 	<td>
 	
-<span class="product_count_item number-decrement"> <i class="ti-minus qty2" onclick = 'setQty2()'></i></span>
 <input class="product_count_item input-number" type="number" id="qty" name="qty" onblur='setQty()' value = "1" min="1" max="10" >
-<span class="product_count_item number-increment"> <i class="ti-plus qty2" onclick = 'setQty2()'></i></span>
 <input type='button' style="width:40px; hight:20px" onclick='count("plus")' value='+'/>
 <input type='button' style="width:40px; hight:20px" onclick='count("minus")' value='-'/>
 </td>

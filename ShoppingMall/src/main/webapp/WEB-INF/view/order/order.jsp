@@ -32,7 +32,10 @@ colgroup {
 
 .mt10 {
     margin-top: 10px;
+    
 }
+
+
 </style>
 
 
@@ -203,7 +206,7 @@ colgroup {
                             
                             
                             <tr>
-                                <th class="ta-l required" aria-required="true">받으실분</th>
+                                <th class="ta-l required" aria-required="true">받으실 분</th>
                                 <td>
                                     <div class="txt-field hs" style="width:380px;">
                                         <input type="text" name="receiverName" value="" maxlength="20" class="text">
@@ -214,21 +217,16 @@ colgroup {
                                 <th class="ta-l required" aria-required="true">배송지 입력</th>
                                 <td>
                                     <div class="post">
-                                        <span class="txt-field hs" style="width:250px;">
-                                            <input type="text" name="receiverZonecode" value="" readonly="readonly" style="width:150px;" class="text">
-                                            <input type="hidden" name="receiverZipcode" value="">
-                                            <span id="receiverZipcodeText" class="text"></span>
-                                        </span>
-                                        <button type="button" onclick="postcode_search('receiverZonecode', 'receiverAddress', 'receiverZipcode');"  class="genric-btn primary small"><em>우편번호검색</em></button>
+                                        <id class="txt-field hs" style="width:250px;">
+                                         <input type="text" id="sample6_postcode" placeholder="우편번호">
+                                         <input type="button" onclick="sample6_execDaumPostcode()" class="genric-btn primary small" value="우편번호 찾기"><br>
+                                      	 <input type="text" id="sample6_address" placeholder="주소"><br>
+                                      	  <input type="text" id="sample6_extraAddress" placeholder="">
+										 <input type="text" id="sample6_detailAddress" placeholder="상세주소입력">
+										
                                     </div>
-                                    <div class="sa mt10">
-                                        <span class="txt-field hs" style="width:420px;">
-                                            <input type="text" name="receiverAddress" value="" readonly="readonly" class="text">
-                                        </span>
-                                        <span class="txt-field hs" style="width:420px;">
-                                            <input type="text" name="receiverAddressSub" value="" class="text" placeholder="상세주소 입력">
-                                        </span>
-                                    </div>
+                                
+                      
                                 </td>
                             </tr>
                             <tr>
@@ -265,8 +263,8 @@ colgroup {
 	     
 	     <!-- 다음 주소 api -->
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-    function findAddr() {
+	<script>
+    function sample6_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.

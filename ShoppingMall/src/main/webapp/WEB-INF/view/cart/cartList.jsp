@@ -46,8 +46,9 @@ $(document).ready(function(){
 	        }else{
 	           sumMoney-=parseInt(td.eq(4).text());
 	        }
+	        <!--상품을 카트에 담아서 선택하면 총 금액에 _100원단위가 잘려서 나오는 현상-->
 	        $('input[name=sumMoney]').val(sumMoney*1000);
-	        document.getElementById('aaa').innerHTML = sumMoney*1000;
+	        document.getElementById('aaa').innerHTML = sumMoney*1000; 
 	    });
 	});
 </script>
@@ -68,7 +69,9 @@ $(document).ready(function(){
 	
 	<div class = "text-center">
 			<span class = "this" title = "현재페이지"><b>Cart</b></span> 
+			>
 			<span>Order</span>
+			>
 			<span class="end">Order confirmed</span>
 	</div>
 
@@ -120,13 +123,16 @@ $(document).ready(function(){
             </div>
           </div>
         </div>
-
+			
+				<center>
               <input type="hidden" name="sumMoney" value="0">
               <span>선택한 총 금액 : ￦  </span><span id="aaa"></span>
-				  <input type="submit" value="삭제" id="delete" class="btn_3" formaction="<c:url value="/cart/delete"/>" style="margin-left: 1220px;" >
-				  <input type="submit" value="구매하기" id="updateCart" class="btn_3" formaction = "<c:url value = "/order/orderList"/>">
-
+           <br></br>
+				  <input type="submit" value="삭제" id="delete" class="genric-btn primary radius" formaction="<c:url value="/cart/delete"/>">
+				  <input type="submit" value="구매하기" id="updateCart" class="genric-btn primary radius" formaction = "<c:url value = "/order/orderList"/>">
+		</center>
 	     </form>
+	   
       <!--================End Cart Area =================-->
 
 	<!-- Footer -->

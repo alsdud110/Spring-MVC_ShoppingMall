@@ -19,7 +19,7 @@ public class LoginService {
 			throw new WrongIdPasswordException();
 		}
 		if (!member.matchPassword(any_pw)) {
-			throw new WrongIdPasswordException();
+			return null;
 		}
 		Member auth = new Member(member.getM_code(), member.getM_id(), member.getM_pw(), member.getM_addr(), member.getM_contact(), member.getM_email(), member.getM_birth(), member.getM_name());
 		

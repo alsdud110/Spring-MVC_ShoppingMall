@@ -63,6 +63,7 @@
                                         <input type="submit" class = "btn_3" value="<spring:message code="login.btn" />" formaction = "<c:url value = "/login"/>">
                                     </div>
                                 </form:form>
+                                		<a href = "https://kauth.kakao.com/oauth/authorize?client_id=d08c2eb5431946e51ee63f6281e3aa2c&redirect_uri=http://localhost:8080/ShoppingMall/auth/kakao/callback&response_type=code"><img src = "<c:url value = "/resources/img/kakao_button.png"/>"></a>
                                         <a href = "<c:url value = "/findIdPassword"/>" class = "lost_pass">아이디/비밀번호 찾기</a>
                             </div>
                         </div>
@@ -82,8 +83,10 @@
 		console.log('${pageContext.request.contextPath}');
 		var memberId = $('#m_id').val();			// .id_input에 입력되는 값
 		var memberPw = $('#m_pw').val();
-		alert(memberId);
-		alert(memberPw);
+		
+		if(memberId === null  || memberId === ""){
+			alert("아이디를 입력하세요.");	
+		}
 		
 		var data = {m_id : memberId, m_pw : memberPw}				// '컨트롤에 넘길 데이터 이름' : '데이터(.id_input에 입력되는 값)'
 		$.ajax({
@@ -91,13 +94,11 @@
 			url : "IdPwCheck",
 			data : data,
 			success : function(result){
-				console.log("성공 여부 " + result);
-				if(memberId === null  || memberId === ""){
-					alert("아이디를 입력하세요.");	
-    			}else if(result != 'true'){
-					alert("비밀번호를 확인해 주세요.");
-				} else {
-					alert("아이디를 확인해 주세요");
+				if(result == 'falseId'){
+					alert("아이디를 확인해 주세요.");
+				}
+				if(result == 'falsePw'){
+					alert("비밀번호를 확인해 주세요");
 				} 
 			}
 		});

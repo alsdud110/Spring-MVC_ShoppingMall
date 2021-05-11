@@ -73,7 +73,9 @@ $(document).ready(function(){
 			sumMoney += totalPrice;
 		</c:forEach>
 			$('input[name=sumMoney]').val(sumMoney);
-	       	$('#aaa').text(sumMoney);
+	        var money = sumMoney.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	        document.getElementById('aaa').innerHTML = money;
+
 
 	});
 </script>

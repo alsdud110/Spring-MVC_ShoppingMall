@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 <!DOCTYPE html>
@@ -100,7 +100,7 @@
 								<li class="prd-name">${kind.p_NAME}</li>
 
 								<li class="org_price"><font
-									style="font-weight: bold; color: #ff0000;">${kind.p_PRICE}</font></li>
+									style="font-weight: bold; color: #ff0000;"><fmt:formatNumber pattern="###,###,###" value="${kind.p_PRICE}" />원</font></li>
 								<li><span class='MK-product-icons'></span></li>
 							</ul>
 						</dd>

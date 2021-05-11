@@ -127,7 +127,7 @@ $(document).ready(function(){
                       </div>
                     </td>
                     <td>
-                      <h5><fmt:formatNumber pattern="###,###,###" value="${orderlist.p_price}" /></h5>
+                      <h5><fmt:formatNumber pattern="###,###,###" value="${orderlist.p_price}" />원</h5>
                     </td>
                     <td>
 						<input type="number" style="width: 50px" name="amount"
@@ -135,7 +135,7 @@ $(document).ready(function(){
 						name="p_code" value="${orderlist.p_code}">
                     </td>
                     <td id = "sumMoney" >
-                      <h5><fmt:formatNumber pattern="###,###,###" value="${orderlist.sumMoney}" /></h5>
+                      <h5><fmt:formatNumber pattern="###,###,###" value="${orderlist.sumMoney}" />원</h5>
                     </td>
                   </tr>
                   </c:forEach>

@@ -96,28 +96,28 @@ colgroup {
                  		</tr>
                		 </thead>
                 <tbody>
-                <c:forEach var="list" items="${orderlist}" varStatus="i">
+				<c:forEach var = "orderlist" items = "${orderlist}" varStatus = "i">
                   <tr>
                     <td>
                       <div class="media">
                         <div class="d-flex">
-                          <img src=	"<c:url value = "${list.p_image }"/>" alt="" />
+                          <img src=	"<c:url value = "${orderlist.p_image }"/>" alt="" />
                         </div>
                         <div class="media-body">
-                          <p>${list.p_name }</p>
+                          <p>${orderlist.p_name }</p>
                         </div>
                       </div>
                     </td>
                     <td>
-                      <h5><fmt:formatNumber pattern="###,###,###" value="${list.p_price}" /></h5>
+                      <h5><fmt:formatNumber pattern="###,###,###" value="${orderlist.p_price}" /></h5>
                     </td>
                     <td>
 						<input type="number" style="width: 50px" name="amount"
-						value="${list.qty}" min="1" readonly> <input type="hidden"
-						name="p_code" value="${list.p_code}">
+						value="${orderlist.qty}" min="1" readonly> <input type="hidden"
+						name="p_code" value="${orderlist.p_code}">
                     </td>
                     <td id = "sumMoney" >
-                      <h5><fmt:formatNumber pattern="###,###,###" value="${list.sumMoney}" /></h5>
+                      <h5><fmt:formatNumber pattern="###,###,###" value="${orderlist.sumMoney}" /></h5>
                     </td>
                   </tr>
                   </c:forEach>

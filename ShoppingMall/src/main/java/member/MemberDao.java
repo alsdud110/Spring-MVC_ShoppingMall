@@ -141,12 +141,10 @@ public class MemberDao {
 				pstmt.setString(5, member.getM_name());
 				pstmt.setString(6, member.getM_code());
 				
-//				pstmt.executeUpdate();
 				// 생성한 PreparedStatement 객체 리턴
 				return pstmt;
 			}
 		});
-		System.out.println("update failed");
 	}
 
 	public void updatePw(String m_pw, String m_code) throws Exception {

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import = "member.Member" %>
 <!DOCTYPE html>
@@ -43,20 +44,13 @@
        .jungmin{
        		margin-left : 150px;
        }
-       
-     
+  
   
     </style>
 
 <script type="text/javascript">
 function setQty() {
 	  const qty=document.getElementById('qty').value;
-	  const price=${product.p_PRICE};
-	document.getElementById('sumMoney').value = price*qty;
-}
-
-function setQty2(){
-	const qty=document.getElementById('qty2').value;
 	  const price=${product.p_PRICE};
 	document.getElementById('sumMoney').value = price*qty;
 }
@@ -71,7 +65,6 @@ function select(str) {
 	p_color.push("${std.p_color}");
 	</c:forEach>
 
-	alert(num);
 		
 	document.getElementById('p_size').value =p_size[num];
 	document.getElementById('p_color').value =p_color[num];
@@ -84,17 +77,22 @@ function checkdata(){
 	var color = document.getElementById('p_color').value;
 	var qty = document.getElementById('qty').value;
 	var sumMoney = document.getElementById('sumMoney').value;
+	
+	if(size == "" || color == ""){
+		alert('사이즈와 색상을 선택해주세요.');
+		return false;
+	}
+		
 	if(confirm(
 			"선택하신 상품 내역을 확인해주세요. \n\n"+
-			"상품명=" + name+"\n"+
-			"사이즈="+size +"\n"+
-			"컬러="+color +"\n"+
-			"수량="+qty +"\n"+
-			"총 가격="+sumMoney)== true){
-		alert("장바구니에 상품이 담겼습니다.");
+			"상품명 : " + name+"\n"+
+			"사이즈 : "+size +"\n"+
+			"컬러 : "+color +"\n"+
+			"수량 : "+qty +"\n"+
+			"총 가격 : "+sumMoney + "원")== true){
 		}
 	else{
-		alert("장바구니에 상품 담기를 취소했습니다.");
+		alert('취소하셨습니다.');
 		return false;
 	}
 	
@@ -129,7 +127,10 @@ if(authInfo !=null){
 	<table> 
 
 	<tr>
-	<td rowspan="7"> <img src="<c:url value="${product.p_IMAGE}"/>" width="550" height="600"></td>
+	<td rowspan="7"> <img src="<c:url value="${product.p_IMAGE}"/>" width="550" height="600">
+	<input type = "hidden" name = "p_img" value = "${product.p_IMAGE }"/>
+	</td>
+
 	<td>상품명</td>
 	<td><p><b>${product.p_NAME}</b></p>
 	<input type="hidden" name="p_name" value="${product.p_NAME}"/>
@@ -137,7 +138,7 @@ if(authInfo !=null){
 	
 	<tr>
 	<td>가격</td>
-	<td><p><b>${product.p_PRICE}</b></p>
+	<td><p><b><fmt:formatNumber pattern="###,###,###" value="${product.p_PRICE}" />원</b></p>
 	<input type="hidden" name="p_price" value="${product.p_PRICE}"/>
 	</td>
 	</tr>
@@ -172,15 +173,16 @@ if(authInfo !=null){
 </tr>
 
 
-	<tr>
+<tr>
 	<td>총 상품 금액</td>
 	<td><input type="text" id='sumMoney' name="sumMoney" value="${product.p_PRICE}" readonly></td> <!-- readonly : 수정불가, form 전달가능  -->
 </tr>
 </table>
 <table>
 <tr>
-    <td><input type="submit" class="genric-btn primary e-large" style="float:right; margin-top:10px; margin-bottom:10px; margin-left:900px;" value=구매하기 formaction="<c:url value="/order"/>"></td>
+    <td><input type="submit" class="genric-btn primary e-large" style="float:right; margin-top:10px; margin-bottom:10px; margin-left:900px;" value=구매하기 formaction="<c:url value="/order/detailToOrder"/>"></td>
 	<td colspan="2"><input type="submit" class="genric-btn primary-border e-large" style="float:left; margin-top:10px; margin-bottom:10px; margin-right:50px;" value="장바구니 담기" formaction="<c:url value="/cart/addCart"/>"></td>  
+
 </tr>	
 	</table>
 	

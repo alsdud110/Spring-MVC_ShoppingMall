@@ -129,7 +129,7 @@ $(document).ready(function(){
               <span>선택한 총 금액 : ￦  </span><span id="aaa"></span>
            <br></br>
 				  <input type="submit" value="삭제" id="delete" class="genric-btn primary radius" formaction="<c:url value="/cart/delete"/>">
-				  <input type="submit" value="구매하기" id="updateCart" class="genric-btn primary radius" formaction = "<c:url value = "/orderList"/>">
+				  <input type="submit" value="구매하기" id="updateCart" class="genric-btn primary radius" formaction = "<c:url value = "/order/orderList"/>">
 		</center>
 	     </form>
 	   

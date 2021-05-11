@@ -102,9 +102,9 @@
 		</div>
 		<div class = "col-md-6 form-group p_star">
 			<label><spring:message code = "birth" /> : <br>
-				<form:select path = "year"  name="year" id="year" title="년도" class="text-center" style = "width : 100px; border: 1px solid #ced4da;"/>
-				<form:select path = "month" name="month" id="month" title="월" class="text-center" style = "width : 100px; border: 1px solid #ced4da;"/>
-				<form:select path = "day" name="day" id="day" title="일" class="text-center" style = "width : 100px; border: 1px solid #ced4da;"/>
+				<form:select path = "year" id="year" title="년도" class="text-center" style = "width : 100px; border: 1px solid #ced4da;"/>
+				<form:select path = "month" id="month" title="월" class="text-center" style = "width : 100px; border: 1px solid #ced4da;"/>
+				<form:select path = "day" id="day" title="일" class="text-center" style = "width : 100px; border: 1px solid #ced4da;"/>
 			</label>
 		</div>
 		<div class="col-md-6 form-group p_star">		
@@ -134,8 +134,7 @@
 		    setDateBox();
 		});
 		function setDateBox(){
-			var date = new Date();
-			var com_year = date.getFullYear();
+			var com_year = 2021;
 			var year = '<%=(String)session.getAttribute("year")%>';
 			
 			$("#year").append("<option value = ''>"+year+"년도</option>");

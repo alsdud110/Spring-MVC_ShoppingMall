@@ -74,13 +74,15 @@
 		</div>
 		<div class="col-md-6 form-group p_star ">
 			<label><spring:message code="password" />:<br> 
-			<form:password path="m_pw" class="form-control"/> 
+			<form:password path="m_pw" class="form-control" id = "m_pw1"/> 
 			<form:errors path="m_pw" />
 			</label>
 		</div>
 		<div class="col-md-6 form-group p_star ">
 			<label><spring:message code="password.confirm" />:<br>
-				<form:password path="m_confirmpw" class="form-control"/> 
+				<form:password path="m_confirmpw" class="form-control" id = "m_pw2" onKeyUp = "compare_pw();"/> 
+				<span style = "color : red;" id = "result"></span>
+				<span style = "color : green;" id = "result2"></span>
 				<form:errors path="m_confirmpw" />
 			</label>
 		</div>
@@ -179,7 +181,27 @@
     			});
 
     		});
-
+		
+	var compare_result = false;	
+	$('#result').hide();
+	$('#result2').hide();
+	function compare_pw(){
+		//alert('aaa');
+		var pw1 = $('#m_pw1').val(); 
+		var pw2 = $('#m_pw2').val(); 
+		//var result = $('#result').val();
+		if(pw1 == pw2){
+			compare_result = true;
+			$('#result').hide();
+			$('#result2').show();
+			$('#result2').text('비밀번호가 일치합니다.');
+		}else{
+			compare_result = false;
+			$('#result2').hide();
+			$('#result').show();
+			$('#result').text('비밀번호가 일치하지 않습니다.');
+		}
+	}
   	</script>
   	
   	<!-- 다음 주소 api -->

@@ -48,14 +48,29 @@
 				<c:forEach var="top3" items="${top3}">
 					<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
 						<div class="single-new-pro mb-30 text-center">
+							
 							<div class="product-img">
+							<c:choose>
+							<c:when test="${empty top3.productstdvo}">
+							<div style="position: relative;">
+							<img src="<c:url value = '${top3.p_IMAGE }'/>" style="opacity: 0.3"/>
+							<div
+											style="left: 50%; top: 50%; font-size: 1.8em; font-weight: bold; position: absolute; transform: translate(-50%, -50%);">
+											<span style="color: red;">품 절</span>
+										</div>
+
+									</div>
+							</c:when>
+							<c:otherwise>
 								<a href="<c:url value='/productDetail/${top3.p_CODE}'/>"> <img
 									src="<c:url value = '${top3.p_IMAGE }'/>" /></a>
-
+							</c:otherwise>
+							</c:choose>
 							</div>
+							
 							<div class="product-caption">
 								<h3>
-									<a href="product_details.html">${top3.p_NAME }</a>
+									<a>${top3.p_NAME }</a>
 								</h3>
 								<span>${top3.p_PRICE}</span>
 							</div>
@@ -84,12 +99,26 @@
 					<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
 						<div class="single-new-pro mb-30 text-center">
 							<div class="product-img">
+								<c:choose>
+							<c:when test="${empty newtop3.productstdvo}">
+							<div style="position: relative;">
+							<img src="<c:url value = '${newtop3.p_IMAGE }'/>" style="opacity: 0.3"/>
+							<div
+											style="left: 50%; top: 50%; font-size: 1.8em; font-weight: bold; position: absolute; transform: translate(-50%, -50%);">
+											<span style="color: red;">품 절</span>
+										</div>
+
+									</div>
+							</c:when>
+							<c:otherwise>
 								<a href="<c:url value='/productDetail/${newtop3.p_CODE}'/>"> <img
 									src="<c:url value = '${newtop3.p_IMAGE }'/>" /></a>
+							</c:otherwise>
+							</c:choose>
 							</div>
 							<div class="product-caption">
 								<h3>
-									<a href="product_details.html">${newtop3.p_NAME }</a>
+									<a>${newtop3.p_NAME }</a>
 								</h3>
 								<span>${newtop3.p_PRICE}</span>
 							</div>

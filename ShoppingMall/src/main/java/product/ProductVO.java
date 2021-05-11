@@ -1,5 +1,7 @@
 package product;
 
+import java.util.List;
+
 public class ProductVO {
 
 	private String P_CODE;
@@ -8,6 +10,15 @@ public class ProductVO {
 	private String P_IMAGE;
 	private int P_PRICE;
 	private int qty;
+	private List<ProductStdVO> productstdvo;
+	
+	public List<ProductStdVO> getProductstdvo() {
+		return productstdvo;
+	}
+
+	public void setProductstdvo(List<ProductStdVO> productstdvo) {
+		this.productstdvo = productstdvo;
+	}
 
 	public int getQty() {
 		return qty;

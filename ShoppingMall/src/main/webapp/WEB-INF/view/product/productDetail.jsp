@@ -42,19 +42,9 @@
        }
        
        .jungmin{
-<<<<<<< HEAD
        		margin-left : 150px;
        }
-  
-=======
-       		margin-left : 350px;
-       		
-       }
-       
-       .jungmin2{
-       		margin-left : 500px;
-       }
->>>>>>> 이상훈
+
   
     </style>
 
@@ -65,15 +55,6 @@ function setQty() {
 	document.getElementById('sumMoney').value = price*qty;
 }
 
-<<<<<<< HEAD
-=======
-function setQty2(){
-	const qty2=document.getElementById('qty').value;
-	  const price=${product.p_PRICE};
-	document.getElementById('sumMoney').value = price*qty2;
-}
-
->>>>>>> 이상훈
 function select(str) {
 	const num=str;
 	var p_size = new Array();
@@ -83,11 +64,7 @@ function select(str) {
 	p_size.push("${std.p_size}");
 	p_color.push("${std.p_color}");
 	</c:forEach>
-<<<<<<< HEAD
 
-=======
->>>>>>> 이상훈
-		
 	document.getElementById('p_size').value =p_size[num];
 	document.getElementById('p_color').value =p_color[num];
 
@@ -99,27 +76,9 @@ function checkdata(){
 	var color = document.getElementById('p_color').value;
 	var qty = document.getElementById('qty').value;
 	var sumMoney = document.getElementById('sumMoney').value;
-<<<<<<< HEAD
 	
 	if(size == "" || color == ""){
 		alert('사이즈와 색상을 선택해주세요.');
-		return false;
-	}
-		
-	if(confirm(
-			"선택하신 상품 내역을 확인해주세요. \n\n"+
-			"상품명 : " + name+"\n"+
-			"사이즈 : "+size +"\n"+
-			"컬러 : "+color +"\n"+
-			"수량 : "+qty +"\n"+
-			"총 가격 : "+sumMoney + "원")== true){
-		}
-	else{
-		alert('취소하셨습니다.');
-=======
-	if(size==null || size==""){
-		alert("컬러 & 사이즈를 선택하세요.");
->>>>>>> 이상훈
 		return false;
 	}
 		if(confirm(
@@ -129,10 +88,10 @@ function checkdata(){
 				"사이즈="+size +"\n"+
 				"수량="+qty +"\n"+
 				"총 가격="+sumMoney)== true){
-			alert("장바구니에 상품이 담겼습니다.");
+			alert("진행하겠습니다.");
 			}
 		else{
-			alert("장바구니에 상품 담기를 취소했습니다.");
+			alert("취소했습니다.");
 			return false;
 		}
 }
@@ -190,16 +149,11 @@ if(authInfo !=null){
 	<table> 
 
 	<tr>
-<<<<<<< HEAD
+
 	<td rowspan="7"> <img src="<c:url value="${product.p_IMAGE}"/>" width="550" height="600">
 	<input type = "hidden" name = "p_img" value = "${product.p_IMAGE }"/>
 	</td>
 
-=======
-	<td rowspan="7"> <img src="<c:url value="${product.p_IMAGE}"/>" width="550" height="600"></td>
-
- 	
->>>>>>> 이상훈
 	<td>상품명</td>
 	<td><p><b>${product.p_NAME}</b></p>
 	<input type="hidden" name="p_name" value="${product.p_NAME}"/>
@@ -246,14 +200,10 @@ if(authInfo !=null){
 <span class="product_count_item number-decrement"> <i class="ti-minus qty2" onclick = 'setQty2()'></i></span>
 <input class="product_count_item input-number" type="number" id="qty" name="qty" onblur='setQty()' value = "1" min="1" max="10" >
 <span class="product_count_item number-increment"> <i class="ti-plus qty2" onclick = 'setQty2()'></i></span>
-<<<<<<< HEAD
-</td>
-</tr>
-=======
 <input type='button' style="width:40px; hight:20px" onclick='count("plus")' value='+'/>
 <input type='button' style="width:40px; hight:20px" onclick='count("minus")' value='-'/>
->>>>>>> 이상훈
-
+</td>
+</tr>
 
 <tr>
 	<td>총 상품 금액</td>

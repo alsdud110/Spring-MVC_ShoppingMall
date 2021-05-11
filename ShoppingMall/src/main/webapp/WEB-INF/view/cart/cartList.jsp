@@ -47,14 +47,9 @@ $(document).ready(function(){
 	        }else{
 	           sumMoney-=parseInt(td.eq(4).text().replace("," , ""));
 	        }
-<<<<<<< HEAD
-	        <!--상품을 카트에 담아서 선택하면 총 금액에 _100원단위가 잘려서 나오는 현상-->
-	        $('input[name=sumMoney]').val(sumMoney*1000);
-	        document.getElementById('aaa').innerHTML = sumMoney*1000; 
-=======
 	        $('input[name=sumMoney]').val(sumMoney);
 	        document.getElementById('aaa').innerHTML = sumMoney;
->>>>>>> 이상훈
+
 	    });
 	});
 </script>

@@ -42,12 +42,13 @@ $(document).ready(function(){
 	      var tr = $(this).parent().parent();
 	      var td = tr.children();
 	        if($(this).is(":checked")){
-	           sumMoney+=parseInt(td.eq(4).text());
+	        	//10,900 -> 10900 변환 후 숫자 형변환
+	           sumMoney+=parseInt(td.eq(4).text().replace("," , ""));
 	        }else{
-	           sumMoney-=parseInt(td.eq(4).text());
+	           sumMoney-=parseInt(td.eq(4).text().replace("," , ""));
 	        }
-	        $('input[name=sumMoney]').val(sumMoney*1000);
-	        document.getElementById('aaa').innerHTML = sumMoney*1000;
+	        $('input[name=sumMoney]').val(sumMoney);
+	        document.getElementById('aaa').innerHTML = sumMoney;
 	    });
 	});
 </script>
@@ -103,6 +104,7 @@ $(document).ready(function(){
                       </div>
                     </td>
                     <td>
+                    	<input type="hidden" id="price" name="price" value="${list.p_price}">
                       <h5><fmt:formatNumber pattern="###,###,###" value="${list.p_price}" /></h5>
                     </td>
                     <td>

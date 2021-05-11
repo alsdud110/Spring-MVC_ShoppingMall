@@ -11,106 +11,89 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import cart.CartVO;
-import member.Member;
-
 @Controller
 public class ProductController {
-	
+
 	private ProductService productService;
-	
+
 	public void setProductService(ProductService productService) {
-	this.productService=productService;
+		this.productService = productService;
 	}
 
-	//전체 상품 목록
+	// 전체 상품 목록
 	@RequestMapping("/product/List")
 	public String list(Model model) {
-		List<ProductVO> vo =productService.list();
-		model.addAttribute("list",vo);
+		List<ProductVO> vo = productService.list();
+		model.addAttribute("list", vo);
 		return "product/productList";
-	
 	}
-	
-	//전체 상품 페이지 단위로 30개씩 나누어 가져오기
+
+	// 전체 상품 페이지 단위로 30개씩 나누어 가져오기
 	@RequestMapping("/product/List/{page_num}")
 	public String listPageNum(Model model, HttpServletRequest request, HttpSession session) {
 		int num = Integer.valueOf(request.getParameter("page_num"));
 		String page_num = "page " + Integer.toString(num);
-		
+
 		List<ProductVO> vo = null;
-		
+
 		if (session.getAttribute(page_num) == null) {
 			vo = productService.listPageNum(num);
-			
+
 			session.setAttribute(page_num, vo);
-		}
-		else {
+		} else {
 			vo = (List<ProductVO>) session.getAttribute(page_num);
 		}
-		
+
 		session.setAttribute(page_num, vo);
-		model.addAttribute("list",vo);
+		model.addAttribute("list", vo);
 		return "product/productList";
-	
 	}
-	
-	//상품 검색하기
+
+	// 상품 검색하기
 	@PostMapping("/product/search/{page_num}")
 	public String listSearch(Model model, HttpServletRequest request, HttpSession session) {
 		String name = request.getParameter("search_name");
 		int num = Integer.valueOf(request.getParameter("page_num"));
 		String search_num = "search " + Integer.toString(num);
 		List<ProductVO> vo = null;
-		
+
 		if (session.getAttribute(search_num) == null) {
 			vo = productService.listSearch(num, name);
-			
+
 			session.setAttribute(search_num, vo);
-		}
-		else {
+		} else {
 			vo = (List<ProductVO>) session.getAttribute(search_num);
 		}
-		
+
 		session.setAttribute(search_num, vo);
-		model.addAttribute("list",vo);
+		model.addAttribute("list", vo);
 		return "product/productList";
-	
+
 	}
-	
-	//카테고리별 상품 목록
+
+	// 카테고리별 상품 목록
 	@RequestMapping("/product/viewCategory/{kind}")
-	public String getListByCategory( @PathVariable("kind") String kind, Model model) {
-		List<ProductVO> vo =productService.listByKind(kind);
-		model.addAttribute("kind",vo);
+	public String getListByCategory(@PathVariable("kind") String kind, Model model) {
+		List<ProductVO> vo = productService.listByKind(kind);
+		model.addAttribute("kind", vo);
 		String[] arr = kind.split(" ");
-		List<ProductVO> list =productService.byKind(arr[0]);
+		List<ProductVO> list = productService.byKind(arr[0]);
 		model.addAttribute("list", list);
+		//재고에 따른 품절 확인
+		for(int i=0; i<vo.size(); i++) {
+			vo.set(i, productService.soldoutCheck(vo.get(i).getP_CODE()));
+		}
 		return "product/CategoryList";
 	}
 
-	//상품 클릭시 상세 페이지로 이동.
+	// 상품 클릭시 상세 페이지로 이동.
 	@RequestMapping("/productDetail/{code}")
 	public String detailview(@PathVariable("code") String p_code, Model model, HttpServletRequest request) {
-		
-
-		List<ProductStdVO> stdvo=productService.productstd_selectByCode(p_code);
-		ProductVO vo =productService.product_selectByCode(p_code);
+		List<ProductStdVO> stdvo = productService.productstd_selectByCode(p_code);
+		ProductVO vo = productService.product_selectByCode(p_code);
 		model.addAttribute("product", vo);
 		model.addAttribute("productStd", stdvo);
 		return "product/productDetail";
-	}
-	
-	//구매 클릭시 사용
-	@RequestMapping("productDetail/order")  //form url 지정
-	public String orderview(Model model,CartVO cartVO) {
-		model.addAttribute("CartVO", cartVO);
-		//값 넘어 왔는지 확인.
-		System.out.println("-----------------order테스트 =-=-=-=-=--------------------");
-		System.out.println(" p_code " +cartVO.getP_code() +	" m_code " + cartVO.getM_code() +"p_name;" + cartVO.getP_name() +
-				"p_image;" + cartVO.getP_image() + "p_price;" + cartVO.getP_price() + "qty;" + cartVO.getQty() +" p_size=" + cartVO.getP_size() 
-				+" p_color=" +cartVO.getP_color() +"sumMoney;" + cartVO.getSumMoney());
-			return "order/order";  //이동 페이지 지정.
 	}
 	
 }

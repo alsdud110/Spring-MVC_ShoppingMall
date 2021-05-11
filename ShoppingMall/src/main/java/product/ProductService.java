@@ -75,6 +75,20 @@ public class ProductService {
 		List<ProductVO> newtop3=productDAO.newProductTop3();
 		return newtop3;
 	}
+	//품절 확인
+	public ProductVO soldoutCheck(String code){
+		System.out.println("========서비스 soldout 코드 " + code);
+		ProductVO vo=productDAO.productselectByCode(code);
+		System.out.println("soldout 서비스 추가전 값" + vo.getProductstdvo());
+		List<ProductStdVO> stdvo = productDAO.productstdselectByCode(vo.getP_CODE());
+		for (int i = 0; i < stdvo.size(); i++) {
+			if (stdvo.get(i).getStock() == 0)
+					stdvo.remove(i); // 재고가 0이면 해당 ProductStdVO 삭제.
+			// ProductVo 안의 List<ProductStd> 배열에 추가.
+			vo.setProductstdvo(stdvo);
+		}
+		return vo;
+	}
 	
 	
 }

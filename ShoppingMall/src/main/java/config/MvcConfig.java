@@ -40,6 +40,7 @@ public class MvcConfig implements WebMvcConfigurer {
 		registry.addInterceptor(authCheckInterceptor())
 			.addPathPatterns("/edit/**")
 			.addPathPatterns("/cart/**")
+			.addPathPatterns("/order/**")
 			.excludePathPatterns("/edit/help/**");
 	}
 

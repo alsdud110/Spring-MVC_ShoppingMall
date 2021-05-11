@@ -22,13 +22,13 @@
                     <div class="menu-wrapper">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href="index.html"><img src="/img/logo/logo.png" alt=""></a>
+                            <a href="<c:url value = '/main'/>"><img src="https://i.pinimg.com/236x/7e/64/6b/7e646bd7120da69b67240999098e2984.jpg" style = "width : 150px; height : 150px; padding : auto; "> </a>
                         </div>
                         <!-- Main-menu -->
                         <div class="main-menu d-none d-lg-block">
                             <nav>                                                
                                 <ul id="navigation">
-									<li><a href="<c:url value = '/main'/>">Main</a></li>
+									<li><a href="<c:url value = '/main'/>">MAIN</a></li>
 									<li><a href="<c:url value='/product/viewCategory/TOP'/>">TOP</a></li>
                                     <li><a href="<c:url value='/product/viewCategory/BOTTOM'/>">BOTTOM</a></li>
                                     <li><a href="<c:url value='/product/viewCategory/ETC'/>">ETC</a></li>
@@ -36,11 +36,11 @@
                                         <ul class="submenu">
                                         <%
                                         	if(authInfo == null){%>
-                                            <li><a href="shop.html"> 구매내역</a></li>
+                                            <li><a href="<c:url value = '/order/orderConfirmed'/>"> 구매내역</a></li>
                                             <li><a href="<c:url value = '/edit'/>"> 회원정보 수정</a></li>
                                         	<%}else{%>
-                                        	<li><a href="shop.html"> 구매내역</a></li>
-                                            <li><a href="<c:url value = '/edit'/>"> 회원정보 수정</a></li>
+                                        	<li><a href="<c:url value = '/order/orderConfirmed'/>"> 구매내역</a></li>
+                                           	<li><a href="<c:url value = '/edit'/>"> 회원정보 수정</a></li>
                                             <li><a href="<c:url value = '/delete'/>"> 회원탈퇴</a></li>
                                             <%} %>
                                         </ul>

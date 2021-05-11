@@ -58,7 +58,7 @@ public class Member {
 	}
 	
 	public String getMonth() {
-		return m_birth.substring(4, 6);
+		return m_birth.substring(4,6);
 	}
 	
 	public void setMonth(String month) {

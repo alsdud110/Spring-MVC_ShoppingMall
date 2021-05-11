@@ -64,12 +64,14 @@ colgroup {
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script>
 $(document).ready(function(){
+	//장바구니에서 넘어온 상품들의 총 합을 나타내는 함수
 		var sumMoney = 0;
 		<c:forEach var = "list" items = "${orderlist}" varStatus = "i">
+			var qty = ${list.qty};
 			var price = parseInt(${list.p_price});
-			sumMoney += price;
+			var totalPrice = qty*price;
+			sumMoney += totalPrice;
 		</c:forEach>
-			//var sumMoney = 10000;
 			$('input[name=sumMoney]').val(sumMoney);
 	       	$('#aaa').text(sumMoney);
 

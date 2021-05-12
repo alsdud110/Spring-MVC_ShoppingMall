@@ -82,11 +82,7 @@ function checkdata(){
 				"컬러="+color +"\n"+
 				"사이즈="+size +"\n"+
 				"수량="+qty +"\n"+
-<<<<<<< HEAD
-				"총 가격="+sumMoney+ " 원")== true){
-=======
 				"총 가격="+sumMoney+" 원")== true){
->>>>>>> 이상훈
 			alert("진행하겠습니다.");
 			}
 		else{
@@ -189,13 +185,9 @@ function count(type)  {
 	<tr>
 	<td>수량</td>	
 	<td>
-<<<<<<< HEAD
 
-<input type="number" id="qty" name="qty" value = "1" min="1" max="10" readonly > 	
-=======
-	
 <input type="number" id="qty" name="qty" value = "1" min="1" max="10" readonly > 		 <!-- readonly : 수정불가, form 전달가능  -->
->>>>>>> 이상훈
+
 <input type='button' style="width:40px; hight:20px" onclick='count("plus")' value='+'/>
 <input type='button' style="width:40px; hight:20px" onclick='count("minus")' value='-'/>
 </td>
@@ -203,18 +195,10 @@ function count(type)  {
 
 <tr>
 	<td>총 상품 금액</td>
-<<<<<<< HEAD
-		<td>
-	<p id="sumMoney"  style="font-weight:bold; color:red">${product.p_PRICE}</p>
-	<input type="hidden" id='sumMoney' name="sumMoney" value="${product.p_PRICE}">
-	</td>
-	
-=======
 	<td>
 	<p id="sumMoney"  style="font-weight:bold; color:red">${product.p_PRICE}</p>
 	<input type="hidden" id='sumMoney' name="sumMoney" value="${product.p_PRICE}">
 	</td>
->>>>>>> 이상훈
 </tr>
 	
  	

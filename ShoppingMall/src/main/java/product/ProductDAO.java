@@ -58,19 +58,12 @@ public class ProductDAO {
 	// 종류별 상품 목록 가져오기
 	public List<ProductVO> selectByKind(String kind) {
 		String sql = "select * from product where P_KIND like ? ";
-		String rekind = "%" + kind + "%";
-		System.out.println("kind=" + kind + " " + "rekind=" + rekind);
+		String rekind = kind + "%";
 		List<ProductVO> results = jdbcTemplate.query(sql,
 				// proRowMapper,kind);
 				proRowMapper, rekind);
 
 		return results;
-		/*
-		 * List<ProductVO> results = jdbcTemplate.query(
-		 * "select * from PRODUCT where P_KIND LIKE ?", proRowMapper,kind);
-		 * 
-		 * return results;
-		 */
 	}
 
 	// 코드로 상품 목록 가져오기

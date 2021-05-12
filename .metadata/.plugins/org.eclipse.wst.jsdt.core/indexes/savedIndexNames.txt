@@ -1,19 +1,10 @@
 INDEX VERSION 1.4+/Users/hwangmin-yeong/eclipse-workspace-new/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
-1678949434.index
 422912724.index
-531620608.index
-4269192411.index
-870345634.index
-39688175.index
-1095747754.index
-1167355277.index
-3483826154.index
-1175747164.index
-2682160947.index
-88881631.index
-2416044625.index
-1960895094.index
-2746778474.index
-3966946837.index
-1175747164.index
 1001494550.index
+3966946837.index
+2416044625.index
+531620608.index
+870345634.index
+2746778474.index
+2682160947.index
+39688175.index

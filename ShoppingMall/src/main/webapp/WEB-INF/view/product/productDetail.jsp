@@ -87,7 +87,7 @@ function checkdata(){
 				"컬러="+color +"\n"+
 				"사이즈="+size +"\n"+
 				"수량="+qty +"\n"+
-				"총 가격="+sumMoney)== true){
+				"총 가격="+sumMoney+ " 원")== true){
 			alert("진행하겠습니다.");
 			}
 		else{
@@ -118,17 +118,11 @@ function count(type)  {
 	  }
 	  
 	  // 결과 출력
+	  document.getElementById('sumMoney').innerHTML = parseInt(price)*parseInt(qty);
 	  document.getElementById('sumMoney').value = parseInt(price)*parseInt(qty);  
 	}
 </script>
 
-<% 
-String m_code=null;
-Member authInfo=(Member)session.getAttribute("authInfo");
-if(authInfo !=null){
-	m_code=authInfo.getM_code();
-}
-%>
 </head>
 <body>
 
@@ -196,10 +190,8 @@ if(authInfo !=null){
 	<tr>
 	<td>수량</td>	
 	<td>
-	
-<span class="product_count_item number-decrement"> <i class="ti-minus qty2" onclick = 'setQty2()'></i></span>
-<input class="product_count_item input-number" type="number" id="qty" name="qty" onblur='setQty()' value = "1" min="1" max="10" >
-<span class="product_count_item number-increment"> <i class="ti-plus qty2" onclick = 'setQty2()'></i></span>
+
+<input type="number" id="qty" name="qty" value = "1" min="1" max="10" readonly > 	
 <input type='button' style="width:40px; hight:20px" onclick='count("plus")' value='+'/>
 <input type='button' style="width:40px; hight:20px" onclick='count("minus")' value='-'/>
 </td>
@@ -207,7 +199,11 @@ if(authInfo !=null){
 
 <tr>
 	<td>총 상품 금액</td>
-	<td><input type="text" id='sumMoney' name="sumMoney" value="${product.p_PRICE}" readonly></td> <!-- readonly : 수정불가, form 전달가능  -->
+		<td>
+	<p id="sumMoney"  style="font-weight:bold; color:red">${product.p_PRICE}</p>
+	<input type="hidden" id='sumMoney' name="sumMoney" value="${product.p_PRICE}">
+	</td>
+	
 </tr>
 	
  	

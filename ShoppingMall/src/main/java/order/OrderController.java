@@ -2,7 +2,6 @@ package order;
 
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import member.Member;
@@ -62,4 +62,21 @@ public class OrderController {
 				}
 			//return "redirect:/order";
 	}			
+	
+	@PostMapping("/orderConfirmed")
+	public String orderToOrderConfirmed(OrderCommand orderCommand, Model model, HttpSession session , HttpServletRequest request) {
+		Member authInfo = (Member)session.getAttribute("authInfo");
+		String m_code = authInfo.getM_code();
+		orderCommand.setM_code(m_code);
+
+		int qty = orderCommand.getQty();
+		String p_code = orderCommand.getP_code();
+		String o_addr = orderCommand.getO_addr();
+		
+		orderService.purchaseByCart(m_code, o_addr);
+		
+		model.addAttribute("orderCommand", orderCommand);
+		session.setAttribute("orderCommand", orderCommand);
+		return "order/orderConfirmed";
+	}
 }

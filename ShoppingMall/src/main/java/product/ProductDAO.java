@@ -62,7 +62,6 @@ public class ProductDAO {
 		List<ProductVO> results = jdbcTemplate.query(sql,
 				// proRowMapper,kind);
 				proRowMapper, rekind);
-
 		return results;
 	}
 

@@ -8,6 +8,7 @@
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="&lt;tr&gt;&#x0A;&#x09;&lt;td&gt;총 상품 금액&lt;/td&gt;&#x0A;&#x09;&lt;td&gt;&lt;input type=&quot;text&quot; id=&apos;sumMoney&apos; name=&quot;sumMoney&quot; value=&quot;${product.p_PRICE}&quot; readonly&gt;&lt;/td&gt; &lt;!-- readonly : 수정불가, form 전달가능  --&gt;&#x0A;&lt;/tr&gt;&#x0A;&lt;/table&gt;&#x0A;&lt;table&gt;&#x0A;&lt;tr&gt;&#x0A;    &lt;td&gt;&lt;input type=&quot;submit&quot; class=&quot;genric-btn primary e-large&quot; style=&quot;float:right; margin-top:10px; margin-bottom:10px; margin-left:665px;&quot; value=구매하기 formaction=&quot;&lt;c:url value=&quot;/order&quot;/&gt;&quot;&gt;&lt;/td&gt;&#x0A;&#x09;&lt;td colspan=&quot;2&quot;&gt;&lt;input type=&quot;submit&quot; class=&quot;genric-btn primary-border e-large&quot; style=&quot;float:left; margin-top:10px; margin-bottom:10px; margin-right:50px;&quot; value=&quot;장바구니 담기&quot; formaction=&quot;&lt;c:url value=&quot;/cart/addCart&quot;/&gt;&quot;&gt;&lt;/div&gt;&lt;/td&gt;  &lt;!-- div 시작지점이?? --&gt;&#x0A;&lt;/tr&gt;&#x09;&#x0A;&#x09;&lt;/table&gt;&#x0A;"/>
 			<item value="vo"/>
 			<item value="ProductVo"/>
 			<item value="memberDao"/>
@@ -18,10 +19,10 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1640"/>
+		<item key="DIALOG_X_ORIGIN" value="1148"/>
 		<item key="DIALOG_Y_ORIGIN" value="268"/>
-		<item key="DIALOG_WIDTH" value="288"/>
-		<item key="DIALOG_HEIGHT" value="391"/>
-		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
+		<item key="DIALOG_WIDTH" value="292"/>
+		<item key="DIALOG_HEIGHT" value="402"/>
+		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
 	</section>
 </section>

@@ -50,7 +50,7 @@
 	<center>
 		<table border="0">
 			<tr>
-
+				
 				<!-- product 테이블 P_KIND에서 TOP분류중 긴팔/반팔/아우터 분류를 위해 TOP_LONG 식으로 설정함. -->
 				<c:forEach var="list" items="${list}">
 					<td width="200"><input type="Button"

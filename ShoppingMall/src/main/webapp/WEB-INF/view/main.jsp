@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,7 +72,7 @@
 								<h3>
 									<a>${top3.p_NAME }</a>
 								</h3>
-								<span>${top3.p_PRICE}</span>
+								<span><fmt:formatNumber pattern="###,###,###" value="${top3.p_PRICE}" />원</span>
 							</div>
 						</div>
 					</div>
@@ -120,7 +120,7 @@
 								<h3>
 									<a>${newtop3.p_NAME }</a>
 								</h3>
-								<span>${newtop3.p_PRICE}</span>
+								<span><fmt:formatNumber pattern="###,###,###" value="${newtop3.p_PRICE}" />원</span>
 							</div>
 						</div>
 					</div>

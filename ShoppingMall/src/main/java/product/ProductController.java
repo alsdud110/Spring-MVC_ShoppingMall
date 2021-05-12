@@ -71,20 +71,21 @@ public class ProductController {
 
 	}
 
-	// 카테고리별 상품 목록
 	@RequestMapping("/product/viewCategory/{kind}")
-	public String getListByCategory(@PathVariable("kind") String kind, Model model) {
+	public String getListByCategory(@PathVariable String kind, Model model) {
 		List<ProductVO> vo = productService.listByKind(kind);
-		model.addAttribute("kind", vo);
-		String[] arr = kind.split(" ");
-		List<ProductVO> list = productService.byKind(arr[0]);
-		model.addAttribute("list", list);
 		//재고에 따른 품절 확인
 		for(int i=0; i<vo.size(); i++) {
 			vo.set(i, productService.soldoutCheck(vo.get(i).getP_CODE()));
 		}
+		model.addAttribute("kind", vo);
+		
+		String[] arr = kind.split(" ");
+		List<ProductVO> list = productService.byKind(arr[0]);
+		model.addAttribute("list", list);
 		return "product/CategoryList";
 	}
+
 
 	// 상품 클릭시 상세 페이지로 이동.
 	@RequestMapping("/productDetail/{code}")

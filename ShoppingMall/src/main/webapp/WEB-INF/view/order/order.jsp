@@ -115,6 +115,8 @@ $(document).ready(function(){
                		 </thead>
                 <tbody>
 				<c:forEach var = "orderlist" items = "${orderlist}" varStatus = "i">
+				<input type="hidden" name="p_color" value="${orderlist.p_color }">
+				<input type="hidden" name="p_size" value="${orderlist.p_size }">
                   <tr>
                     <td>
                       <div class="media">
@@ -130,7 +132,7 @@ $(document).ready(function(){
                       <h5><fmt:formatNumber pattern="###,###,###" value="${orderlist.p_price}" />원</h5>
                     </td>
                     <td>
-						<input type="number" style="width: 50px" name="amount"
+						<input type="number" style="width: 50px" name="qty"
 						value="${orderlist.qty}" min="1" readonly> <input type="hidden"
 						name="p_code" value="${orderlist.p_code}">
                     </td>

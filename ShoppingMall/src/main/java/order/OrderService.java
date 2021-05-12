@@ -33,9 +33,9 @@ public class OrderService {
 	      return order_list;
 	   }
 	
-	public void purchaseByCart(String m_code, String o_addr) {
+	public void purchaseByCart(String m_code, String o_addr, String[] id,OrderCommand orderCommand) {
 		
-		orderDAO.insertOrderByCart(m_code, o_addr);
+		orderDAO.insertOrderByCart(m_code, o_addr,id,orderCommand);
 	}
 	
 	public void insertOrderList(String arr[]) {

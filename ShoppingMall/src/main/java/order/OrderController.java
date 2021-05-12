@@ -25,7 +25,7 @@ public class OrderController {
 	}
 
 	//상세페이지에서 구매하기 정보로 넘어갈 때
-	@RequestMapping("/order/detailToOrder")
+	@PostMapping("/order/detailToOrder")
 	public String detailToOrder(OrderVO orderVO, Model model, HttpServletResponse response, HttpSession session, HttpServletRequest request) throws IOException {
 			
 		Member member = (Member)session.getAttribute("authInfo");
@@ -43,7 +43,7 @@ public class OrderController {
 	}
 		
 	//장바구니에서 구매하기 정보로 넘어갈 때
-	@RequestMapping("/order/orderList")
+	@PostMapping("/order/orderList")
 	public String cartToOrder(Model model, HttpSession session , HttpServletRequest request) {
 			
 		if (session.getAttribute("cartInfo") == null) {
@@ -52,6 +52,7 @@ public class OrderController {
 			
 		try {
 			String[] arr = request.getParameterValues("checkid"); // arr배열에 c_code를 담
+			session.setAttribute("cartid", arr); //선택 카트 아이디 세션에 추가
 	         List<OrderVO> order_list = orderService.orderview(arr);
 	         model.addAttribute("orderlist",order_list);
 	         session.setAttribute("orderlist", order_list);
@@ -68,13 +69,20 @@ public class OrderController {
 		Member authInfo = (Member)session.getAttribute("authInfo");
 		String m_code = authInfo.getM_code();
 		orderCommand.setM_code(m_code);
-
+		//카트아이디 세션으로 받아오기
+		String[] id=null; //배열 선언
+		if(session.getAttribute("cartid")!=null) {
+		id=(String[]) session.getAttribute("cartid");  //선택한 카드 있으면 추가
+		}else {
+			id=null;	//선택한 카트 없으면 null
+		}
+		System.out.println(orderCommand.getP_color() + "  " + orderCommand.getP_size());
 		int qty = orderCommand.getQty();
 		String p_code = orderCommand.getP_code();
 		String o_addr = orderCommand.getO_addr();
-		
-		orderService.purchaseByCart(m_code, o_addr);
-		
+
+		orderService.purchaseByCart(m_code, o_addr,id,orderCommand);
+		session.removeAttribute("cartid"); //구매후 세션 삭제
 		model.addAttribute("orderCommand", orderCommand);
 		session.setAttribute("orderCommand", orderCommand);
 		return "order/orderConfirmed";

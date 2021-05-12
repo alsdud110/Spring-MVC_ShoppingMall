@@ -77,31 +77,27 @@ public class OrderDAO {
 	}
 	
 	//장바구니에서 주문 정보 담기
-	public void insertOrderByCart(String m_code, String o_addr) {
+	public void insertOrderByCart(String m_code, String o_addr,String[] id,OrderCommand orderCommand) {
+		System.out.println("오더 DAO 시작지점");
+		if(id==null) {
+			System.out.println(id);
+		}else {
+		for(int i=0; i<id.length; i++) {
+			System.out.println("아이디값 있냐??" + id[i]);
+		}
+		}
+		this.jdbcTemplate.update("insert into order_list (m_code, o_date, o_addr) values (?, sysdate, ?)", m_code,o_addr);
+		if(id==null) { System.out.println("if id=null  인 지점");
+			this.jdbcTemplate.update("insert into order_product values ((select o_code from order_list where o_date=(select max (o_date)from order_list where m_code=? )),?,?,?,?)",m_code,orderCommand.getP_size(),orderCommand.getP_color(),orderCommand.getP_code(),orderCommand.getQty());
+		}else {
+			for(int i=0; i<id.length; i++) { System.out.println("for문 돌아가는데 ");
+				this.jdbcTemplate.update("insert into order_product \r\n" + 
+						"with o_code as (select o_code from order_list where o_date=(select max (o_date)from order_list where m_code=?)),\r\n" + 
+						"INFO as (select p_size, p_color, p_code, qty from cart where c_code = ?)\r\n" + 
+						"select o_code,info.* from o_code,info",m_code,id[i]);
+				}
+		}
 
-		//결론적으로 orderlist에 담기는 정보는 하나가 아닌 한꺼번에 bulk insert 과정이 절대적으로 필요
-		jdbcTemplate.update(new PreparedStatementCreator() {
-			@Override
-			public PreparedStatement createPreparedStatement(Connection con)
-					throws SQLException {
-				// 파라미터로 전달받은 Connection을 이용해서 PreparedStatement 생성
-				PreparedStatement pstmt = null;
-				// 인덱스 파라미터 값 설정
-				pstmt = con.prepareStatement("insert into order_list (m_code, o_date, o_addr) values (?, sysdate, ?)");
-				pstmt.setString(1, m_code);
-				pstmt.setString(2, o_addr);
-
-				pstmt.executeUpdate();
-				
-				System.out.println("여기까진 된다?");
-				
-				pstmt = con.prepareStatement("insert into order_product select o.o_code, c.p_size, c.p_color, c.p_code, c.qty from order_list o, cart c where 1=1 and c.m_code = ? and o.m_code = c.m_code");
-				pstmt.setString(1, m_code);
-				
-				System.out.println("여기까지도 됨!");
-				return pstmt;
-			}
-		});
 	}
 	
 	public void insertOrderList(String[] arr) {

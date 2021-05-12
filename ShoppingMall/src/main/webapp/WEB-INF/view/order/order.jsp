@@ -255,10 +255,52 @@ colgroup {
                             </tr>
                             </tbody>
                         </table>
-                    </div>
-                         </form>
-				  <input type="submit" value="구매하기" id="updateCart" class="genric-btn primary radius" style = "margin-left : 75%;">
-	     </form>
+                        </div>
+                        <br></br>
+                        
+                        <!-- 결제 방법 -->
+                        <h3 class="tit-supplier mt90"><b>결제 방법</b></h3>
+                  			  <hr width =85% color="black" align="left" size=35/>
+                  			  <div class="process" id="settlekind_general">
+                                    <div class="selection">
+                                        <span class="form-element" id="settlekind_type_pb">
+                                            <input type="radio" name="settleKind" id="settleKind_pb" value="pb" class="radio">
+                                            <label class="choice-s on" for="settleKind_pb">무통장입금</label>
+                                         <br>
+                                           <select name="pay_data" class="w280 MK_bank_select_list MK_pay_add_choice"><option value="">계좌번호를 확인 후 입금하세요.</option>                       
+                                           <option value="신한은행 110-333383-122 (예금주:이상훈)">신한은행 110-333383-122 (예금주:이상훈)</option> 
+                                            </select>
+                                            
+                                            <br>
+                   		 <div class="table2">
+                        <table>
+                            <colgroup>
+                                <col style="width:140px;">
+                                <col>
+                            </colgroup>
+                            <tbody>
+                            
+                            <br></br>
+                            <tr>
+                                <th class="ta-l required" aria-required="true">입금자명</th>
+                                <td>
+                                    <div class="txt-field hs" style="width:300px;">
+                                        <input type="text" name="receiverName" value=""  maxlength="20" class="text">
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            </tbody>
+                            </table>
+                            </div>
+                            </span>
+                            </div>
+                            </div>
+                            </div>
+                            
+                        
+				  <input type="submit" value="구매하기" id="updateCart" class="genric-btn primary radius" style = "margin-left : 75%;" formaction="<c:url value="/order/123"/>">
+				 </form>
 	     
 	     
 	     <!-- 다음 주소 api -->

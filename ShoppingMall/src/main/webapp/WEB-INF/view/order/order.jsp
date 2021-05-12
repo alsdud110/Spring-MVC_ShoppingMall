@@ -33,7 +33,10 @@ colgroup {
 
 .mt10 {
     margin-top: 10px;
+    
 }
+
+
 </style>
 
 
@@ -231,7 +234,7 @@ $(document).ready(function(){
                             
                             
                             <tr>
-                                <th class="ta-l required" aria-required="true">받으실분 *</th>
+                                <th class="ta-l required" aria-required="true">받으실 분</th>
                                 <td>
                                     <div class="txt-field hs" style="width:380px;">
                                         <input type="text" name="name" value="" maxlength="20" class="text">
@@ -241,15 +244,17 @@ $(document).ready(function(){
                             <tr>
                                 <th class="ta-l required" aria-required="true">배송지 입력 *</th>
                                 <td>
-                                     <div class="post">
+                                    <div class="post">
                                         <id class="txt-field hs" style="width:250px;">
                                          <input type="text" id="sample6_postcode" placeholder="우편번호">
                                          <input type="button" onclick="sample6_execDaumPostcode()" class="genric-btn primary small" value="우편번호 찾기"><br>
-                                      	 <input type="text" name = "addr_road" id="sample6_address" placeholder="주소" style = "width: 88%"><br>
+                                      	 <input type="text" id="sample6_address" placeholder="주소"><br>
                                       	  <input type="text" id="sample6_extraAddress" placeholder="">
-										 <input type="text" name = "addr_detail" id="sample6_detailAddress" placeholder="상세주소입력">
+										 <input type="text" id="sample6_detailAddress" placeholder="상세주소입력">
+										
                                     </div>
-                                     
+                                
+                      
                                 </td>
                             </tr>
                             <tr>
@@ -278,7 +283,7 @@ $(document).ready(function(){
                             </tr>
                             </tbody>
                         </table>
-         </div>
+                        </div>
                         <br></br>
                         
                         <!-- 결제 방법 -->
@@ -322,17 +327,17 @@ $(document).ready(function(){
                             </div>
                             
                         
-				  <input type="submit" value="구매하기" id="updateCart" class="genric-btn primary radius" style = "margin-left : 75%;" formaction="<c:url value="/orderConfirmed"/>">
+				  <input type="submit" value="구매하기" id="updateCart" class="genric-btn primary radius" style = "margin-left : 75%;" formaction="<c:url value="/order/123"/>">
 				 </form>
- 
+	     
 	     
 	     <!-- 다음 주소 api -->
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-function sample6_execDaumPostcode() {
-    new daum.Postcode({
-        oncomplete: function(data) {
-            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	<script>
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
             // 각 주소의 노출 규칙에 따라 주소를 조합한다.
             // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.

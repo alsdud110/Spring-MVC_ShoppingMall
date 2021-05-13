@@ -43,15 +43,15 @@ $(document).ready(function(){
 	      var td = tr.children();
 	        if($(this).is(":checked")){
 	        	//10,900 -> 10900 변환 후 숫자 형변환
-	           sumMoney+=parseInt(td.eq(4).text().replace("," , ""));
+	           sumMoney+=parseInt(td.eq(4).text().replaceAll("," , ""));
 	        }else{
-	           sumMoney-=parseInt(td.eq(4).text().replace("," , ""));
+	           sumMoney-=parseInt(td.eq(4).text().replaceAll("," , ""));
 	        }
 	        $('input[name=sumMoney]').val(sumMoney);
 	        
 	        //다시 띄워주는건 10900 -> 10,900 으로! 값 자체는 10900 변하지 않음
-	        var money = sumMoney.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	        document.getElementById('aaa').innerHTML = money;
+	        var money = sumMoney.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+	        document.getElementById('totalMoney').innerHTML = money;
 
 	    });
 	});
@@ -131,7 +131,7 @@ $(document).ready(function(){
 			
 				<center>
               <input type="hidden" name="sumMoney" value="0">
-              <span>선택한 총 금액 : ￦  </span><span id="aaa"></span>원
+              <span>선택한 총 금액 : ￦  </span><span id="totalMoney"></span>원
            <br></br>
 				  <input type="submit" value="삭제" id="delete" class="genric-btn primary radius" formaction="<c:url value="/cart/delete"/>">
 				  <input type="submit" value="구매하기" id="updateCart" class="genric-btn primary radius" formaction = "<c:url value = "/order/orderList"/>">

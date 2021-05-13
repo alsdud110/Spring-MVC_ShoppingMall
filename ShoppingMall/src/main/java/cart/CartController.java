@@ -114,23 +114,16 @@ public class CartController {
 	}
 	
 	//장바구니 정보 삭제
-
 	@PostMapping("/cart/delete")
-	public String deleteCart(HttpServletRequest request, HttpSession session) {
+	public String deleteCart(HttpServletRequest request) {
 
-		System.out.println("-----------------delete 테스트 =-=-=-=-=--------------------");
 		String[] arr=request.getParameterValues("checkid");
+
 		if(arr==null) {
-			System.out.println("볐다");
 			return "redirect:/cart";
-		}
-		for(String check : arr) {
-			System.out.println(check);
 		}
 		cartService.deleteCart(arr);
 		return "redirect:/cart";
-		
-
 	}
 	
 }

@@ -12,20 +12,22 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
+import cart.CartService;
 import member.Member;
 @Controller
 public class OrderController {
 
 	private OrderService orderService;
+	private CartService cartService;
 	
-	public void setOrderService(OrderService orderService) {
+	public void setOrderService(OrderService orderService,CartService cartService) {
 		this.orderService = orderService;
+		this.cartService=cartService;
 	}
 
 	//상세페이지에서 구매하기 정보로 넘어갈 때
-	@RequestMapping("/order/detailToOrder")
+	@PostMapping("/order/detailToOrder")
 	public String detailToOrder(OrderVO orderVO, Model model, HttpServletResponse response, HttpSession session, HttpServletRequest request) throws IOException {
 			
 		Member member = (Member)session.getAttribute("authInfo");
@@ -43,7 +45,7 @@ public class OrderController {
 	}
 		
 	//장바구니에서 구매하기 정보로 넘어갈 때
-	@RequestMapping("/order/orderList")
+	@PostMapping("/order/orderList")
 	public String cartToOrder(Model model, HttpSession session , HttpServletRequest request) {
 			
 		if (session.getAttribute("cartInfo") == null) {
@@ -51,7 +53,8 @@ public class OrderController {
 		}
 			
 		try {
-			String[] arr = request.getParameterValues("checkid"); // arr배열에 c_code를 담
+			String[] arr = request.getParameterValues("checkid"); // arr배열에 c_code를 담음
+			session.setAttribute("cartid", arr); //선택 카트 아이디 세션에 추가
 	         List<OrderVO> order_list = orderService.orderview(arr);
 	         model.addAttribute("orderlist",order_list);
 	         session.setAttribute("orderlist", order_list);
@@ -65,16 +68,21 @@ public class OrderController {
 	
 	@PostMapping("/orderConfirmed")
 	public String orderToOrderConfirmed(OrderCommand orderCommand, Model model, HttpSession session , HttpServletRequest request) {
+
 		Member authInfo = (Member)session.getAttribute("authInfo");
 		String m_code = authInfo.getM_code();
 		orderCommand.setM_code(m_code);
-
-		int qty = orderCommand.getQty();
-		String p_code = orderCommand.getP_code();
-		String o_addr = orderCommand.getO_addr();
-		
-		orderService.purchaseByCart(m_code, o_addr);
-		
+		//카트아이디 세션으로 받아오기
+		String[] id=null; //배열 선언
+		if(session.getAttribute("cartid")!=null) {
+		id=(String[]) session.getAttribute("cartid");  //카트에서 구매하기
+		orderService.purchaseByCart(id,orderCommand);
+		cartService.deleteCart(id);	//구매 진행후 카트 삭제
+		}else {
+			id=null;	//바로 구매하기
+		orderService.purchaseByCart(id,orderCommand);
+		}
+		session.removeAttribute("cartid"); //구매후 세션 삭제
 		model.addAttribute("orderCommand", orderCommand);
 		session.setAttribute("orderCommand", orderCommand);
 		return "order/orderConfirmed";

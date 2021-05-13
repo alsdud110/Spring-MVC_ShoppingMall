@@ -76,11 +76,12 @@ public class OrderController {
 		String[] id=null; //배열 선언
 		if(session.getAttribute("cartid")!=null) {
 		id=(String[]) session.getAttribute("cartid");  //카트에서 구매하기
+		orderService.purchaseByCart(id,orderCommand);
+		cartService.deleteCart(id);	//구매 진행후 카트 삭제
 		}else {
 			id=null;	//바로 구매하기
+		orderService.purchaseByCart(id,orderCommand);
 		}
-		orderService.purchaseByCart(m_code, id,orderCommand);
-		cartService.deleteCart(id);	//구매 진행후 카트 삭제
 		session.removeAttribute("cartid"); //구매후 세션 삭제
 		model.addAttribute("orderCommand", orderCommand);
 		session.setAttribute("orderCommand", orderCommand);

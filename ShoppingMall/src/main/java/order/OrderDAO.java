@@ -77,17 +77,21 @@ public class OrderDAO {
 	}
 	
 	//장바구니에서 주문 정보 담기
-	public void insertOrderByCart(String m_code,String[] id,OrderCommand orderCommand) {
-		this.jdbcTemplate.update("insert into order_list (m_code, o_date, o_addr) values (?, sysdate, ?)", m_code,orderCommand.getO_addr());
-		if(id==null) { 
-			this.jdbcTemplate.update("insert into order_product values ((select o_code from order_list where o_date=(select max (o_date)from order_list where m_code=? )),?,?,?,?)",m_code,orderCommand.getP_size(),orderCommand.getP_color(),orderCommand.getP_code(),orderCommand.getQty());
-		}else {
-			for(int i=0; i<id.length; i++) { System.out.println("for문 돌아가는데 ");
-				this.jdbcTemplate.update("insert into order_product \r\n" + 
-						"with o_code as (select o_code from order_list where o_date=(select max (o_date)from order_list where m_code=?)),\r\n" + 
-						"INFO as (select p_size, p_color, p_code, qty from cart where c_code = ?)\r\n" + 
-						"select o_code,info.* from o_code,info",m_code,id[i]);
-				}
+	public void insertOrderByCart(String[] id, OrderCommand orderCommand) {
+		this.jdbcTemplate.update("insert into order_list (m_code, o_date, o_addr) values (?, sysdate, ?)", orderCommand.getM_code(),orderCommand.getO_addr());
+		if (id == null) {
+			this.jdbcTemplate.update(
+					"insert into order_product values ((select o_code from order_list where o_date=(select max (o_date)from order_list where m_code=? )),?,?,?,?)",
+					orderCommand.getM_code(), orderCommand.getP_size(), orderCommand.getP_color(), orderCommand.getP_code(),
+					orderCommand.getQty());
+		} else {
+			for (int i = 0; i < id.length; i++) {
+				System.out.println("for문 돌아가는데 ");
+				this.jdbcTemplate.update("insert into order_product \r\n"
+						+ "with o_code as (select o_code from order_list where o_date=(select max (o_date)from order_list where m_code=?)),\r\n"
+						+ "INFO as (select p_size, p_color, p_code, qty from cart where c_code = ?)\r\n"
+						+ "select o_code,info.* from o_code,info", orderCommand.getM_code(), id[i]);
+			}
 		}
 
 	}

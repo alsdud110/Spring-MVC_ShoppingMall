@@ -28,9 +28,9 @@ public class OrderService {
 	      return order_list;
 	   }
 	
-	public void purchaseByCart(String m_code,String[] id,OrderCommand orderCommand) {
+	public void purchaseByCart(String[] id,OrderCommand orderCommand) {
 		
-		orderDAO.insertOrderByCart(m_code,id,orderCommand);
+		orderDAO.insertOrderByCart(id,orderCommand);
 	}
 	
 	public void insertOrderList(String arr[]) {

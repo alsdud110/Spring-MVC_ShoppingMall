@@ -43,9 +43,9 @@ $(document).ready(function(){
 	      var td = tr.children();
 	        if($(this).is(":checked")){
 	        	//10,900 -> 10900 변환 후 숫자 형변환
-	           sumMoney+=parseInt(td.eq(4).text().replace("," , ""));
+	           sumMoney+=parseInt(td.eq(4).text().replaceAll("," , ""));
 	        }else{
-	           sumMoney-=parseInt(td.eq(4).text().replace("," , ""));
+	           sumMoney-=parseInt(td.eq(4).text().replaceAll("," , ""));
 	        }
 	        $('input[name=sumMoney]').val(sumMoney);
 	        

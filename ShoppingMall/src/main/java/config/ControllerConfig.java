@@ -112,7 +112,7 @@ public class ControllerConfig {
 	@Bean
 	public OrderController orderController() {
 		OrderController controller = new OrderController();
-		controller.setOrderService(orderService);
+		controller.setOrderService(orderService,cartService);
 		return controller;
 	}
 

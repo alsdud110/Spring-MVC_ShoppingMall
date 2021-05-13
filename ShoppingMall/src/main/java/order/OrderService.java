@@ -20,15 +20,10 @@ public class OrderService {
 //	}
 	
 	public List<OrderVO> orderview(String[] arr){
-	      System.out.println("--------오더 서비스시작");
 	      List<OrderVO> order_list =new ArrayList();
 	      for(int i=0; i<arr.length; i++) {
 	         int c_code=Integer.parseInt(arr[i]);
 	         order_list.add(orderDAO.selectOrder(c_code));
-	      }
-	         System.out.println("오더 서비스값넣기");
-	      for(OrderVO vo:order_list) {
-	         System.out.println(vo.getP_code());
 	      }
 	      return order_list;
 	   }

@@ -50,7 +50,7 @@ $(document).ready(function(){
 	        $('input[name=sumMoney]').val(sumMoney);
 	        
 	        //다시 띄워주는건 10900 -> 10,900 으로! 값 자체는 10900 변하지 않음
-	        var money = sumMoney.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	        var money = sumMoney.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 	        document.getElementById('aaa').innerHTML = money;
 
 	    });

@@ -66,23 +66,23 @@ public class OrderController {
 	
 	@PostMapping("/orderConfirmed")
 	public String orderToOrderConfirmed(OrderCommand orderCommand, Model model, HttpSession session , HttpServletRequest request) {
+		System.out.println("오더 컨펌 ㅅ ㅣ작.  세션확인 - " + session.getAttribute("cartid") );
 		Member authInfo = (Member)session.getAttribute("authInfo");
 		String m_code = authInfo.getM_code();
 		orderCommand.setM_code(m_code);
 		//카트아이디 세션으로 받아오기
 		String[] id=null; //배열 선언
 		if(session.getAttribute("cartid")!=null) {
-		id=(String[]) session.getAttribute("cartid");  //선택한 카드 있으면 추가
+		id=(String[]) session.getAttribute("cartid");  //선택한 체크박스 체크박스 값 있으면 추가
 		}else {
 			id=null;	//선택한 카트 없으면 null
 		}
 		System.out.println(orderCommand.getP_color() + "  " + orderCommand.getP_size());
-		int qty = orderCommand.getQty();
-		String p_code = orderCommand.getP_code();
-		String o_addr = orderCommand.getO_addr();
 
-		orderService.purchaseByCart(m_code, o_addr,id,orderCommand);
+
+		orderService.purchaseByCart(m_code, id,orderCommand);
 		session.removeAttribute("cartid"); //구매후 세션 삭제
+		System.out.println("오더 컨펌  데이터 삽입후 삭제..  세션확인 - " + session.getAttribute("cartid") );
 		model.addAttribute("orderCommand", orderCommand);
 		session.setAttribute("orderCommand", orderCommand);
 		return "order/orderConfirmed";

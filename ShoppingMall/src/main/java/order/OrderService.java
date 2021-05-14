@@ -47,26 +47,20 @@ public class OrderService {
 		return vo;
 	}
 	
-	public List<OrderVO> getOrderList(String[] o_code){
+	public List<OrderVO> getOrderList(String o_code){
 		System.out.println("서비스 들어옴");
-		List<OrderVO> order_list = new ArrayList<>();
-		for(int i = 0; i < o_code.length;i++) {
-			System.out.println(o_code[i]);
-			List<OrderVO> vo = orderDAO.getOrder(o_code[i]);
-			for(OrderVO orderVO : vo) {
-				order_list.add(orderVO);
-			}
-		}
-		System.out.println("DAO까지도 OK");
-		return order_list;
-		
-	}
-	
-	public List<OrderVO> getOrder(String o_code){
-		System.out.println("서비스 들어와ㅣㅅ고");
+		List<OrderVO> orderList2 = new ArrayList<>();
 		List<OrderVO> orderList = orderDAO.getOrder(o_code);
+		for(OrderVO vo : orderList) {
+			orderList2.add(vo);
+		}
 		
 		System.out.println("서비스에서 가져와지나?");
 		return orderList;
+		
 	}
+	
+//	public List<OrderVO> getOrder(String o_code){
+//		System.out.println("서비스 들어와ㅣㅅ고");
+//	}
 }

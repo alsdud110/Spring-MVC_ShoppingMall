@@ -11,11 +11,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+	 <c:forEach var = "code" items = "${orderCode }" varStatus = "i">
+	 	<a href = "<c:url value = '/order/orderHistory/${code.o_code}'/>" >${code.o_code}</a>
+	 </c:forEach>
 	
-	<form:form>
-		주문번호 : <input type = "text" name = "o_code" class = "o_code" id = "o_code"><button type = "button" onclick = "button();"  >전송</button>
-	</form:form>
-	 
+	<!-- 
 	 <div id = "aaa">
 	 	<c:forEach var = "list" items = "${order_List}" varStatus = "i">
 	 		<span id = "aaa">${list.p_color }</span>
@@ -25,11 +25,11 @@
 	 		<span id = "aaa"><img src = "<c:url value = '${list.p_image}'/>"></span>
 	 	</c:forEach>
 	 </div>
-	 
+	  -->
 	 
 	 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 	  <script>
-	  
+	  /*
 	  $('#aaa').hide();
 	function button(){
 	 		var o_code = $('#o_code').val();
@@ -50,7 +50,7 @@
 					} 
 				}
 	 		});
-	 	}
+	 	}*/
 	 </script>
 	  		<!-- JS here -->
     <!-- All JS Custom Plugins Link Here here -->

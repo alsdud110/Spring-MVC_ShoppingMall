@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -11,7 +12,6 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
-
 public class OrderDAO {
 	
 	private JdbcTemplate jdbcTemplate;
@@ -36,10 +36,8 @@ public class OrderDAO {
            order.setSumMoney(0);
            order.setStr("");
            order.setC_code(rs.getInt("C_CODE"));
-
            return order;
         }
-
      };
      
      public OrderVO selectOrder(int c_code) {
@@ -58,7 +56,6 @@ public class OrderDAO {
 //		
 //		return result.isEmpty() ? null : result;
 //	}
-
 	public List<OrderVO> selectOrder2(String[] arr){
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			
@@ -93,7 +90,6 @@ public class OrderDAO {
 						+ "select o_code,info.* from o_code,info", orderCommand.getM_code(), id[i]);
 			}
 		}
-
 	}
 	
 	public void insertOrderList(String[] arr) {
@@ -116,4 +112,48 @@ public class OrderDAO {
 					}
 				});
 	}
+	
+	public List<OrderVO> getOrderCode(String m_code) {
+		String sql = "select o_code from order_list where m_code = ?";
+		List<OrderVO> results = jdbcTemplate.query(sql,
+				new RowMapper<OrderVO>() {
+			@Override
+			public OrderVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+				OrderVO vo = new OrderVO();
+				vo.setO_code(rs.getString("o_code"));
+				return vo;
+			}},m_code);
+		
+		return results;
+	}
+	
+	public List<OrderVO> getOrder(String o_code){
+		System.out.println("DAO가 안돼>?");
+		System.out.println(o_code);
+		
+		List<OrderVO> results = jdbcTemplate.query("select o.*, p.p_name, p.p_image from order_product o, product p where o_code = ? and o.p_code = p.p_code",
+				new RowMapper<OrderVO>() {
+			@Override
+			public OrderVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+				OrderVO vo = new OrderVO();
+				vo.setO_code(rs.getString("o_code"));
+				vo.setP_size(rs.getString("p_size"));
+				vo.setP_color(rs.getNString("p_color"));
+				vo.setP_code(rs.getString("p_code"));
+				vo.setQty(rs.getInt("qty"));
+				vo.setP_name(rs.getString("p_name"));
+				vo.setP_image(rs.getString("p_image"));
+				return vo;
+			}},o_code);		
+		System.out.println("NO????");
+		System.out.println(results.size());
+		for(int i = 0; i< results.size(); i++) {
+			System.out.println(results.get(i).getO_code());
+		}
+		for(OrderVO orderVO : results) {
+			System.out.println(orderVO.getP_color().toString());
+		}
+		return results.isEmpty() ? null : results;
+	}
+	
 }

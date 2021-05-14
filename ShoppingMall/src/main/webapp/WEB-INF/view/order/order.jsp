@@ -108,6 +108,8 @@ $(document).ready(function(){
               		  <thead>
                  		 <tr>
 							<th scope = "col">상품</th>
+							<th scope = "col">사이즈</th>
+							<th scope = "col">색상</th>
 							<th scope = "col">단가</th>
 							<th scope = "col">수량</th>
 							<th scope = "col">금액</th>
@@ -127,6 +129,12 @@ $(document).ready(function(){
                           <p>${orderlist.p_name }</p>
                         </div>
                       </div>
+                    </td>
+                    <td class="media-body">
+                    	<p>${orderlist.p_size}</p>
+                    </td>
+                    <td class="media-body">
+                    	<p>${orderlist.p_color}</p>
                     </td>
                     <td>
                       <h5><fmt:formatNumber pattern="###,###,###" value="${orderlist.p_price}" />원</h5>

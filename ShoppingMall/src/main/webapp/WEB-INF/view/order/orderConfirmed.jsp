@@ -35,8 +35,6 @@
 </head>
 <body>
 
-
-
 <div class="container text-center" style = "margin-top : 40px;">
 		<div class="row">
 			<div class="col-xl-12">
@@ -67,9 +65,13 @@
 		%>
 	<div class="orderend_info">
 		
-			<br>
-			<h2><strong>배송 정보</strong></h2>
-			<hr width =15% color="black" align="center" size=35/>
+			<h4>주문번호</h4>
+			
+        </div>
+
+
+		
+			<h4>배송지정보</h4>
 			<div class="info_dsc">
 				<ul>
 					<li>이름 : <%=name %></li>
@@ -80,13 +82,8 @@
 				</ul>
 			</div>
 		</div>
-	<br>
-	<center>
-	  <input type="button" value="쇼핑 계속하기" id="home" class="genric-btn primary radius" onclick = 'location.href ="<c:url value='/main'/>"'>
-	</center>
 	
-	
-	
+	  <input type="button" value="홈으로 가기" id="home" class="genric-btn primary radius" onclick = 'location.href ="<c:url value='/main'/>"'>
 <!-- Footer -->
 	<jsp:include page="../footer.jsp"></jsp:include>
 

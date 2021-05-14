@@ -12,8 +12,17 @@ public class OrderVO {
     private int sumMoney;//선택한 상품별 총금액?
     private String str;
     private int c_code;
+    private String o_code;
     
-    public int getC_code() {
+    public String getO_code() {
+		return o_code;
+	}
+
+	public void setO_code(String o_code) {
+		this.o_code = o_code;
+	}
+
+	public int getC_code() {
     	return c_code;
     }
    

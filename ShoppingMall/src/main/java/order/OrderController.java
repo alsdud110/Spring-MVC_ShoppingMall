@@ -12,6 +12,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import cart.CartService;
 import member.Member;
@@ -86,5 +89,50 @@ public class OrderController {
 		model.addAttribute("orderCommand", orderCommand);
 		session.setAttribute("orderCommand", orderCommand);
 		return "order/orderConfirmed";
+	}
+
+	
+	@RequestMapping("/order/orderConfirmed")
+	public String mainToOrder(Model model, HttpSession session, HttpServletRequest request) {
+//		Member authInfo = (Member)session.getAttribute("authInfo");
+//		String m_code = authInfo.getM_code();
+//		
+//		System.out.println(m_code + "앰코드 받아와짐-------------");
+//		List<OrderVO> vo = orderService.getOrderCode(m_code);
+//
+//		//o_code 불러오고
+//		String o_code[] = new String[vo.size()];
+//		
+//		//o_code 배열에 저장하고
+//		for(int i = 0; i<vo.size(); i++) {
+//			o_code[i] = vo.get(i).getO_code();
+//			System.out.println(o_code[i]);
+//		}
+//		
+//		List<OrderVO> orderList = orderService.getOrderList(o_code);
+//		System.out.println("리스트에 저장");
+//	
+//		model.addAttribute("orderCode", vo);
+//		model.addAttribute("orderList", orderList);
+		
+		
+		return "order/orderHistory";
+	}
+	
+	@RequestMapping(value = "order/orderHistory", method = RequestMethod.POST)
+	@ResponseBody
+	public String mainOrder(String code, Model model, HttpSession session, HttpServletRequest request) {
+		System.out.println(code);
+		String o_code = code;
+		List<OrderVO> orderList = orderService.getOrder(o_code);
+		
+		if(orderList == null) {
+			return "fail";
+		}else {
+		model.addAttribute("order_List", orderList);
+		session.setAttribute("order_List", orderList);
+		
+		return "true";
+		}
 	}
 }

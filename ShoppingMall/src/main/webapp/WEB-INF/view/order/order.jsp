@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -39,110 +39,102 @@ colgroup {
 
 <jsp:include page="../header.jsp"></jsp:include>
 <link rel="stylesheet"
-	href="<c:url value = "/resources/css/bootstrap.min.css"/>">
+   href="<c:url value = "/resources/css/bootstrap.min.css"/>">
 <link rel="stylesheet"
-	href="<c:url value = "/resources/css/owl.carousel.min.css"/>">
+   href="<c:url value = "/resources/css/owl.carousel.min.css"/>">
 <link rel="stylesheet"
-	href="<c:url value = "/resources/css/flaticon.css"/>">
+   href="<c:url value = "/resources/css/flaticon.css"/>">
 <link rel="stylesheet"
-	href="<c:url value = "/resources/css/slicknav.css"/>">
+   href="<c:url value = "/resources/css/slicknav.css"/>">
 <link rel="stylesheet"
-	href="<c:url value = "/resources/css/animate.min.css"/>">
+   href="<c:url value = "/resources/css/animate.min.css"/>">
 <link rel="stylesheet"
-	href="<c:url value = "/resources/css/magnific-popup.css"/>">
+   href="<c:url value = "/resources/css/magnific-popup.css"/>">
 <link rel="stylesheet"
-	href="<c:url value = "/resources/css/fontawesome-all.min.css"/>">
+   href="<c:url value = "/resources/css/fontawesome-all.min.css"/>">
 <link rel="stylesheet"
-	href="<c:url value = "/resources/css/themify-icons.css"/>">
+   href="<c:url value = "/resources/css/themify-icons.css"/>">
 <link rel="stylesheet"
-	href="<c:url value = "/resources/css/slick.css"/>">
+   href="<c:url value = "/resources/css/slick.css"/>">
 <link rel="stylesheet"
-	href="<c:url value = "/resources/css/nice-select.css"/>">
+   href="<c:url value = "/resources/css/nice-select.css"/>">
 <link rel="stylesheet"
-	href="<c:url value = "/resources/css/style.css"/>">
+   href="<c:url value = "/resources/css/style.css"/>">
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script>
 $(document).ready(function(){
-	//장바구니에서 넘어온 상품들의 총 합을 나타내는 함수
-		var sumMoney = 0;
-		<c:forEach var = "list" items = "${orderlist}" varStatus = "i">
-			var qty = ${list.qty};
-			var price = parseInt(${list.p_price});
-			var totalPrice = qty*price;
-			sumMoney += totalPrice;
-		</c:forEach>
-			$('input[name=sumMoney]').val(sumMoney);
-	        var money = sumMoney.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	        document.getElementById('aaa').innerHTML = money;
+   //장바구니에서 넘어온 상품들의 총 합을 나타내는 함수
+      var sumMoney = 0;
+      <c:forEach var = "list" items = "${orderlist}" varStatus = "i">
+         var qty = ${list.qty};
+         var price = parseInt(${list.p_price});
+         var totalPrice = qty*price;
+         sumMoney += totalPrice;
+      </c:forEach>
+         $('input[name=sumMoney]').val(sumMoney);
+           var money = sumMoney.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+           document.getElementById('aaa').innerHTML = money;
 
 
-	});
+   });
 </script>
 </head>
 <body>
-	<!-- ${cartlist} -->
+   <!-- ${cartlist} -->
 
-	<div class="container text-center" style = "margin-top : 40px;">
-		<div class="row">
-			<div class="col-xl-12">
-				<div class="section-tittle mb-70">
-					<h2>Shopping Order</h2>
-				</div>
-			</div>
-		</div>
-	</div>
+   <div class="container text-center" style = "margin-top : 40px;">
+      <div class="row">
+         <div class="col-xl-12">
+            <div class="section-tittle mb-70">
+               <h2>Shopping Order</h2>
+            </div>
+         </div>
+      </div>
+   </div>
 
-		<div class = "text-center">
-			<span>Cart</span> 
-			>
-			<span class="this" title="현재페이지"><b>Order</b></span>
-			>
-			<span class="end">Order confirmed</span>
-		</div>
-	<form name="form1" id="form1" method="post" action="orderConfirmed">
+      <div class = "text-center">
+         <span>Cart</span> 
+         >
+         <span class="this" title="현재페이지"><b>Order</b></span>
+         >
+         <span class="end">Order confirmed</span>
+      </div>
+   <form name="form1" id="form1" method="post" action="orderConfirmed" onsubmit="return dateCheck(this.form)">
         <div class="container">
           <div class="cart_inner">
-          	<div class = "table-responsive">
-              		<table class="table">
-              		  <thead>
-                 		 <tr>
-							<th scope = "col">상품</th>
-							<th scope = "col">사이즈</th>
-							<th scope = "col">색상</th>
-							<th scope = "col">단가</th>
-							<th scope = "col">수량</th>
-							<th scope = "col">금액</th>
-                 		</tr>
-               		 </thead>
+             <div class = "table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                     <th scope = "col">상품</th>
+                     <th scope = "col">단가</th>
+                     <th scope = "col">수량</th>
+                     <th scope = "col">금액</th>
+                       </tr>
+                      </thead>
                 <tbody>
-				<c:forEach var = "orderlist" items = "${orderlist}" varStatus = "i">
-				<input type="hidden" name="p_color" value="${orderlist.p_color }">
-				<input type="hidden" name="p_size" value="${orderlist.p_size }">
+            <c:forEach var = "orderlist" items = "${orderlist}" varStatus = "i">
+            <input type="hidden" name="p_color" value="${orderlist.p_color }">
+            <input type="hidden" name="p_size" value="${orderlist.p_size }">
                   <tr>
                     <td>
                       <div class="media">
                         <div class="d-flex">
-                          <img src=	"<c:url value = "${orderlist.p_image }"/>" alt="" />
+                          <img src=   "<c:url value = "${orderlist.p_image }"/>" alt="" />
                         </div>
                         <div class="media-body">
                           <p>${orderlist.p_name }</p>
                         </div>
                       </div>
                     </td>
-                    <td class="media-body">
-                    	<p>${orderlist.p_size}</p>
-                    </td>
-                    <td class="media-body">
-                    	<p>${orderlist.p_color}</p>
-                    </td>
                     <td>
                       <h5><fmt:formatNumber pattern="###,###,###" value="${orderlist.p_price}" />원</h5>
                     </td>
                     <td>
-						<input type="number" style="width: 50px" name="qty"
-						value="${orderlist.qty}" min="1" readonly> <input type="hidden"
-						name="p_code" value="${orderlist.p_code}">
+                  <input type="number" style="width: 50px" name="qty"
+                  value="${orderlist.qty}" min="1" readonly> <input type="hidden"
+                  name="p_code" value="${orderlist.p_code}">
                     </td>
                     <td id = "sumMoney" >
                       <h5><fmt:formatNumber pattern="###,###,###" value="${orderlist.sumMoney}" />원</h5>
@@ -159,12 +151,12 @@ $(document).ready(function(){
          <span>선택한 총 금액 : ￦  </span><span id="aaa"></span>원
         </div>
  
- 		<%
- 		Member member = (Member)session.getAttribute("authInfo");
-		String name = member.getM_name();
-		String email = member.getM_email();
-		String contact = member.getM_contact();
- 		%>
+       <%
+       Member member = (Member)session.getAttribute("authInfo");
+      String name = member.getM_name();
+      String email = member.getM_email();
+      String contact = member.getM_contact();
+       %>
                <!-- 주문자 정보-->
                <div style= "margin-left:13%"> 
                     <h3 class="tit-supplier mt90"><b>주문자  정보</b></h3>
@@ -189,7 +181,7 @@ $(document).ready(function(){
                                     </div>
                                 </td>
                             </tr>
-							
+                     
                             <tr>
                                 <th class="ta-l required" aria-required="true">휴대폰 번호</th>
                                 
@@ -244,7 +236,7 @@ $(document).ready(function(){
                                 <th class="ta-l required" aria-required="true">받으실분 *</th>
                                 <td>
                                     <div class="txt-field hs" style="width:380px;">
-                                        <input type="text" name="name" value="" maxlength="20" class="text">
+                                        <input type="text" id="receivername" name="name" value="" maxlength="20" class="text">
                                     </div>
                                 </td>
                             </tr>
@@ -255,9 +247,9 @@ $(document).ready(function(){
                                         <id class="txt-field hs" style="width:250px;">
                                          <input type="text" id="sample6_postcode" placeholder="우편번호">
                                          <input type="button" onclick="sample6_execDaumPostcode()" class="genric-btn primary small" value="우편번호 찾기"><br>
-                                      	 <input type="text" name = "addr_road" id="sample6_address" placeholder="주소" style = "width: 88%"><br>
-                                      	  <input type="text" id="sample6_extraAddress" placeholder="">
-										 <input type="text" name = "addr_detail" id="sample6_detailAddress" placeholder="상세주소입력">
+                                          <input type="text" name = "addr_road" id="sample6_address" placeholder="주소" style = "width: 88%"><br>
+                                           <input type="text" id="sample6_extraAddress" placeholder="">
+                               <input type="text" name = "addr_detail" id="sample6_detailAddress" placeholder="상세주소입력">
                                     </div>
                                      
                                 </td>
@@ -293,8 +285,8 @@ $(document).ready(function(){
                         
                         <!-- 결제 방법 -->
                         <h3 class="tit-supplier mt90"><b>결제 방법</b></h3>
-                  			  <hr width =85% color="black" align="left" size=35/>
-                  			  <div class="process" id="settlekind_general">
+                             <hr width =85% color="black" align="left" size=35/>
+                             <div class="process" id="settlekind_general">
                                     <div class="selection">
                                         <span class="form-element" id="settlekind_type_pb">
                                             <input type="radio" name="settleKind" id="settleKind_pb" value="pb" class="radio">
@@ -305,7 +297,7 @@ $(document).ready(function(){
                                             </select>
                                             
                                             <br>
-                   		 <div class="table2">
+                          <div class="table2">
                         <table>
                             <colgroup>
                                 <col style="width:140px;">
@@ -332,12 +324,12 @@ $(document).ready(function(){
                             </div>
                             
                         
-				  <input type="submit" value="구매하기" id="updateCart" class="genric-btn primary radius" style = "margin-left : 75%;" formaction="<c:url value="/orderConfirmed"/>">
-				 </form>
+              <input type="submit" value="구매하기" id="updateCart" class="genric-btn primary radius" style = "margin-left : 75%;" formaction="<c:url value="/orderConfirmed"/>">
+             </form>
  
-	     
-	     <!-- 다음 주소 api -->
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+        
+        <!-- 다음 주소 api -->
+   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 function sample6_execDaumPostcode() {
     new daum.Postcode({
@@ -386,51 +378,70 @@ function sample6_execDaumPostcode() {
         }
     }).open();
 }
+
+function dateCheck(){
+   if(this.receivername.value==(null || "")){
+      alert("'받으실분'은 필수 입력사항입니다.")
+      this.receivername.focus();
+      return false;
+   }
+   if(this.sample6_address.value==(null || "")){
+      alert("배송주소는 필수 입력사항입니다.")
+      this.sample6_address.focus();
+      return false;
+   }
+   if(this.receiverCellPhone.value==(null || "")){
+      alert("휴대폰 번호는 필수 입력사항입니다.")
+      this.receiverCellPhone.focus();
+      return false;
+   }else
+      return true;
+}
 </script>
-	     
+        
 
  
 
 
-	<!-- Footer -->
-	<jsp:include page="../footer.jsp"></jsp:include>
+   <!-- Footer -->
+   <jsp:include page="../footer.jsp"></jsp:include>
 
-	<!-- JS here -->
-	<!-- All JS Custom Plugins Link Here here -->
-	<script
-		src="<c:url value = "/resources/js/vendor/modernizr-3.5.0.min.js"/>"></script>
-	<!-- Jquery, Popper, Bootstrap -->
-	<script
-		src="<c:url value = "/resources/js/vendor/jquery-1.12.4.min.js"/>"></script>
-	<script src="<c:url value = "/resources/js/popper.min.js"/>"></script>
-	<script src="<c:url value = "/resources/js/bootstrap.min.js"/>"></script>
-	<!-- Jquery Mobile Menu -->
-	<script src="<c:url value = "/resources/js/jquery.slicknav.min.js"/>"></script>
+   <!-- JS here -->
+   <!-- All JS Custom Plugins Link Here here -->
+   <script
+      src="<c:url value = "/resources/js/vendor/modernizr-3.5.0.min.js"/>"></script>
+   <!-- Jquery, Popper, Bootstrap -->
+   <script
+      src="<c:url value = "/resources/js/vendor/jquery-1.12.4.min.js"/>"></script>
+   <script src="<c:url value = "/resources/js/popper.min.js"/>"></script>
+   <script src="<c:url value = "/resources/js/bootstrap.min.js"/>"></script>
+   <!-- Jquery Mobile Menu -->
+   <script src="<c:url value = "/resources/js/jquery.slicknav.min.js"/>"></script>
 
-	<!-- Jquery Slick , Owl-Carousel Plugins -->
-	<script src="<c:url value = "/resources/js/owl.carousel.min.js"/>"></script>
-	<script src="<c:url value = "/resources/js/slick.min.js"/>"></script>
+   <!-- Jquery Slick , Owl-Carousel Plugins -->
+   <script src="<c:url value = "/resources/js/owl.carousel.min.js"/>"></script>
+   <script src="<c:url value = "/resources/js/slick.min.js"/>"></script>
 
-	<!-- One Page, Animated-HeadLin -->
-	<script src="<c:url value = "/resources/js/wow.min.js"/>"></script>
-	<script src="<c:url value = "/resources/js/animated.headline.js"/>"></script>
+   <!-- One Page, Animated-HeadLin -->
+   <script src="<c:url value = "/resources/js/wow.min.js"/>"></script>
+   <script src="<c:url value = "/resources/js/animated.headline.js"/>"></script>
 
-	<!-- Scroll up, nice-select, sticky -->
-	<script src="<c:url value = "/resources/js/jquery.scrollUp.min.js"/>"></script>
-	<script
-		src="<c:url value = "/resources/js/jquery.nice-select.min.js"/>"></script>
-	<script src="<c:url value = "/resources/js/jquery.sticky.js"/>"></script>
-	<script src="<c:url value = "/resources/js/jquery.magnific-popup.js"/>"></script>
+   <!-- Scroll up, nice-select, sticky -->
+   <script src="<c:url value = "/resources/js/jquery.scrollUp.min.js"/>"></script>
+   <script
+      src="<c:url value = "/resources/js/jquery.nice-select.min.js"/>"></script>
+   <script src="<c:url value = "/resources/js/jquery.sticky.js"/>"></script>
+   <script src="<c:url value = "/resources/js/jquery.magnific-popup.js"/>"></script>
 
-	<!— contact js —>
-	<script src="<c:url value = "/resources/js/contact.js"/>"></script>
-	<script src="<c:url value = "/resources/js/jquery.form.js"/>"></script>
-	<script src="<c:url value = "/resources/js/jquery.validate.min.js"/>"></script>
-	<script src="<c:url value = "/resources/js/mail-script.js"/>"></script>
-	<script src="<c:url value = "/resources/js/jquery.ajaxchimp.min.js"/>"></script>
+   <!— contact js —>
+   <script src="<c:url value = "/resources/js/contact.js"/>"></script>
+   <script src="<c:url value = "/resources/js/jquery.form.js"/>"></script>
+   <script src="<c:url value = "/resources/js/jquery.validate.min.js"/>"></script>
+   <script src="<c:url value = "/resources/js/mail-script.js"/>"></script>
+   <script src="<c:url value = "/resources/js/jquery.ajaxchimp.min.js"/>"></script>
 
-	<!— Jquery Plugins, main Jquery —>
-	<script src="<c:url value = "/resources/js/plugins.js"/>"></script>
-	<script src="<c:url value = "/resources/js/main.js"/>"></script>
+   <!— Jquery Plugins, main Jquery —>
+   <script src="<c:url value = "/resources/js/plugins.js"/>"></script>
+   <script src="<c:url value = "/resources/js/main.js"/>"></script>
 </body>
 </html>

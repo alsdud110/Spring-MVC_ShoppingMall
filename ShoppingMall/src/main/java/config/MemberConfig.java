@@ -27,10 +27,10 @@ import register.MemberRegisterService;
 @EnableTransactionManagement
 public class MemberConfig {
 	
-    private static final String DRIVER ="com.mysql.cj.jdbc.Driver";		
-    private static final String URL ="jdbc:mysql://localhost:3306/ShoppingMallDB";
-    private static final String USER="ShawnShoppingMall";
-    private static final String PW="dudlove00";//
+    private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";	
+    private static final String URL ="jdbc:oracle:thin:@localhost:1521:xe";
+    private static final String USER="ShoppingMallDB";
+    private static final String PW="1234";//
 
 
 	@Bean(destroyMethod = "close")
